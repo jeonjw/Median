@@ -109,7 +109,11 @@ public class MediaNoticeFragment extends Fragment {
         public void bindNotice(Notice notice) {
             mNotice = notice;
             mTitleTextView.setText(mNotice.getTitle());
-            mContentsTextView.setText(Html.fromHtml(mNotice.getContents(),Html.FROM_HTML_MODE_LEGACY));
+            if (Build.VERSION.SDK_INT >= 24) {
+                mContentsTextView.setText(Html.fromHtml(mNotice.getContents(),Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                mContentsTextView.setText(Html.fromHtml(mNotice.getContents()));
+            }
         }
     }
 
