@@ -18,7 +18,9 @@ public class MainFragment extends Fragment {
     private Button mBoardButton;
     private Button mLectureButton;
     private Button mSettingButton;
+    private Button test;
 
+    //커밋테스트
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
