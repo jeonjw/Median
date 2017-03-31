@@ -8,10 +8,12 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class NoticeFragment extends Fragment{
 
     private ViewPager mViewPager;
+    private Button button;
 
     @Nullable
     @Override
