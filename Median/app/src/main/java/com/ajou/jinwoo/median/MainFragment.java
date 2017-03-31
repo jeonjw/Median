@@ -43,6 +43,15 @@ public class MainFragment extends Fragment {
             }
         });
 
+        mBoardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment boardFragment = new BoardFragment();
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.fragment_container,boardFragment).addToBackStack(null).commit();
+            }
+        });
+
         setButtonFont();
 
         return view;
