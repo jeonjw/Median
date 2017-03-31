@@ -91,7 +91,7 @@ public class MediaNoticeFragment extends Fragment {
     }
 
 
-    private class NoticeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class NoticeHolder extends RecyclerView.ViewHolder  {
         private TextView mTitleTextView;
         private TextView mContentsTextView;
         private Notice mNotice;
@@ -102,7 +102,7 @@ public class MediaNoticeFragment extends Fragment {
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.media_notice_title_text_view);
             mContentsTextView = (TextView) itemView.findViewById(R.id.media_notice_contents_text_view);
-            itemView.setOnClickListener(this);
+
         }
 
 
@@ -117,12 +117,7 @@ public class MediaNoticeFragment extends Fragment {
             }
         }
 
-        @Override
-        public void onClick(View v) {
-            Fragment fragment = NoticeContentsFragment.newInstance(mNotice.getBoardNum());
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
-        }
+
     }
 
     private class NoticeAdapter extends RecyclerView.Adapter<NoticeHolder> {
