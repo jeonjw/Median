@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+
+        <Button
+            android:id="@+id/notice_button"
+            android:layout_width="190dp"
+            android:layout_height="110dp"
+            android:background="#3F8AC9"
+            android:drawableEnd="@drawable/light_bulb"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:text="@string/notice"
+            android:textColor="#ffffff"
+            android:textSize="28sp" />
+
+        <Button
+            android:layout_marginStart="10dp"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:text="@string/plan"
+            android:id="@+id/calendar_button"
+            android:textSize="28sp"
+            android:textColor="#ffffff"
+            android:background="#3F8AC9"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+
+        <Button
+            android:id="@+id/info_button"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:background="#262A6B"
+            android:text="@string/info"
+            android:textColor="#ffffff"
+            android:textSize="28sp" />
+
+        <Button
+            android:layout_marginStart="10dp"
+            android:layout_width="190dp"
+            android:layout_height="110dp"
+            android:text="@string/board"
+            android:textColor="#ffffff"
+            android:textSize="28sp"
+            android:background="#262A6B"
+            android:id="@+id/board_button"
+            android:gravity="end|center"
+            android:padding="10dp"
+            android:drawableStart="@drawable/board"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/lecture_button"
+            android:layout_width="190dp"
+            android:layout_height="110dp"
+            android:background="#6CABDD"
+            android:text="@string/lecture"
+            android:textColor="#ffffff"
+            android:textSize="28sp"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:drawableEnd="@drawable/schedule"/>
+
+        <Button
+            android:id="@+id/setting_button"
+            android:layout_width="120dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="10dp"
+            android:background="#6CABDD"
+            android:text="@string/setting"
+            android:textColor="#ffffff"
+            android:textSize="28sp"
+            />
+
+    </LinearLayout>
+
+
+</LinearLayout>
