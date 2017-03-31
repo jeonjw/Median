@@ -18,7 +18,7 @@ public class MainFragment extends Fragment {
     private Button mBoardButton;
     private Button mLectureButton;
     private Button mSettingButton;
-    private Button dowontest;
+    private Button dowoddntest;
 
     //커밋테스트
     @Nullable
