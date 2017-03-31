@@ -19,7 +19,7 @@ public class MainFragment extends Fragment {
     private Button mLectureButton;
     private Button mSettingButton;
 
-    //fgfgh
+    //진우 테스트
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
