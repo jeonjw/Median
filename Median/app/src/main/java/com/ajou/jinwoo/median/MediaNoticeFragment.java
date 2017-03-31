@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +45,8 @@ public class MediaNoticeFragment extends Fragment {
         noticeList = new ArrayList<>();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(layoutManager);
 
         updateUI();
@@ -66,12 +70,9 @@ public class MediaNoticeFragment extends Fragment {
                 for (DataSnapshot ds : dataSnapshot.child("title").getChildren()) {
                     titleList.add(ds.getValue().toString());
                 }
-
                 for (DataSnapshot ds : dataSnapshot.child("contents").getChildren()) {
                     contentsList.add(ds.getValue().toString());
                 }
-
-
                 for (int i = 0; i < dataSnapshot.child("title").getChildrenCount(); i++) {
                     Notice notice = new Notice(titleList.get(i), contentsList.get(i));
                     noticeList.add(notice);
@@ -90,7 +91,7 @@ public class MediaNoticeFragment extends Fragment {
     }
 
 
-    private class NoticeHolder extends RecyclerView.ViewHolder {
+    private class NoticeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
         private TextView mContentsTextView;
         private Notice mNotice;
@@ -101,12 +102,12 @@ public class MediaNoticeFragment extends Fragment {
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.media_notice_title_text_view);
             mContentsTextView = (TextView) itemView.findViewById(R.id.media_notice_contents_text_view);
-
+            itemView.setOnClickListener(this);
         }
 
 
         @RequiresApi(api = Build.VERSION_CODES.N)
-        public void bindNotice(Notice notice) {
+        private void bindNotice(Notice notice) {
             mNotice = notice;
             mTitleTextView.setText(mNotice.getTitle());
             if (Build.VERSION.SDK_INT >= 24) {
@@ -114,6 +115,13 @@ public class MediaNoticeFragment extends Fragment {
             } else {
                 mContentsTextView.setText(Html.fromHtml(mNotice.getContents()));
             }
+        }
+
+        @Override
+        public void onClick(View v) {
+            Fragment fragment = NoticeContentsFragment.newInstance(mNotice.getBoardNum());
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
         }
     }
 

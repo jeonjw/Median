@@ -1,6 +1,11 @@
 package com.ajou.jinwoo.median;
 
 public class Notice {
+
+    private String title;
+    private String contents;
+    private int boardNum;
+
     public String getTitle() {
         return title;
     }
@@ -9,27 +14,14 @@ public class Notice {
         return contents;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setContents(String contents) {
-        this.contents = contents;
-    }
-
-    public Notice() {
-
+    public int getBoardNum() {
+        return boardNum;
     }
 
     public Notice(String title, String contents) {
         this.title = title;
         this.contents = contents;
-
     }
-
-
-    private String title;
-    private String contents;
 
 
 }
