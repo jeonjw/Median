@@ -1,18 +1,23 @@
 package com.ajou.jinwoo.median;
 
 
+import android.animation.ValueAnimator;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +36,7 @@ public class MediaNoticeFragment extends Fragment {
     private NoticeAdapter noticeAdapter;
     private List<Notice> noticeList;
     private DatabaseReference mDatabase;
+    int viewWidth,viewHeight;
 
     @Nullable
     @Override
@@ -91,10 +97,12 @@ public class MediaNoticeFragment extends Fragment {
     }
 
 
-    private class NoticeHolder extends RecyclerView.ViewHolder  {
+    private class NoticeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
         private TextView mContentsTextView;
         private Notice mNotice;
+        private boolean isClicked;
+
 
 
         public NoticeHolder(View itemView) {
@@ -102,6 +110,8 @@ public class MediaNoticeFragment extends Fragment {
 
             mTitleTextView = (TextView) itemView.findViewById(R.id.media_notice_title_text_view);
             mContentsTextView = (TextView) itemView.findViewById(R.id.media_notice_contents_text_view);
+            isClicked = false;
+            itemView.setOnClickListener(this);
 
         }
 
@@ -110,14 +120,38 @@ public class MediaNoticeFragment extends Fragment {
         private void bindNotice(Notice notice) {
             mNotice = notice;
             mTitleTextView.setText(mNotice.getTitle());
+
             if (Build.VERSION.SDK_INT >= 24) {
-                mContentsTextView.setText(Html.fromHtml(mNotice.getContents(),Html.FROM_HTML_MODE_COMPACT));
+                mContentsTextView.setText(Html.fromHtml(mNotice.getContents(), Html.FROM_HTML_MODE_COMPACT));
             } else {
                 mContentsTextView.setText(Html.fromHtml(mNotice.getContents()));
             }
+
+            mContentsTextView.setMaxLines(2);
+            mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
+
+
+        }
+        public int test(){
+            return mContentsTextView.getHeight();
         }
 
 
+        @Override
+        public void onClick(final View v) {
+
+            if(!isClicked) {
+                isClicked = true;
+                mContentsTextView.setMaxLines(Integer.MAX_VALUE);
+                mContentsTextView.setEllipsize(null);
+            }else{
+                isClicked = false;
+                mContentsTextView.setMaxLines(2);
+                mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
+            }
+
+
+        }
     }
 
     private class NoticeAdapter extends RecyclerView.Adapter<NoticeHolder> {
@@ -129,15 +163,16 @@ public class MediaNoticeFragment extends Fragment {
 
         @Override
         public NoticeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            View view = layoutInflater.inflate(R.layout.list_item_media_notice, parent, false);
+            final View view = layoutInflater.inflate(R.layout.list_item_media_notice, parent, false);
 
             return new NoticeHolder(view);
         }
 
         @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
-        public void onBindViewHolder(NoticeHolder holder, int position) {
+        public void onBindViewHolder(final NoticeHolder holder, int position) {
             Notice notice = mNoticeList.get(position);
             holder.bindNotice(notice);
         }
