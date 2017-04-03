@@ -1,7 +1,6 @@
 package com.ajou.jinwoo.median;
 
 
-import android.animation.ValueAnimator;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,15 +10,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +30,6 @@ public class MediaNoticeFragment extends Fragment {
     private NoticeAdapter noticeAdapter;
     private List<Notice> noticeList;
     private DatabaseReference mDatabase;
-    int viewWidth,viewHeight;
 
     @Nullable
     @Override
@@ -104,7 +97,6 @@ public class MediaNoticeFragment extends Fragment {
         private boolean isClicked;
 
 
-
         public NoticeHolder(View itemView) {
             super(itemView);
 
@@ -132,7 +124,8 @@ public class MediaNoticeFragment extends Fragment {
 
 
         }
-        public int test(){
+
+        public int test() {
             return mContentsTextView.getHeight();
         }
 
@@ -140,11 +133,11 @@ public class MediaNoticeFragment extends Fragment {
         @Override
         public void onClick(final View v) {
 
-            if(!isClicked) {
+            if (!isClicked) {
                 isClicked = true;
                 mContentsTextView.setMaxLines(Integer.MAX_VALUE);
                 mContentsTextView.setEllipsize(null);
-            }else{
+            } else {
                 isClicked = false;
                 mContentsTextView.setMaxLines(2);
                 mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
