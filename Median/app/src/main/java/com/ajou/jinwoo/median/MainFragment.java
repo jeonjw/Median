@@ -19,7 +19,6 @@ public class MainFragment extends Fragment {
     private Button mLectureButton;
     private Button mSettingButton;
 
-    //진우 테스트
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,7 +38,7 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 Fragment noticeFragment = new NoticeFragment();
                 FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.fragment_container,noticeFragment).addToBackStack(null).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, noticeFragment).addToBackStack(null).commit();
             }
         });
 
@@ -48,7 +47,7 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 Fragment boardFragment = new BoardFragment();
                 FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.fragment_container,boardFragment).addToBackStack(null).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, boardFragment).addToBackStack(null).commit();
             }
         });
 
@@ -57,7 +56,13 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-    private void setButtonFont(){
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) getActivity()).setMenuVisible(false);
+    }
+
+    private void setButtonFont() {
         Typeface type = Typeface
                 .createFromAsset(getActivity().getAssets(), "Impact.ttf");
 
@@ -68,8 +73,4 @@ public class MainFragment extends Fragment {
         mLectureButton.setTypeface(type);
         mSettingButton.setTypeface(type);
     }
-
-
-
-
 }

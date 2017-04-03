@@ -11,19 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class ToolbarFragment extends Fragment {
+public class BoardToolbarFragment extends Fragment{
+
     private TextView toolbarTitleTextView;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_toolbar, container, false);
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbarTitleTextView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        View view = inflater.inflate(R.layout.fragment_board_toolbar, container, false);
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.board_toolbar);
+        toolbarTitleTextView = (TextView) toolbar.findViewById(R.id.board_toolbar_title);
         toolbar.setTitle(null);
 
         Typeface type = Typeface
                 .createFromAsset(getActivity().getAssets(), "Impact.ttf");
 
-        toolbarTitleTextView.setText(R.string.app_title);
+        toolbarTitleTextView.setText("Test");
         toolbarTitleTextView.setTypeface(type);
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(toolbar);
@@ -32,10 +33,7 @@ public class ToolbarFragment extends Fragment {
 
         return view;
     }
-
-    public void setToolbarTitle(String title) {
+    public void setToolbarTitle(String title){
         toolbarTitleTextView.setText(title);
     }
-
-
 }

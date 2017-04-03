@@ -48,15 +48,12 @@ public class MediaNoticeFragment extends Fragment {
         layoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        updateUI();
+        noticeAdapter = new NoticeAdapter(noticeList);
+        mRecyclerView.setAdapter(noticeAdapter);
 
         return view;
     }
 
-    private void updateUI() {
-        noticeAdapter = new NoticeAdapter(noticeList);
-        mRecyclerView.setAdapter(noticeAdapter);
-    }
 
     private void loadNoticeData() {
         mDatabase.child("media_notice").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -124,11 +121,6 @@ public class MediaNoticeFragment extends Fragment {
 
 
         }
-
-        public int test() {
-            return mContentsTextView.getHeight();
-        }
-
 
         @Override
         public void onClick(final View v) {

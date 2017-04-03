@@ -8,16 +8,15 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-public class NoticeFragment extends Fragment{
+public class NoticeFragment extends Fragment {
 
     private ViewPager mViewPager;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_notice,container,false);
+        View view = inflater.inflate(R.layout.fragment_notice, container, false);
 
         ((MainActivity) getActivity()).setToolbarTitle("Notice");
 
@@ -29,7 +28,7 @@ public class NoticeFragment extends Fragment{
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         mViewPager = (ViewPager) view.findViewById(R.id.notice_view_pager);
-        NoticeTabPageAdapter noticeTabPageAdapter = new NoticeTabPageAdapter(getFragmentManager(),tabLayout.getTabCount());
+        NoticeTabPageAdapter noticeTabPageAdapter = new NoticeTabPageAdapter(getFragmentManager(), tabLayout.getTabCount());
         mViewPager.setAdapter(noticeTabPageAdapter);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -37,6 +36,10 @@ public class NoticeFragment extends Fragment{
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
+                if (tab.getPosition() == 1)
+                    ((MainActivity) getActivity()).setMenuVisible(true);
+                else
+                    ((MainActivity) getActivity()).setMenuVisible(false);
             }
 
             @Override
