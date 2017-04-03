@@ -6,9 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,14 +28,14 @@ public class StudentNoticeFragment extends Fragment {
     private List<StudentNotice> studentNoticeList;
     private DatabaseReference mDatabase;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_notice, container, false);
-
         mRecyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        setHasOptionsMenu(true);
         studentNoticeList = new ArrayList<>();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -40,6 +45,7 @@ public class StudentNoticeFragment extends Fragment {
 
         studentNoticeAdapter = new StudentNoticeAdapter(studentNoticeList);
         mRecyclerView.setAdapter(studentNoticeAdapter);
+
 
         return view;
     }
@@ -94,4 +100,23 @@ public class StudentNoticeFragment extends Fragment {
         }
     }
 
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        System.out.println("check");
+
+        if (item.getItemId() == R.id.menu_notice_write) {
+            Toast.makeText(getContext(), "write", Toast.LENGTH_SHORT).show();
+        } else if (item.getItemId() == R.id.menu_search) {
+            Toast.makeText(getContext(), "search", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.menu_notice_write).setVisible(true);
+        menu.findItem(R.id.menu_search).setVisible(true);
+    }
 }

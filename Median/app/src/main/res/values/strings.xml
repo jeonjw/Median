@@ -7,4 +7,6 @@
     <string name="lecture">Class</string>
     <string name="setting">Setting</string>
     <string name="app_title">MEDIAN</string>
+    <string name="write">write_notice</string>
+    <string name="search">search</string>
 </resources>

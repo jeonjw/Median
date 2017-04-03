@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class MediaNoticeFragment extends Fragment {
     private List<Notice> noticeList;
     private DatabaseReference mDatabase;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class MediaNoticeFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.media_notice_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        setHasOptionsMenu(true);
         loadNoticeData();
 
         noticeList = new ArrayList<>();
@@ -166,5 +169,13 @@ public class MediaNoticeFragment extends Fragment {
         public int getItemCount() {
             return mNoticeList.size();
         }
+    }
+
+
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.menu_notice_write).setVisible(false);
+        menu.findItem(R.id.menu_search).setVisible(false);
     }
 }

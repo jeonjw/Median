@@ -7,9 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainFragment extends Fragment {
     private Button mNoticeButton;
@@ -18,6 +22,12 @@ public class MainFragment extends Fragment {
     private Button mBoardButton;
     private Button mLectureButton;
     private Button mSettingButton;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Nullable
     @Override
@@ -56,11 +66,6 @@ public class MainFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ((MainActivity) getActivity()).setMenuVisible(false);
-    }
 
     private void setButtonFont() {
         Typeface type = Typeface
@@ -73,4 +78,13 @@ public class MainFragment extends Fragment {
         mLectureButton.setTypeface(type);
         mSettingButton.setTypeface(type);
     }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.menu_notice_write).setVisible(false);
+        menu.findItem(R.id.menu_search).setVisible(false);
+
+    }
+
 }

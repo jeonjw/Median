@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Fragment toolbarFragment;
     private MenuItem write;
+    private MenuItem search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +43,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        write = menu.findItem(R.id.actionbar_settings);
+        write = menu.findItem(R.id.menu_notice_write);
+        search = menu.findItem(R.id.menu_search);
         write.setVisible(false);
+        search.setVisible(false);
         return true;
     }
 
-    public void setMenuVisible(boolean visible) {
-        if (write != null)
-            write.setVisible(visible);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        return false;
     }
-
-
 }

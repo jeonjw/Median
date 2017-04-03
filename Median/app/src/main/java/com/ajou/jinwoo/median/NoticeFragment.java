@@ -36,10 +36,6 @@ public class NoticeFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
-                if (tab.getPosition() == 1)
-                    ((MainActivity) getActivity()).setMenuVisible(true);
-                else
-                    ((MainActivity) getActivity()).setMenuVisible(false);
             }
 
             @Override
