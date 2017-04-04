@@ -61,6 +61,15 @@ public class MainFragment extends Fragment {
             }
         });
 
+        mLectureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment lectureFragment = new ClassFragment();
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.fragment_container, lectureFragment).addToBackStack(null).commit();
+            }
+        });
+
         setButtonFont();
 
         return view;
