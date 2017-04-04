@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class NoticeTabPageAdapter extends FragmentStatePagerAdapter{
+public class NoticeTabPageAdapter extends FragmentStatePagerAdapter {
     private int tabCount;
 
     public NoticeTabPageAdapter(FragmentManager fm, int tabCount) {
@@ -20,7 +20,8 @@ public class NoticeTabPageAdapter extends FragmentStatePagerAdapter{
                 return new MediaNoticeFragment();
 
             case 1:
-                return new StudentNoticeFragment();
+                return new StudentNoticeRootFrame();
+
 
             default:
                 return null;
