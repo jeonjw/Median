@@ -34,7 +34,7 @@ public class StudentNoticeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_notice, container, false);
-
+        setHasOptionsMenu(true);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         studentNoticeList = new ArrayList<>();
@@ -108,11 +108,18 @@ public class StudentNoticeFragment extends Fragment {
         if (item.getItemId() == R.id.menu_notice_write) {
             FragmentManager fm = getFragmentManager();
             Fragment writeFragment = new StudentNoticeWriteFragment();
-            fm.beginTransaction().replace(R.id.root_frame, writeFragment).addToBackStack(null).commit();
+            fm.beginTransaction().replace(R.id.student_notice_container, writeFragment).setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
         } else if (item.getItemId() == R.id.menu_search) {
             Toast.makeText(getContext(), "search", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.menu_notice_write).setVisible(true);
+        menu.findItem(R.id.menu_search).setVisible(true);
+    }
+
 
 }
