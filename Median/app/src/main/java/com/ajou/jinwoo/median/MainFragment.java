@@ -23,17 +23,12 @@ public class MainFragment extends Fragment {
     private Button mLectureButton;
     private Button mSettingButton;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-
+        setHasOptionsMenu(true);
         ((MainActivity) getActivity()).setToolbarTitle("Median");
 
         mNoticeButton = (Button) view.findViewById(R.id.notice_button);

@@ -1,17 +1,17 @@
 package com.ajou.jinwoo.median;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,13 +29,14 @@ public class StudentNoticeFragment extends Fragment {
     private DatabaseReference mDatabase;
 
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_notice, container, false);
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        setHasOptionsMenu(true);
         studentNoticeList = new ArrayList<>();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -100,23 +101,18 @@ public class StudentNoticeFragment extends Fragment {
         }
     }
 
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         System.out.println("check");
 
         if (item.getItemId() == R.id.menu_notice_write) {
-            Toast.makeText(getContext(), "write", Toast.LENGTH_SHORT).show();
+            FragmentManager fm = getFragmentManager();
+            Fragment writeFragment = new StudentNoticeWriteFragment();
+            fm.beginTransaction().replace(R.id.root_frame, writeFragment).addToBackStack(null).commit();
         } else if (item.getItemId() == R.id.menu_search) {
             Toast.makeText(getContext(), "search", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_notice_write).setVisible(true);
-        menu.findItem(R.id.menu_search).setVisible(true);
-    }
 }
