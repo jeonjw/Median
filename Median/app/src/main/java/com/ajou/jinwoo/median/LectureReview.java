@@ -2,7 +2,7 @@ package com.ajou.jinwoo.median;
 
 
 
-public class ClassReview {
+public class LectureReview {
 
     private String title;
     private int boardNumber;
@@ -18,7 +18,7 @@ public class ClassReview {
 
     public int getCommentNumber() {return commentNumber;}
 
-    public ClassReview(int boardNumber,String title,int commentNumber) {
+    public LectureReview(int boardNumber, String title, int commentNumber) {
         this.boardNumber = boardNumber;
         this.title = title;
         this.commentNumber = commentNumber;

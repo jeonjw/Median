@@ -1,10 +1,8 @@
 package com.ajou.jinwoo.median;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +17,7 @@ public class BoardClassReviewFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private ClassReviewAdapter classReviewAdapter;
-    private ClassReview mClassReview;
+    private LectureReview mLectureReview;
     private List<Integer> boardNumberList;
     private List<String> titleList;
     private List<Integer> commentNumberList;
@@ -66,38 +64,38 @@ public class BoardClassReviewFragment extends Fragment {
 
         }
 
-        public void bindNotice(ClassReview classReview) {
-            mClassReview = classReview;
-            mBoardNumberTextView.setText(mClassReview.getBoardNumber());
-            mTitleTextView.setText(mClassReview.getTitle());
-            mCommentNumberTextView.setText(mClassReview.getCommentNumber());
+        public void bindNotice(LectureReview lectureReview) {
+            mLectureReview = lectureReview;
+            mBoardNumberTextView.setText(mLectureReview.getBoardNumber());
+            mTitleTextView.setText(mLectureReview.getTitle());
+            mCommentNumberTextView.setText(mLectureReview.getCommentNumber());
         }
     }
 
     private class ClassReviewAdapter extends RecyclerView.Adapter<ClassReviewHolder>{
-        private List<ClassReview> mClassReviewList;
+        private List<LectureReview> mLectureReviewList;
 
-        public ClassReviewAdapter(List<ClassReview> mClassReviewList) {
-            this.mClassReviewList = mClassReviewList;
+        public ClassReviewAdapter(List<LectureReview> mLectureReviewList) {
+            this.mLectureReviewList = mLectureReviewList;
         }
 
         @Override
         public ClassReviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            final View view = layoutInflater.inflate(R.layout.list_item_class_review, parent, false);
+            final View view = layoutInflater.inflate(R.layout.list_item_lecture_review, parent, false);
 
             return  new ClassReviewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(ClassReviewHolder holder, int position) {
-            ClassReview classReview = mClassReviewList.get(position);
-            holder.bindNotice(classReview);
+            LectureReview lectureReview = mLectureReviewList.get(position);
+            holder.bindNotice(lectureReview);
         }
 
         @Override
         public int getItemCount() {
-            return mClassReviewList.size();
+            return mLectureReviewList.size();
         }
     }
 }

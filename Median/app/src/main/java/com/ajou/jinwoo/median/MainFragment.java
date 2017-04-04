@@ -8,12 +8,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainFragment extends Fragment {
     private Button mNoticeButton;
@@ -59,7 +56,7 @@ public class MainFragment extends Fragment {
         mLectureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment lectureFragment = new ClassFragment();
+                Fragment lectureFragment = new LectureFragment();
                 FragmentManager fm = getFragmentManager();
                 fm.beginTransaction().replace(R.id.fragment_container, lectureFragment).addToBackStack(null).commit();
             }

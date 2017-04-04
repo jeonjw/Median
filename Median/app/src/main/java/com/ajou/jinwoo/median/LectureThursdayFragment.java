@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 
 
-public class ClassThursdayFragment extends Fragment {
+public class LectureThursdayFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

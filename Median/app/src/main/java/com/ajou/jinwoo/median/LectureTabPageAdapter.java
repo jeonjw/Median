@@ -5,11 +5,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 
-public class ClassTabPageAdapter extends FragmentStatePagerAdapter {
+public class LectureTabPageAdapter extends FragmentStatePagerAdapter {
 
     private int tabCount;
 
-    public ClassTabPageAdapter(FragmentManager fm, int tabCount) {
+    public LectureTabPageAdapter(FragmentManager fm, int tabCount) {
         super(fm);
         this.tabCount = tabCount;
     }
@@ -19,19 +19,19 @@ public class ClassTabPageAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return new ClassMondayFragment();
+                return new LectureMondayFragment();
 
             case 1:
-                return new ClassTuesdayFragment();
+                return new LectureTuesdayFragment();
 
             case 2:
-                return new ClassWednesdayFragment();
+                return new LectureWednesdayFragment();
 
             case 3:
-                return new ClassThursdayFragment();
+                return new LectureThursdayFragment();
 
             case 4:
-                return new ClassFridayFragment();
+                return new LectureFridayFragment();
 
             default:
                 return null;

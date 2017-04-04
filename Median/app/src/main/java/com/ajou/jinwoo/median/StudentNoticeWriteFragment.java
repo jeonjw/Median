@@ -48,6 +48,5 @@ public class StudentNoticeWriteFragment extends Fragment {
         super.onPrepareOptionsMenu(menu);
         menu.findItem(R.id.menu_notice_write).setVisible(false);
         menu.findItem(R.id.menu_search).setVisible(false);
-
     }
 }
