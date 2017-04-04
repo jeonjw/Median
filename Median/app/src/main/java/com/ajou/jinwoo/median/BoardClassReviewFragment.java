@@ -27,7 +27,7 @@ public class BoardClassReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_media_notice, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.board_class_review_recycler_view);
-        mRecyclerView.setAdapter(classReviewAdapter);
+//        mRecyclerView.setAdapter(classReviewAdapter);
 
         boardNumberList = new ArrayList<>();
         titleList = new ArrayList<>();

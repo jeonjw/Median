@@ -21,8 +21,8 @@ public class StudentNoticeWriteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_notice_write, container, false);
         setHasOptionsMenu(true);
-        closeButton = (ImageButton) view.findViewById(R.id.write_close_button);
-        writeButton = (ImageButton) view.findViewById(R.id.write_finish);
+        closeButton = (ImageButton) view.findViewById(R.id.notice_write_close_button);
+        writeButton = (ImageButton) view.findViewById(R.id.notice_write_finish);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
