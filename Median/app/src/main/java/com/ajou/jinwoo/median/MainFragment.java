@@ -1,6 +1,7 @@
 package com.ajou.jinwoo.median;
 
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -38,18 +39,22 @@ public class MainFragment extends Fragment {
         mNoticeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment noticeFragment = new NoticeFragment();
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.fragment_container, noticeFragment).addToBackStack(null).commit();
+                Intent intent = new Intent(getActivity(), NoticeActivity.class);
+                startActivity(intent);
+//                Fragment noticeFragment = new NoticeFragment();
+//                FragmentManager fm = getFragmentManager();
+//                fm.beginTransaction().replace(R.id.fragment_container, noticeFragment).addToBackStack(null).commit();
             }
         });
 
         mBoardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment boardFragment = new BoardFragment();
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.fragment_container, boardFragment).addToBackStack(null).commit();
+                Intent intent = new Intent(getActivity(), BoardActivity.class);
+                startActivity(intent);
+//                Fragment boardFragment = new BoardFragment();
+//                FragmentManager fm = getFragmentManager();
+//                fm.beginTransaction().replace(R.id.fragment_container, boardFragment).addToBackStack(null).commit();
             }
         });
 
@@ -78,14 +83,6 @@ public class MainFragment extends Fragment {
         mBoardButton.setTypeface(type);
         mLectureButton.setTypeface(type);
         mSettingButton.setTypeface(type);
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.menu_notice_write).setVisible(false);
-        menu.findItem(R.id.menu_search).setVisible(false);
-
     }
 
 }

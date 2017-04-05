@@ -26,7 +26,7 @@ public class BoardFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_board,container,false);
         setHasOptionsMenu(true);
-        ((MainActivity) getActivity()).setToolbarTitle("Board");
+        ((BoardActivity) getActivity()).setToolbarTitle("Board");
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.board_tab);
         tabLayout.setupWithViewPager(mViewPager);
@@ -74,11 +74,5 @@ public class BoardFragment extends Fragment{
             Toast.makeText(getContext(), "board_search", Toast.LENGTH_SHORT).show();
         }
         return true;
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_notice_write).setVisible(true);
-        menu.findItem(R.id.menu_search).setVisible(true);
     }
 }

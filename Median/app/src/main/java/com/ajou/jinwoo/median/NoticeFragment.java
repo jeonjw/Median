@@ -19,7 +19,7 @@ public class NoticeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notice, container, false);
 
-        ((MainActivity) getActivity()).setToolbarTitle("Notice");
+        ((NoticeActivity) getActivity()).setToolbarTitle("Notice");
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
