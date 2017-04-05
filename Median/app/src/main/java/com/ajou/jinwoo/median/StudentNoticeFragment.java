@@ -1,6 +1,5 @@
 package com.ajou.jinwoo.median;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,7 +26,6 @@ public class StudentNoticeFragment extends Fragment {
     private StudentNoticeAdapter studentNoticeAdapter;
     private List<StudentNotice> studentNoticeList;
     private DatabaseReference mDatabase;
-
 
 
     @Nullable
@@ -103,7 +101,7 @@ public class StudentNoticeFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        System.out.println("check");
+        System.out.println("student");
 
         if (item.getItemId() == R.id.menu_notice_write) {
             FragmentManager fm = getFragmentManager();

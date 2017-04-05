@@ -12,7 +12,6 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -137,8 +136,6 @@ public class MediaNoticeFragment extends Fragment {
                 mContentsTextView.setMaxLines(2);
                 mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
             }
-
-
         }
     }
 
@@ -170,7 +167,6 @@ public class MediaNoticeFragment extends Fragment {
             return mNoticeList.size();
         }
     }
-
 
 
     @Override
