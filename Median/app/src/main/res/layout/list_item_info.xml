@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/profile_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="110dp"
         android:layout_margin="10dp"
         android:src="@drawable/media_logo" />
 
@@ -19,32 +19,39 @@
         android:id="@+id/info_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textColor="#000000"
+        android:textSize="14sp"
         android:layout_toEndOf="@+id/profile_image" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:id="@+id/info_location_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/info_name_text_view"
         android:textColor="#000000"
+        android:textSize="14sp"
         android:layout_toEndOf="@+id/profile_image" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:id="@+id/info_telnumber_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/info_location_text_view"
         android:textColor="#000000"
+        android:textSize="14sp"
         android:layout_toEndOf="@+id/profile_image" />
 
     <TextView
+        android:layout_marginTop="5dp"
         android:id="@+id/info_email_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/info_telnumber_text_view"
         android:textColor="#000000"
+        android:textSize="14sp"
         android:layout_toEndOf="@+id/profile_image" />
 
 

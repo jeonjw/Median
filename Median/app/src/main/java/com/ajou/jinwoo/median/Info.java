@@ -9,6 +9,7 @@ public class Info {
     private String email;
     private int telNumber;
     private String location;
+    private String profileImage;
 
     public String getName() {
         return name;
@@ -26,6 +27,10 @@ public class Info {
         return location;
     }
 
+    public String getProfileImage() {
+        return profileImage;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -40,6 +45,10 @@ public class Info {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
     public Info(){
