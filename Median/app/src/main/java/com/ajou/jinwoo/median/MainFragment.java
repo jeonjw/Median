@@ -3,6 +3,7 @@ package com.ajou.jinwoo.median;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -64,6 +65,14 @@ public class MainFragment extends Fragment {
                 Fragment lectureFragment = new LectureFragment();
                 FragmentManager fm = getFragmentManager();
                 fm.beginTransaction().replace(R.id.fragment_container, lectureFragment).addToBackStack(null).commit();
+            }
+        });
+
+        mInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), InfoActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -72,8 +72,6 @@ public class StudentNoticeFragment extends Fragment {
                     studentNoticeList.add(studentNotice);
                 }
 
-                Collections.reverse(studentNoticeList);
-
                 studentNoticeAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
 
