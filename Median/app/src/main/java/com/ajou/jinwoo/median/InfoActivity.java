@@ -1,6 +1,7 @@
 package com.ajou.jinwoo.median;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -43,7 +44,7 @@ public class InfoActivity extends AppCompatActivity{
         fm.beginTransaction().add(R.id.info_toolbar_container, toolbarFragment).commit();
 
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.student_notice_recycler_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.info_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         infoList = new ArrayList<>();
 
@@ -113,7 +114,7 @@ public class InfoActivity extends AppCompatActivity{
             mNameTextView.setText(mInfo.getName());
             mEmailTextView.setText(mInfo.getEmail());
             mLocationTextView.setText(mInfo.getLocation());
-            mTelNumberTextView.setText(mInfo.getTelNumber());
+            mTelNumberTextView.setText(String.valueOf(mInfo.getTelNumber()));
 
         }
     }

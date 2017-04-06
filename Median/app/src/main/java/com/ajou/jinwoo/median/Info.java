@@ -7,7 +7,7 @@ package com.ajou.jinwoo.median;
 public class Info {
     private String name;
     private String email;
-    private String telNumber;
+    private int telNumber;
     private String location;
 
     public String getName() {
@@ -18,7 +18,7 @@ public class Info {
         return email;
     }
 
-    public String getTelNumber() {
+    public int getTelNumber() {
         return telNumber;
     }
 
@@ -34,7 +34,7 @@ public class Info {
         this.email = email;
     }
 
-    public void setTelNumber(String telNumber) {
+    public void setTelNumber(int telNumber) {
         this.telNumber = telNumber;
     }
 
