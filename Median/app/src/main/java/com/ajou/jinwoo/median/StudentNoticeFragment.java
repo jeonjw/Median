@@ -1,5 +1,6 @@
 package com.ajou.jinwoo.median;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,10 +15,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -26,6 +31,7 @@ public class StudentNoticeFragment extends Fragment {
     private StudentNoticeAdapter studentNoticeAdapter;
     private List<StudentNotice> studentNoticeList;
     private DatabaseReference mDatabase;
+    private ProgressDialog progressDialog;
 
 
     @Nullable
@@ -37,6 +43,11 @@ public class StudentNoticeFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         studentNoticeList = new ArrayList<>();
 
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false);
+
+        loadNoticeData();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
@@ -47,6 +58,33 @@ public class StudentNoticeFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void loadNoticeData() {
+        progressDialog.setMessage("Loading . .");
+        progressDialog.show();
+        mDatabase.child("student_notice").addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    StudentNotice studentNotice = ds.getValue(StudentNotice.class);
+                    studentNoticeList.add(studentNotice);
+                }
+
+                Collections.reverse(studentNoticeList);
+
+                studentNoticeAdapter.notifyDataSetChanged();
+                progressDialog.dismiss();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
     }
 
     private class StudentNoticeHolder extends RecyclerView.ViewHolder {

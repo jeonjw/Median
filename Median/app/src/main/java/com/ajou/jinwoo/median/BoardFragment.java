@@ -61,9 +61,9 @@ public class BoardFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         System.out.println("board");
         if (item.getItemId() == R.id.menu_notice_write) {
-            FragmentManager fm = getFragmentManager();
-            Fragment writeFragment = new BoardWriteFragment();
-            fm.beginTransaction().replace(R.id.student_notice_container, writeFragment).setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
+//            FragmentManager fm = getFragmentManager();
+//            Fragment writeFragment = new BoardWriteFragment();
+//            fm.beginTransaction().replace(R.id.student_notice_container, writeFragment).setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
         } else if (item.getItemId() == R.id.menu_search) {
             Toast.makeText(getContext(), "board_search", Toast.LENGTH_SHORT).show();
         }

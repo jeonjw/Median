@@ -1,6 +1,7 @@
 package com.ajou.jinwoo.median;
 
 
+import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MediaNoticeFragment extends Fragment {
@@ -31,6 +33,7 @@ public class MediaNoticeFragment extends Fragment {
     private NoticeAdapter noticeAdapter;
     private List<Notice> noticeList;
     private DatabaseReference mDatabase;
+    private ProgressDialog progressDialog;
 
 
     @Nullable
@@ -41,9 +44,12 @@ public class MediaNoticeFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.media_notice_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         setHasOptionsMenu(true);
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false);
         loadNoticeData();
 
         noticeList = new ArrayList<>();
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setReverseLayout(true);
@@ -58,25 +64,21 @@ public class MediaNoticeFragment extends Fragment {
 
 
     private void loadNoticeData() {
+        progressDialog.setMessage("Loading . .");
+        progressDialog.show();
         mDatabase.child("media_notice").addListenerForSingleValueEvent(new ValueEventListener() {
-
-            List<String> titleList = new ArrayList<>();
-            List<String> contentsList = new ArrayList<>();
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.child("title").getChildren()) {
-                    titleList.add(ds.getValue().toString());
-                }
-                for (DataSnapshot ds : dataSnapshot.child("contents").getChildren()) {
-                    contentsList.add(ds.getValue().toString());
-                }
-                for (int i = 0; i < dataSnapshot.child("title").getChildrenCount(); i++) {
-                    Notice notice = new Notice(titleList.get(i), contentsList.get(i));
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Notice notice = ds.getValue(Notice.class);
                     noticeList.add(notice);
                 }
 
+                Collections.reverse(noticeList);
+
                 noticeAdapter.notifyDataSetChanged();
+                progressDialog.dismiss();
 
             }
 
@@ -126,7 +128,6 @@ public class MediaNoticeFragment extends Fragment {
 
         @Override
         public void onClick(final View v) {
-
             if (!isClicked) {
                 isClicked = true;
                 mContentsTextView.setMaxLines(Integer.MAX_VALUE);

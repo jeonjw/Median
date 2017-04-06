@@ -33,12 +33,14 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/student_notice_title_edit_text"
         android:hint="제목"/>
     <EditText
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="fill_horizontal"
+        android:id="@+id/student_notice_contents_edit_text"
         android:hint="내용"/>
 
 </LinearLayout>

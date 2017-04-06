@@ -10,23 +10,34 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class StudentNoticeWriteFragment extends Fragment {
-    private ImageButton closeButton;
-    private ImageButton writeButton;
+    private EditText titleEditText;
+    private EditText contentsEditText;
+    private DatabaseReference mDatabase;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_notice_write, container, false);
+
         setHasOptionsMenu(true);
-        closeButton = (ImageButton) view.findViewById(R.id.notice_write_close_button);
-        writeButton = (ImageButton) view.findViewById(R.id.notice_write_finish);
+        final FragmentManager fragmentManager = getFragmentManager();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        titleEditText = (EditText) view.findViewById(R.id.student_notice_title_edit_text);
+        contentsEditText = (EditText) view.findViewById(R.id.student_notice_contents_edit_text);
+        ImageButton closeButton = (ImageButton) view.findViewById(R.id.notice_write_close_button);
+        ImageButton writeButton = (ImageButton) view.findViewById(R.id.notice_write_finish);
+
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().remove(StudentNoticeWriteFragment.this).commit();
                 fragmentManager.popBackStack();
             }
@@ -35,7 +46,9 @@ public class StudentNoticeWriteFragment extends Fragment {
         writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
+                StudentNotice studentNotice = new StudentNotice(titleEditText.getText().toString(),contentsEditText.getText().toString());
+                mDatabase.child("student_notice").push().setValue(studentNotice);
+
                 fragmentManager.beginTransaction().remove(StudentNoticeWriteFragment.this).commit();
                 fragmentManager.popBackStack();
             }

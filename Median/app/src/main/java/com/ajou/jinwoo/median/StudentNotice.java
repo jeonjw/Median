@@ -5,7 +5,6 @@ public class StudentNotice {
 
     private String title;
     private String contents;
-    private String date;
 
     public String getTitle() {
         return title;
@@ -15,16 +14,13 @@ public class StudentNotice {
         return contents;
     }
 
-    public String getDate() {
-        return date;
-    }
+
 
     public StudentNotice(){
 
     }
-    public StudentNotice(String title, String contents,String date) {
+    public StudentNotice(String title, String contents) {
         this.title = title;
         this.contents = contents;
-        this.date=date;
     }
 }
