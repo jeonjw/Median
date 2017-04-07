@@ -33,15 +33,17 @@
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/board_spinner"/>
+        android:id="@+id/board_spinner" />
 
     <EditText
         android:layout_marginTop="10dp"
+        android:id="@+id/board_write_title_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="제목"/>
     <EditText
         android:layout_marginTop="10dp"
+        android:id="@+id/board_write_content_edit_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="fill_horizontal"
