@@ -27,12 +27,13 @@ public class BoardClassReviewFragment extends Fragment {
     private LectureReview mLectureReview;
     private List<LectureReview> lectureReviewList;
     private DatabaseReference mDatabase;
+    private LinearLayoutManager layoutManager;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_media_notice, container, false);
+        View view = inflater.inflate(R.layout.fragment_board_lecture_review, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.board_lecture_review_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -40,7 +41,7 @@ public class BoardClassReviewFragment extends Fragment {
 
         loadNoticeData();
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         mRecyclerView.setLayoutManager(layoutManager);
