@@ -37,6 +37,7 @@ public class BoardWriteFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_board_write, container, false);
 
         setHasOptionsMenu(true);
+        final int currentPosition = getArguments().getInt("BoardWriteFragment");
 
         fragmentManager=getFragmentManager();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -45,6 +46,13 @@ public class BoardWriteFragment extends Fragment {
         writeButton = (ImageButton) view.findViewById(R.id.board_write_finish);
         closeButton = (ImageButton) view.findViewById(R.id.board_write_close_button);
         board_spinner = (Spinner) view.findViewById(R.id.board_spinner);
+
+        board_spinner.post(new Runnable() {
+            @Override
+            public void run() {
+                board_spinner.setSelection(currentPosition);
+            }
+        });
 
         writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,17 +76,15 @@ public class BoardWriteFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.board_spinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         board_spinner.setAdapter(adapter);
-        board_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), (String) board_spinner.getSelectedItem(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         return view;
+    }
+    public static Fragment newInstance(int position){
+        Fragment boardWriteFragment = new BoardWriteFragment();
+        Bundle args = new Bundle();
+        args.putInt("BoardWriteFragment", position);
+        boardWriteFragment.setArguments(args);
+
+        return boardWriteFragment;
+
     }
 }

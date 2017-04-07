@@ -36,11 +36,13 @@ public class BoardActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+
         System.out.println("board");
         if (item.getItemId() == R.id.menu_write) {
             FragmentManager fm = getSupportFragmentManager();
-            Fragment writeFragment = new BoardWriteFragment();
+            Fragment writeFragment = BoardWriteFragment.newInstance(BoardFragment.getCurrentTab());
             fm.beginTransaction().replace(R.id.fragment_board_container, writeFragment).addToBackStack(null).commit();
+            Toast.makeText(BoardActivity.this, ""+BoardFragment.getCurrentTab(), Toast.LENGTH_SHORT).show();
         } else if (item.getItemId() == R.id.menu_search) {
             Toast.makeText(BoardActivity.this, "board_search", Toast.LENGTH_SHORT).show();
         }
