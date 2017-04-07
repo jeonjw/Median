@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class BoardActivity extends AppCompatActivity {
     private Fragment toolbarFragment;
@@ -20,9 +21,9 @@ public class BoardActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
 
         toolbarFragment = new ToolbarFragment();
-        Fragment boardFragment = new BoardFragment();
+        Fragment boardRootFragment = new BoardRootFragment();
         fm.beginTransaction().add(R.id.fragment_board_toolbar_container, toolbarFragment).commit();
-        fm.beginTransaction().add(R.id.fragment_board_container, boardFragment).commit();
+        fm.beginTransaction().add(R.id.fragment_board_container, boardRootFragment).commit();
     }
 
     @Override
@@ -34,8 +35,17 @@ public class BoardActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        return false;
+
+        System.out.println("board");
+        if (item.getItemId() == R.id.menu_notice_write) {
+            FragmentManager fm = getSupportFragmentManager();
+            Fragment writeFragment = new BoardWriteFragment();
+            fm.beginTransaction().replace(R.id.fragment_board_container, writeFragment).addToBackStack(null).commit();
+        } else if (item.getItemId() == R.id.menu_search) {
+            Toast.makeText(BoardActivity.this, "board_search", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+
     }
 
     public void setToolbarTitle(String title) {

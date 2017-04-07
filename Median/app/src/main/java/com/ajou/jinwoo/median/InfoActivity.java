@@ -1,7 +1,9 @@
 package com.ajou.jinwoo.median;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,8 +14,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
@@ -107,6 +111,7 @@ public class InfoActivity extends AppCompatActivity {
         private TextView mTelNumberTextView;
         private TextView mLocationTextView;
         private ImageView mImageView;
+        private ImageButton mPhoneCallButton;
         private Info mInfo;
 
 
@@ -118,7 +123,18 @@ public class InfoActivity extends AppCompatActivity {
             mEmailTextView = (TextView) itemView.findViewById(R.id.info_email_text_view);
             mTelNumberTextView = (TextView) itemView.findViewById(R.id.info_telnumber_text_view);
             mLocationTextView = (TextView) itemView.findViewById(R.id.info_location_text_view);
+            mPhoneCallButton = (ImageButton) itemView.findViewById(R.id.info_phone_call_button);
 
+            mPhoneCallButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(InfoActivity.this,"Test",Toast.LENGTH_SHORT).show();
+                    String tel = "tel:"+"031219"+mInfo.getTelNumber();
+                    startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel)));
+
+
+                }
+            });
 
         }
 
@@ -137,6 +153,12 @@ public class InfoActivity extends AppCompatActivity {
             mEmailTextView.setText(mInfo.getEmail());
             mLocationTextView.setText(mInfo.getLocation());
             mTelNumberTextView.setText(String.valueOf(mInfo.getTelNumber()));
+
+            if (mInfo.getName().contains("학과사무실"))
+                mPhoneCallButton.setVisibility(View.VISIBLE);
+            else{
+                mPhoneCallButton.setVisibility(View.INVISIBLE);
+            }
 
 
         }
