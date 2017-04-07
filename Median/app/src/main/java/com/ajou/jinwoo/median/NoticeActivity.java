@@ -40,4 +40,5 @@ public class NoticeActivity extends AppCompatActivity {
     public void setToolbarTitle(String title) {
         ((ToolbarFragment) toolbarFragment).setToolbarTitle(title);
     }
+
 }

@@ -38,7 +38,7 @@ public class StudentNoticeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_notice, container, false);
-        setHasOptionsMenu(true);
+//        setHasOptionsMenu(true);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         studentNoticeList = new ArrayList<>();
@@ -149,11 +149,11 @@ public class StudentNoticeFragment extends Fragment {
         return true;
     }
 
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_notice_write).setVisible(true);
-        menu.findItem(R.id.menu_search).setVisible(true);
-    }
+//    @Override
+//    public void onPrepareOptionsMenu(Menu menu) {
+//        menu.findItem(R.id.menu_notice_write).setVisible(true);
+//        menu.findItem(R.id.menu_search).setVisible(true);
+//    }
 
 
 }
