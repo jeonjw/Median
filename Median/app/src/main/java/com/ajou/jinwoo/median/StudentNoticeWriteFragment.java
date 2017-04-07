@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -46,7 +45,7 @@ public class StudentNoticeWriteFragment extends Fragment {
         writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StudentNotice studentNotice = new StudentNotice(titleEditText.getText().toString(),contentsEditText.getText().toString());
+                StudentNotice studentNotice = new StudentNotice(titleEditText.getText().toString(), contentsEditText.getText().toString());
                 mDatabase.child("student_notice").push().setValue(studentNotice);
 
                 fragmentManager.beginTransaction().remove(StudentNoticeWriteFragment.this).commit();
@@ -56,10 +55,11 @@ public class StudentNoticeWriteFragment extends Fragment {
 
         return view;
     }
+
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.menu_notice_write).setVisible(false);
+        menu.findItem(R.id.menu_write).setVisible(false);
         menu.findItem(R.id.menu_search).setVisible(false);
     }
 }

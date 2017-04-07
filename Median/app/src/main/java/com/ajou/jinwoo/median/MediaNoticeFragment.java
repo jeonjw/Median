@@ -46,9 +46,10 @@ public class MediaNoticeFragment extends Fragment {
         setHasOptionsMenu(true);
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
+        noticeList = new ArrayList<>();
         loadNoticeData();
 
-        noticeList = new ArrayList<>();
+
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -172,7 +173,7 @@ public class MediaNoticeFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_notice_write).setVisible(false);
+        menu.findItem(R.id.menu_write).setVisible(false);
         menu.findItem(R.id.menu_search).setVisible(false);
     }
 }

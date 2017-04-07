@@ -4,7 +4,7 @@
     tools:context="cc.foxtail.teamprojectmanager.ProjectFragment">
 
     <item
-        android:id="@+id/menu_notice_write"
+        android:id="@+id/menu_write"
         android:orderInCategory="100"
         android:icon="@drawable/pencil"
         app:showAsAction="ifRoom"

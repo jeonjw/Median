@@ -20,7 +20,7 @@ public class NoticeTabPageAdapter extends FragmentStatePagerAdapter {
                 return new MediaNoticeFragment();
 
             case 1:
-                return new StudentNoticeRootFragment();
+                return new StudentNoticeFragment();
 
 
             default:

@@ -37,7 +37,7 @@ public class BoardActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         System.out.println("board");
-        if (item.getItemId() == R.id.menu_notice_write) {
+        if (item.getItemId() == R.id.menu_write) {
             FragmentManager fm = getSupportFragmentManager();
             Fragment writeFragment = new BoardWriteFragment();
             fm.beginTransaction().replace(R.id.fragment_board_container, writeFragment).addToBackStack(null).commit();
