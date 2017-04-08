@@ -43,6 +43,13 @@ public class BoardWriteFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         titleEditText = (EditText) view.findViewById(R.id.board_write_title_edit_text);
         contentsEditText = (EditText) view.findViewById(R.id.board_write_content_edit_text);
+        contentsEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"test",Toast.LENGTH_SHORT).show();
+                contentsEditText.requestFocus();
+            }
+        });
         writeButton = (ImageButton) view.findViewById(R.id.board_write_finish);
         closeButton = (ImageButton) view.findViewById(R.id.board_write_close_button);
         board_spinner = (Spinner) view.findViewById(R.id.board_spinner);
