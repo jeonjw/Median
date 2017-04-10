@@ -1,24 +1,25 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.model;
 
 
-
-public class LectureReview {
+public class StudentNotice {
 
     private String title;
     private String contents;
 
-    public LectureReview(){
-
-    }
-
     public String getTitle() {
         return title;
     }
+
     public String getContents() {
         return contents;
     }
 
-    public LectureReview(String title, String contents) {
+
+
+    public StudentNotice(){
+
+    }
+    public StudentNotice(String title, String contents) {
         this.title = title;
         this.contents = contents;
     }

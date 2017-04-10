@@ -1,15 +1,15 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.model;
 
 /**
  * Created by samsung on 2017-04-08.
  */
 
-public class QA  {
+public class Textbook {
 
     private String title;
     private String contents;
 
-    public QA(){
+    public Textbook(){
 
     }
 
@@ -20,7 +20,7 @@ public class QA  {
         return contents;
     }
 
-    public QA(String title, String contents) {
+    public Textbook(String title, String contents) {
         this.title = title;
         this.contents = contents;
     }
