@@ -24,9 +24,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-/**
- * Created by jinwoo on 2017. 4. 13..
- */
 
 public class LoginActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
@@ -35,6 +32,7 @@ public class LoginActivity extends AppCompatActivity
     private GoogleApiClient mGoogleApiClient;
     private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 9001;
+    private TextView titleTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +61,13 @@ public class LoginActivity extends AppCompatActivity
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        titleTextView = (TextView) findViewById(R.id.login_title_text_view);
+
+        Typeface type = Typeface
+                .createFromAsset(LoginActivity.this.getAssets(), "Impact.ttf");
+
+        titleTextView.setTypeface(type);
     }
 
     public void signIn() {
