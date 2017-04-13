@@ -22,6 +22,7 @@
         <activity android:name=".BoardActivity"/>
         <activity android:name=".NoticeActivity"/>
         <activity android:name=".InfoActivity"/>
+        <activity android:name=".LoginActivity"/>
     </application>
 
 </manifest>
