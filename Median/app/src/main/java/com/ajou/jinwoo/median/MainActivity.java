@@ -6,13 +6,17 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.ajou.jinwoo.median.model.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.*;
 
 
 public class MainActivity extends AppCompatActivity
@@ -44,9 +48,15 @@ public class MainActivity extends AppCompatActivity
 
 
         FragmentManager fm = getSupportFragmentManager();
+        FirebaseInstanceId.getInstance().getToken();
 
         Fragment mainFragment = new MainFragment();
         toolbarFragment = new ToolbarFragment();
+        FirebaseMessaging.getInstance().subscribeToTopic("notice");
+
+
+//        String id = FirebaseInstanceId.getInstance().getToken();
+//        Log.d("MyFirebaseIIDService",id);
 
         fm.beginTransaction().add(R.id.toolbar_container, toolbarFragment).commit();
         fm.beginTransaction().add(R.id.fragment_container, mainFragment).commit();

@@ -1,5 +1,6 @@
 package com.ajou.jinwoo.median;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -37,9 +38,8 @@ public class NoticeActivity extends AppCompatActivity {
 
         System.out.println("notice");
         if (item.getItemId() == R.id.menu_write) {
-            FragmentManager fm = getSupportFragmentManager();
-            Fragment writeFragment = new StudentNoticeWriteFragment();
-            fm.beginTransaction().replace(R.id.fragment_notice_container, writeFragment).addToBackStack(null).commit();
+            Intent intent = new Intent(NoticeActivity.this,StudentNoticeWriteActivity.class);
+            startActivity(intent);
         } else if (item.getItemId() == R.id.menu_search) {
 
         }

@@ -113,7 +113,7 @@ public class StudentNoticeFragment extends Fragment {
         public StudentNoticeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            final View view = layoutInflater.inflate(R.layout.list_item_media_notice, parent, false);
+            final View view = layoutInflater.inflate(R.layout.list_item_student_notice, parent, false);
 
             return new StudentNoticeHolder(view);
         }

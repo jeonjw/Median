@@ -10,6 +10,7 @@
     <string name="write">write_notice</string>
     <string name="search">search</string>
     <string name="sign_in_with_google">Sign In With Google</string>
+    <string name="write_comment">댓글 입력</string>
     <string-array name="board_spinner">
         <item>수업후기</item>
         <item>교재장터</item>
