@@ -22,6 +22,7 @@ public class BoardFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        currentTab=0;
         View view = inflater.inflate(R.layout.fragment_board, container, false);
         ((BoardActivity) getActivity()).setToolbarTitle("Board");
 
@@ -58,8 +59,4 @@ public class BoardFragment extends Fragment {
         });
         return view;
     }
-
-
-
-
 }

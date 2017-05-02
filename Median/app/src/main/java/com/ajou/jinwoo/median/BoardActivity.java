@@ -1,6 +1,7 @@
 package com.ajou.jinwoo.median;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,21 +33,16 @@ public class BoardActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
-        System.out.println("board");
         if (item.getItemId() == R.id.menu_write) {
-            FragmentManager fm = getSupportFragmentManager();
-            Fragment writeFragment = BoardWriteFragment.newInstance(BoardFragment.getCurrentTab());
-            fm.beginTransaction().replace(R.id.fragment_board_container, writeFragment).addToBackStack(null).commit();
+            Intent intent = new Intent(BoardActivity.this,BoardWriteActivity.class);
+            intent.putExtra("CURRENT_BOARD_TAB",BoardFragment.getCurrentTab());
+            startActivity(intent);
         } else if (item.getItemId() == R.id.menu_search) {
             Toast.makeText(BoardActivity.this, "board_search", Toast.LENGTH_SHORT).show();
         }
         return true;
-
     }
 
     public void setToolbarTitle(String title) {
