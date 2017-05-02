@@ -17,6 +17,9 @@ import com.ajou.jinwoo.median.model.StudentNotice;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class StudentNoticeWriteActivity extends AppCompatActivity {
     private EditText titleEditText;
     private EditText contentsEditText;
@@ -45,10 +48,19 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
         writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StudentNotice studentNotice = new StudentNotice(titleEditText.getText().toString(), contentsEditText.getText().toString());
-                mDatabase.child("student_notice").push().setValue(studentNotice);
-                finish();
 
+//                mDatabase.child("student_notice").push().setValue(studentNotice);
+
+
+                String key = mDatabase.child("student_notice").push().getKey();
+                StudentNotice studentNotice = new StudentNotice(titleEditText.getText().toString(), contentsEditText.getText().toString());
+                Map<String, Object> postValues = studentNotice.toMap();
+
+                Map<String, Object> childUpdates = new HashMap<>();
+                childUpdates.put("/student_notice/" + key, postValues);
+
+                mDatabase.updateChildren(childUpdates);
+                finish();
             }
         });
 

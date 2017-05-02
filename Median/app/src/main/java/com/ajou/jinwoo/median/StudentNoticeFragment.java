@@ -9,24 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.ajou.jinwoo.median.model.StudentNotice;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.ajou.jinwoo.median.viewholder.StudentNoticeViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class StudentNoticeFragment extends Fragment {
-    private RecyclerView mRecyclerView;
-    private StudentNoticeAdapter studentNoticeAdapter;
-    private List<StudentNotice> studentNoticeList;
-    private DatabaseReference mDatabase;
     private ProgressDialog progressDialog;
 
 
@@ -34,100 +25,38 @@ public class StudentNoticeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_notice, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        studentNoticeList = new ArrayList<>();
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
-
-        loadNoticeData();
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
-        mRecyclerView.setLayoutManager(layoutManager);
-
-        studentNoticeAdapter = new StudentNoticeAdapter(studentNoticeList);
-        mRecyclerView.setAdapter(studentNoticeAdapter);
-
-
-        return view;
-    }
-
-    private void loadNoticeData() {
-        progressDialog.setMessage("Loading . .");
+        progressDialog.setMessage("Loading..");
         progressDialog.show();
-        mDatabase.child("student_notice").addListenerForSingleValueEvent(new ValueEventListener() {
 
+        LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
+        mManager.setReverseLayout(true);
+        mManager.setStackFromEnd(true);
+        mManager.scrollToPositionWithOffset(0,0);
+        mRecyclerView.setLayoutManager(mManager);
+
+        FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder> mAdapter = new FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder>(StudentNotice.class, R.layout.list_item_student_notice,
+                StudentNoticeViewHolder.class, mDatabase.child("student_notice")) {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    StudentNotice studentNotice = ds.getValue(StudentNotice.class);
-                    studentNoticeList.add(studentNotice);
-                }
+            protected void populateViewHolder(final StudentNoticeViewHolder viewHolder, final StudentNotice model, final int position) {
+                final DatabaseReference postRef = getRef(position);
 
-                studentNoticeAdapter.notifyDataSetChanged();
+                // Set click listener for the whole post view
+                final String postKey = postRef.getKey();
+//                Log.d("Firebase",postKey);
+                viewHolder.bindNotice(model);
                 progressDialog.dismiss();
 
             }
+        };
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        mRecyclerView.setAdapter(mAdapter);
 
-            }
-
-        });
-    }
-
-    private class StudentNoticeHolder extends RecyclerView.ViewHolder {
-        private TextView mTitleTextView;
-        private TextView mContentsTextView;
-        private StudentNotice mStudentNotice;
-
-
-        public StudentNoticeHolder(View itemView) {
-            super(itemView);
-
-            mTitleTextView = (TextView) itemView.findViewById(R.id.media_notice_title_text_view);
-            mContentsTextView = (TextView) itemView.findViewById(R.id.media_notice_contents_text_view);
-        }
-
-
-        private void bindNotice(StudentNotice studentNotice) {
-            mStudentNotice = studentNotice;
-            mTitleTextView.setText(mStudentNotice.getTitle());
-            mContentsTextView.setText(mStudentNotice.getContents());
-
-        }
-    }
-
-    private class StudentNoticeAdapter extends RecyclerView.Adapter<StudentNoticeHolder> {
-        private List<StudentNotice> mStudentNoticeList;
-
-        public StudentNoticeAdapter(List<StudentNotice> noticeList) {
-            mStudentNoticeList = noticeList;
-        }
-
-        @Override
-        public StudentNoticeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            final View view = layoutInflater.inflate(R.layout.list_item_student_notice, parent, false);
-
-            return new StudentNoticeHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(final StudentNoticeHolder holder, int position) {
-            StudentNotice studentNotice = mStudentNoticeList.get(position);
-            holder.bindNotice(studentNotice);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mStudentNoticeList.size();
-        }
+        return view;
     }
 
 
