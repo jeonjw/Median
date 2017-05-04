@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.ajou.jinwoo.median.model.LectureReview;
+import com.ajou.jinwoo.median.model.Post;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,7 +24,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     private ImageButton closeButton;
     private Spinner board_spinner;
     private DatabaseReference mDatabase;
-    private LectureReview lectureReview;
+    private Post lectureReview;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                     contentsEditText.requestFocus();
                     return;
                 }
-                lectureReview = new LectureReview(titleEditText.getText().toString(),contentsEditText.getText().toString());
+                lectureReview = new Post(titleEditText.getText().toString(),contentsEditText.getText().toString());
                 mDatabase.child((String) board_spinner.getSelectedItem()).push().setValue(lectureReview);
                 finish();
             }

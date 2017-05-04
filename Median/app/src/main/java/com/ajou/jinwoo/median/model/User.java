@@ -12,7 +12,9 @@ public class User {
     private String userName;
     private String userEmail;
 
-
+    public String getUserName() {
+        return userName;
+    }
     private User() {
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -28,8 +30,6 @@ public class User {
                     userName = snapshot.child("name").getValue().toString();
                     userEmail = snapshot.child("email").getValue().toString();
                 }
-
-
             }
 
             @Override

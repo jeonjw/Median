@@ -9,14 +9,9 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by jinwoo on 2017. 4. 7..
- */
-
 public class BoardRootFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_board_root, container, false);
-//        setHasOptionsMenu(true);
         FragmentManager fm = getFragmentManager();
         Fragment boardFragment = new BoardFragment();
         fm.beginTransaction().replace(R.id.board_root_container, boardFragment).commit();

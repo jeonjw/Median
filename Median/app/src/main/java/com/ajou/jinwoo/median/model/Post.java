@@ -2,12 +2,12 @@ package com.ajou.jinwoo.median.model;
 
 
 
-public class LectureReview {
+public class Post {
 
     private String title;
     private String contents;
 
-    public LectureReview(){
+    public Post(){
 
     }
 
@@ -18,7 +18,7 @@ public class LectureReview {
         return contents;
     }
 
-    public LectureReview(String title, String contents) {
+    public Post(String title, String contents) {
         this.title = title;
         this.contents = contents;
     }

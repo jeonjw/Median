@@ -18,6 +18,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ajou.jinwoo.median.model.Notice;
+import com.ajou.jinwoo.median.model.StudentNotice;
+import com.ajou.jinwoo.median.viewholder.MediaNoticeViewHolder;
+import com.ajou.jinwoo.median.viewholder.StudentNoticeViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,9 +34,6 @@ import java.util.List;
 
 public class MediaNoticeFragment extends Fragment {
 
-    private RecyclerView mRecyclerView;
-    private NoticeAdapter noticeAdapter;
-    private List<Notice> noticeList;
     private DatabaseReference mDatabase;
     private ProgressDialog progressDialog;
 
@@ -42,134 +43,39 @@ public class MediaNoticeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_media_notice, container, false);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.media_notice_recycler_view);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.media_notice_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         setHasOptionsMenu(true);
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
-        noticeList = new ArrayList<>();
-        loadNoticeData();
 
 
+        LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
+        mManager.scrollToPositionWithOffset(0,0);
+        recyclerView.setLayoutManager(mManager);
+
+        FirebaseRecyclerAdapter<Notice, MediaNoticeViewHolder> mAdapter = new FirebaseRecyclerAdapter<Notice, MediaNoticeViewHolder>(Notice.class, R.layout.list_item_media_notice,
+                MediaNoticeViewHolder.class, mDatabase.child("media_notice")) {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            protected void populateViewHolder(MediaNoticeViewHolder viewHolder, Notice model, int position) {
+                final DatabaseReference postRef = getRef(position);
+
+                // Set click listener for the whole post view
+                final String postKey = postRef.getKey();
+//                Log.d("Firebase",postKey);
+                viewHolder.bindNotice(model);
+                progressDialog.dismiss();
+            }
 
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
-        mRecyclerView.setLayoutManager(layoutManager);
+        };
 
-        noticeAdapter = new NoticeAdapter(noticeList);
-        mRecyclerView.setAdapter(noticeAdapter);
+        recyclerView.setAdapter(mAdapter);
 
         return view;
     }
 
-
-    private void loadNoticeData() {
-        progressDialog.setMessage("Loading . .");
-        progressDialog.show();
-        mDatabase.child("media_notice").addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Notice notice = ds.getValue(Notice.class);
-                    noticeList.add(notice);
-                }
-
-                Collections.reverse(noticeList);
-
-                noticeAdapter.notifyDataSetChanged();
-                progressDialog.dismiss();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-        });
-    }
-
-
-    private class NoticeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView mTitleTextView;
-        private TextView mContentsTextView;
-        private Notice mNotice;
-        private boolean isClicked;
-
-
-        public NoticeHolder(View itemView) {
-            super(itemView);
-
-            mTitleTextView = (TextView) itemView.findViewById(R.id.media_notice_title_text_view);
-            mContentsTextView = (TextView) itemView.findViewById(R.id.media_notice_contents_text_view);
-            isClicked = false;
-            itemView.setOnClickListener(this);
-
-        }
-
-
-        @RequiresApi(api = Build.VERSION_CODES.N)
-        private void bindNotice(Notice notice) {
-            mNotice = notice;
-            mTitleTextView.setText(mNotice.getTitle());
-
-            if (Build.VERSION.SDK_INT >= 24) {
-                mContentsTextView.setText(Html.fromHtml(mNotice.getContents(), Html.FROM_HTML_MODE_COMPACT));
-            } else {
-                mContentsTextView.setText(Html.fromHtml(mNotice.getContents()));
-            }
-
-            mContentsTextView.setMaxLines(2);
-            mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
-
-
-        }
-
-        @Override
-        public void onClick(final View v) {
-            if (!isClicked) {
-                isClicked = true;
-                mContentsTextView.setMaxLines(Integer.MAX_VALUE);
-                mContentsTextView.setEllipsize(null);
-            } else {
-                isClicked = false;
-                mContentsTextView.setMaxLines(2);
-                mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
-            }
-        }
-    }
-
-    private class NoticeAdapter extends RecyclerView.Adapter<NoticeHolder> {
-        private List<Notice> mNoticeList;
-
-        public NoticeAdapter(List<Notice> noticeList) {
-            mNoticeList = noticeList;
-        }
-
-        @Override
-        public NoticeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-            final View view = layoutInflater.inflate(R.layout.list_item_media_notice, parent, false);
-
-            return new NoticeHolder(view);
-        }
-
-        @RequiresApi(api = Build.VERSION_CODES.N)
-        @Override
-        public void onBindViewHolder(final NoticeHolder holder, int position) {
-            Notice notice = mNoticeList.get(position);
-            holder.bindNotice(notice);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mNoticeList.size();
-        }
-    }
 
 
     @Override

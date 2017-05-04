@@ -25,7 +25,7 @@ public class StudentNoticeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_notice, container, false);
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
         progressDialog = new ProgressDialog(getActivity());
@@ -37,7 +37,7 @@ public class StudentNoticeFragment extends Fragment {
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         mManager.scrollToPositionWithOffset(0,0);
-        mRecyclerView.setLayoutManager(mManager);
+        recyclerView.setLayoutManager(mManager);
 
         FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder> mAdapter = new FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder>(StudentNotice.class, R.layout.list_item_student_notice,
                 StudentNoticeViewHolder.class, mDatabase.child("student_notice")) {
@@ -48,13 +48,13 @@ public class StudentNoticeFragment extends Fragment {
                 // Set click listener for the whole post view
                 final String postKey = postRef.getKey();
 //                Log.d("Firebase",postKey);
-                viewHolder.bindNotice(model);
+                viewHolder.bindNotice(model,getContext(),postKey);
                 progressDialog.dismiss();
 
             }
         };
 
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
 
         return view;
     }
