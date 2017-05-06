@@ -12,14 +12,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        tools:text="John Doe" />
+        android:textColor="#000000"
+        tools:text="Name" />
 
     <TextView
         android:id="@+id/comment_body"
-        style="@style/TextAppearance.AppCompat.Small"
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#444444"
         tools:text="This is the comment text.." />
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:id="@+id/comment_date"/>
 
 
 </LinearLayout>

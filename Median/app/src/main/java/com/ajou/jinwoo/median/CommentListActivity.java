@@ -7,39 +7,39 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 
 import com.ajou.jinwoo.median.model.Comment;
 import com.ajou.jinwoo.median.model.User;
 import com.ajou.jinwoo.median.viewholder.CommentViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class CommentListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DatabaseReference mDatabase;
     private String dataRefKey;
-    private View popView;
-    private PopupWindow popWindow;
+    private int commentCount;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comment);
+        setContentView(R.layout.popup_comment_list);
 
-        popView = getLayoutInflater().inflate(R.layout.popup_comment_list, null);
+        recyclerView = (RecyclerView) findViewById(R.id.comment_recycler_view);
 
-        recyclerView = (RecyclerView) popView.findViewById(R.id.comment_recycler_view);
-        final EditText commentEdit = (EditText) popView.findViewById(R.id.comment_edit);
+        LinearLayoutManager mManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mManager);
+
+        final EditText commentEdit = (EditText) findViewById(R.id.comment_edit);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         dataRefKey = getIntent().getExtras().getString("POST_KEY");
 
@@ -47,9 +47,10 @@ public class CommentListActivity extends AppCompatActivity {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    User user =User.getInstance();
-                    Comment comment = new Comment(user.getUserName(),commentEdit.getText().toString());
+                    User user = User.getInstance();
+                    Comment comment = new Comment(user.getUserName(), commentEdit.getText().toString());
                     mDatabase.child("comments").child(dataRefKey).push().setValue(comment);
+                    mDatabase.child("student_notice").child(dataRefKey).child("commentCount").setValue(commentCount + 1);
 
                     commentEdit.setText("");
                     return true;
@@ -59,22 +60,17 @@ public class CommentListActivity extends AppCompatActivity {
         });
 
         setCommentList();
-        popWindow = new PopupWindow(popView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, true);
-        // set a background drawable with rounders corners
-        popWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.popup_background, null));
-        popWindow.setFocusable(true);
-        popWindow.setOutsideTouchable(true);
 
     }
 
 
-    private void setCommentList() {
-        LinearLayoutManager mManager = new LinearLayoutManager(this);
-        mManager.setReverseLayout(true);
-        mManager.setStackFromEnd(true);
-        mManager.scrollToPositionWithOffset(0, 0);
-        recyclerView.setLayoutManager(mManager);
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.no_change, R.anim.slide_down_anim);
+    }
 
+    private void setCommentList() {
 
         FirebaseRecyclerAdapter<Comment, CommentViewHolder> mAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class, R.layout.list_item_comment,
                 CommentViewHolder.class, mDatabase.child("comments").child(dataRefKey)) {
@@ -86,12 +82,24 @@ public class CommentListActivity extends AppCompatActivity {
         };
 
         recyclerView.setAdapter(mAdapter);
+
+        mDatabase.child("comments").child(dataRefKey).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                commentCount = (int) dataSnapshot.getChildrenCount();
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        if (hasFocus) {
-            popWindow.showAtLocation(popView, Gravity.BOTTOM, 0, 0);
-        }
-    }
+
 }
+//댓글 리스트 제일 아래로 스크롤하기.
+//꾸미기
