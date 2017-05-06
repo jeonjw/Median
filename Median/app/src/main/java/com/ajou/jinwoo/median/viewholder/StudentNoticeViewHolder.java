@@ -51,6 +51,7 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
     public void onClick(View v) {
         Intent intent = new Intent(context, CommentListActivity.class);
         intent.putExtra("POST_KEY", dataRefKey);
+        intent.putExtra("POST_TYPE","student_notice");
         context.startActivity(intent);
         ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
     }

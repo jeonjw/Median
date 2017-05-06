@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ajou.jinwoo.median.model.Post;
+import com.ajou.jinwoo.median.model.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -66,7 +67,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                     contentsEditText.requestFocus();
                     return;
                 }
-                lectureReview = new Post(titleEditText.getText().toString(),contentsEditText.getText().toString());
+                lectureReview = new Post(User.getInstance().getUserName(),titleEditText.getText().toString(),contentsEditText.getText().toString());
                 mDatabase.child((String) board_spinner.getSelectedItem()).push().setValue(lectureReview);
                 finish();
             }

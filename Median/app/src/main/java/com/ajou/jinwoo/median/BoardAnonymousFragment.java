@@ -11,4 +11,9 @@ public class BoardAnonymousFragment extends BaseBoardFragment {
     public DatabaseReference getRef(DatabaseReference databaseReference) {
         return databaseReference.child("익명자유");
     }
+
+    @Override
+    public String getPostType() {
+        return "익명자유";
+    }
 }

@@ -12,4 +12,9 @@ public class BoardClassReviewFragment extends BaseBoardFragment {
         return databaseReference.child("수업후기");
     }
 
+    @Override
+    public String getPostType() {
+        return "수업후기";
+    }
+
 }

@@ -10,6 +10,11 @@ public class BoardQAFragment extends BaseBoardFragment {
         return databaseReference.child("질문답변");
     }
 
+    @Override
+    public String getPostType() {
+        return "질문답변";
+    }
+
     public BoardQAFragment() {
     }
 }

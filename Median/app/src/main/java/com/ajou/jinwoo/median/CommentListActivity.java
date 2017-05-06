@@ -27,12 +27,13 @@ public class CommentListActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private String dataRefKey;
     private int commentCount;
+    private String postType;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.popup_comment_list);
+        setContentView(R.layout.activity_comment_list);
 
         recyclerView = (RecyclerView) findViewById(R.id.comment_recycler_view);
 
@@ -42,6 +43,7 @@ public class CommentListActivity extends AppCompatActivity {
         final EditText commentEdit = (EditText) findViewById(R.id.comment_edit);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         dataRefKey = getIntent().getExtras().getString("POST_KEY");
+        postType = getIntent().getExtras().getString("POST_TYPE");
 
         commentEdit.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -50,7 +52,7 @@ public class CommentListActivity extends AppCompatActivity {
                     User user = User.getInstance();
                     Comment comment = new Comment(user.getUserName(), commentEdit.getText().toString());
                     mDatabase.child("comments").child(dataRefKey).push().setValue(comment);
-                    mDatabase.child("student_notice").child(dataRefKey).child("commentCount").setValue(commentCount + 1);
+                    mDatabase.child(postType).child(dataRefKey).child("commentCount").setValue(commentCount + 1);
 
                     commentEdit.setText("");
                     return true;

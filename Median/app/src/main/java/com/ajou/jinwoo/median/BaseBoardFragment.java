@@ -38,7 +38,7 @@ public abstract class BaseBoardFragment extends Fragment {
                 final DatabaseReference postRef = getRef(position);
 
                 final String postKey = postRef.getKey();
-                viewHolder.bindPost(model);
+                viewHolder.bindPost(model, getContext(), postKey, getPostType());
 
             }
         };
@@ -49,5 +49,6 @@ public abstract class BaseBoardFragment extends Fragment {
     }
 
     public abstract DatabaseReference getRef(DatabaseReference databaseReference);
+    public abstract String getPostType();
 
 }

@@ -12,4 +12,9 @@ public class BoardTextbookFragment extends BaseBoardFragment {
     public DatabaseReference getRef(DatabaseReference databaseReference) {
         return databaseReference.child("교재장터");
     }
+
+    @Override
+    public String getPostType() {
+        return "교재장터";
+    }
 }
