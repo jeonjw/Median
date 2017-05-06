@@ -31,25 +31,22 @@ public class StudentNoticeFragment extends Fragment {
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Loading..");
-        progressDialog.show();
+//        progressDialog.show();
 
         LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
-        mManager.scrollToPositionWithOffset(0,0);
+        mManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(mManager);
 
         FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder> mAdapter = new FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder>(StudentNotice.class, R.layout.list_item_student_notice,
                 StudentNoticeViewHolder.class, mDatabase.child("student_notice")) {
             @Override
-            protected void populateViewHolder(final StudentNoticeViewHolder viewHolder, final StudentNotice model, final int position) {
-                final DatabaseReference postRef = getRef(position);
-
-                // Set click listener for the whole post view
-                final String postKey = postRef.getKey();
-//                Log.d("Firebase",postKey);
-                viewHolder.bindNotice(model,getContext(),postKey);
-                progressDialog.dismiss();
+            protected void populateViewHolder(StudentNoticeViewHolder viewHolder, StudentNotice model, int position) {
+                DatabaseReference postRef = getRef(position);
+                String postKey = postRef.getKey();
+                viewHolder.bindNotice(model, getContext(), postKey);
+//                progressDialog.dismiss();
 
             }
         };
