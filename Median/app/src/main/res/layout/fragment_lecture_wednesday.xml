@@ -15,37 +15,51 @@
 
                 <TextView
                     android:background="@drawable/table_layout_border"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="  B103 " />
+                    android:text="  B103 "
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="  415  " />
+                    android:text="  415  "
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="  419  " />
+                    android:text="  419  "
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="  420  " />
+                    android:text="  420  "
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="  421  " />
+                    android:text="  421  "
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="  422  " />
+                    android:text="  422  "
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
             </TableRow>
 
 
@@ -54,37 +68,51 @@
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="A" />
+                    android:text="A"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
             </TableRow>
 
 
@@ -93,37 +121,51 @@
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="B" />
+                    android:text="B"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/미통" />
+                    android:text="@string/미통"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/컴설" />
+                    android:text="@string/컴설"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/컴애니" />
+                    android:text="@string/컴애니"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
             </TableRow>
 
 
@@ -132,37 +174,51 @@
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="C" />
+                    android:text="C"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/뉴미기" />
+                    android:text="@string/뉴미기"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/그디" />
+                    android:text="@string/그디"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/애니미" />
+                    android:text="@string/애니미"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
             </TableRow>
 
 
@@ -171,37 +227,51 @@
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="D" />
+                    android:text="D"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/디기" />
+                    android:text="@string/디기"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/웹앱" />
+                    android:text="@string/웹앱"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
             </TableRow>
 
 
@@ -210,37 +280,51 @@
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="E" />
+                    android:text="E"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/자구" />
+                    android:text="@string/자구"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/미융프" />
+                    android:text="@string/미융프"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
             </TableRow>
 
 
@@ -249,37 +333,51 @@
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="F" />
+                    android:text="F"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/쓰리디" />
+                    android:text="@string/쓰리디"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/미프1" />
+                    android:text="@string/미프1"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
             </TableRow>
 
 
@@ -288,37 +386,51 @@
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="G" />
+                    android:text="G"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/쓰리디" />
+                    android:text="@string/쓰리디"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/웹앱" />
+                    android:text="@string/웹앱"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/미프1" />
+                    android:text="@string/미프1"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
             </TableRow>
 
 
@@ -327,37 +439,52 @@
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="19:30~" />
+                    android:text="19:30~"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp"
                     android:text="@string/blank" />
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
                 <TextView
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/blank"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
 
             </TableRow>
 
