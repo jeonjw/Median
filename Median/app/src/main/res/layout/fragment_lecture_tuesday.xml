@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="  B103 " />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="  415  " />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="  419  " />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="  420  " />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="  421  " />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="  422  " />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="A" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/디미" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/컴설" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="B" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/겜프1" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/알고" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="C" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/디기" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="D" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/디사기" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/객프" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="E" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/겜프1" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="F" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/디사기" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/겜프1" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/모프1" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="G" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/겜프1" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/미창2" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="19:30~" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/미창2" />
+
+            </TableRow>
+
+
+        </TableLayout>
+
+    </HorizontalScrollView>
+</ScrollView>

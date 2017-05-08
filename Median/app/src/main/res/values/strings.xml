@@ -10,11 +10,40 @@
     <string name="write">write_notice</string>
     <string name="search">search</string>
     <string name="sign_in_with_google">Sign In With Google</string>
-    <string name="write_comment">댓글을 입력하세요..</string>
+    <string name="write_comment">댓글 입력</string>
     <string-array name="board_spinner">
         <item>수업후기</item>
         <item>교재장터</item>
         <item>익명자유</item>
         <item>질문답변</item>
     </string-array>
+    <string name="자구">자료구조</string>
+    <string name="컴프">컴퓨터 프로그래밍</string>
+    <string name="컴설">컴퓨터 프로그래밍 설계</string>
+    <string name="웹앱">웹앱 프로그래밍</string>
+    <string name="알고">알고리즘</string>
+    <string name="소미">소셜미디어</string>
+    <string name="미통">미디어 통계</string>
+    <string name="미이">미디어 이론</string>
+    <string name="미애">미디어 애널리틱스</string>
+    <string name="미융프">미디어 융합 프로젝트</string>
+    <string name="모프1">모바일 프로그래밍1</string>
+    <string name="데사">데이터사이언스 이론과 응용</string>
+    <string name="뉴미기">뉴미디어 기획</string>
+    <string name="객프">객체지향 프로그래밍</string>
+    <string name="쓰리디">3D어셋 크리에이션</string>
+    <string name="겜기">게임기획개론</string>
+    <string name="겜프1">게임 프로그래밍1</string>
+    <string name="그디">그래픽 디자인</string>
+    <string name="디기">디자인 기초</string>
+    <string name="디미">디지털 미디어</string>
+    <string name="디사기">디지털 사운드 기초</string>
+    <string name="미창2">미디어 창업2</string>
+    <string name="컴애니">컴퓨터 애니메이션</string>
+    <string name="애니미">애니메이션 미학</string>
+    <string name="미프1">미디어 프로젝트1</string>
+    <string name="인포">인포그래픽스</string>
+    <string name="컴그">컴퓨터 그래픽스</string>
+    <string name="스콘사제">스마트콘텐츠 사운드제작</string>
+    <string name="blank">       </string>
 </resources>
