@@ -25,12 +25,13 @@ public class BoardWriteActivity extends AppCompatActivity {
     private ImageButton closeButton;
     private Spinner board_spinner;
     private DatabaseReference mDatabase;
-    private Post lectureReview;
+    private Post post;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_write);
+
 
         final int currentPosition = getIntent().getExtras().getInt("CURRENT_BOARD_TAB");
 
@@ -40,7 +41,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         contentsEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(BoardWriteActivity.this,"test",Toast.LENGTH_SHORT).show();
+                Toast.makeText(BoardWriteActivity.this, "test", Toast.LENGTH_SHORT).show();
                 contentsEditText.requestFocus();
             }
         });
@@ -58,20 +59,26 @@ public class BoardWriteActivity extends AppCompatActivity {
         writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(titleEditText.getText().toString())){
+                String userName;
+                if (TextUtils.isEmpty(titleEditText.getText().toString())) {
                     titleEditText.setError("제목을 입력하세요");
                     titleEditText.requestFocus();
                     return;
-                } else if (TextUtils.isEmpty(contentsEditText.getText().toString())){
+                } else if (TextUtils.isEmpty(contentsEditText.getText().toString())) {
                     contentsEditText.setError("내용을 입력하세요");
                     contentsEditText.requestFocus();
                     return;
                 }
-                lectureReview = new Post(User.getInstance().getUserName(),titleEditText.getText().toString(),contentsEditText.getText().toString());
-                mDatabase.child((String) board_spinner.getSelectedItem()).push().setValue(lectureReview);
+                if (currentPosition == 2)
+                    userName = "익명";
+                else
+                    userName = User.getInstance().getUserName();
+                post = new Post(userName, titleEditText.getText().toString(), contentsEditText.getText().toString());
+                mDatabase.child((String) board_spinner.getSelectedItem()).push().setValue(post);
                 finish();
             }
         });
+
 
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,368 +1,444 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <HorizontalScrollView
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TableRow>
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="  B103 " />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="  415  " />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="  419  " />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="  420  " />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="  421  " />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="  422  " />
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="A" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="B" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/디미" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/미이" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/컴애니" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="C" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/뉴미기" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/그디" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/애니미" />
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="D" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/스콘사제" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/컴그" />
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="E" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/자구" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/미융프" />
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="F" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/소미" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/겜기" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="G" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/모프1" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="20:00" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-            </TableRow>
-
-
-        </TableLayout>
-
-    </HorizontalScrollView>
-</ScrollView>
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="  B103 " />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="  415  " />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="  419  " />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="  420  " />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="  421  " />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="  422  " />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="A" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="B" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/디미" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/미이" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/컴애니" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="C" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/뉴미기" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/그디" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/애니미" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="D" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/스콘사제" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/컴그" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="E" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/자구" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/미융프" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="F" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/소미" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/겜기" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="G" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/모프1" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="20:00" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+            <TextView
+                android:layout_height="match_parent"
+                android:background="@drawable/table_layout_border"
+                android:gravity="center"
+                android:text="@string/blank" />
+
+        </TableRow>
+
+
+    </TableLayout>
+</HorizontalScrollView>
+

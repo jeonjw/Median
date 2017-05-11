@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +27,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,7 +47,7 @@ public class InfoActivity extends AppCompatActivity {
     private InfoAdapter infoAdapter;
     private List<Info> infoList;
     private DatabaseReference mDatabase;
-    private StorageReference storageRef;
+//    private StorageReference storageRef;
     private ProgressDialog progressDialog;
     FirebaseStorage storage;
 
@@ -62,7 +67,7 @@ public class InfoActivity extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.info_recycler_view);
 
-        storageRef = storage.getReferenceFromUrl("gs://median-234c4.appspot.com/profileImages");
+//        storageRef = storage.getReferenceFromUrl("gs://median-234c4.appspot.com/profileImages");
         infoList = new ArrayList<>();
 
         progressDialog = new ProgressDialog(this);
@@ -77,6 +82,7 @@ public class InfoActivity extends AppCompatActivity {
 
         infoAdapter = new InfoAdapter(infoList);
         mRecyclerView.setAdapter(infoAdapter);
+
 
     }
 
@@ -136,25 +142,31 @@ public class InfoActivity extends AppCompatActivity {
 
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         private void bindNotice(Info info) {
             mInfo = info;
 
-            StorageReference pathReference = storageRef.child(mInfo.getProfileImage());
-//            FirebaseStorage storage = FirebaseStorage.getInstance();
-//            StorageReference pathReference = storage.getReferenceFromUrl("gs://median-234c4.appspot.com/profileImages/yusang.jpg");
+//            StorageReference pathReference = storageRef.child(mInfo.getProfileImage());
 
+//            pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                @Override
+//                public void onSuccess(Uri uri) {
+//                    Glide.with(InfoActivity.this)
+//                            .load(uri)
+//                            .into(mImageView);
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception exception) {
+//                    // Handle any errors
+//                }
+//            });
 
-//            Glide.with(InfoActivity.this)
-//                    .using(new FirebaseImageLoader())
-//                    .load(pathReference)
-//                    .asBitmap()
-//                    .into(mImageView);
+            int res = getResources().getIdentifier(mInfo.getProfileImage(), "drawable", getPackageName());
 
-            Glide.with(InfoActivity.this).load("https://firebasestorage.googleapis.com/v0/b/median-234c4.appspot.com/o/profileImages%2Fjooyeop.jpg?alt=media&token=1f2629b1-a749-42dc-810e-cff9e80e8bde").into(mImageView);
-
-
-            System.out.println(pathReference);
-
+            Glide.with(InfoActivity.this)
+                    .load(res)
+                    .into(mImageView);
 
             mNameTextView.setText(mInfo.getName());
             mEmailTextView.setText(mInfo.getEmail());
@@ -187,6 +199,7 @@ public class InfoActivity extends AppCompatActivity {
             return new InfoHolder(view);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onBindViewHolder(final InfoHolder holder, int position) {
             Info info = mInfoList.get(position);
@@ -202,5 +215,11 @@ public class InfoActivity extends AppCompatActivity {
 
     public void setToolbarTitle(String title) {
         ((ToolbarFragment) toolbarFragment).setToolbarTitle(title);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setToolbarTitle("Info");
     }
 }
