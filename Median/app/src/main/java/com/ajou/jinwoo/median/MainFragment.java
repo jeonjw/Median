@@ -82,6 +82,14 @@ public class MainFragment extends Fragment {
             }
         });
 
+        mSettingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         setButtonFont();
 

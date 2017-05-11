@@ -42,6 +42,7 @@
         <activity android:name=".StudentNoticeWriteActivity"/>
         <activity android:name=".BoardWriteActivity"/>
         <activity android:name=".CommentListActivity"/>
+        <activity android:name=".SettingActivity"/>
     </application>
 
 </manifest>
