@@ -13,6 +13,12 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class MainFragment extends Fragment {
     private Button mNoticeButton;
@@ -76,7 +82,18 @@ public class MainFragment extends Fragment {
             }
         });
 
+
         setButtonFont();
+
+//        ImageView imageView = (ImageView) view.findViewById(R.id.test_image_view);
+//        FirebaseStorage storage = FirebaseStorage.getInstance();
+//        StorageReference pathReference = storage.getReferenceFromUrl("gs://median-234c4.appspot.com/profileImages/yusang.jpg");
+//
+//
+//        Glide.with(getActivity())
+//                .using(new FirebaseImageLoader())
+//                .load(pathReference)
+//                .into(imageView);
 
         return view;
     }

@@ -2,6 +2,8 @@ package com.ajou.jinwoo.median;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,10 +18,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ajou.jinwoo.median.model.Info;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,9 +42,9 @@ public class InfoActivity extends AppCompatActivity {
     private InfoAdapter infoAdapter;
     private List<Info> infoList;
     private DatabaseReference mDatabase;
-    private FirebaseStorage storage;
-    StorageReference storageRef;
+    private StorageReference storageRef;
     private ProgressDialog progressDialog;
+    FirebaseStorage storage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,7 +92,6 @@ public class InfoActivity extends AppCompatActivity {
                     infoList.add(info);
                 }
 
-
                 infoAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
 
@@ -114,7 +116,7 @@ public class InfoActivity extends AppCompatActivity {
         private Info mInfo;
 
 
-        public InfoHolder(View itemView) {
+        InfoHolder(View itemView) {
             super(itemView);
 
             mImageView = (ImageView) itemView.findViewById(R.id.profile_image);
@@ -127,26 +129,32 @@ public class InfoActivity extends AppCompatActivity {
             mPhoneCallButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(InfoActivity.this,"Test",Toast.LENGTH_SHORT).show();
-                    String tel = "tel:"+"031219"+mInfo.getTelNumber();
+                    String tel = "tel:" + "031219" + mInfo.getTelNumber();
                     startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel)));
-
-
                 }
             });
 
         }
 
-
         private void bindNotice(Info info) {
             mInfo = info;
 
             StorageReference pathReference = storageRef.child(mInfo.getProfileImage());
+//            FirebaseStorage storage = FirebaseStorage.getInstance();
+//            StorageReference pathReference = storage.getReferenceFromUrl("gs://median-234c4.appspot.com/profileImages/yusang.jpg");
 
-            Glide.with(InfoActivity.this)
-                    .using(new FirebaseImageLoader())
-                    .load(pathReference)
-                    .into(mImageView);
+
+//            Glide.with(InfoActivity.this)
+//                    .using(new FirebaseImageLoader())
+//                    .load(pathReference)
+//                    .asBitmap()
+//                    .into(mImageView);
+
+            Glide.with(InfoActivity.this).load("https://firebasestorage.googleapis.com/v0/b/median-234c4.appspot.com/o/profileImages%2Fjooyeop.jpg?alt=media&token=1f2629b1-a749-42dc-810e-cff9e80e8bde").into(mImageView);
+
+
+            System.out.println(pathReference);
+
 
             mNameTextView.setText(mInfo.getName());
             mEmailTextView.setText(mInfo.getEmail());
@@ -155,7 +163,7 @@ public class InfoActivity extends AppCompatActivity {
 
             if (mInfo.getName().contains("학과사무실"))
                 mPhoneCallButton.setVisibility(View.VISIBLE);
-            else{
+            else {
                 mPhoneCallButton.setVisibility(View.INVISIBLE);
             }
 

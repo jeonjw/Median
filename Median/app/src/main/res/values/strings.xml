@@ -46,4 +46,5 @@
     <string name="컴그">컴퓨터 그래픽스</string>
     <string name="스콘사제">스마트콘텐츠 사운드제작</string>
     <string name="blank">       </string>
+    <string name="profileimage">profileImage</string>
 </resources>

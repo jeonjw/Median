@@ -13,7 +13,8 @@
         android:layout_width="90dp"
         android:layout_height="110dp"
         android:layout_margin="10dp"
-        android:src="@drawable/media_logo" />
+        android:src="@drawable/media_logo"
+        android:contentDescription="@string/profileimage" />
 
     <TextView
         android:id="@+id/info_name_text_view"

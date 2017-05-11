@@ -18,7 +18,7 @@ public class ToolbarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_toolbar, container, false);
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbarTitleTextView = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        toolbar.setTitle(null);
+        toolbar.setTitle("Media");
 
         Typeface type = Typeface
                 .createFromAsset(getActivity().getAssets(), "Impact.ttf");

@@ -10,11 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.ajou.jinwoo.median.model.Comment;
 import com.ajou.jinwoo.median.model.User;
 import com.ajou.jinwoo.median.viewholder.CommentViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,9 +44,24 @@ public class CommentListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mManager);
 
         final EditText commentEdit = (EditText) findViewById(R.id.comment_edit);
+        ImageButton sendButton = (ImageButton) findViewById(R.id.send_button);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                User user = User.getInstance();
+                Comment comment = new Comment(user.getUserName(), commentEdit.getText().toString());
+                mDatabase.child("comments").child(dataRefKey).push().setValue(comment);
+//                    commentCount++;
+//                    mDatabase.child(postType).child(dataRefKey).child("commentCount").setValue(commentCount);
+
+                commentEdit.setText("");
+            }
+        });
         mDatabase = FirebaseDatabase.getInstance().getReference();
         dataRefKey = getIntent().getExtras().getString("POST_KEY");
         postType = getIntent().getExtras().getString("POST_TYPE");
+        commentCount = getIntent().getExtras().getInt("COMMENT_COUNT");
+
 
         commentEdit.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -52,7 +70,8 @@ public class CommentListActivity extends AppCompatActivity {
                     User user = User.getInstance();
                     Comment comment = new Comment(user.getUserName(), commentEdit.getText().toString());
                     mDatabase.child("comments").child(dataRefKey).push().setValue(comment);
-                    mDatabase.child(postType).child(dataRefKey).child("commentCount").setValue(commentCount + 1);
+//                    commentCount++;
+//                    mDatabase.child(postType).child(dataRefKey).child("commentCount").setValue(commentCount);
 
                     commentEdit.setText("");
                     return true;
@@ -78,18 +97,44 @@ public class CommentListActivity extends AppCompatActivity {
                 CommentViewHolder.class, mDatabase.child("comments").child(dataRefKey)) {
             @Override
             protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {
-                viewHolder.bindComment(model);
+                String commentKey = getRef(position).getKey();
+
+                viewHolder.bindComment(model,postType,dataRefKey,commentKey,commentCount);
+
             }
 
         };
 
         recyclerView.setAdapter(mAdapter);
 
-        mDatabase.child("comments").child(dataRefKey).addValueEventListener(new ValueEventListener() {
+        mDatabase.child("comments").child(dataRefKey).addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+////                commentCount = (int) dataSnapshot.getChildrenCount();
+//                mDatabase.child(postType).child(dataRefKey).child("commentCount").setValue(commentCount);
+//                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
+//
+//            }
+
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                commentCount = (int) dataSnapshot.getChildrenCount();
-                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+                mDatabase.child(postType).child(dataRefKey).child("commentCount").setValue(recyclerView.getAdapter().getItemCount());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount());
+                mDatabase.child(postType).child(dataRefKey).child("commentCount").setValue(recyclerView.getAdapter().getItemCount());
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
