@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.model.Comment;
+import com.ajou.jinwoo.median.valueObject.Comment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

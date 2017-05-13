@@ -11,10 +11,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-import com.ajou.jinwoo.median.model.Comment;
-import com.ajou.jinwoo.median.model.User;
+import com.ajou.jinwoo.median.valueObject.Comment;
+import com.ajou.jinwoo.median.valueObject.User;
 import com.ajou.jinwoo.median.viewholder.CommentViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.ChildEventListener;
@@ -22,7 +21,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
 public class CommentListActivity extends AppCompatActivity {

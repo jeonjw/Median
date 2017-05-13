@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.ajou.jinwoo.median.CommentListActivity;
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.model.Post;
+import com.ajou.jinwoo.median.valueObject.Post;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

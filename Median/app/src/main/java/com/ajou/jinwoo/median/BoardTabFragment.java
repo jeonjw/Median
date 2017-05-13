@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class BoardFragment extends Fragment {
+public class BoardTabFragment extends Fragment {
 
     private ViewPager mViewPager;
 

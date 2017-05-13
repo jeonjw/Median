@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median.model;
+package com.ajou.jinwoo.median.valueObject;
 
 /**
  * Created by jinwoo on 2017. 4. 6..

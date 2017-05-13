@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.ajou.jinwoo.median.CommentListActivity;
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.model.StudentNotice;
+import com.ajou.jinwoo.median.valueObject.StudentNotice;
 
 public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView titleTextView;

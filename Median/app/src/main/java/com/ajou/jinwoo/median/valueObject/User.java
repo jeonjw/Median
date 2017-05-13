@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median.model;
+package com.ajou.jinwoo.median.valueObject;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

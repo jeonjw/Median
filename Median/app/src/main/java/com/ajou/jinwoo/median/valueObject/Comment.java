@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median.model;
+package com.ajou.jinwoo.median.valueObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

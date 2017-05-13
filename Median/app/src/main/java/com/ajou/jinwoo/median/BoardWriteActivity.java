@@ -12,8 +12,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.ajou.jinwoo.median.model.Post;
-import com.ajou.jinwoo.median.model.User;
+import com.ajou.jinwoo.median.valueObject.Post;
+import com.ajou.jinwoo.median.valueObject.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

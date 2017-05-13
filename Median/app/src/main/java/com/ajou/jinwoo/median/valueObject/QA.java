@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median.model;
+package com.ajou.jinwoo.median.valueObject;
 
 /**
  * Created by samsung on 2017-04-08.

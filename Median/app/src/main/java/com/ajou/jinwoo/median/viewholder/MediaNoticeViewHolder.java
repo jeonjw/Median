@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.model.DownloadImageTask;
-import com.ajou.jinwoo.median.model.Notice;
+import com.ajou.jinwoo.median.valueObject.DownloadImageTask;
+import com.ajou.jinwoo.median.valueObject.Notice;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -59,7 +59,7 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), BoardActivity.class);
                 startActivity(intent);
-//                Fragment boardFragment = new BoardFragment();
+//                Fragment boardFragment = new BoardTabFragment();
 //                FragmentManager fm = getFragmentManager();
 //                fm.beginTransaction().replace(R.id.fragment_container, boardFragment).addToBackStack(null).commit();
             }

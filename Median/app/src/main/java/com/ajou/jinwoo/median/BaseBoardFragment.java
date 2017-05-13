@@ -14,18 +14,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.ajou.jinwoo.median.model.Post;
+import com.ajou.jinwoo.median.valueObject.Post;
 import com.ajou.jinwoo.median.viewholder.PostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 
 public abstract class BaseBoardFragment extends Fragment {
     private DatabaseReference mDatabase;
     private RecyclerView recyclerView;
-    private FirebaseRecyclerAdapter<Post, PostViewHolder> mAdapter;
 
     @Nullable
     @Override
@@ -38,80 +39,56 @@ public abstract class BaseBoardFragment extends Fragment {
         LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
-        mManager.scrollToPositionWithOffset(0,0);
+        mManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(mManager);
 
-
-        mAdapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.list_item_post,
-                PostViewHolder.class, getRef(mDatabase)) {
-            @Override
-            protected void populateViewHolder(final PostViewHolder viewHolder, final Post model, final int position) {
-                final DatabaseReference postRef = getRef(position);
-
-                final String postKey = postRef.getKey();
-                viewHolder.bindPost(model, getContext(), postKey, getPostType());
-            }
-        };
-
-
-        recyclerView.setAdapter(mAdapter);
+        setAdapter(getRef(mDatabase));
 
         return view;
     }
 
     public abstract DatabaseReference getRef(DatabaseReference databaseReference);
+
     public abstract String getPostType();
 
     @Override
     public void onCreateOptionsMenu(final Menu menu, MenuInflater inflater) {
+        Toast.makeText(getContext(),"Board",Toast.LENGTH_SHORT).show();
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_board, menu);
 
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setQueryHint("제목으로 검색");
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-//                Query query = getRef(mDatabase).orderByChild("title").startAt(s);
-//
-//                FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.list_item_post,
-//                        PostViewHolder.class, query) {
-//                    @Override
-//                    protected void populateViewHolder(final PostViewHolder viewHolder, final Post model, final int position) {
-//                        final DatabaseReference postRef = getRef(position);
-//
-//                        final String postKey = postRef.getKey();
-//                        viewHolder.bindPost(model, getContext(), postKey, getPostType());
-//                    }
-//                };
-//
-//                recyclerView.setAdapter(adapter);
+                Query query = getRef(mDatabase).orderByChild("title").startAt(s).endAt(s + "\uf8ff");
+                setAdapter(query);
+
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                System.out.println(s);
-//                query = getRef(mDatabase).child("title").startAt(s);
-
+                if (s.length() == 0)
+                    setAdapter(getRef(mDatabase));
                 return true;
             }
         });
 
         MenuItemCompat.setOnActionExpandListener(searchItem,
-                new MenuItemCompat.OnActionExpandListener()
-                {
+                new MenuItemCompat.OnActionExpandListener() {
                     @Override
-                    public boolean onMenuItemActionCollapse(MenuItem item)
-                    {
-                        recyclerView.setAdapter(mAdapter);
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+                        setAdapter(getRef(mDatabase));
                         return true; // Return true to collapse action view
                     }
 
                     @Override
-                    public boolean onMenuItemActionExpand(MenuItem item)
-                    {
+                    public boolean onMenuItemActionExpand(MenuItem item) {
                         // Do something when expanded
                         return true; // Return true to expand action view
                     }
@@ -122,11 +99,23 @@ public abstract class BaseBoardFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_write) {
             Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
-            intent.putExtra("CURRENT_BOARD_TAB", BoardFragment.getCurrentTab());
+            intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab());
             startActivity(intent);
         }
         return true;
     }
+
+    public void setAdapter(Query query) {
+        FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.list_item_post,
+                PostViewHolder.class, query) {
+            @Override
+            protected void populateViewHolder(PostViewHolder viewHolder, Post model, int position) {
+                DatabaseReference postRef = getRef(position);
+                String postKey = postRef.getKey();
+                viewHolder.bindPost(model, getContext(), postKey, getPostType());
+            }
+        };
+
+        recyclerView.setAdapter(adapter);
+    }
 }
-//따로 어댑터를 만들고 http://stackoverflow.com/questions/30398247/how-to-filter-a-recyclerview-with-a-searchview
-//참고해서 필터 만들어서 해야겠다

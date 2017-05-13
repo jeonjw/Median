@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median.model;
+package com.ajou.jinwoo.median.valueObject;
 
 public class Notice {
 

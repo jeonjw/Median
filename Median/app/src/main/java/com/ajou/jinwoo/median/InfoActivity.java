@@ -2,12 +2,9 @@ package com.ajou.jinwoo.median;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -22,20 +19,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ajou.jinwoo.median.model.Info;
+import com.ajou.jinwoo.median.valueObject.Info;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,13 +34,12 @@ import java.util.List;
 
 public class InfoActivity extends AppCompatActivity {
     private Fragment toolbarFragment;
-    private RecyclerView mRecyclerView;
     private InfoAdapter infoAdapter;
     private List<Info> infoList;
     private DatabaseReference mDatabase;
 //    private StorageReference storageRef;
     private ProgressDialog progressDialog;
-    FirebaseStorage storage;
+    private FirebaseStorage storage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +55,7 @@ public class InfoActivity extends AppCompatActivity {
         fm.beginTransaction().add(R.id.info_toolbar_container, toolbarFragment).commit();
 
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.info_recycler_view);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.info_recycler_view);
 
 //        storageRef = storage.getReferenceFromUrl("gs://median-234c4.appspot.com/profileImages");
         infoList = new ArrayList<>();

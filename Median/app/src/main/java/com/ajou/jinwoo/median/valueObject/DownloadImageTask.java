@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median.model;
+package com.ajou.jinwoo.median.valueObject;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
