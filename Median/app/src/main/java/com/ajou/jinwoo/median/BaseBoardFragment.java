@@ -53,7 +53,6 @@ public abstract class BaseBoardFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(final Menu menu, MenuInflater inflater) {
-        Toast.makeText(getContext(),"Board",Toast.LENGTH_SHORT).show();
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_board, menu);
 

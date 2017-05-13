@@ -25,28 +25,7 @@ public class User {
         return userName;
     }
     private User() {
-//        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-//        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//        databaseReference.child("User").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot snapshot) {
-//                if(snapshot.getValue()==null) {
-//                    userName = firebaseUser.getDisplayName();
-//                    userEmail = firebaseUser.getEmail();
-//                    databaseReference.child("User").child(firebaseUser.getUid()).child("name").setValue(userName);
-//                    databaseReference.child("User").child(firebaseUser.getUid()).child("email").setValue(userEmail);
-//                }else{
-//                    userName = snapshot.child("name").getValue().toString();
-//                    userEmail = snapshot.child("email").getValue().toString();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//
-//        });
+
     }
 
 

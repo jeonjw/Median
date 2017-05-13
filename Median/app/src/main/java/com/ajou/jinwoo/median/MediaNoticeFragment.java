@@ -151,8 +151,6 @@ public class MediaNoticeFragment extends Fragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.menu_write).setVisible(false);
-
-        Toast.makeText(getContext(), "MediaNotice", Toast.LENGTH_SHORT).show();
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         

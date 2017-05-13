@@ -58,8 +58,6 @@ public class StudentNoticeFragment extends Fragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-
-        Toast.makeText(getContext(), "StudentNotice", Toast.LENGTH_SHORT).show();
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setQueryHint("제목으로 검색");

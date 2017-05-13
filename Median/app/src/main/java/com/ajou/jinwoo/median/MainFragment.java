@@ -48,9 +48,6 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), NoticeActivity.class);
                 startActivity(intent);
-//                Fragment noticeFragment = new NoticeFragment();
-//                FragmentManager fm = getFragmentManager();
-//                fm.beginTransaction().replace(R.id.fragment_container, noticeFragment).addToBackStack(null).commit();
             }
         });
 
@@ -59,9 +56,6 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), BoardActivity.class);
                 startActivity(intent);
-//                Fragment boardFragment = new BoardTabFragment();
-//                FragmentManager fm = getFragmentManager();
-//                fm.beginTransaction().replace(R.id.fragment_container, boardFragment).addToBackStack(null).commit();
             }
         });
 
@@ -92,16 +86,6 @@ public class MainFragment extends Fragment {
 
 
         setButtonFont();
-
-//        ImageView imageView = (ImageView) view.findViewById(R.id.test_image_view);
-//        FirebaseStorage storage = FirebaseStorage.getInstance();
-//        StorageReference pathReference = storage.getReferenceFromUrl("gs://median-234c4.appspot.com/profileImages/yusang.jpg");
-//
-//
-//        Glide.with(getActivity())
-//                .using(new FirebaseImageLoader())
-//                .load(pathReference)
-//                .into(imageView);
 
         return view;
     }
