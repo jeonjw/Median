@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ajou.jinwoo.median.valueObject.User;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,19 +28,17 @@ public class MainActivity extends AppCompatActivity
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
         if (firebaseUser == null) {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
         }
-//        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
-//                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
-//                .addApi(Auth.GOOGLE_SIGN_IN_API)
-//                .build();
 
         setContentView(R.layout.activity_main);
 
-        User.getInstance(); //유저 정보 로딩..
+        User.getInstance().setUserName(firebaseUser.getDisplayName());
+        User.getInstance().setUserEmail(firebaseUser.getEmail());
 
         FragmentManager fm = getSupportFragmentManager();
         FirebaseInstanceId.getInstance().getToken();
