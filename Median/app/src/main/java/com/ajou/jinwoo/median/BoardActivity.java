@@ -24,39 +24,6 @@ public class BoardActivity extends AppCompatActivity {
         fm.beginTransaction().add(R.id.fragment_board_container, boardRootFragment).commit();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_board, menu);
-////        MenuItem searchItem = menu.findItem(R.id.menu_search);
-////        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-//////        searchView.setMaxWidth(900);
-////
-////        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-////            @Override
-////            public boolean onQueryTextSubmit(String s) {
-////                return false;
-////            }
-////
-////            @Override
-////            public boolean onQueryTextChange(String s) {
-////                System.out.println(s);
-////                return true;
-////            }
-////        });
-//
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == R.id.menu_write) {
-//            Intent intent = new Intent(BoardActivity.this, BoardWriteActivity.class);
-//            intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab());
-//            startActivity(intent);
-//        }
-//        return true;
-//    }
-
     public void setToolbarTitle(String title) {
         ((ToolbarFragment) toolbarFragment).setToolbarTitle(title);
     }

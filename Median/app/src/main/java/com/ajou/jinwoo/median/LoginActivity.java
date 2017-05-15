@@ -40,10 +40,6 @@ public class LoginActivity extends AppCompatActivity
         setContentView(R.layout.activity_login);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-
-//        TextView textView = (TextView) findViewById(R.id.main_textView);
-//        Typeface typeface = Typeface.createFromAsset(getAssets(), "main_text.ttf");
-//        textView.setTypeface(typeface);
         Button mLoginButton = (Button) findViewById(R.id.login_button);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {

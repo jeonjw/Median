@@ -54,14 +54,14 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
                     contentsEditText.requestFocus();
                     return;
                 }
-                String key = mDatabase.child("student_notice").push().getKey();
+//                String key = mDatabase.child("student_notice").push().getKey();
                 StudentNotice studentNotice = new StudentNotice(User.getInstance().getUserName(),titleEditText.getText().toString(), contentsEditText.getText().toString());
-                Map<String, Object> postValues = studentNotice.toMap();
+//                Map<String, Object> postValues = studentNotice.toMap();
+//
+//                Map<String, Object> childUpdates = new HashMap<>();
+//                childUpdates.put("/student_notice/" + key, postValues);
 
-                Map<String, Object> childUpdates = new HashMap<>();
-                childUpdates.put("/student_notice/" + key, postValues);
-
-                mDatabase.updateChildren(childUpdates);
+                mDatabase.child("student_notice").push().setValue(studentNotice);
                 finish();
             }
         });

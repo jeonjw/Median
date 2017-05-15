@@ -20,8 +20,6 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
     private TextView dateView;
     private String commentKey;
     private String postKey;
-    private String postType;
-    private int commentCount;
 
     public CommentViewHolder(View itemView) {
         super(itemView);
@@ -32,14 +30,12 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
 
     }
 
-    public void bindComment(Comment model, String postType, String postKey, String commentKey, int commentCount) {
+    public void bindComment(Comment model, String postKey, String commentKey) {
         authorView.setText(model.getAuthor());
         bodyView.setText(model.getText());
         dateView.setText(model.getTimeStamp());
         this.commentKey = commentKey;
         this.postKey = postKey;
-        this.postType = postType;
-        this.commentCount = commentCount;
     }
 
 
@@ -62,9 +58,6 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
                 case 2:
                     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                     mDatabase.child("comments").child(postKey).child(commentKey).removeValue();
-//                    commentCount --;
-//                    mDatabase.child(postType).child(postKey).child("commentCount").setValue(commentCount);
-                    System.out.println("삭제");
                     return true;
             }
             return false;

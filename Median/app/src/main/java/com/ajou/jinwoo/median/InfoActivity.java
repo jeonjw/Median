@@ -37,29 +37,23 @@ public class InfoActivity extends AppCompatActivity {
     private InfoAdapter infoAdapter;
     private List<Info> infoList;
     private DatabaseReference mDatabase;
-//    private StorageReference storageRef;
     private ProgressDialog progressDialog;
-    private FirebaseStorage storage;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_info);
-        storage = FirebaseStorage.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         FragmentManager fm = getSupportFragmentManager();
-
         toolbarFragment = new ToolbarFragment();
         fm.beginTransaction().add(R.id.info_toolbar_container, toolbarFragment).commit();
 
-
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.info_recycler_view);
 
-//        storageRef = storage.getReferenceFromUrl("gs://median-234c4.appspot.com/profileImages");
         infoList = new ArrayList<>();
-
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
 
@@ -87,10 +81,8 @@ public class InfoActivity extends AppCompatActivity {
                     Info info = ds.getValue(Info.class);
                     infoList.add(info);
                 }
-
                 infoAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
-
             }
 
             @Override
@@ -135,22 +127,6 @@ public class InfoActivity extends AppCompatActivity {
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         private void bindNotice(Info info) {
             mInfo = info;
-
-//            StorageReference pathReference = storageRef.child(mInfo.getProfileImage());
-
-//            pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                @Override
-//                public void onSuccess(Uri uri) {
-//                    Glide.with(InfoActivity.this)
-//                            .load(uri)
-//                            .into(mImageView);
-//                }
-//            }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception exception) {
-//                    // Handle any errors
-//                }
-//            });
 
             int res = getResources().getIdentifier(mInfo.getProfileImage(), "drawable", getPackageName());
 
@@ -213,3 +189,4 @@ public class InfoActivity extends AppCompatActivity {
         setToolbarTitle("Info");
     }
 }
+//홀더 어댑터 다른거와 같이 처리하기

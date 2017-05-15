@@ -54,14 +54,4 @@ public class Post {
         return dateFormat.format(date);
     }
 
-    @Exclude
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("author", author);
-        result.put("contents", contents);
-        result.put("title", title);
-        result.put("timeStamp", timeStamp);
-        result.put("commentCount", commentCount);
-        return result;
-    }
 }

@@ -4,7 +4,6 @@ public class Notice {
 
     private String title;
     private String contents;
-    private int boardNum;
 
     public String getTitle() {
         return title;
@@ -22,10 +21,6 @@ public class Notice {
         this.contents = contents;
     }
 
-    public int getBoardNum() {
-        return boardNum;
-    }
-
     public Notice(String title, String contents) {
         this.title = title;
         this.contents = contents;
@@ -33,6 +28,4 @@ public class Notice {
     public Notice(){
 
     }
-
-
 }

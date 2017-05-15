@@ -1,9 +1,5 @@
 package com.ajou.jinwoo.median.valueObject;
 
-/**
- * Created by samsung on 2017-04-08.
- */
-
 public class Anonymous {
 
     private String title;

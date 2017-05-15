@@ -4,10 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by jinwoo on 2017. 5. 4..
- */
-
 public class Comment {
 
     private String author;
@@ -24,7 +20,6 @@ public class Comment {
         return timeStamp;
     }
     public Comment(){
-
     }
 
     public Comment(String author, String text) {
@@ -39,6 +34,8 @@ public class Comment {
         return dateFormat.format(date);
     }
 
-
+    public static Comment newComment(String userName,String message) {
+        return new Comment(userName, message);
+    }
 
 }

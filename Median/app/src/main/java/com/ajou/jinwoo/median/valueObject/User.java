@@ -9,6 +9,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class User {
+
+    private String userName;
+    private String userEmail;
+
+    private User() {
+
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
@@ -16,18 +28,6 @@ public class User {
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
-
-    private String userName;
-    private String userEmail;
-
-
-    public String getUserName() {
-        return userName;
-    }
-    private User() {
-
-    }
-
 
     private static class Singleton {
         private static final User INSTANCE = new User();

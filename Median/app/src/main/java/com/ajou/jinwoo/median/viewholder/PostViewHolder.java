@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ajou.jinwoo.median.CommentListActivity;
 import com.ajou.jinwoo.median.R;
@@ -29,38 +28,31 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private String dataRefKey;
     private String postType;
     private Context context;
-    private int commentCount;
-
+    private DatabaseReference mDatabase;
 
     public PostViewHolder(View itemView) {
         super(itemView);
+
         titleTextView = (TextView) itemView.findViewById(R.id.post_title_text_view);
         contentsTextView = (TextView) itemView.findViewById(R.id.post_contents_text_view);
         authorTextView = (TextView) itemView.findViewById(R.id.post_author_text_view);
         dateTextView = (TextView) itemView.findViewById(R.id.post_date_text_view);
         commentCountTextView = (TextView) itemView.findViewById(R.id.post_comment_number);
         dropdownButton = (ImageButton) itemView.findViewById(R.id.dropdown_button);
-        final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         dropdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PopupMenu popup = new PopupMenu(context, dropdownButton);
-                //Inflating the Popup using xml file
                 popup.getMenuInflater()
                         .inflate(R.menu.popup_menu, popup.getMenu());
 
-
-                //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(
-                                context,
-                                "You Clicked : " + item.getTitle(),
-                                Toast.LENGTH_SHORT
-                        ).show();
                         if (item.getItemId() == R.id.popup_delete) {
-                            mDatabase.child(postType).child(dataRefKey).removeValue();
                             mDatabase.child("comments").child(dataRefKey).removeValue();
+                            mDatabase.child(postType).child(dataRefKey).removeValue();
                         }
                         return true;
                     }
@@ -79,20 +71,22 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         Intent intent = new Intent(context, CommentListActivity.class);
         intent.putExtra("POST_KEY", dataRefKey);
         intent.putExtra("POST_TYPE", postType);
-        intent.putExtra("COMMENT_COUNT",commentCount);
         context.startActivity(intent);
+
         ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
     }
 
-    public void bindPost(Post model, Context context, String postKey, String postType) {
+    public void bindPost(final Post model, Context context, String postKey, String postType) {
         titleTextView.setText(model.getTitle());
         contentsTextView.setText(model.getContents());
         authorTextView.setText(model.getAuthor());
         dateTextView.setText(model.getTimeStamp());
         commentCountTextView.setText(String.valueOf(model.getCommentCount()));
+
         dataRefKey = postKey;
         this.postType = postType;
         this.context = context;
-        this.commentCount = model.getCommentCount();
+
     }
+
 }

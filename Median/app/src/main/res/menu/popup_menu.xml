@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/one"
+        android:id="@+id/popup_rewrite"
         android:title="수정"
         />
 
