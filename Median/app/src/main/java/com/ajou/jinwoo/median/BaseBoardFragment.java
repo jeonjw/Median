@@ -1,5 +1,6 @@
 package com.ajou.jinwoo.median;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,14 +20,18 @@ import android.widget.Toast;
 import com.ajou.jinwoo.median.valueObject.Post;
 import com.ajou.jinwoo.median.viewholder.PostViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 public abstract class BaseBoardFragment extends Fragment {
     private DatabaseReference mDatabase;
     private RecyclerView recyclerView;
+    private ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -41,6 +46,10 @@ public abstract class BaseBoardFragment extends Fragment {
         mManager.setStackFromEnd(true);
         mManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(mManager);
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading..");
+
 
         setAdapter(getRef(mDatabase));
 
@@ -105,6 +114,8 @@ public abstract class BaseBoardFragment extends Fragment {
     }
 
     public void setAdapter(Query query) {
+        progressDialog.show();
+        
         FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.list_item_post,
                 PostViewHolder.class, query) {
             @Override
@@ -112,8 +123,20 @@ public abstract class BaseBoardFragment extends Fragment {
                 DatabaseReference postRef = getRef(position);
                 String postKey = postRef.getKey();
                 viewHolder.bindPost(model, getContext(), postKey, getPostType());
+                progressDialog.dismiss();
             }
         };
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                recyclerView.getLayoutManager().scrollToPosition(0);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         recyclerView.setAdapter(adapter);
     }
