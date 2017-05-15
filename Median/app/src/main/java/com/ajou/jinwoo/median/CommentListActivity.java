@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.ajou.jinwoo.median.model.CommentModel;
+import com.ajou.jinwoo.median.model.OnDataChangedListener;
 import com.ajou.jinwoo.median.valueObject.Comment;
 import com.ajou.jinwoo.median.viewholder.CommentViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -25,7 +26,7 @@ public class CommentListActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private String dataRefKey;
     private String postType;
-
+    private FirebaseRecyclerAdapter<Comment, CommentViewHolder> mAdapter;
     private CommentModel model;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -53,13 +54,20 @@ public class CommentListActivity extends AppCompatActivity {
             }
         });
 
+        model.setOnDataChangedListener(new OnDataChangedListener() {
+            @Override
+            public void onDataChanged() {
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+            }
+        });
+
         setCommentList();
 
     }
 
     private void setCommentList() {
 
-        FirebaseRecyclerAdapter<Comment, CommentViewHolder> mAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class, R.layout.list_item_comment,
+        mAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class, R.layout.list_item_comment,
                 CommentViewHolder.class, mDatabase.child("comments").child(dataRefKey)) {
             @Override
             protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {

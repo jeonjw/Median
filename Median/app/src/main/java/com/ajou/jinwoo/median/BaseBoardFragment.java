@@ -115,7 +115,7 @@ public abstract class BaseBoardFragment extends Fragment {
 
     public void setAdapter(Query query) {
         progressDialog.show();
-        
+
         FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.list_item_post,
                 PostViewHolder.class, query) {
             @Override

@@ -13,6 +13,13 @@ public class CommentModel {
     private ValueEventListener valueEventListener;
     private String dataRefKey;
     private String postType;
+    private int commentCount;
+    private OnDataChangedListener onDataChangedListener;
+
+    public void setOnDataChangedListener(OnDataChangedListener listener) {
+        this.onDataChangedListener = listener;
+    }
+
 
     public CommentModel(String dataRef, String post) {
 
@@ -23,8 +30,12 @@ public class CommentModel {
         valueEventListener = databaseReference.child("comments").child(dataRefKey).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int commentCount = (int) dataSnapshot.getChildrenCount();
+                commentCount = (int) dataSnapshot.getChildrenCount();
                 databaseReference.child(postType).child(dataRefKey).child("commentCount").setValue(commentCount);
+
+                if (onDataChangedListener != null) {
+                    onDataChangedListener.onDataChanged();
+                }
             }
 
             @Override
@@ -41,6 +52,10 @@ public class CommentModel {
     }
     public void removeListener(){
         databaseReference.child("comments").child(dataRefKey).removeEventListener(valueEventListener);
+    }
+
+    public int getCommentCount() {
+        return commentCount;
     }
 
 }
