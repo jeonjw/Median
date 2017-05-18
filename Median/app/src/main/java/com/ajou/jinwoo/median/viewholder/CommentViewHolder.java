@@ -9,8 +9,11 @@ import android.widget.TextView;
 
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.valueObject.Comment;
+import com.ajou.jinwoo.median.valueObject.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 
 public class CommentViewHolder extends RecyclerView.ViewHolder
@@ -20,6 +23,7 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
     private TextView dateView;
     private String commentKey;
     private String postKey;
+    private Comment comment;
 
     public CommentViewHolder(View itemView) {
         super(itemView);
@@ -31,6 +35,7 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
     }
 
     public void bindComment(Comment model, String postKey, String commentKey) {
+        this.comment = model;
         authorView.setText(model.getAuthor());
         bodyView.setText(model.getText());
         dateView.setText(model.getTimeStamp());
@@ -41,6 +46,9 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        if (!Objects.equals(comment.getUid(), User.getInstance().getUid()))
+            return;
+
         MenuItem edit = menu.add(Menu.NONE, 1, 1, "수정");
         MenuItem delete = menu.add(Menu.NONE, 2, 2, "삭제");
 

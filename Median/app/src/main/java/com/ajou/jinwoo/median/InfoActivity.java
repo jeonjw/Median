@@ -11,13 +11,10 @@ import android.support.v7.widget.RecyclerView;
 
 import com.ajou.jinwoo.median.model.InfoModel;
 import com.ajou.jinwoo.median.model.OnDataChangedListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class InfoActivity extends AppCompatActivity {
     private Fragment toolbarFragment;
-
 
 
     @Override
@@ -26,7 +23,7 @@ public class InfoActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_info);
 
-        final ProgressDialog progressDialog= new ProgressDialog(this);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Loading..");
         progressDialog.show();

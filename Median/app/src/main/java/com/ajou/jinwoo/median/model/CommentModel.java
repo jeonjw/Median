@@ -8,6 +8,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class CommentModel {
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener;
@@ -47,10 +49,16 @@ public class CommentModel {
     }
 
     public void writeComment(String message) {
-        User user = User.getInstance();
-        databaseReference.child("comments").child(dataRefKey).push().setValue(Comment.newComment(user.getUserName(), message));
+        String userName;
+        if (Objects.equals(postType, "익명자유"))
+            userName = "익명";
+        else
+            userName = User.getInstance().getUserName();
+
+        databaseReference.child("comments").child(dataRefKey).push().setValue(Comment.newComment(userName, message));
     }
-    public void removeListener(){
+
+    public void removeListener() {
         databaseReference.child("comments").child(dataRefKey).removeEventListener(valueEventListener);
     }
 }

@@ -5,11 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-
-/**
- * Created by samsung on 2017-05-06.
- */
 
 public class LectureActivity extends AppCompatActivity {
 
