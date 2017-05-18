@@ -22,7 +22,7 @@ public class LectureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lecture,container,false);
 
-        ((MainActivity) getActivity()).setToolbarTitle("Class");
+//        ((MainActivity) getActivity()).setToolbarTitle("Class");
 
         final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.class_tab);
 //        tabLayout.setupWithViewPager(mViewPager);

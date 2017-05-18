@@ -1,6 +1,5 @@
 package com.ajou.jinwoo.median.model;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -24,7 +23,7 @@ public class InfoModel {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             protected void populateViewHolder(InfoViewHolder viewHolder, Info model, int position) {
-                viewHolder.bindNotice(model,context);
+                viewHolder.bindNotice(model, context);
 
                 if (onDataChangedListener != null) {
                     onDataChangedListener.onDataChanged();
@@ -42,7 +41,6 @@ public class InfoModel {
     public void setOnDataChangedListener(OnDataChangedListener listener) {
         this.onDataChangedListener = listener;
     }
-
 
 
 }

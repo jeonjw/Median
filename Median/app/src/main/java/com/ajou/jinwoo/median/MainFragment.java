@@ -62,9 +62,8 @@ public class MainFragment extends Fragment {
         mLectureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment lectureFragment = new LectureFragment();
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.fragment_container, lectureFragment).addToBackStack(null).commit();
+                Intent intent = new Intent(getActivity(), LectureActivity.class);
+                startActivity(intent);
             }
         });
 
