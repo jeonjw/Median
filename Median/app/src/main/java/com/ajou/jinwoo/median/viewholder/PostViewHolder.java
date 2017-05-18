@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
@@ -12,11 +13,15 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ajou.jinwoo.median.BoardWriteActivity;
 import com.ajou.jinwoo.median.CommentListActivity;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.valueObject.Post;
+import com.ajou.jinwoo.median.valueObject.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView titleTextView;
@@ -24,11 +29,13 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private TextView authorTextView;
     private TextView dateTextView;
     private TextView commentCountTextView;
+
     private ImageButton dropdownButton;
     private String dataRefKey;
     private String postType;
     private Context context;
     private DatabaseReference mDatabase;
+    private Post post;
 
     public PostViewHolder(View itemView) {
         super(itemView);
@@ -41,6 +48,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         dropdownButton = (ImageButton) itemView.findViewById(R.id.dropdown_button);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+
         dropdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,8 +59,20 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getItemId() == R.id.popup_delete) {
-                            mDatabase.child("comments").child(dataRefKey).removeValue();
-                            mDatabase.child(postType).child(dataRefKey).removeValue();
+                            if (Objects.equals(post.getAuthorUid(), User.getInstance().getUid())) {
+                                mDatabase.child("comments").child(dataRefKey).removeValue();
+                                mDatabase.child(postType).child(dataRefKey).removeValue();
+                            } else {
+                                Snackbar.make(dateTextView, "권한이 없습니다", Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
+                        else if(item.getItemId() == R.id.popup_rewrite){
+                            Intent intent = new Intent(context, BoardWriteActivity.class);
+                            intent.putExtra("BOARD_TITLE",post.getTitle());
+                            intent.putExtra("BOARD_CONTENTS",post.getContents());
+                            intent.putExtra("CORRECT_POST_KEY", dataRefKey);
+                            intent.putExtra("COMMENT_COUNT", post.getCommentCount());
+                            context.startActivity(intent);
                         }
                         return true;
                     }
@@ -77,15 +97,21 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     }
 
     public void bindPost(final Post model, Context context, String postKey, String postType) {
+        post = model;
+
         titleTextView.setText(model.getTitle());
         contentsTextView.setText(model.getContents());
         authorTextView.setText(model.getAuthor());
         dateTextView.setText(model.getTimeStamp());
         commentCountTextView.setText(String.valueOf(model.getCommentCount()));
-
-        dataRefKey = postKey;
+        this.dataRefKey = postKey;
         this.postType = postType;
         this.context = context;
+
+        if (!Objects.equals(model.getAuthorUid(), User.getInstance().getUid()))
+            dropdownButton.setVisibility(View.GONE);
+        else
+            dropdownButton.setVisibility(View.VISIBLE);
 
     }
 

@@ -19,9 +19,8 @@ public class BoardActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
 
         toolbarFragment = new ToolbarFragment();
-        Fragment boardRootFragment = new BoardTabFragment();
         fm.beginTransaction().add(R.id.fragment_board_toolbar_container, toolbarFragment).commit();
-        fm.beginTransaction().add(R.id.fragment_board_container, boardRootFragment).commit();
+        fm.beginTransaction().add(R.id.fragment_board_container, new BoardTabFragment()).commit();
     }
 
     public void setToolbarTitle(String title) {

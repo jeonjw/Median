@@ -53,9 +53,4 @@ public class CommentModel {
     public void removeListener(){
         databaseReference.child("comments").child(dataRefKey).removeEventListener(valueEventListener);
     }
-
-    public int getCommentCount() {
-        return commentCount;
-    }
-
 }

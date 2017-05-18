@@ -14,29 +14,27 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SettingActivity extends AppCompatActivity {
 
     private Fragment toolbarFragment;
-    Button alarmSettingButton;
-    Button logoutButton;
-    Button versionButton;
-    Button helpDeveloperButton;
-    Button licenseButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        alarmSettingButton = (Button) findViewById(R.id.alarm_setting_button);
-        logoutButton = (Button) findViewById(R.id.logout_button);
-        versionButton = (Button) findViewById(R.id.version_button);
-        helpDeveloperButton = (Button) findViewById(R.id.help_developer_button);
-        licenseButton = (Button) findViewById(R.id.license_button);
+        Button alarmSettingButton = (Button) findViewById(R.id.alarm_setting_button);
+        Button logoutButton = (Button) findViewById(R.id.logout_button);
+        Button versionButton = (Button) findViewById(R.id.version_button);
+        Button helpDeveloperButton = (Button) findViewById(R.id.help_developer_button);
+        Button licenseButton = (Button) findViewById(R.id.license_button);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(SettingActivity.this, LoginActivity.class));
+                Intent intent = new Intent(SettingActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
+
             }
         });
         FragmentManager fm = getSupportFragmentManager();

@@ -7,7 +7,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;

@@ -1,43 +1,23 @@
 package com.ajou.jinwoo.median;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.ajou.jinwoo.median.valueObject.Info;
-import com.bumptech.glide.Glide;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.ajou.jinwoo.median.model.InfoModel;
+import com.ajou.jinwoo.median.model.OnDataChangedListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class InfoActivity extends AppCompatActivity {
     private Fragment toolbarFragment;
-    private InfoAdapter infoAdapter;
-    private List<Info> infoList;
-    private DatabaseReference mDatabase;
-    private ProgressDialog progressDialog;
+
 
 
     @Override
@@ -45,139 +25,35 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_info);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        final ProgressDialog progressDialog= new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading..");
+        progressDialog.show();
 
         FragmentManager fm = getSupportFragmentManager();
         toolbarFragment = new ToolbarFragment();
         fm.beginTransaction().add(R.id.info_toolbar_container, toolbarFragment).commit();
 
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.info_recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.info_recycler_view);
 
-        infoList = new ArrayList<>();
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-
-        loadNoticeData();
+        InfoModel infoModel = new InfoModel(getApplicationContext());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
-        mRecyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(layoutManager);
 
-        infoAdapter = new InfoAdapter(infoList);
-        mRecyclerView.setAdapter(infoAdapter);
-
-
-    }
-
-    private void loadNoticeData() {
-        progressDialog.setMessage("Loading . .");
-        progressDialog.show();
-        mDatabase.child("info").addListenerForSingleValueEvent(new ValueEventListener() {
-
+        infoModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    Info info = ds.getValue(Info.class);
-                    infoList.add(info);
-                }
-                infoAdapter.notifyDataSetChanged();
+            public void onDataChanged() {
                 progressDialog.dismiss();
             }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
         });
+
+        recyclerView.setAdapter(infoModel.getAdapter());
+
     }
-
-
-    private class InfoHolder extends RecyclerView.ViewHolder {
-        private TextView mNameTextView;
-        private TextView mEmailTextView;
-        private TextView mTelNumberTextView;
-        private TextView mLocationTextView;
-        private ImageView mImageView;
-        private ImageButton mPhoneCallButton;
-        private Info mInfo;
-
-
-        InfoHolder(View itemView) {
-            super(itemView);
-
-            mImageView = (ImageView) itemView.findViewById(R.id.profile_image);
-            mNameTextView = (TextView) itemView.findViewById(R.id.info_name_text_view);
-            mEmailTextView = (TextView) itemView.findViewById(R.id.info_email_text_view);
-            mTelNumberTextView = (TextView) itemView.findViewById(R.id.info_telnumber_text_view);
-            mLocationTextView = (TextView) itemView.findViewById(R.id.info_location_text_view);
-            mPhoneCallButton = (ImageButton) itemView.findViewById(R.id.info_phone_call_button);
-
-            mPhoneCallButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String tel = "tel:" + "031219" + mInfo.getTelNumber();
-                    startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel)));
-                }
-            });
-
-        }
-
-        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-        private void bindNotice(Info info) {
-            mInfo = info;
-
-            int res = getResources().getIdentifier(mInfo.getProfileImage(), "drawable", getPackageName());
-
-            Glide.with(InfoActivity.this)
-                    .load(res)
-                    .into(mImageView);
-
-            mNameTextView.setText(mInfo.getName());
-            mEmailTextView.setText(mInfo.getEmail());
-            mLocationTextView.setText(mInfo.getLocation());
-            mTelNumberTextView.setText(String.valueOf(mInfo.getTelNumber()));
-
-            if (mInfo.getName().contains("학과사무실"))
-                mPhoneCallButton.setVisibility(View.VISIBLE);
-            else {
-                mPhoneCallButton.setVisibility(View.INVISIBLE);
-            }
-
-
-        }
-    }
-
-    private class InfoAdapter extends RecyclerView.Adapter<InfoHolder> {
-        private List<Info> mInfoList;
-
-        public InfoAdapter(List<Info> infoList) {
-            mInfoList = infoList;
-        }
-
-        @Override
-        public InfoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            LayoutInflater layoutInflater = LayoutInflater.from(InfoActivity.this);
-            final View view = layoutInflater.inflate(R.layout.list_item_info, parent, false);
-
-            return new InfoHolder(view);
-        }
-
-        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-        @Override
-        public void onBindViewHolder(final InfoHolder holder, int position) {
-            Info info = mInfoList.get(position);
-            holder.bindNotice(info);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mInfoList.size();
-        }
-    }
-
 
     public void setToolbarTitle(String title) {
         ((ToolbarFragment) toolbarFragment).setToolbarTitle(title);

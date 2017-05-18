@@ -15,17 +15,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.ajou.jinwoo.median.valueObject.Post;
-import com.ajou.jinwoo.median.viewholder.PostViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.ajou.jinwoo.median.model.OnDataChangedListener;
+import com.ajou.jinwoo.median.model.PostModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 
 public abstract class BaseBoardFragment extends Fragment {
@@ -49,7 +44,6 @@ public abstract class BaseBoardFragment extends Fragment {
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Loading..");
-
 
         setAdapter(getRef(mDatabase));
 
@@ -75,7 +69,6 @@ public abstract class BaseBoardFragment extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 Query query = getRef(mDatabase).orderByChild("title").startAt(s).endAt(s + "\uf8ff");
                 setAdapter(query);
-
                 return true;
             }
 
@@ -92,13 +85,12 @@ public abstract class BaseBoardFragment extends Fragment {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
                         setAdapter(getRef(mDatabase));
-                        return true; // Return true to collapse action view
+                        return true;
                     }
 
                     @Override
                     public boolean onMenuItemActionExpand(MenuItem item) {
-                        // Do something when expanded
-                        return true; // Return true to expand action view
+                        return true;
                     }
                 });
     }
@@ -114,30 +106,15 @@ public abstract class BaseBoardFragment extends Fragment {
     }
 
     public void setAdapter(Query query) {
-        progressDialog.show();
-
-        FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.list_item_post,
-                PostViewHolder.class, query) {
+        PostModel postModel = new PostModel(getPostType());
+        postModel.setAdapter(query, getContext(), getPostType());
+        postModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
-            protected void populateViewHolder(PostViewHolder viewHolder, Post model, int position) {
-                DatabaseReference postRef = getRef(position);
-                String postKey = postRef.getKey();
-                viewHolder.bindPost(model, getContext(), postKey, getPostType());
-                progressDialog.dismiss();
-            }
-        };
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                recyclerView.getLayoutManager().scrollToPosition(0);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+            public void onDataChanged() {
+                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount()-1);//새글 작성시 스크롤 최상단으로 이동
             }
         });
 
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(postModel.setAdapter(query, getContext(), getPostType()));
     }
 }

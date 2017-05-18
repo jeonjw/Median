@@ -1,17 +1,10 @@
 package com.ajou.jinwoo.median.valueObject;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 public class User {
 
     private String userName;
     private String userEmail;
+    private String uid;
 
     private User() {
 
@@ -21,12 +14,20 @@ public class User {
         return userName;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     private static class Singleton {
