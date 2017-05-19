@@ -1,13 +1,9 @@
 package com.ajou.jinwoo.median.valueObject;
 
 
-import com.google.firebase.database.Exclude;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 public class StudentNotice {
 
@@ -15,6 +11,7 @@ public class StudentNotice {
     private String title;
     private String contents;
     private String timeStamp;
+    private String authorUid;
     private int commentCount;
 
     public String getTitle() {
@@ -33,6 +30,10 @@ public class StudentNotice {
         return timeStamp;
     }
 
+    public String getAuthorUid() {
+        return authorUid;
+    }
+
     public int getCommentCount() {
         return commentCount;
     }
@@ -41,12 +42,13 @@ public class StudentNotice {
 
     }
 
-    public StudentNotice(String author, String title, String contents) {
+    public StudentNotice(String author, String title, String contents,int commentCount) {
         this.author = author;
         this.title = title;
         this.contents = contents;
         this.timeStamp = timeStamp();
-        commentCount = 0;
+        this.authorUid = User.getInstance().getUid();
+        this.commentCount = commentCount;
     }
 
     private static String timeStamp() {
@@ -54,6 +56,10 @@ public class StudentNotice {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy. MM. dd.", Locale.KOREA);
 
         return dateFormat.format(date);
+    }
+
+    public static StudentNotice newNotice(String userName, String title, String contents,int commentCount) {
+        return new StudentNotice(userName, title, contents, commentCount);
     }
 
 //    @Exclude

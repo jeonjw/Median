@@ -37,7 +37,6 @@ public class BoardWriteActivity extends AppCompatActivity {
         String reWriteContents = getIntent().getExtras().getString("BOARD_CONTENTS");
         postKey = getIntent().getExtras().getString("CORRECT_POST_KEY");
 
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
         titleEditText = (EditText) findViewById(R.id.board_write_title_edit_text);
         contentsEditText = (EditText) findViewById(R.id.board_write_content_edit_text);
         ImageButton writeButton = (ImageButton) findViewById(R.id.board_write_finish);
@@ -105,7 +104,7 @@ public class BoardWriteActivity extends AppCompatActivity {
 
     public void sendPost(String userName) {
         if (rewrite) {
-            int commentCount = getIntent().getExtras().getInt("COMMENT_COUNT");
+            int commentCount = getIntent().getExtras().getInt("STUDENT_NOTICE_COMMENT_COUNT");
             postModel.correctPost(userName, titleEditText.getText().toString(), contentsEditText.getText().toString(), postKey, commentCount);
 
         } else

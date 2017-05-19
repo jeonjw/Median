@@ -121,7 +121,7 @@ public class MediaNoticeFragment extends Fragment {
         @Override
         public void onBindViewHolder(final MediaNoticeViewHolder holder, int position) {
             Notice notice = noticeList.get(position);
-            holder.bindNotice(notice);
+            holder.bindNotice(notice,getContext());
         }
 
         @Override

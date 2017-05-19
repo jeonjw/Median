@@ -26,7 +26,7 @@
         android:layout_marginBottom="5dp"
         android:textColor="#000000"
         />
-    <ImageView
+    <uk.co.senab.photoview.PhotoView
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:layout_width="match_parent"

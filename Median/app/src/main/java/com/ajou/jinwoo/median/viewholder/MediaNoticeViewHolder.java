@@ -1,31 +1,34 @@
 package com.ajou.jinwoo.median.viewholder;
 
+import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.valueObject.DownloadImageTask;
 import com.ajou.jinwoo.median.valueObject.Notice;
+import com.bumptech.glide.Glide;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.util.Objects;
+import uk.co.senab.photoview.PhotoView;
 
 public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView mTitleTextView;
     private TextView mContentsTextView;
-    private ImageView imageView;
+    private PhotoView photoView;
     private boolean isClicked;
-    private boolean hasImage;
+    private boolean haveImage;
     private String imageUrl;
+    private Context context;
+    private Elements elements;
+    private Document dom;
 
 
     public MediaNoticeViewHolder(View itemView) {
@@ -33,43 +36,32 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
 
         mTitleTextView = (TextView) itemView.findViewById(R.id.media_notice_title_text_view);
         mContentsTextView = (TextView) itemView.findViewById(R.id.media_notice_contents_text_view);
-        imageView = (ImageView) itemView.findViewById(R.id.media_notice_image_view);
-        isClicked = false;
-        hasImage = false;
+        photoView = (PhotoView) itemView.findViewById(R.id.media_notice_image_view);
         itemView.setOnClickListener(this);
 
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void bindNotice(Notice notice) {
+    public void bindNotice(Notice notice, Context context) {
 
-        mTitleTextView.setText(notice.getTitle());
-        Document dom = Jsoup.parse(notice.getContents());
-        Elements elements = dom.select("img");
+        isClicked = false;
+        haveImage = false;
+        this.context = context;
 
+        bindTitle(notice.getTitle());
+        bindContents(notice.getContents());
 
-        if (elements.size() != 0) {// 게시글에 이미지가 있다면
-            hasImage = true;
+        if (haveImage(notice.getContents())) {
+            haveImage = true;
             imageUrl = "http://media.ajou.ac.kr/" + elements.attr("src");
-
-            if (Objects.equals(dom.text(), ""))
+            if (dom.text().length() < 5)
                 mContentsTextView.setText("이미지 펼쳐 보기..");
-//            new DownloadImageTask(imageView).execute("http://media.ajou.ac.kr/" + elements.attr("src"));
+            photoView.setVisibility(View.VISIBLE);
         } else {
-            imageView.setImageDrawable(null);
-            if (Build.VERSION.SDK_INT >= 24) {
-                mContentsTextView.setText(Html.fromHtml(notice.getContents(), Html.FROM_HTML_MODE_COMPACT));
-            } else {
-                mContentsTextView.setText(Html.fromHtml(notice.getContents()));
-            }
+            haveImage = false;
+            photoView.setVisibility(View.GONE);
         }
-
-//        if (!Objects.equals(dom.text(), "")) //게시글에 내용이 있으면 ..
-
-//        else { //게시글에 내용이 없으면
-//            mContentsTextView.setText("");
-//        }
 
         mContentsTextView.setMaxLines(2);
         mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
@@ -81,13 +73,31 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
             isClicked = true;
             mContentsTextView.setMaxLines(Integer.MAX_VALUE);
             mContentsTextView.setEllipsize(null);
-            if (hasImage)
-                new DownloadImageTask(imageView).execute(imageUrl);
+            if (haveImage)
+                Glide.with(context).load(imageUrl).into(photoView);
         } else {
             isClicked = false;
             mContentsTextView.setMaxLines(2);
             mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
-            imageView.setImageDrawable(null);
+            photoView.setImageDrawable(null);
+        }
+    }
+
+    private boolean haveImage(String contetns) {
+        dom = Jsoup.parse(contetns);
+        elements = dom.select("img");
+        return elements.size() != 0;
+    }
+
+    private void bindTitle(String title) {
+        mTitleTextView.setText(title);
+    }
+
+    private void bindContents(String contents) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            mContentsTextView.setText(Html.fromHtml(contents, Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            mContentsTextView.setText(Html.fromHtml(contents));
         }
     }
 }

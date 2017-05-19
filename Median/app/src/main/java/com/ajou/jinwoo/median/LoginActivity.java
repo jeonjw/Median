@@ -2,12 +2,16 @@ package com.ajou.jinwoo.median;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +37,9 @@ public class LoginActivity extends AppCompatActivity
     private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 9001;
     private TextView titleTextView;
+    private ImageView logoImageView;
+    private Button loginButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +47,28 @@ public class LoginActivity extends AppCompatActivity
         setContentView(R.layout.activity_login);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        Button mLoginButton = (Button) findViewById(R.id.login_button);
 
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
+        titleTextView = (TextView) findViewById(R.id.login_title_text_view);
+        Typeface type = Typeface.createFromAsset(LoginActivity.this.getAssets(), "Impact.ttf");
+        titleTextView.setTypeface(type);
+        logoImageView = (ImageView) findViewById(R.id.logo_image_view);
+
+        loginButton = (Button) findViewById(R.id.login_button);
+        loginButton.setVisibility(View.INVISIBLE);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
             }
         });
 
+        setGoogleApiClient();
+
+        new mTask().execute();
+
+    }
+
+    private void setGoogleApiClient() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -57,20 +77,14 @@ public class LoginActivity extends AppCompatActivity
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
-        titleTextView = (TextView) findViewById(R.id.login_title_text_view);
-
-        Typeface type = Typeface
-                .createFromAsset(LoginActivity.this.getAssets(), "Impact.ttf");
-
-        titleTextView.setTypeface(type);
     }
 
-    public void signIn() {
+    private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -78,14 +92,14 @@ public class LoginActivity extends AppCompatActivity
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
+                setFirebaseAuth(account);
             } else {
                 Log.e(TAG, "Google Sign-In failed.");
             }
         }
     }
 
-    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
+    private void setFirebaseAuth(final GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGooogle:" + acct.getId());
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mFirebaseAuth.signInWithCredential(credential)
@@ -111,6 +125,46 @@ public class LoginActivity extends AppCompatActivity
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
+
+
+    private class mTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            Animation fade = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.fade_title);
+            Animation tilt = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.tilt_logo);
+            titleTextView.startAnimation(fade);
+            logoImageView.startAnimation(tilt);
+        }
+
+        @Override
+        protected void onPostExecute(Void ignore) {
+            if (mFirebaseAuth.getCurrentUser() != null) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                loginButton.setVisibility(View.VISIBLE);
+                Animation fade = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.fade_title);
+                loginButton.startAnimation(fade);
+
+            }
+
+        }
+
+    }
+
+
 }
 
 

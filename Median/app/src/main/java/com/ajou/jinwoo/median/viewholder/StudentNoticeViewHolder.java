@@ -5,13 +5,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ajou.jinwoo.median.BoardWriteActivity;
 import com.ajou.jinwoo.median.CommentListActivity;
 import com.ajou.jinwoo.median.R;
+import com.ajou.jinwoo.median.StudentNoticeWriteActivity;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
+import com.ajou.jinwoo.median.valueObject.User;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView titleTextView;
@@ -19,18 +30,55 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
     private TextView authorTextView;
     private TextView dateTextView;
     private TextView commentCountTextView;
+    private ImageButton dropdownButton;
     private String dataRefKey;
     private Context context;
+    private StudentNotice studentNotice;
 
 
     public StudentNoticeViewHolder(View itemView) {
         super(itemView);
 
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         titleTextView = (TextView) itemView.findViewById(R.id.student_notice_title_text_view);
         contentsTextView = (TextView) itemView.findViewById(R.id.student_notice_contents_text_view);
         authorTextView = (TextView) itemView.findViewById(R.id.student_notice_author_text_view);
         dateTextView = (TextView) itemView.findViewById(R.id.student_notice_date_text_view);
         commentCountTextView = (TextView) itemView.findViewById(R.id.comment_number);
+        dropdownButton = (ImageButton) itemView.findViewById(R.id.student_notice_dropdown_button);
+
+        dropdownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(context, dropdownButton);
+                popup.getMenuInflater()
+                        .inflate(R.menu.popup_menu, popup.getMenu());
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.popup_delete) {
+                            if (Objects.equals(studentNotice.getAuthorUid(), User.getInstance().getUid())) {
+                                databaseReference.child("comments").child(dataRefKey).removeValue();
+                                databaseReference.child("student_notice").child(dataRefKey).removeValue();
+                            } else {
+                                Snackbar.make(dateTextView, "권한이 없습니다", Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
+                        else if(item.getItemId() == R.id.popup_rewrite){
+                            Intent intent = new Intent(context, StudentNoticeWriteActivity.class);
+                            intent.putExtra("STUDENT_TITLE",studentNotice.getTitle());
+                            intent.putExtra("STUDENT_CONTENTS",studentNotice.getContents());
+                            intent.putExtra("STUDENT_NOTICE_CORRECT_POST_KEY", dataRefKey);
+                            intent.putExtra("STUDENT_NOTICE_COMMENT_COUNT", studentNotice.getCommentCount());
+                            context.startActivity(intent);
+                        }
+                        return true;
+                    }
+                });
+
+                popup.show();
+            }
+        });
 
         itemView.setOnClickListener(this);
     }
@@ -44,6 +92,12 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
         commentCountTextView.setText(String.valueOf(studentNotice.getCommentCount()));
         dataRefKey = postKey;
         this.context = context;
+        this.studentNotice = studentNotice;
+
+        if (!Objects.equals(studentNotice.getAuthorUid(), User.getInstance().getUid()))
+            dropdownButton.setVisibility(View.GONE);
+        else
+            dropdownButton.setVisibility(View.VISIBLE);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.ajou.jinwoo.median.model.OnDataChangedListener;
+import com.ajou.jinwoo.median.model.PostModel;
+import com.ajou.jinwoo.median.model.StudentNoticeModel;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
 import com.ajou.jinwoo.median.viewholder.StudentNoticeViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -97,17 +100,14 @@ public class StudentNoticeFragment extends Fragment {
     }
 
     public void setAdapter(Query query) {
-        FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder> mAdapter = new FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder>(StudentNotice.class, R.layout.list_item_student_notice,
-                StudentNoticeViewHolder.class, query) {
+        StudentNoticeModel studentNoticeModel = new StudentNoticeModel();
+        studentNoticeModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
-            protected void populateViewHolder(StudentNoticeViewHolder viewHolder, StudentNotice model, int position) {
-                DatabaseReference postRef = getRef(position);
-                String postKey = postRef.getKey();
-                viewHolder.bindNotice(model, getContext(), postKey);
-
+            public void onDataChanged() {
+                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount()-1);//새글 작성시 스크롤 최상단으로 이동
             }
-        };
-
-        recyclerView.setAdapter(mAdapter);
+        });
+        studentNoticeModel.setAdapter(query,getContext());
+        recyclerView.setAdapter(studentNoticeModel.setAdapter(query,getContext()));
     }
 }

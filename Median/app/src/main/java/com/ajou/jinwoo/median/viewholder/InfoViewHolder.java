@@ -50,13 +50,8 @@ public class InfoViewHolder extends RecyclerView.ViewHolder {
     public void bindNotice(Info info, Context context) {
         this.context = context;
         mInfo = info;
-
         int res = context.getResources().getIdentifier(mInfo.getProfileImage(), "drawable",context.getPackageName());
-
-        Glide.with(context)
-                .load(res)
-                .into(mImageView);
-
+        Glide.with(context).load(res).into(mImageView);
         mNameTextView.setText(mInfo.getName());
         mEmailTextView.setText(mInfo.getEmail());
         mLocationTextView.setText(mInfo.getLocation());

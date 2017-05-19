@@ -1,12 +1,15 @@
 package com.ajou.jinwoo.median;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,8 +27,6 @@ public class CommentListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DatabaseReference mDatabase;
     private String dataRefKey;
-    private String postType;
-    private FirebaseRecyclerAdapter<Comment, CommentViewHolder> mAdapter;
     private CommentModel model;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -36,7 +37,7 @@ public class CommentListActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         dataRefKey = getIntent().getExtras().getString("POST_KEY");
-        postType = getIntent().getExtras().getString("POST_TYPE");
+        String postType = getIntent().getExtras().getString("POST_TYPE");
         model = new CommentModel(dataRefKey, postType);
         recyclerView = (RecyclerView) findViewById(R.id.comment_recycler_view);
 
@@ -44,10 +45,18 @@ public class CommentListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mManager);
 
         final EditText commentEdit = (EditText) findViewById(R.id.comment_edit);
-        ImageButton sendButton = (ImageButton) findViewById(R.id.send_button);
+        final ImageButton sendButton = (ImageButton) findViewById(R.id.send_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (TextUtils.isEmpty(commentEdit.getText().toString())) {
+                    Snackbar snackbar = Snackbar.make(sendButton,"댓글을 입력하세요",Snackbar.LENGTH_SHORT);
+                    View sbView = snackbar.getView();
+                    sbView.setBackgroundColor(Color.parseColor("#6CABDD"));
+                    snackbar.show();
+                    return;
+                }
+
                 model.writeComment(commentEdit.getText().toString());
                 commentEdit.setText("");
             }
@@ -56,7 +65,7 @@ public class CommentListActivity extends AppCompatActivity {
         model.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
             public void onDataChanged() {
-                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
             }
         });
 
@@ -65,15 +74,12 @@ public class CommentListActivity extends AppCompatActivity {
     }
 
     private void setCommentList() {
-
-        mAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class, R.layout.list_item_comment,
+        FirebaseRecyclerAdapter<Comment, CommentViewHolder> mAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class, R.layout.list_item_comment,
                 CommentViewHolder.class, mDatabase.child("comments").child(dataRefKey)) {
             @Override
             protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {
                 String commentKey = getRef(position).getKey();
-
                 viewHolder.bindComment(model, dataRefKey, commentKey);
-
             }
 
         };
@@ -87,5 +93,6 @@ public class CommentListActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.no_change, R.anim.slide_down_anim);
         model.removeListener();
     }
+
 
 }

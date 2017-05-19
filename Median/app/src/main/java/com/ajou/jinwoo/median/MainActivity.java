@@ -1,6 +1,5 @@
 package com.ajou.jinwoo.median;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -8,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ajou.jinwoo.median.valueObject.User;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
-
 
 public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
@@ -35,17 +32,12 @@ public class MainActivity extends AppCompatActivity
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-        if (firebaseUser == null) {
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-            return;
-        }
 
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("User").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue()==null) {
+                if (dataSnapshot.getValue() == null) {
                     databaseReference.child("User").child(firebaseUser.getUid()).child("email").setValue(firebaseUser.getEmail());
                     databaseReference.child("User").child(firebaseUser.getUid()).child("name").setValue(firebaseUser.getDisplayName());
                     databaseReference.child("User").child(firebaseUser.getUid()).child("uid").setValue(firebaseUser.getUid());
@@ -57,14 +49,13 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-
+        System.out.println("Token: " + FirebaseInstanceId.getInstance().getToken());
 
         User.getInstance().setUserName(firebaseUser.getDisplayName());
         User.getInstance().setUserEmail(firebaseUser.getEmail());
         User.getInstance().setUid(firebaseUser.getUid());
 
         FragmentManager fm = getSupportFragmentManager();
-        FirebaseInstanceId.getInstance().getToken();
 
         Fragment mainFragment = new MainFragment();
         toolbarFragment = new ToolbarFragment();

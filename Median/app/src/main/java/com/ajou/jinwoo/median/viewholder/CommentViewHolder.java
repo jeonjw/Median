@@ -49,10 +49,10 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
         if (!Objects.equals(comment.getUid(), User.getInstance().getUid()))
             return;
 
-        MenuItem edit = menu.add(Menu.NONE, 1, 1, "수정");
-        MenuItem delete = menu.add(Menu.NONE, 2, 2, "삭제");
+//        MenuItem edit = menu.add(Menu.NONE, 1, 1, "수정");
+        MenuItem delete = menu.add(Menu.NONE, 1, 1, "삭제");
 
-        edit.setOnMenuItemClickListener(menuItemClickListener);
+//        edit.setOnMenuItemClickListener(menuItemClickListener);
         delete.setOnMenuItemClickListener(menuItemClickListener);
     }
 
@@ -61,12 +61,10 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
         public boolean onMenuItemClick(MenuItem item) {
             switch (item.getItemId()) {
                 case 1:
-                    System.out.println("TEST Edit");
-                    return true;
-                case 2:
                     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
                     mDatabase.child("comments").child(postKey).child(commentKey).removeValue();
                     return true;
+
             }
             return false;
         }
