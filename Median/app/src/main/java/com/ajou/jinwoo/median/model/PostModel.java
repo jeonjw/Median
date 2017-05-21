@@ -30,8 +30,6 @@ public class PostModel {
         databaseReference.child(postType).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-
                 if (onDataChangedListener != null) {
                     onDataChangedListener.onDataChanged();
                 }
@@ -57,7 +55,6 @@ public class PostModel {
     }
 
     public FirebaseRecyclerAdapter setAdapter(Query query, final Context context, final String postType) {
-//        progressDialog.show();
 
         FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.list_item_post,
                 PostViewHolder.class, query) {
@@ -66,7 +63,6 @@ public class PostModel {
                 DatabaseReference postRef = getRef(position);
                 String postKey = postRef.getKey();
                 viewHolder.bindPost(model, context, postKey, postType);
-//                progressDialog.dismiss();
             }
         };
 

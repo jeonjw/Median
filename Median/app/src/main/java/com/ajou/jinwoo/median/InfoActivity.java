@@ -15,6 +15,7 @@ import com.ajou.jinwoo.median.model.OnDataChangedListener;
 
 public class InfoActivity extends AppCompatActivity {
     private Fragment toolbarFragment;
+    private  ProgressDialog progressDialog;
 
 
     @Override
@@ -23,10 +24,7 @@ public class InfoActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_info);
 
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Loading..");
-        progressDialog.show();
+        showProgressDialog();
 
         FragmentManager fm = getSupportFragmentManager();
         toolbarFragment = new ToolbarFragment();
@@ -44,7 +42,7 @@ public class InfoActivity extends AppCompatActivity {
         infoModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
             public void onDataChanged() {
-                progressDialog.dismiss();
+                hideProgressDialog();
             }
         });
 
@@ -52,14 +50,20 @@ public class InfoActivity extends AppCompatActivity {
 
     }
 
-    public void setToolbarTitle(String title) {
-        ((ToolbarFragment) toolbarFragment).setToolbarTitle(title);
+    private void showProgressDialog(){
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading..");
+        progressDialog.show();
+    }
+
+    private void hideProgressDialog(){
+        progressDialog.dismiss();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setToolbarTitle("Info");
+        ((ToolbarFragment) toolbarFragment).setToolbarTitle("Info");
     }
 }
-//홀더 어댑터 다른거와 같이 처리하기

@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.ajou.jinwoo.median.valueObject.Notice;
 import com.ajou.jinwoo.median.viewholder.MediaNoticeViewHolder;
@@ -33,7 +32,7 @@ public class MediaNoticeFragment extends Fragment {
 
     private DatabaseReference mDatabase;
     private ProgressDialog progressDialog;
-    private NoticeAdapter mAdapter;
+    private NoticeAdapter noticeAdapter;
     private List<Notice> searchedList;
     private List<Notice> dataList;
     private RecyclerView recyclerView;
@@ -45,7 +44,9 @@ public class MediaNoticeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_media_notice, container, false);
         searchedList = new ArrayList<>();
         dataList = new ArrayList<>();
-        mAdapter = new NoticeAdapter();
+        noticeAdapter = new NoticeAdapter();
+
+        showProgressDialog();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.media_notice_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -55,20 +56,15 @@ public class MediaNoticeFragment extends Fragment {
         mManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(mManager);
 
-//        FirebaseRecyclerAdapter<Notice, MediaNoticeViewHolder> adapter = new FirebaseRecyclerAdapter<Notice, MediaNoticeViewHolder>(Notice.class, R.layout.list_item_media_notice,
-//                MediaNoticeViewHolder.class, mDatabase.child("media_notice")) {
-//            @RequiresApi(api = Build.VERSION_CODES.N)
-//            @Override
-//            protected void populateViewHolder(MediaNoticeViewHolder viewHolder, Notice model, int position) {
-//                dataList.add(model);
-//                viewHolder.bindNotice(model);
-//            }
-//
-//
-//
-//        };
+        readLimitFirstData();
+        readFullData();
 
-        mDatabase.child("media_notice").addListenerForSingleValueEvent(new ValueEventListener() {
+
+        return view;
+    }
+
+    private void readLimitFirstData() {
+        mDatabase.child("media_notice").limitToFirst(7).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -77,8 +73,8 @@ public class MediaNoticeFragment extends Fragment {
                     dataList.add(notice);
                 }
 
-                mAdapter.setList(dataList);
-
+                noticeAdapter.setList(dataList);
+                progressDialog.dismiss();
             }
 
             @Override
@@ -88,9 +84,31 @@ public class MediaNoticeFragment extends Fragment {
 
         });
 
-        recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(noticeAdapter);
 
-        return view;
+    }
+
+    private void readFullData() {
+        mDatabase.child("media_notice").addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataList.clear();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Notice notice = ds.getValue(Notice.class);
+                    dataList.add(notice);
+                }
+                noticeAdapter.setList(dataList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+
+        recyclerView.setAdapter(noticeAdapter);
     }
 
 
@@ -98,9 +116,7 @@ public class MediaNoticeFragment extends Fragment {
         private List<Notice> noticeList;
 
         public NoticeAdapter() {
-
             noticeList = new ArrayList<>();
-
         }
 
         public void setList(List<Notice> searchedList) {
@@ -121,7 +137,7 @@ public class MediaNoticeFragment extends Fragment {
         @Override
         public void onBindViewHolder(final MediaNoticeViewHolder holder, int position) {
             Notice notice = noticeList.get(position);
-            holder.bindNotice(notice,getContext());
+            holder.bindNotice(notice, getContext());
         }
 
         @Override
@@ -144,7 +160,7 @@ public class MediaNoticeFragment extends Fragment {
             }
         }
 
-        mAdapter.setList(searchedList);
+        noticeAdapter.setList(searchedList);
     }
 
 
@@ -153,7 +169,7 @@ public class MediaNoticeFragment extends Fragment {
         menu.findItem(R.id.menu_write).setVisible(false);
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -164,7 +180,6 @@ public class MediaNoticeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-//                filter(s);
                 return true;
             }
         });
@@ -173,15 +188,21 @@ public class MediaNoticeFragment extends Fragment {
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-                        mAdapter.setList(dataList);
+                        noticeAdapter.setList(dataList);
                         return true;
                     }
 
                     @Override
                     public boolean onMenuItemActionExpand(MenuItem item) {
-//                        recyclerView.setAdapter(mAdapter);
                         return true;
                     }
                 });
+    }
+
+    private void showProgressDialog() {
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading..");
+        progressDialog.show();
     }
 }

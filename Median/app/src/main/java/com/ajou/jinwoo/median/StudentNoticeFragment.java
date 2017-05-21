@@ -30,6 +30,7 @@ public class StudentNoticeFragment extends Fragment {
     private ProgressDialog progressDialog;
     private DatabaseReference mDatabase;
     private RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
 
 
     @Nullable
@@ -41,19 +42,20 @@ public class StudentNoticeFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Loading..");
+//        progressDialog = new ProgressDialog(getActivity());
+//        progressDialog.setCancelable(false);
+//        progressDialog.setMessage("Loading..");
 //        progressDialog.show();
 
-        LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
-        mManager.setReverseLayout(true);
-        mManager.setStackFromEnd(true);
-        mManager.scrollToPositionWithOffset(0, 0);
-        recyclerView.setLayoutManager(mManager);
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.scrollToPositionWithOffset(0, 0);
+//        linearLayoutManager.scrollToPosition();
+
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         setAdapter(mDatabase.child("student_notice"));
-
 
         return view;
     }
@@ -101,13 +103,13 @@ public class StudentNoticeFragment extends Fragment {
 
     public void setAdapter(Query query) {
         StudentNoticeModel studentNoticeModel = new StudentNoticeModel();
+        studentNoticeModel.setAdapter(query,getContext());
         studentNoticeModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
             public void onDataChanged() {
                 recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount()-1);//새글 작성시 스크롤 최상단으로 이동
             }
         });
-        studentNoticeModel.setAdapter(query,getContext());
         recyclerView.setAdapter(studentNoticeModel.setAdapter(query,getContext()));
     }
 }

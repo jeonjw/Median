@@ -48,7 +48,6 @@ public class StudentNoticeModel {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-
                 if (onDataChangedListener != null) {
                     onDataChangedListener.onDataChanged();
                 }
@@ -71,7 +70,6 @@ public class StudentNoticeModel {
 
 
     public void writeNotice(String title, String contents) {
-
         ref = databaseReference.child("student_notice").push();
         ref.setValue(StudentNotice.newNotice(User.getInstance().getUserName(), title, contents, 0));
         new NotificationPostModel("학생회 공지가 등록됬습니다", title).execute();
@@ -109,8 +107,6 @@ public class StudentNoticeModel {
 
         }
         writeNotice(title, contents);
-
-
     }
 
     public FirebaseRecyclerAdapter setAdapter(Query query, final Context context) {

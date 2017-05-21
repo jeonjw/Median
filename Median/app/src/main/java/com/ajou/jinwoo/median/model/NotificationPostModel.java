@@ -17,11 +17,16 @@ public class NotificationPostModel extends AsyncTask<Void,Void,Void> {
     private String url;
     private String title;
     private String body;
+    private String serverKey;
+    private String contentType;
 
     public NotificationPostModel(String title, String body) {
         url = "https://fcm.googleapis.com/fcm/send";
+        serverKey = "key=AAAA__71jho:APA91bEjPS63CO_osmhqlDXJiMGznsAUYh80Go81Gh536GCzTJLu8dvijJskbHmfxkgZFCFKvFWbS0NhE60oEgOk1bcSIqrTF2bh22E9SQUiepNvJMNTH5sPtUWNKBIKbha1NfJqkE7y";
+        contentType = "application/json";
         this.title = title;
         this.body = body;
+
     }
 
     @Override
@@ -32,8 +37,8 @@ public class NotificationPostModel extends AsyncTask<Void,Void,Void> {
             HttpURLConnection con = (HttpURLConnection) object.openConnection();
             con.setDoOutput(true);
             con.setDoInput(true);
-            con.setRequestProperty("Authorization", "key=AAAA__71jho:APA91bEjPS63CO_osmhqlDXJiMGznsAUYh80Go81Gh536GCzTJLu8dvijJskbHmfxkgZFCFKvFWbS0NhE60oEgOk1bcSIqrTF2bh22E9SQUiepNvJMNTH5sPtUWNKBIKbha1NfJqkE7y");
-            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("Authorization", serverKey);
+            con.setRequestProperty("Content-Type", contentType);
             con.setRequestMethod("POST");
 
             JSONObject data = new JSONObject();

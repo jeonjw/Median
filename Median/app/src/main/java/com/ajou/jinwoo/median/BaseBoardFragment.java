@@ -36,14 +36,12 @@ public abstract class BaseBoardFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.board_anonymous_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         setHasOptionsMenu(true);
+
         LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
         mManager.setReverseLayout(true);
         mManager.setStackFromEnd(true);
         mManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(mManager);
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Loading..");
 
         setAdapter(getRef(mDatabase));
 
@@ -59,10 +57,12 @@ public abstract class BaseBoardFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_board, menu);
 
+
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setQueryHint("제목으로 검색");
 
+        showProgressDialog();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -106,15 +106,27 @@ public abstract class BaseBoardFragment extends Fragment {
     }
 
     public void setAdapter(Query query) {
+
         PostModel postModel = new PostModel(getPostType());
         postModel.setAdapter(query, getContext(), getPostType());
         postModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
             public void onDataChanged() {
-                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount()-1);//새글 작성시 스크롤 최상단으로 이동
+                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);//새글 작성시 스크롤 최상단으로 이동
+
+                if (progressDialog != null && progressDialog.isShowing())
+                    progressDialog.dismiss();
             }
         });
 
         recyclerView.setAdapter(postModel.setAdapter(query, getContext(), getPostType()));
     }
+
+    private void showProgressDialog() {
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading..");
+        progressDialog.show();
+    }
+
 }
