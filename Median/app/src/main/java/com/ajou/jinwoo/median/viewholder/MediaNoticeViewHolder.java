@@ -1,5 +1,6 @@
 package com.ajou.jinwoo.median.viewholder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ajou.jinwoo.median.R;
@@ -17,12 +19,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
+
+import me.iwf.photopicker.PhotoPreview;
 import uk.co.senab.photoview.PhotoView;
 
 public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView mTitleTextView;
     private TextView mContentsTextView;
-    private PhotoView photoView;
+    private ImageView photoView;
     private boolean isClicked;
     private boolean haveImage;
     private String imageUrl;
@@ -36,7 +41,18 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
 
         mTitleTextView = (TextView) itemView.findViewById(R.id.media_notice_title_text_view);
         mContentsTextView = (TextView) itemView.findViewById(R.id.media_notice_contents_text_view);
-        photoView = (PhotoView) itemView.findViewById(R.id.media_notice_image_view);
+        photoView = (ImageView) itemView.findViewById(R.id.media_notice_image_view);
+        photoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> temp = new ArrayList<>();
+                temp.add(imageUrl);
+                PhotoPreview.builder()
+                        .setPhotos(temp)
+                        .setCurrentItem(0)
+                        .start((Activity) context);
+            }
+        });
         itemView.setOnClickListener(this);
 
     }
@@ -57,7 +73,7 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
             imageUrl = "http://media.ajou.ac.kr/" + elements.attr("src");
             if (dom.text().length() < 5)
                 mContentsTextView.setText("이미지 펼쳐 보기..");
-            photoView.setVisibility(View.VISIBLE);
+
         } else {
             haveImage = false;
             photoView.setVisibility(View.GONE);
@@ -71,6 +87,7 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
     public void onClick(final View v) {
         if (!isClicked) {
             isClicked = true;
+            photoView.setVisibility(View.VISIBLE);
             mContentsTextView.setMaxLines(Integer.MAX_VALUE);
             mContentsTextView.setEllipsize(null);
             if (haveImage)

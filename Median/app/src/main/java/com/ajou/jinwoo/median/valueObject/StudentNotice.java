@@ -2,7 +2,9 @@ package com.ajou.jinwoo.median.valueObject;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class StudentNotice {
@@ -13,6 +15,11 @@ public class StudentNotice {
     private String timeStamp;
     private String authorUid;
     private int commentCount;
+    private List<String> urlList;
+
+    public List<String> getUrlList() {
+        return urlList;
+    }
 
     public String getTitle() {
         return title;
@@ -39,16 +46,22 @@ public class StudentNotice {
     }
 
     public StudentNotice() {
+        this("","","",0,new ArrayList<String>());
 
     }
 
     public StudentNotice(String author, String title, String contents,int commentCount) {
+        this(author,title,contents,commentCount,null);
+    }
+
+    public StudentNotice(String author, String title, String contents,int commentCount,List<String> urlList) {
         this.author = author;
         this.title = title;
         this.contents = contents;
         this.timeStamp = timeStamp();
         this.authorUid = User.getInstance().getUid();
         this.commentCount = commentCount;
+        this.urlList = urlList;
     }
 
     private static String timeStamp() {
@@ -62,14 +75,5 @@ public class StudentNotice {
         return new StudentNotice(userName, title, contents, commentCount);
     }
 
-//    @Exclude
-//    public Map<String, Object> toMap() {
-//        HashMap<String, Object> result = new HashMap<>();
-//        result.put("author", author);
-//        result.put("contents", contents);
-//        result.put("title", title);
-//        result.put("timeStamp", timeStamp);
-//        result.put("commentCount", commentCount);
-//        return result;
-//    }
+
 }

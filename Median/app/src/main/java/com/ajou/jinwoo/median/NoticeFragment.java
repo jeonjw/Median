@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 public class NoticeFragment extends Fragment {
 
-    private PhotoViewExceptionViewPager mViewPager;
+    private ViewPager mViewPager;
 
 
     @Nullable
@@ -28,7 +28,7 @@ public class NoticeFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("학생회 공지"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        mViewPager = (PhotoViewExceptionViewPager) view.findViewById(R.id.notice_view_pager);
+        mViewPager = (ViewPager) view.findViewById(R.id.notice_view_pager);
         NoticeTabPageAdapter noticeTabPageAdapter = new NoticeTabPageAdapter(getFragmentManager(), tabLayout.getTabCount());
         mViewPager.setAdapter(noticeTabPageAdapter);
 

@@ -28,6 +28,16 @@
             android:background="@android:color/transparent"
             android:id="@+id/notice_write_finish"/>
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/student_notice_photo_button"
+            android:layout_toStartOf="@id/notice_write_finish"
+            android:src="@drawable/gallery"
+            android:scaleX="0.5"
+            android:scaleY="0.6"
+            android:background="@android:color/transparent"/>
+
     </RelativeLayout>
     <EditText
         android:layout_marginTop="10dp"
@@ -35,6 +45,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/student_notice_title_edit_text"
         android:hint="제목"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/student_notice_image_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
     <EditText
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"

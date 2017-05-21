@@ -6,15 +6,17 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.ajou.jinwoo.median.BoardWriteActivity;
 import com.ajou.jinwoo.median.CommentListActivity;
+import com.ajou.jinwoo.median.PhotoAdapter;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.StudentNoticeWriteActivity;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
@@ -34,6 +36,7 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
     private String dataRefKey;
     private Context context;
     private StudentNotice studentNotice;
+    private RecyclerView recyclerView;
 
 
     public StudentNoticeViewHolder(View itemView) {
@@ -46,6 +49,11 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
         dateTextView = (TextView) itemView.findViewById(R.id.student_notice_date_text_view);
         commentCountTextView = (TextView) itemView.findViewById(R.id.comment_number);
         dropdownButton = (ImageButton) itemView.findViewById(R.id.student_notice_dropdown_button);
+
+        recyclerView = (RecyclerView) itemView.findViewById(R.id.student_notice_holder_image_recycler_view);
+
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
+
 
         dropdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,11 +71,10 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
                             } else {
                                 Snackbar.make(dateTextView, "권한이 없습니다", Snackbar.LENGTH_SHORT).show();
                             }
-                        }
-                        else if(item.getItemId() == R.id.popup_rewrite){
+                        } else if (item.getItemId() == R.id.popup_rewrite) {
                             Intent intent = new Intent(context, StudentNoticeWriteActivity.class);
-                            intent.putExtra("STUDENT_TITLE",studentNotice.getTitle());
-                            intent.putExtra("STUDENT_CONTENTS",studentNotice.getContents());
+                            intent.putExtra("STUDENT_TITLE", studentNotice.getTitle());
+                            intent.putExtra("STUDENT_CONTENTS", studentNotice.getContents());
                             intent.putExtra("STUDENT_NOTICE_CORRECT_POST_KEY", dataRefKey);
                             intent.putExtra("STUDENT_NOTICE_COMMENT_COUNT", studentNotice.getCommentCount());
                             context.startActivity(intent);
@@ -83,7 +90,6 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
         itemView.setOnClickListener(this);
     }
 
-
     public void bindNotice(StudentNotice studentNotice, Context context, String postKey) {
         titleTextView.setText(studentNotice.getTitle());
         contentsTextView.setText(studentNotice.getContents());
@@ -98,6 +104,13 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
             dropdownButton.setVisibility(View.GONE);
         else
             dropdownButton.setVisibility(View.VISIBLE);
+
+        if(studentNotice.getUrlList().size()==0)
+            recyclerView.setVisibility(View.GONE);
+        else{
+            PhotoAdapter photoAdapter = new PhotoAdapter(context, studentNotice.getUrlList());
+            recyclerView.setAdapter(photoAdapter);
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -105,9 +118,8 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
     public void onClick(View v) {
         Intent intent = new Intent(context, CommentListActivity.class);
         intent.putExtra("POST_KEY", dataRefKey);
-        intent.putExtra("POST_TYPE","student_notice");
+        intent.putExtra("POST_TYPE", "student_notice");
         context.startActivity(intent);
         ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
     }
 }
-//댓글 아이콘과 글자 레이아웃 다시 잡기.

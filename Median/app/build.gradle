@@ -31,16 +31,19 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
     compile 'com.commit451:PhotoView:1.2.4'
+    compile 'me.iwf.photopicker:PhotoPicker:0.9.5@aar'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.nineoldandroids:library:2.4.0'
 
-
-    compile 'com.google.firebase:firebase-core:10.2.4'
-    compile 'com.google.firebase:firebase-database:10.2.4'
-    compile 'com.google.firebase:firebase-storage:10.2.4'
+    compile 'com.google.firebase:firebase-core:10.2.6'
+    compile 'com.google.firebase:firebase-database:10.2.6'
+    compile 'com.google.firebase:firebase-storage:10.2.6'
     compile 'com.firebaseui:firebase-ui-storage:1.0.0'
-    compile 'com.google.firebase:firebase-auth:10.2.4'
-    compile 'com.google.firebase:firebase-messaging:10.2.4'
+    compile 'com.google.firebase:firebase-auth:10.2.6'
+    compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'com.firebaseui:firebase-ui-database:1.0.0'
-    compile 'com.google.android.gms:play-services-auth:10.2.4'
+    compile 'com.google.android.gms:play-services-auth:10.2.6'
+
 
 
     testCompile 'junit:junit:4.12'
