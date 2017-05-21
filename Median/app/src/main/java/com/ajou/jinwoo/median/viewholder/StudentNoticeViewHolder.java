@@ -91,6 +91,15 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
     }
 
     public void bindNotice(StudentNotice studentNotice, Context context, String postKey) {
+        
+        if(studentNotice.getUrlList().size()==0)
+            recyclerView.setVisibility(View.GONE);
+        else{
+            recyclerView.setVisibility(View.VISIBLE);
+            PhotoAdapter photoAdapter = new PhotoAdapter(context, studentNotice.getUrlList());
+            recyclerView.setAdapter(photoAdapter);
+        }
+
         titleTextView.setText(studentNotice.getTitle());
         contentsTextView.setText(studentNotice.getContents());
         authorTextView.setText(studentNotice.getAuthor());
@@ -105,12 +114,7 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
         else
             dropdownButton.setVisibility(View.VISIBLE);
 
-        if(studentNotice.getUrlList().size()==0)
-            recyclerView.setVisibility(View.GONE);
-        else{
-            PhotoAdapter photoAdapter = new PhotoAdapter(context, studentNotice.getUrlList());
-            recyclerView.setAdapter(photoAdapter);
-        }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

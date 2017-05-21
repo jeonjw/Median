@@ -42,16 +42,10 @@ public class StudentNoticeFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-//        progressDialog = new ProgressDialog(getActivity());
-//        progressDialog.setCancelable(false);
-//        progressDialog.setMessage("Loading..");
-//        progressDialog.show();
-
         linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
-//        linearLayoutManager.scrollToPosition();
 
         recyclerView.setLayoutManager(linearLayoutManager);
 

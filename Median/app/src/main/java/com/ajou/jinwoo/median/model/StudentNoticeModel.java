@@ -29,7 +29,6 @@ import java.util.UUID;
 public class StudentNoticeModel {
     private DatabaseReference databaseReference;
     private OnDataChangedListener onDataChangedListener;
-    private OnStorageSucceedListener onStorageSucceedListener;
     private List<String> urlList = new ArrayList<>();
     private DatabaseReference ref;
 
@@ -38,9 +37,6 @@ public class StudentNoticeModel {
         this.onDataChangedListener = listener;
     }
 
-    public void setOnStorageSucceedListener(OnStorageSucceedListener listener) {
-        this.onStorageSucceedListener = listener;
-    }
 
     public StudentNoticeModel() {
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -60,12 +56,6 @@ public class StudentNoticeModel {
 
         });
 
-        setOnStorageSucceedListener(new OnStorageSucceedListener() {
-            @Override
-            public void onTransferSucceed() {
-                ref.child("urlList").setValue(urlList);
-            }
-        });
     }
 
 
@@ -94,7 +84,7 @@ public class StudentNoticeModel {
                     urlList.add(taskSnapshot.getDownloadUrl().toString());
 
                     if (urlList.size() == selectedPhotos.size())
-                        onStorageSucceedListener.onTransferSucceed();
+                        ref.child("urlList").setValue(urlList);
 
 
                 }
