@@ -36,7 +36,7 @@
         <activity android:name=".BoardActivity"/>
         <activity android:name=".NoticeActivity"/>
         <activity android:name=".InfoActivity"/>
-
+        <activity android:name=".AlbumActivity"/>
         <activity android:name=".LoginActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

@@ -96,6 +96,7 @@
         android:layout_height="match_parent">
 
         <TableLayout
+            android:id="@+id/table"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -103,6 +104,7 @@
             <TableRow android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/textViewB103"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
@@ -110,6 +112,7 @@
                     android:text="@string/산b103" />
 
                 <TextView
+                    android:id="@+id/textView415"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"

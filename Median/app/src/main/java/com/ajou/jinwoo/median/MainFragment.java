@@ -3,35 +3,17 @@ package com.ajou.jinwoo.median;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class MainFragment extends Fragment {
     private Button mNoticeButton;
-    private Button mCalendarButton;
+    private Button mAlbumButton;
     private Button mInfoButton;
     private Button mBoardButton;
     private Button mLectureButton;
@@ -46,7 +28,7 @@ public class MainFragment extends Fragment {
         ((MainActivity) getActivity()).setToolbarTitle("Median");
 
         mNoticeButton = (Button) view.findViewById(R.id.notice_button);
-        mCalendarButton = (Button) view.findViewById(R.id.calendar_button);
+        mAlbumButton = (Button) view.findViewById(R.id.album_button);
         mInfoButton = (Button) view.findViewById(R.id.info_button);
         mBoardButton = (Button) view.findViewById(R.id.board_button);
         mLectureButton = (Button) view.findViewById(R.id.lecture_button);
@@ -91,30 +73,28 @@ public class MainFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        mCalendarButton.setOnClickListener(new View.OnClickListener() {
+        mAlbumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(),AlbumActivity.class);
+                startActivity(intent);
             }
         });
-
 
         setButtonFont();
 
         return view;
     }
 
-
     private void setButtonFont() {
         Typeface type = Typeface
                 .createFromAsset(getActivity().getAssets(), "Impact.ttf");
 
         mNoticeButton.setTypeface(type);
-        mCalendarButton.setTypeface(type);
+        mAlbumButton.setTypeface(type);
         mInfoButton.setTypeface(type);
         mBoardButton.setTypeface(type);
         mLectureButton.setTypeface(type);
         mSettingButton.setTypeface(type);
     }
-
 }
