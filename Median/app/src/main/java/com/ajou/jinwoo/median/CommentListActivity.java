@@ -25,7 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CommentListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private DatabaseReference mDatabase;
+    private DatabaseReference databaseReference;
     private String dataRefKey;
     private CommentModel model;
 
@@ -35,7 +35,7 @@ public class CommentListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_list);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         dataRefKey = getIntent().getExtras().getString("POST_KEY");
         String postType = getIntent().getExtras().getString("POST_TYPE");
         model = new CommentModel(dataRefKey, postType);
@@ -75,7 +75,7 @@ public class CommentListActivity extends AppCompatActivity {
 
     private void setCommentList() {
         FirebaseRecyclerAdapter<Comment, CommentViewHolder> mAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class, R.layout.list_item_comment,
-                CommentViewHolder.class, mDatabase.child("comments").child(dataRefKey)) {
+                CommentViewHolder.class, databaseReference.child("comments").child(dataRefKey)) {
             @Override
             protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {
                 String commentKey = getRef(position).getKey();

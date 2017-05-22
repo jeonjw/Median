@@ -41,7 +41,6 @@ public class NoticeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        System.out.println("notice");
         if (item.getItemId() == R.id.menu_write) {
             Intent intent = new Intent(NoticeActivity.this,StudentNoticeWriteActivity.class);
             startActivity(intent);
