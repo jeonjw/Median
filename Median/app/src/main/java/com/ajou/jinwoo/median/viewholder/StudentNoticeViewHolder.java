@@ -91,10 +91,10 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
     }
 
     public void bindNotice(StudentNotice studentNotice, Context context, String postKey) {
-        
-        if(studentNotice.getUrlList().size()==0)
+
+        if (studentNotice.getUrlList().size() == 0)
             recyclerView.setVisibility(View.GONE);
-        else{
+        else {
             recyclerView.setVisibility(View.VISIBLE);
             PhotoAdapter photoAdapter = new PhotoAdapter(context, studentNotice.getUrlList());
             recyclerView.setAdapter(photoAdapter);
