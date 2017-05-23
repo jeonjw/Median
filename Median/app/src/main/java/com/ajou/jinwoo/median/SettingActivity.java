@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +25,7 @@ public class SettingActivity extends AppCompatActivity {
         Button logoutButton = (Button) findViewById(R.id.logout_button);
         Button versionButton = (Button) findViewById(R.id.version_button);
         Button helpDeveloperButton = (Button) findViewById(R.id.help_developer_button);
-        Button licenseButton = (Button) findViewById(R.id.license_button);
+        Button developerButton = (Button) findViewById(R.id.developer_button);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +49,18 @@ public class SettingActivity extends AppCompatActivity {
                 it.putExtra(Intent.EXTRA_EMAIL, mailAddress);
 
                 startActivity(it);
+            }
+        });
+
+        developerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                CustomDialog dialog = new CustomDialog();
+                dialog.onCreateDialog(null);
+
+//                dialog.show(((FragmentManager)fragmentManager), "DIALOG");
+//                dialog.show();
             }
         });
 

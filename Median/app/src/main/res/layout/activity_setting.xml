@@ -62,12 +62,12 @@
         android:text="개발자에게 도움 요청하기"/>
 
     <Button
-        android:id="@+id/license_button"
+        android:id="@+id/developer_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start|center"
         android:theme="@style/Button.Branded"
         android:padding="10dp"
-        android:text="라이센스"/>
+        android:text="개발자"/>
 
 </LinearLayout>

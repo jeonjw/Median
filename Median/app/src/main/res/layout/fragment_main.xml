@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,7 +20,8 @@
             android:drawableEnd="@drawable/light_bulb"
             android:textAllCaps="false"
             android:gravity="start|center"
-            android:padding="10dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="10dp"
             android:text="@string/notice"
             android:textColor="#ffffff"
             android:textSize="28sp" />
@@ -67,7 +69,8 @@
             android:id="@+id/board_button"
             android:gravity="end|center"
             android:textAllCaps="false"
-            android:padding="10dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="10dp"
             android:drawableStart="@drawable/board"/>
 
     </LinearLayout>
@@ -90,7 +93,7 @@
             android:gravity="start|center"
             android:textAllCaps="false"
             android:padding="10dp"
-            android:drawableEnd="@drawable/schedule"/>
+            android:drawableEnd="@drawable/schedule" />
 
         <Button
             android:id="@+id/setting_button"
@@ -107,8 +110,14 @@
     </LinearLayout>
 
     <ImageView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/ajou_logo"
+        android:layout_gravity="center"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:layout_marginTop="40dp"
         android:id="@+id/test_image_view"/>
 
 
