@@ -14,6 +14,12 @@ public class LectureMondayFragment extends Fragment{
 
     TextView textViewB103;
     TextView textView415;
+    TextView textView419;
+    TextView textView420;
+    TextView textView421;
+    TextView textView422;
+    TextView textView202;
+    TextView textView511;
 
     @Nullable
     @Override
@@ -22,6 +28,12 @@ public class LectureMondayFragment extends Fragment{
 
         textViewB103 = (TextView) view.findViewById(R.id.textViewB103);
         textView415 = (TextView) view.findViewById(R.id.textView415);
+        textView419 = (TextView) view.findViewById(R.id.textView419);
+        textView420 = (TextView) view.findViewById(R.id.textView420);
+        textView421 = (TextView) view.findViewById(R.id.textView421);
+        textView422 = (TextView) view.findViewById(R.id.textView422);
+        textView202 = (TextView) view.findViewById(R.id.textView202);
+        textView511 = (TextView) view.findViewById(R.id.textView511);
 
         setTextViewFont();
 
@@ -34,5 +46,11 @@ public class LectureMondayFragment extends Fragment{
 
         textViewB103.setTypeface(type);
         textView415.setTypeface(type);
+        textView419.setTypeface(type);
+        textView420.setTypeface(type);
+        textView421.setTypeface(type);
+        textView422.setTypeface(type);
+        textView202.setTypeface(type);
+        textView511.setTypeface(type);
     }
 }

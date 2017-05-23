@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#2462B5</color>
     <color name="colorAccent">#FF4081</color>
     <color name="tabSelectedTextColor">#FFF176</color>
-    <color name="timeTableRoomColor">#FFED1E</color>
-    <color name="timeTableTimeColor">#FFCB0A</color>
+    <color name="timeTableRoomColor">#8EC0E4</color>
+    <color name="timeTableTimeColor">#D4DFE6</color>
 </resources>

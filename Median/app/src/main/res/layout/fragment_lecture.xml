@@ -12,6 +12,7 @@
         android:background="@color/colorPrimary"
         app:tabTextColor="#ffffff"
         app:tabSelectedTextColor="@color/tabSelectedTextColor"
+        app:tabIndicatorColor="@color/tabSelectedTextColor"
         />
 
     <LinearLayout

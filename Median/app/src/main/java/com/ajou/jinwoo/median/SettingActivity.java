@@ -37,8 +37,21 @@ public class SettingActivity extends AppCompatActivity {
 
             }
         });
-        FragmentManager fm = getSupportFragmentManager();
 
+        helpDeveloperButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(Intent.ACTION_SEND);
+                String[] mailAddress = {"gch01410@naver.com","jjw1933@gmail.com"};
+
+                it.setType("plaine/text");
+                it.putExtra(Intent.EXTRA_EMAIL, mailAddress);
+
+                startActivity(it);
+            }
+        });
+
+        FragmentManager fm = getSupportFragmentManager();
         toolbarFragment = new ToolbarFragment();
         fm.beginTransaction().add(R.id.setting_toolbar_container, toolbarFragment).commit();
 

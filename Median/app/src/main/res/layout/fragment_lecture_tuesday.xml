@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:layout_margin="7dp"
     android:orientation="horizontal">
 
     <TableLayout
@@ -103,6 +103,7 @@
             <TableRow android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/textViewB103"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
@@ -110,6 +111,7 @@
                     android:text="@string/산b103" />
 
                 <TextView
+                    android:id="@+id/textView415"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
@@ -117,6 +119,7 @@
                     android:text="@string/산415" />
 
                 <TextView
+                    android:id="@+id/textView419"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
@@ -124,6 +127,7 @@
                     android:text="@string/산419" />
 
                 <TextView
+                    android:id="@+id/textView420"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
@@ -131,6 +135,7 @@
                     android:text="@string/산420" />
 
                 <TextView
+                    android:id="@+id/textView421"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
@@ -138,6 +143,7 @@
                     android:text="@string/산421" />
 
                 <TextView
+                    android:id="@+id/textView422"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
@@ -145,6 +151,7 @@
                     android:text="@string/산422" />
 
                 <TextView
+                    android:id="@+id/textViewB105"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
