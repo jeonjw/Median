@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SettingActivity extends AppCompatActivity {
 
     private Fragment toolbarFragment;
+    boolean click = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,6 +27,23 @@ public class SettingActivity extends AppCompatActivity {
         Button helpDeveloperButton = (Button) findViewById(R.id.help_developer_button);
         Button developerButton = (Button) findViewById(R.id.developer_button);
 
+        alarmSettingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!click) {
+                    FragmentManager fm = getSupportFragmentManager();
+                    SettingAlarmOnButtonFragment settingAlarmOnButtonFragment = new SettingAlarmOnButtonFragment();
+                    fm.beginTransaction().replace(R.id.alarm_setting_container, settingAlarmOnButtonFragment).commit();
+                    click = true;
+                } else {
+                    FragmentManager fm = getSupportFragmentManager();
+                    SettingAlarmOffButtonFragment settingAlarmOffButtonFragment = new SettingAlarmOffButtonFragment();
+                    fm.beginTransaction().replace(R.id.alarm_setting_container, settingAlarmOffButtonFragment).commit();
+                    click = false;
+                }
+            }
+        });
+
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +52,6 @@ public class SettingActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
-
             }
         });
 
@@ -43,7 +59,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(Intent.ACTION_SEND);
-                String[] mailAddress = {"gch01410@naver.com","jjw1933@gmail.com"};
+                String[] mailAddress = {"gch01410@gmail.com", "jjw1933@gmail.com"};
 
                 it.setType("plaine/text");
                 it.putExtra(Intent.EXTRA_EMAIL, mailAddress);
@@ -52,15 +68,20 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        developerButton.setOnClickListener(new View.OnClickListener() {
+        versionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 android.app.FragmentManager ft = getFragmentManager();
-                CustomDialog dialog = new CustomDialog();
-                dialog.show(ft,"aaa");
+                VersionDialogFragment dialog = new VersionDialogFragment();
+                dialog.show(ft, "aaa");
+            }
+        });
 
-//                dialog.show(((FragmentManager)fragmentManager), "DIALOG");
-//                dialog.show();
+        developerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, DeveloperNameCardActivity.class);
+                startActivity(intent);
             }
         });
 
