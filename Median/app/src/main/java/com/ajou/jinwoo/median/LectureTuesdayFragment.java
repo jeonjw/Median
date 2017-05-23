@@ -40,7 +40,7 @@ public class LectureTuesdayFragment extends Fragment{
 
     private void setTextViewFont() {
         Typeface type = Typeface
-                .createFromAsset(getActivity().getAssets(), "AritaThin.ttf");
+                .createFromAsset(getActivity().getAssets(), "Trebuchet MS.ttf");
 
         textViewB103.setTypeface(type);
         textView415.setTypeface(type);

@@ -21,7 +21,7 @@ public class ToolbarFragment extends Fragment {
         toolbar.setTitle("Media");
 
         Typeface type = Typeface
-                .createFromAsset(getActivity().getAssets(), "Chalkboard.otf");
+                .createFromAsset(getActivity().getAssets(), "Trebuchet MS.ttf");
 
         toolbarTitleTextView.setText(R.string.app_title);
         toolbarTitleTextView.setTypeface(type);

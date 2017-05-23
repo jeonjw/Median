@@ -88,7 +88,7 @@ public class MainFragment extends Fragment {
 
     private void setButtonFont() {
         Typeface type = Typeface
-                .createFromAsset(getActivity().getAssets(), "Impact.ttf");
+                .createFromAsset(getActivity().getAssets(), "Trebuchet MS.ttf");
 
         mNoticeButton.setTypeface(type);
         mAlbumButton.setTypeface(type);
