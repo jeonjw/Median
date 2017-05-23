@@ -40,7 +40,7 @@ public class InfoViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 String tel = "tel:" + "031219" + mInfo.getTelNumber();
-                context.startActivity(new Intent("android.intent.action.DIAL", Uri.parse(tel)));
+                context.startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(tel)));
             }
         });
 

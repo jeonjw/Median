@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.ajou.jinwoo.median.R;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,7 +21,6 @@ import me.iwf.photopicker.PhotoPreview;
 public class AlbumDetailViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     private Context context;
-    private Random mRandom = new Random();
     private ImageView imageView;
     private int position;
     private List<String> imageUrlList;
@@ -35,7 +33,7 @@ public class AlbumDetailViewHolder extends RecyclerView.ViewHolder implements Vi
     public AlbumDetailViewHolder(View itemView, Context context, List<String> imageUrlList, String dataRefKey) {
         super(itemView);
         imageView = (ImageView) itemView.findViewById(R.id.album_detail_image_view);
-        imageView.getLayoutParams().height = getRandomIntInRange(450, 150);
+        imageView.getLayoutParams().height = getRandomIntInRange(450, 200);
         this.context = context;
         this.imageUrlList = imageUrlList;
         this.dataRefKey = dataRefKey;
@@ -45,7 +43,8 @@ public class AlbumDetailViewHolder extends RecyclerView.ViewHolder implements Vi
     }
 
     protected int getRandomIntInRange(int max, int min) {
-        return mRandom.nextInt((max - min) + min) + min;
+        Random random = new Random();
+        return random.nextInt((max - min) + min) + min;
     }
 
 

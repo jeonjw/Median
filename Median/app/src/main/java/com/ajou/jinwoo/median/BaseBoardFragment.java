@@ -62,7 +62,7 @@ public abstract class BaseBoardFragment extends Fragment {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setQueryHint("제목으로 검색");
 
-        showProgressDialog();
+//        showProgressDialog();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -114,8 +114,8 @@ public abstract class BaseBoardFragment extends Fragment {
             public void onDataChanged() {
                 recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);//새글 작성시 스크롤 최상단으로 이동
 
-                if (progressDialog != null && progressDialog.isShowing())
-                    progressDialog.dismiss();
+//                if (progressDialog != null && progressDialog.isShowing())
+//                    progressDialog.dismiss();
             }
         });
 

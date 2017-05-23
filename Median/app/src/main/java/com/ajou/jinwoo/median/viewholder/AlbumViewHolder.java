@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.ajou.jinwoo.median.AlbumDetailActivity;
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.model.PhotoAlbum;
+import com.ajou.jinwoo.median.valueObject.PhotoAlbum;
 import com.bumptech.glide.Glide;
 
 import java.util.Random;

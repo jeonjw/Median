@@ -11,9 +11,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
-import com.ajou.jinwoo.median.model.PhotoAlbum;
+import com.ajou.jinwoo.median.valueObject.PhotoAlbum;
 import com.ajou.jinwoo.median.viewholder.AlbumViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;

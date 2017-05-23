@@ -124,7 +124,7 @@ public class AlbumDetailActivity extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     imageUrlList.add(ds.getValue().toString());
                 }
-//                urlList = imageUrlList;
+//                urlList = imageUrlㅌList;
                 albumDetailAdapter.notifyDataSetChanged();
 
             }
