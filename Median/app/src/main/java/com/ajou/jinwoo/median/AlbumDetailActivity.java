@@ -40,12 +40,10 @@ import me.iwf.photopicker.utils.AndroidLifecycleUtils;
 public class AlbumDetailActivity extends AppCompatActivity {
 
     private String dataRefKey;
-    private RecyclerView recyclerView;
     private DatabaseReference databaseReference;
     private ArrayList<String> selectedPhotos = new ArrayList<>();
     private List<String> urlList = new ArrayList<>();
     private List<String> imageUrlList = new ArrayList<>();
-    private FloatingActionButton addPhoto;
     private AlbumDetailAdapter albumDetailAdapter;
 
     @Override
@@ -56,8 +54,8 @@ public class AlbumDetailActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         dataRefKey = getIntent().getExtras().getString("POST_KEY");
 
-        recyclerView = (RecyclerView) findViewById(R.id.album_detail_recycler_view);
-        addPhoto = (FloatingActionButton) findViewById(R.id.add_photo_button);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.album_detail_recycler_view);
+        FloatingActionButton addPhoto = (FloatingActionButton) findViewById(R.id.add_photo_button);
         addPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +122,7 @@ public class AlbumDetailActivity extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     imageUrlList.add(ds.getValue().toString());
                 }
-//                urlList = imageUrlㅌList;
+
                 albumDetailAdapter.notifyDataSetChanged();
 
             }
@@ -189,8 +187,13 @@ public class AlbumDetailActivity extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     urlList.add(taskSnapshot.getDownloadUrl().toString());
 
-                    if (urlList.size() == selectedPhotos.size())
-                        databaseReference.child("photo_list").child(dataRefKey).setValue(urlList);
+                    if (urlList.size() == selectedPhotos.size()) {
+                        imageUrlList.addAll(urlList);
+                        databaseReference.child("photo_list").child(dataRefKey).setValue(imageUrlList);
+                        urlList.clear();
+                    }
+
+
 
 
                 }

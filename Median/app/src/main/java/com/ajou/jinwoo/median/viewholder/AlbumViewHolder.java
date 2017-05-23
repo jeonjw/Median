@@ -26,7 +26,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
         itemView.setOnClickListener(this);
         imageView = (ImageView) itemView.findViewById(R.id.album_title_text_view);
         detailTextView = (TextView) itemView.findViewById(R.id.album_detail_text_view);
-        imageView.getLayoutParams().height = getRandomIntInRange(500, 250);
+        imageView.getLayoutParams().height = getRandomIntInRange(570, 350);
 
     }
 
