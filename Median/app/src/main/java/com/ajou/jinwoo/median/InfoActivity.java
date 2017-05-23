@@ -15,7 +15,7 @@ import com.ajou.jinwoo.median.model.OnDataChangedListener;
 
 public class InfoActivity extends AppCompatActivity {
     private Fragment toolbarFragment;
-    private  ProgressDialog progressDialog;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -50,14 +50,14 @@ public class InfoActivity extends AppCompatActivity {
 
     }
 
-    private void showProgressDialog(){
+    private void showProgressDialog() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Loading..");
         progressDialog.show();
     }
 
-    private void hideProgressDialog(){
+    private void hideProgressDialog() {
         progressDialog.dismiss();
     }
 
