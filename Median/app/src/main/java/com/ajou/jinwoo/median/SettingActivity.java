@@ -55,9 +55,9 @@ public class SettingActivity extends AppCompatActivity {
         developerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                android.app.FragmentManager ft = getFragmentManager();
                 CustomDialog dialog = new CustomDialog();
-                dialog.onCreateDialog(null);
+                dialog.show(ft,"aaa");
 
 //                dialog.show(((FragmentManager)fragmentManager), "DIALOG");
 //                dialog.show();
