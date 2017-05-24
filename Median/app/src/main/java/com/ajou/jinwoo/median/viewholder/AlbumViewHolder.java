@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ajou.jinwoo.median.AlbumDetailActivity;
+import com.ajou.jinwoo.median.PhotoListActivity;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.valueObject.PhotoAlbum;
 import com.bumptech.glide.Glide;
@@ -24,10 +24,9 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
     AlbumViewHolder(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
-        imageView = (ImageView) itemView.findViewById(R.id.album_title_text_view);
-        detailTextView = (TextView) itemView.findViewById(R.id.album_detail_text_view);
+        imageView = (ImageView) itemView.findViewById(R.id.album_main_image_view);
+        detailTextView = (TextView) itemView.findViewById(R.id.album_title_text_view);
         imageView.getLayoutParams().height = getRandomIntInRange(550, 400);
-
     }
 
     public void bindData(PhotoAlbum photoAlbum, String dataRefKey, Context context) {
@@ -47,7 +46,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(context, AlbumDetailActivity.class);
+        Intent intent = new Intent(context, PhotoListActivity.class);
         intent.putExtra("ALBUM_TITLE",detailTextView.getText().toString());
         intent.putExtra("POST_KEY", dataRefKey);
 

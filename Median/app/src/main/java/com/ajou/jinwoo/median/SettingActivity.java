@@ -60,9 +60,9 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(Intent.ACTION_SEND);
-                String[] mailAddress = {"gch01410@gmail.com", "jjw1933@gmail.com"};
+                String[] mailAddress = {"gch01410@gmail.com", "jeonjw1933@gmail.com"};
 
-                it.setType("plaine/text");
+                it.setType("plain/text");
                 it.putExtra(Intent.EXTRA_EMAIL, mailAddress);
 
                 startActivity(it);

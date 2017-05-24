@@ -49,7 +49,7 @@
         <activity android:name=".CommentListActivity"/>
         <activity android:name=".SettingActivity"/>
         <activity android:name=".LectureActivity"/>
-        <activity android:name=".AlbumDetailActivity"/>
+        <activity android:name=".PhotoListActivity"/>
 
         <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
             android:theme="@style/customTheme"
