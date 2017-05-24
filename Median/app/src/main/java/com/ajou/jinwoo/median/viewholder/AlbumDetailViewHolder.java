@@ -33,7 +33,7 @@ public class AlbumDetailViewHolder extends RecyclerView.ViewHolder implements Vi
     public AlbumDetailViewHolder(View itemView, Context context, List<String> imageUrlList, String dataRefKey) {
         super(itemView);
         imageView = (ImageView) itemView.findViewById(R.id.album_detail_image_view);
-        imageView.getLayoutParams().height = getRandomIntInRange(450, 200);
+        imageView.getLayoutParams().height = getRandomIntInRange(500, 300);
         this.context = context;
         this.imageUrlList = imageUrlList;
         this.dataRefKey = dataRefKey;

@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/album_detail_recycler_view"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Album Main Title"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/album_detail_title_text_view"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_photo_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+    <FrameLayout
         android:layout_margin="10dp"
-        app:backgroundTint="@color/colorPrimary"
-        android:src="@drawable/add_photo" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/album_detail_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_photo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="10dp"
+            android:src="@drawable/add_photo"
+            app:backgroundTint="@color/colorPrimary" />
 
 
-</FrameLayout>
+    </FrameLayout>
+
+</LinearLayout>

@@ -13,6 +13,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ajou.jinwoo.median.viewholder.AlbumDetailViewHolder;
 import com.bumptech.glide.Glide;
@@ -50,6 +51,9 @@ public class AlbumDetailActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album_detail);
+        TextView titleTextView = (TextView) findViewById(R.id.album_detail_title_text_view);
+
+        titleTextView.setText(getIntent().getExtras().getString("ALBUM_TITLE"));
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         dataRefKey = getIntent().getExtras().getString("POST_KEY");

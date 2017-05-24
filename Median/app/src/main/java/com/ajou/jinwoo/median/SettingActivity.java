@@ -30,15 +30,16 @@ public class SettingActivity extends AppCompatActivity {
         alarmSettingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentManager fm = getSupportFragmentManager();
+                SettingAlarmButtonFragment settingAlarmOnButtonFragment = new SettingAlarmButtonFragment();
+
                 if (!click) {
-                    FragmentManager fm = getSupportFragmentManager();
-                    SettingAlarmOnButtonFragment settingAlarmOnButtonFragment = new SettingAlarmOnButtonFragment();
-                    fm.beginTransaction().replace(R.id.alarm_setting_container, settingAlarmOnButtonFragment).commit();
+                    fm.beginTransaction().add(R.id.alarm_setting_container, settingAlarmOnButtonFragment,"Tag").commit();
                     click = true;
+
                 } else {
-                    FragmentManager fm = getSupportFragmentManager();
-                    SettingAlarmOffButtonFragment settingAlarmOffButtonFragment = new SettingAlarmOffButtonFragment();
-                    fm.beginTransaction().replace(R.id.alarm_setting_container, settingAlarmOffButtonFragment).commit();
+                    fm.findFragmentByTag("Tag");
+                    fm.beginTransaction().remove(fm.findFragmentByTag("Tag")).commit();
                     click = false;
                 }
             }

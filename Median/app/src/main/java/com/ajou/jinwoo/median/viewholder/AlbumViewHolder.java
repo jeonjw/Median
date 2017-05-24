@@ -26,7 +26,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
         itemView.setOnClickListener(this);
         imageView = (ImageView) itemView.findViewById(R.id.album_title_text_view);
         detailTextView = (TextView) itemView.findViewById(R.id.album_detail_text_view);
-        imageView.getLayoutParams().height = getRandomIntInRange(570, 350);
+        imageView.getLayoutParams().height = getRandomIntInRange(550, 400);
 
     }
 
@@ -48,6 +48,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(context, AlbumDetailActivity.class);
+        intent.putExtra("ALBUM_TITLE",detailTextView.getText().toString());
         intent.putExtra("POST_KEY", dataRefKey);
 
         context.startActivity(intent);
