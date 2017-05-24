@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SettingActivity extends AppCompatActivity {
 
     private Fragment toolbarFragment;
-    boolean click = false;
+    private boolean click = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,8 +81,9 @@ public class SettingActivity extends AppCompatActivity {
         developerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SettingActivity.this, DeveloperNameCardActivity.class);
-                startActivity(intent);
+                android.app.FragmentManager ft = getFragmentManager();
+                DeveloperNameCardDialogFragment dialog = new DeveloperNameCardDialogFragment();
+                dialog.show(ft, "aaa");
             }
         });
 
