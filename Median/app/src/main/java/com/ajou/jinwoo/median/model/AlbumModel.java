@@ -33,6 +33,11 @@ public class AlbumModel {
                 title));
     }
 
+    public void deleteAlbum(String dataRefKey){
+        databaseReference.child("Photo_Album").child(dataRefKey).removeValue();
+        databaseReference.child("photo_list").child(dataRefKey).removeValue();
+    }
+
     public FirebaseRecyclerAdapter<PhotoAlbum, AlbumViewHolder> getAdapter() {
         return adapter;
     }

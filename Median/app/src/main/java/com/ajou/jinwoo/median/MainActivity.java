@@ -41,6 +41,15 @@ public class MainActivity extends AppCompatActivity
                     databaseReference.child("User").child(firebaseUser.getUid()).child("email").setValue(firebaseUser.getEmail());
                     databaseReference.child("User").child(firebaseUser.getUid()).child("name").setValue(firebaseUser.getDisplayName());
                     databaseReference.child("User").child(firebaseUser.getUid()).child("uid").setValue(firebaseUser.getUid());
+                    databaseReference.child("User").child(firebaseUser.getUid()).child("admin").setValue(false);
+                    databaseReference.child("User").child(firebaseUser.getUid()).child("subscribeMediaNotice").setValue(true);
+                    databaseReference.child("User").child(firebaseUser.getUid()).child("subscribeStudentNotice").setValue(true);
+                }
+                else{
+                    dataSnapshot.getValue(User.class);
+                    User.getInstance().setAdmin(dataSnapshot.getValue(User.class).isAdmin());
+                    User.getInstance().setSubscribeMediaNotice(dataSnapshot.getValue(User.class).isSubscribeMediaNotice());
+                    User.getInstance().setSubscribeStudentNotice(dataSnapshot.getValue(User.class).isSubscribeStudentNotice());
                 }
             }
 

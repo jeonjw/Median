@@ -35,6 +35,7 @@ public class PhotoListModel {
     private PhotoListAdapter photoListAdapter;
     private List<String> imageUrlList = new ArrayList<>();
     private List<String> urlList = new ArrayList<>();
+    private List<String> keyList = new ArrayList<>();
 
 
     public PhotoListModel(Context context, String dataRefKey) {
@@ -76,6 +77,14 @@ public class PhotoListModel {
 
     }
 
+    public void setMainPhoto(String url){
+        databaseReference.child("Photo_Album").child(dataRefKey).child("mainImageUrl").setValue(url);
+    }
+
+    public void deletePhoto(int position){
+        databaseReference.child("photo_list").child(dataRefKey).child(keyList.get(position)).removeValue();
+    }
+
     private String generateTempFilename() {
         return UUID.randomUUID().toString();
     }
@@ -86,7 +95,9 @@ public class PhotoListModel {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 imageUrlList.clear();
+                keyList.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    keyList.add(ds.getKey());
                     imageUrlList.add(ds.getValue().toString());
                 }
 

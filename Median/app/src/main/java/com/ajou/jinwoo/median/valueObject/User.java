@@ -5,9 +5,11 @@ public class User {
     private String userName;
     private String userEmail;
     private String uid;
+    private boolean admin;
+    private boolean subscribeMediaNotice;
+    private boolean subscribeStudentNotice;
 
     private User() {
-
     }
 
     public String getUserName() {
@@ -16,6 +18,19 @@ public class User {
 
     public String getUid() {
         return uid;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public boolean isSubscribeMediaNotice() {
+
+        return subscribeMediaNotice;
+    }
+
+    public boolean isSubscribeStudentNotice() {
+        return subscribeStudentNotice;
     }
 
     public void setUserName(String userName) {
@@ -28,6 +43,18 @@ public class User {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public void setSubscribeMediaNotice(boolean subscribeMediaNotice) {
+        this.subscribeMediaNotice = subscribeMediaNotice;
+    }
+
+    public void setSubscribeStudentNotice(boolean subscribeStudentNotice) {
+        this.subscribeStudentNotice = subscribeStudentNotice;
     }
 
     private static class Singleton {

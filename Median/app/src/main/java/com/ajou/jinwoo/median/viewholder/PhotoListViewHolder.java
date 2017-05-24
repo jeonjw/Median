@@ -2,6 +2,7 @@ package com.ajou.jinwoo.median.viewholder;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
@@ -9,7 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.ajou.jinwoo.median.R;
-import com.google.firebase.database.FirebaseDatabase;
+import com.ajou.jinwoo.median.model.PhotoListModel;
+import com.ajou.jinwoo.median.valueObject.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class PhotoListViewHolder extends RecyclerView.ViewHolder implements View
     private ImageView imageView;
     private int position;
     private List<String> imageUrlList;
-    private String dataRefKey;
+    private PhotoListModel photoListModel;
 
     public ImageView getImageView() {
         return imageView;
@@ -34,9 +36,9 @@ public class PhotoListViewHolder extends RecyclerView.ViewHolder implements View
         super(itemView);
         imageView = (ImageView) itemView.findViewById(R.id.photo_list_image_view);
         imageView.getLayoutParams().height = getRandomIntInRange(500, 300);
+        photoListModel = new PhotoListModel(context, dataRefKey);
         this.context = context;
         this.imageUrlList = imageUrlList;
-        this.dataRefKey = dataRefKey;
 
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
@@ -71,10 +73,17 @@ public class PhotoListViewHolder extends RecyclerView.ViewHolder implements View
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.popup_set_main_image)
-                    FirebaseDatabase.getInstance().getReference().child("Photo_Album").child(dataRefKey).child("mainImageUrl").setValue(imageUrlList.get(position));
-                else if (item.getItemId() == R.id.popup_delete_photo){
-                    FirebaseDatabase.getInstance().getReference().child("photo_list").child(dataRefKey).child(String.valueOf(position)).removeValue();
+                    photoListModel.setMainPhoto(imageUrlList.get(position));
+
+                else if (item.getItemId() == R.id.popup_delete_photo) {
+
+                    if (User.getInstance().isAdmin()) {
+                        photoListModel.deletePhoto(position);
+                        Snackbar.make(imageView, "" + position, Snackbar.LENGTH_SHORT).show();
+                    } else
+                        Snackbar.make(imageView, "삭제 권한이 없습니다", Snackbar.LENGTH_SHORT).show();
                 }
+
                 return true;
             }
         });
