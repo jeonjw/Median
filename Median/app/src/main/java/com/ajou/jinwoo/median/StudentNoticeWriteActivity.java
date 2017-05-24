@@ -34,7 +34,7 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
     private String postKey;
     private boolean rewrite;
     private ArrayList<String> selectedPhotos = new ArrayList<>();
-    private PhotoAdapter photoAdapter;
+    private BoardWritePhotoAdapter photoAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
         ImageButton writeButton = (ImageButton) findViewById(R.id.notice_write_finish);
         ImageButton photoButton = (ImageButton) findViewById(R.id.student_notice_photo_button);
 
-        photoAdapter = new PhotoAdapter(this, selectedPhotos);
+        photoAdapter = new BoardWritePhotoAdapter(this, selectedPhotos);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
         recyclerView.setAdapter(photoAdapter);
 

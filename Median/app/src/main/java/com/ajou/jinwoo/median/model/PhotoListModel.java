@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajou.jinwoo.median.PhotoListActivity;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.viewholder.PhotoListViewHolder;
 import com.bumptech.glide.Glide;

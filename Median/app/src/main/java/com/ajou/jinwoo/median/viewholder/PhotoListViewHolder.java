@@ -63,14 +63,18 @@ public class PhotoListViewHolder extends RecyclerView.ViewHolder implements View
 
     @Override
     public boolean onLongClick(View v) {
-        PopupMenu popup = new PopupMenu(context, imageView);
+        final PopupMenu popup = new PopupMenu(context, imageView);
         popup.getMenuInflater()
                 .inflate(R.menu.popup_photo, popup.getMenu());
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                FirebaseDatabase.getInstance().getReference().child("Photo_Album").child(dataRefKey).child("mainImageUrl").setValue(imageUrlList.get(position));
+                if (item.getItemId() == R.id.popup_set_main_image)
+                    FirebaseDatabase.getInstance().getReference().child("Photo_Album").child(dataRefKey).child("mainImageUrl").setValue(imageUrlList.get(position));
+                else if (item.getItemId() == R.id.popup_delete_photo){
+                    FirebaseDatabase.getInstance().getReference().child("photo_list").child(dataRefKey).child(String.valueOf(position)).removeValue();
+                }
                 return true;
             }
         });

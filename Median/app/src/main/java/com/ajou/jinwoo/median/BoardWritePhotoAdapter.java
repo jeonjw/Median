@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajou.jinwoo.median.viewholder.PhotoViewHolder;
+import com.ajou.jinwoo.median.viewholder.BoardWritePhotoViewHolder;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -14,12 +14,12 @@ import java.util.List;
 
 import me.iwf.photopicker.utils.AndroidLifecycleUtils;
 
-public class PhotoAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
+public class BoardWritePhotoAdapter extends RecyclerView.Adapter<BoardWritePhotoViewHolder> {
     private List<String> photoPaths = new ArrayList<>();
     private Context mContext;
     private LayoutInflater inflater;
 
-    public PhotoAdapter(Context mContext, List<String> photoPaths) {
+    public BoardWritePhotoAdapter(Context mContext, List<String> photoPaths) {
         this.photoPaths = photoPaths;
         this.mContext = mContext;
         inflater = LayoutInflater.from(mContext);
@@ -27,13 +27,13 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
     }
 
     @Override
-    public PhotoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BoardWritePhotoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.__picker_item_photo, parent, false);
-        return new PhotoViewHolder(itemView, photoPaths, mContext);
+        return new BoardWritePhotoViewHolder(itemView, photoPaths, mContext);
     }
 
     @Override
-    public void onBindViewHolder(PhotoViewHolder holder, int position) {
+    public void onBindViewHolder(BoardWritePhotoViewHolder holder, int position) {
         holder.setPosition(position);
 
         boolean canLoadImage = AndroidLifecycleUtils.canLoadImage(holder.getIvPhoto().getContext());

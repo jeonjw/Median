@@ -16,7 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.ajou.jinwoo.median.CommentListActivity;
-import com.ajou.jinwoo.median.PhotoAdapter;
+import com.ajou.jinwoo.median.BoardWritePhotoAdapter;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.StudentNoticeWriteActivity;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
@@ -96,7 +96,7 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
             recyclerView.setVisibility(View.GONE);
         else {
             recyclerView.setVisibility(View.VISIBLE);
-            PhotoAdapter photoAdapter = new PhotoAdapter(context, studentNotice.getUrlList());
+            BoardWritePhotoAdapter photoAdapter = new BoardWritePhotoAdapter(context, studentNotice.getUrlList());
             recyclerView.setAdapter(photoAdapter);
         }
 
