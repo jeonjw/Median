@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ajou.jinwoo.median.BoardTabFragment;
 import com.ajou.jinwoo.median.BoardWriteActivity;
 import com.ajou.jinwoo.median.CommentListActivity;
 import com.ajou.jinwoo.median.R;
@@ -68,6 +69,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                         }
                         else if(item.getItemId() == R.id.popup_rewrite){
                             Intent intent = new Intent(context, BoardWriteActivity.class);
+                            intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab());
                             intent.putExtra("BOARD_TITLE",post.getTitle());
                             intent.putExtra("BOARD_CONTENTS",post.getContents());
                             intent.putExtra("CORRECT_POST_KEY", dataRefKey);

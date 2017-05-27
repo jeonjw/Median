@@ -24,7 +24,7 @@ public class PostModel {
 
 
     public PostModel(String postType) {
-        this.postType = postType;
+//        this.postType = postType;
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         databaseReference.child(postType).addValueEventListener(new ValueEventListener() {
@@ -44,11 +44,13 @@ public class PostModel {
     }
 
     public void writePost(String postType, String userName, String title, String contents) {
+        System.out.println("TEST"+postType);
         databaseReference.child(postType).
                 push().setValue(Post.newPost(userName, title, contents, 0));
     }
 
-    public void correctPost(String userName, String title, String contents, String postKey, int commentCount) {
+    public void correctPost(String postType,String userName, String title, String contents, String postKey, int commentCount) {
+        System.out.println("TEST"+postType);
         databaseReference.child(postType).
                 child(postKey).setValue(Post.newPost(userName, title, contents, commentCount));
 

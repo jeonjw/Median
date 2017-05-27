@@ -60,8 +60,8 @@ public class BoardWriteActivity extends AppCompatActivity {
         if (reWriteContents != null && reWriteTitle != null) {
             titleEditText.setText(reWriteTitle);
             contentsEditText.setText(reWriteContents);
-            rewrite = true;
             board_spinner.setVisibility(View.GONE);
+            rewrite = true;
 
         }
 
@@ -105,7 +105,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     public void sendPost(String userName) {
         if (rewrite) {
             int commentCount = getIntent().getExtras().getInt("STUDENT_NOTICE_COMMENT_COUNT");
-            postModel.correctPost(userName, titleEditText.getText().toString(), contentsEditText.getText().toString(), postKey, commentCount);
+            postModel.correctPost((String) board_spinner.getSelectedItem(),userName, titleEditText.getText().toString(), contentsEditText.getText().toString(), postKey, commentCount);
 
         } else
             postModel.writePost((String) board_spinner.getSelectedItem(),userName, titleEditText.getText().toString(), contentsEditText.getText().toString());
