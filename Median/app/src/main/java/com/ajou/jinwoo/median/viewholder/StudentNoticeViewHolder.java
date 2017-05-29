@@ -36,7 +36,7 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
     private String dataRefKey;
     private Context context;
     private StudentNotice studentNotice;
-    private RecyclerView recyclerView;
+    private RecyclerView photoRecyclerView;
 
 
     public StudentNoticeViewHolder(View itemView) {
@@ -50,9 +50,9 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
         commentCountTextView = (TextView) itemView.findViewById(R.id.comment_number);
         dropdownButton = (ImageButton) itemView.findViewById(R.id.student_notice_dropdown_button);
 
-        recyclerView = (RecyclerView) itemView.findViewById(R.id.student_notice_holder_image_recycler_view);
+        photoRecyclerView = (RecyclerView) itemView.findViewById(R.id.student_notice_holder_image_recycler_view);
 
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
+        photoRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
 
 
         dropdownButton.setOnClickListener(new View.OnClickListener() {
@@ -91,15 +91,6 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
     }
 
     public void bindNotice(StudentNotice studentNotice, Context context, String postKey) {
-
-        if (studentNotice.getUrlList().size() == 0)
-            recyclerView.setVisibility(View.GONE);
-        else {
-            recyclerView.setVisibility(View.VISIBLE);
-            BoardWritePhotoAdapter photoAdapter = new BoardWritePhotoAdapter(context, studentNotice.getUrlList());
-            recyclerView.setAdapter(photoAdapter);
-        }
-
         titleTextView.setText(studentNotice.getTitle());
         contentsTextView.setText(studentNotice.getContents());
         authorTextView.setText(studentNotice.getAuthor());
@@ -109,12 +100,18 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
         this.context = context;
         this.studentNotice = studentNotice;
 
-        if (!Objects.equals(studentNotice.getAuthorUid(), User.getInstance().getUid()))
-            dropdownButton.setVisibility(View.GONE);
-        else
-            dropdownButton.setVisibility(View.VISIBLE);
+        int visibility =  Objects.equals(studentNotice.getAuthorUid(), User.getInstance().getUid()) ?
+                View.VISIBLE :  View.GONE;
 
+        dropdownButton.setVisibility(visibility);
 
+        if (studentNotice.getUrlList().size() == 0)
+            photoRecyclerView.setVisibility(View.GONE);
+        else {
+            photoRecyclerView.setVisibility(View.VISIBLE);
+            BoardWritePhotoAdapter photoAdapter = new BoardWritePhotoAdapter(context, studentNotice.getUrlList());
+            photoRecyclerView.setAdapter(photoAdapter);
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

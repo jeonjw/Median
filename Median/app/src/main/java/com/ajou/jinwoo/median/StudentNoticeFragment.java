@@ -1,6 +1,5 @@
 package com.ajou.jinwoo.median;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,24 +12,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.ajou.jinwoo.median.model.OnDataChangedListener;
-import com.ajou.jinwoo.median.model.PostModel;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;
-import com.ajou.jinwoo.median.valueObject.StudentNotice;
-import com.ajou.jinwoo.median.viewholder.StudentNoticeViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 
 public class StudentNoticeFragment extends Fragment {
-    private ProgressDialog progressDialog;
     private DatabaseReference mDatabase;
     private RecyclerView recyclerView;
-    LinearLayoutManager linearLayoutManager;
 
 
     @Nullable
@@ -42,10 +34,10 @@ public class StudentNoticeFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
-        linearLayoutManager.scrollToPositionWithOffset(0, 0);
+//        linearLayoutManager.scrollToPositionWithOffset(0, 0);
 
         recyclerView.setLayoutManager(linearLayoutManager);
 

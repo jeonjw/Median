@@ -22,12 +22,11 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 
 import me.iwf.photopicker.PhotoPreview;
-import uk.co.senab.photoview.PhotoView;
 
 public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView mTitleTextView;
     private TextView mContentsTextView;
-    private ImageView photoView;
+    private ImageView imageView;
     private boolean isClicked;
     private boolean haveImage;
     private String imageUrl;
@@ -41,8 +40,8 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
 
         mTitleTextView = (TextView) itemView.findViewById(R.id.media_notice_title_text_view);
         mContentsTextView = (TextView) itemView.findViewById(R.id.media_notice_contents_text_view);
-        photoView = (ImageView) itemView.findViewById(R.id.media_notice_image_view);
-        photoView.setOnClickListener(new View.OnClickListener() {
+        imageView = (ImageView) itemView.findViewById(R.id.media_notice_image_view);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArrayList<String> temp = new ArrayList<>();
@@ -66,17 +65,18 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
         this.context = context;
 
         bindTitle(notice.getTitle());
-        bindContents(notice.getContents());
 
         if (haveImage(notice.getContents())) {
             haveImage = true;
             imageUrl = "http://media.ajou.ac.kr/" + elements.attr("src");
-            if (dom.text().length() < 5)
-                mContentsTextView.setText("이미지 펼쳐 보기..");
+
+            String contents = (dom.text().length() < 5) ? "이미지 펼쳐보기" : dom.toString();
+            bindContents(contents);
 
         } else {
             haveImage = false;
-            photoView.setVisibility(View.GONE);
+            imageView.setVisibility(View.GONE);
+            bindContents(notice.getContents());
         }
 
         mContentsTextView.setMaxLines(2);
@@ -87,22 +87,23 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
     public void onClick(final View v) {
         if (!isClicked) {
             isClicked = true;
-            photoView.setVisibility(View.VISIBLE);
+            imageView.setVisibility(View.VISIBLE);
             mContentsTextView.setMaxLines(Integer.MAX_VALUE);
             mContentsTextView.setEllipsize(null);
             if (haveImage)
-                Glide.with(context).load(imageUrl).into(photoView);
+                Glide.with(context).load(imageUrl).into(imageView);
         } else {
             isClicked = false;
             mContentsTextView.setMaxLines(2);
             mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
-            photoView.setImageDrawable(null);
+            imageView.setImageDrawable(null);
         }
     }
 
-    private boolean haveImage(String contetns) {
-        dom = Jsoup.parse(contetns);
+    private boolean haveImage(String contents) {
+        dom = Jsoup.parse(contents);
         elements = dom.select("img");
+        elements.remove();
         return elements.size() != 0;
     }
 

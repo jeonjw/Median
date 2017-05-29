@@ -57,14 +57,12 @@ public class MediaNoticeFragment extends Fragment {
         recyclerView.setLayoutManager(mManager);
 
         readLimitFirstData();
-        readFullData();
-
 
         return view;
     }
 
     private void readLimitFirstData() {
-        mDatabase.child("media_notice").limitToFirst(7).addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("media_notice").limitToFirst(8).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -75,6 +73,7 @@ public class MediaNoticeFragment extends Fragment {
 
                 noticeAdapter.setList(dataList);
                 progressDialog.dismiss();
+                readFullData();
             }
 
             @Override
@@ -85,6 +84,7 @@ public class MediaNoticeFragment extends Fragment {
         });
 
         recyclerView.setAdapter(noticeAdapter);
+
 
     }
 

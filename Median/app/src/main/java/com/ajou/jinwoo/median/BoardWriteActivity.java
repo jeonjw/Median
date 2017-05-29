@@ -12,10 +12,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.ajou.jinwoo.median.model.PostModel;
-import com.ajou.jinwoo.median.valueObject.Post;
 import com.ajou.jinwoo.median.valueObject.User;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class BoardWriteActivity extends AppCompatActivity {
 
@@ -105,10 +102,10 @@ public class BoardWriteActivity extends AppCompatActivity {
     public void sendPost(String userName) {
         if (rewrite) {
             int commentCount = getIntent().getExtras().getInt("STUDENT_NOTICE_COMMENT_COUNT");
-            postModel.correctPost((String) board_spinner.getSelectedItem(),userName, titleEditText.getText().toString(), contentsEditText.getText().toString(), postKey, commentCount);
+            postModel.correctPost((String) board_spinner.getSelectedItem(), userName, titleEditText.getText().toString(), contentsEditText.getText().toString(), postKey, commentCount);
 
         } else
-            postModel.writePost((String) board_spinner.getSelectedItem(),userName, titleEditText.getText().toString(), contentsEditText.getText().toString());
+            postModel.writePost((String) board_spinner.getSelectedItem(), userName, titleEditText.getText().toString(), contentsEditText.getText().toString());
     }
 
     private String getPostAuthorName() {

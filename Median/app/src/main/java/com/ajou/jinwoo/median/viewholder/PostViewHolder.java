@@ -110,10 +110,10 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         this.postType = postType;
         this.context = context;
 
-        if (!Objects.equals(model.getAuthorUid(), User.getInstance().getUid()))
-            dropdownButton.setVisibility(View.GONE);
-        else
-            dropdownButton.setVisibility(View.VISIBLE);
+        int visibility =  Objects.equals(model.getAuthorUid(), User.getInstance().getUid()) ?
+                View.VISIBLE :  View.GONE;
+
+        dropdownButton.setVisibility(visibility);
 
     }
 
