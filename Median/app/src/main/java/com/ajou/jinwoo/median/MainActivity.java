@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.ajou.jinwoo.median.valueObject.User;
 import com.google.android.gms.common.ConnectionResult;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
 
     private Fragment toolbarFragment;
+    private DatabaseReference databaseReference;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,26 +33,22 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
 
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("User").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() == null) {
-                    databaseReference.child("User").child(firebaseUser.getUid()).child("email").setValue(firebaseUser.getEmail());
-                    databaseReference.child("User").child(firebaseUser.getUid()).child("name").setValue(firebaseUser.getDisplayName());
-                    databaseReference.child("User").child(firebaseUser.getUid()).child("uid").setValue(firebaseUser.getUid());
-                    databaseReference.child("User").child(firebaseUser.getUid()).child("admin").setValue(false);
-                    databaseReference.child("User").child(firebaseUser.getUid()).child("subscribeMediaNotice").setValue(true);
-                    databaseReference.child("User").child(firebaseUser.getUid()).child("subscribeStudentNotice").setValue(true);
-                }
-                else{
-                    dataSnapshot.getValue(User.class);
+                    setUserInfoToDatabase();
+                } else {
+                    User.getInstance().setUserName(firebaseUser.getDisplayName());
+                    User.getInstance().setUid(firebaseUser.getUid());
                     User.getInstance().setAdmin(dataSnapshot.getValue(User.class).isAdmin());
                     User.getInstance().setSubscribeMediaNotice(dataSnapshot.getValue(User.class).isSubscribeMediaNotice());
                     User.getInstance().setSubscribeStudentNotice(dataSnapshot.getValue(User.class).isSubscribeStudentNotice());
+                    setSubscribeToTopic();
                 }
             }
 
@@ -60,19 +59,26 @@ public class MainActivity extends AppCompatActivity
         });
         System.out.println("Token: " + FirebaseInstanceId.getInstance().getToken());
 
-        User.getInstance().setUserName(firebaseUser.getDisplayName());
-        User.getInstance().setUserEmail(firebaseUser.getEmail());
-        User.getInstance().setUid(firebaseUser.getUid());
-
         FragmentManager fm = getSupportFragmentManager();
 
         Fragment mainFragment = new MainFragment();
         toolbarFragment = new ToolbarFragment();
-        FirebaseMessaging.getInstance().subscribeToTopic("notice");
 
         fm.beginTransaction().add(R.id.toolbar_container, toolbarFragment).commit();
         fm.beginTransaction().add(R.id.fragment_container, mainFragment).commit();
 
+    }
+
+    private void setSubscribeToTopic() {
+        if (User.getInstance().isSubscribeMediaNotice())
+            FirebaseMessaging.getInstance().subscribeToTopic("mediaNotice");
+        else
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("mediaNotice");
+
+        if (User.getInstance().isSubscribeStudentNotice())
+            FirebaseMessaging.getInstance().subscribeToTopic("studentNotice");
+        else
+            FirebaseMessaging.getInstance().unsubscribeFromTopic("studentNotice");
     }
 
     public void setToolbarTitle(String title) {
@@ -82,5 +88,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    private void setUserInfoToDatabase() {
+        databaseReference.child("User").child(firebaseUser.getUid()).child("name").setValue(firebaseUser.getDisplayName());
+        databaseReference.child("User").child(firebaseUser.getUid()).child("uid").setValue(firebaseUser.getUid());
+        databaseReference.child("User").child(firebaseUser.getUid()).child("admin").setValue(false);
+        databaseReference.child("User").child(firebaseUser.getUid()).child("subscribeMediaNotice").setValue(true);
+        databaseReference.child("User").child(firebaseUser.getUid()).child("subscribeStudentNotice").setValue(true);
+        setSubscribeToTopic();
     }
 }

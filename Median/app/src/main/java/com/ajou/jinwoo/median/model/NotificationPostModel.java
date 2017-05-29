@@ -47,7 +47,7 @@ public class NotificationPostModel extends AsyncTask<Void,Void,Void> {
             data.put("title", title);
             data.put("body", body);
 //cm1wboMuxnk:APA91bF7usfp43ryYkAgfZG1SKox71Wkumqjsaaf6_0B61oX05ldwcVWxcurFXMek_7S5ep5sGVr1dBNDquXqkuP4o2xFFVfmlcDdwCOVaosifj3Tcc8imMQvsxNp6j3isn2QaJqm2lr
-            parent.put("to", "/topics/notice");
+            parent.put("to", "/topics/studentNotice");
             parent.put("priority", "high");
             parent.put("data", data);
             System.out.println("확인"+parent.toString());

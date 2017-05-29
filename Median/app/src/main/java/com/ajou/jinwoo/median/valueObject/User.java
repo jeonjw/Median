@@ -3,13 +3,13 @@ package com.ajou.jinwoo.median.valueObject;
 public class User {
 
     private String userName;
-    private String userEmail;
     private String uid;
     private boolean admin;
     private boolean subscribeMediaNotice;
     private boolean subscribeStudentNotice;
 
     private User() {
+
     }
 
     public String getUserName() {
@@ -37,10 +37,6 @@ public class User {
         this.userName = userName;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
     public void setUid(String uid) {
         this.uid = uid;
     }
@@ -64,4 +60,5 @@ public class User {
     public static User getInstance() {
         return Singleton.INSTANCE;
     }
+
 }
