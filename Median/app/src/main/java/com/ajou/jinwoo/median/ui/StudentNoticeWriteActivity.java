@@ -102,11 +102,11 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
 
     private boolean isTextInputError() {
         if (TextUtils.isEmpty(titleEditText.getText().toString())) {
-            titleEditText.setError("제목을 입력하세요");
+            titleEditText.setError("제목을 입력하세요\n");
             titleEditText.requestFocus();
             return true;
         } else if (TextUtils.isEmpty(contentsEditText.getText().toString())) {
-            contentsEditText.setError("내용을 입력하세요");
+            contentsEditText.setError("내용을 입력하세요\n");
             contentsEditText.requestFocus();
             return true;
         }

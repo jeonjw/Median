@@ -88,11 +88,11 @@ public class BoardWriteActivity extends AppCompatActivity {
 
     private boolean isTextInputError() {
         if (TextUtils.isEmpty(titleEditText.getText().toString())) {
-            titleEditText.setError("제목을 입력하세요");
             titleEditText.requestFocus();
+            titleEditText.setError("제목을 입력해주세요\n");
             return true;
         } else if (TextUtils.isEmpty(contentsEditText.getText().toString())) {
-            contentsEditText.setError("내용을 입력하세요");
+            contentsEditText.setError("내용을 입력해주세요\n");
             contentsEditText.requestFocus();
             return true;
         }
@@ -110,9 +110,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     }
 
     private String getPostAuthorName() {
-        if (currentPosition == 2)
-            return "익명";
-        else
-            return User.getInstance().getUserName();
+        String authorName = currentPosition == 2 ? "익명" : User.getInstance().getUserName();
+        return authorName;
     }
 }

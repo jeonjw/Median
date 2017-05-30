@@ -34,15 +34,15 @@ public abstract class BaseBoardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_base_board, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.board_anonymous_recycler_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.board_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         setHasOptionsMenu(true);
 
-        LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
-        mManager.setReverseLayout(true);
-        mManager.setStackFromEnd(true);
-        mManager.scrollToPositionWithOffset(0, 0);
-        recyclerView.setLayoutManager(mManager);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.scrollToPositionWithOffset(0, 0);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         setAdapter(getRef(mDatabase));
 
@@ -109,7 +109,6 @@ public abstract class BaseBoardFragment extends Fragment {
     public void setAdapter(Query query) {
 
         PostModel postModel = new PostModel(getPostType());
-        postModel.setAdapter(query, getContext(), getPostType());
         postModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
             public void onDataChanged() {

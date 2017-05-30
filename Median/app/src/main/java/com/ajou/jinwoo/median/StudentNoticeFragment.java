@@ -23,6 +23,7 @@ import com.google.firebase.database.Query;
 public class StudentNoticeFragment extends Fragment {
     private DatabaseReference mDatabase;
     private RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
 
 
     @Nullable
@@ -34,10 +35,10 @@ public class StudentNoticeFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
-//        linearLayoutManager.scrollToPositionWithOffset(0, 0);
+        linearLayoutManager.scrollToPositionWithOffset(0, 0);
 
         recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -52,7 +53,6 @@ public class StudentNoticeFragment extends Fragment {
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setQueryHint("제목으로 검색");
-
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -89,11 +89,10 @@ public class StudentNoticeFragment extends Fragment {
 
     public void setAdapter(Query query) {
         StudentNoticeModel studentNoticeModel = new StudentNoticeModel();
-        studentNoticeModel.setAdapter(query,getContext());
         studentNoticeModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
             public void onDataChanged() {
-                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount()-1);//새글 작성시 스크롤 최상단으로 이동
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
             }
         });
         recyclerView.setAdapter(studentNoticeModel.setAdapter(query,getContext()));
