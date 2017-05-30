@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 
 import android.content.ContentResolver;
@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.ajou.jinwoo.median.BoardWritePhotoAdapter;
+import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;
 
 import java.io.File;

@@ -11,6 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.ajou.jinwoo.median.ui.AlbumActivity;
+import com.ajou.jinwoo.median.ui.InfoActivity;
+import com.ajou.jinwoo.median.ui.LectureActivity;
+import com.ajou.jinwoo.median.ui.NoticeActivity;
+
 public class MainFragment extends Fragment {
     private Button mNoticeButton;
     private Button mAlbumButton;

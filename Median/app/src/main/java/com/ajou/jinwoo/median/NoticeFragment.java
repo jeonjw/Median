@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ajou.jinwoo.median.ui.NoticeActivity;
+
 public class NoticeFragment extends Fragment {
 
     private ViewPager mViewPager;

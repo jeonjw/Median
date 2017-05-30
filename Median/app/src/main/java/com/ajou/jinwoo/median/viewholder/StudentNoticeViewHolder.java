@@ -15,10 +15,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.ajou.jinwoo.median.CommentListActivity;
+import com.ajou.jinwoo.median.ui.CommentListActivity;
 import com.ajou.jinwoo.median.BoardWritePhotoAdapter;
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.StudentNoticeWriteActivity;
+import com.ajou.jinwoo.median.ui.StudentNoticeWriteActivity;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
 import com.ajou.jinwoo.median.valueObject.User;
 import com.google.firebase.database.DatabaseReference;

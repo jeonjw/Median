@@ -1,17 +1,16 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.firebase.database.Query;
+import com.ajou.jinwoo.median.NoticeFragment;
+import com.ajou.jinwoo.median.R;
 
 public class NoticeActivity extends AppCompatActivity {
     private Fragment toolbarFragment;

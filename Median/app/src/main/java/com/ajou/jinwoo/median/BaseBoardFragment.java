@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.ajou.jinwoo.median.model.OnDataChangedListener;
 import com.ajou.jinwoo.median.model.PostModel;
+import com.ajou.jinwoo.median.ui.BoardWriteActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;

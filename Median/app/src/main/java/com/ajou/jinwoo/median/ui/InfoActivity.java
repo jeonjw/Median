@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.InfoModel;
 import com.ajou.jinwoo.median.model.OnDataChangedListener;
 

@@ -6,7 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
+
+import com.ajou.jinwoo.median.ui.ToolbarFragment;
 
 public class BoardActivity extends AppCompatActivity {
     private Fragment toolbarFragment;

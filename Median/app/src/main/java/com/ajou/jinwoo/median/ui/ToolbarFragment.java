@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ajou.jinwoo.median.R;
+
 public class ToolbarFragment extends Fragment {
     private TextView toolbarTitleTextView;
 
@@ -20,17 +22,20 @@ public class ToolbarFragment extends Fragment {
         toolbarTitleTextView = (TextView) toolbar.findViewById(R.id.toolbar_title);
         toolbar.setTitle("Media");
 
-        Typeface type = Typeface
-                .createFromAsset(getActivity().getAssets(), "Trebuchet MS.ttf");
-
         toolbarTitleTextView.setText(R.string.app_title);
-        toolbarTitleTextView.setTypeface(type);
+        setTypeface();
+
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(toolbar);
-
         activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         return view;
+    }
+    private void setTypeface(){
+        Typeface type = Typeface
+                .createFromAsset(getActivity().getAssets(), "Trebuchet MS.ttf");
+        toolbarTitleTextView.setTypeface(type);
+
     }
 
     public void setToolbarTitle(String title) {

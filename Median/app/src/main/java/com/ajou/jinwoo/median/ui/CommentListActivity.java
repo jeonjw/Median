@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.graphics.Color;
 import android.os.Build;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.CommentModel;
 import com.ajou.jinwoo.median.model.OnDataChangedListener;
 import com.ajou.jinwoo.median.valueObject.Comment;
@@ -25,8 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CommentListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private DatabaseReference databaseReference;
-    private String dataRefKey;
     private CommentModel model;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -35,8 +34,7 @@ public class CommentListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment_list);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        dataRefKey = getIntent().getExtras().getString("POST_KEY");
+        String dataRefKey = getIntent().getExtras().getString("POST_KEY");
         String postType = getIntent().getExtras().getString("POST_TYPE");
         model = new CommentModel(dataRefKey, postType);
         recyclerView = (RecyclerView) findViewById(R.id.comment_recycler_view);
@@ -74,16 +72,8 @@ public class CommentListActivity extends AppCompatActivity {
     }
 
     private void setCommentList() {
-        FirebaseRecyclerAdapter<Comment, CommentViewHolder> mAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class, R.layout.list_item_comment,
-                CommentViewHolder.class, databaseReference.child("comments").child(dataRefKey)) {
-            @Override
-            protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {
-                String commentKey = getRef(position).getKey();
-                viewHolder.bindComment(model, dataRefKey, commentKey);
-            }
 
-        };
-        recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(model.loadCommentList());
 
     }
 

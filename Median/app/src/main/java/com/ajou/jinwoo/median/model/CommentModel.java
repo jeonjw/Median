@@ -1,7 +1,10 @@
 package com.ajou.jinwoo.median.model;
 
+import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.valueObject.Comment;
 import com.ajou.jinwoo.median.valueObject.User;
+import com.ajou.jinwoo.median.viewholder.CommentViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,6 +49,20 @@ public class CommentModel {
             }
 
         });
+    }
+
+    public FirebaseRecyclerAdapter<Comment, CommentViewHolder> loadCommentList(){
+        FirebaseRecyclerAdapter<Comment, CommentViewHolder> mAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class, R.layout.list_item_comment,
+                CommentViewHolder.class, databaseReference.child("comments").child(dataRefKey)) {
+            @Override
+            protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {
+                String commentKey = getRef(position).getKey();
+                viewHolder.bindComment(model, dataRefKey, commentKey);
+            }
+
+        };
+
+        return mAdapter;
     }
 
     public void writeComment(String message) {

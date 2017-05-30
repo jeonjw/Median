@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,12 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.AlbumModel;
-import com.ajou.jinwoo.median.valueObject.PhotoAlbum;
-import com.ajou.jinwoo.median.viewholder.AlbumViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class AlbumActivity extends AppCompatActivity {

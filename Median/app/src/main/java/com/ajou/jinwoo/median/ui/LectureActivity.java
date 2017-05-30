@@ -1,10 +1,13 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+
+import com.ajou.jinwoo.median.LectureFragment;
+import com.ajou.jinwoo.median.R;
 
 public class LectureActivity extends AppCompatActivity {
 

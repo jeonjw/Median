@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.PostModel;
 import com.ajou.jinwoo.median.valueObject.User;
 
