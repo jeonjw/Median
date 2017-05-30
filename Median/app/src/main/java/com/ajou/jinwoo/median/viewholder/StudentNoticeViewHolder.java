@@ -15,9 +15,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.ajou.jinwoo.median.ui.CommentListActivity;
 import com.ajou.jinwoo.median.BoardWritePhotoAdapter;
 import com.ajou.jinwoo.median.R;
+import com.ajou.jinwoo.median.model.StudentNoticeModel;
+import com.ajou.jinwoo.median.ui.CommentListActivity;
 import com.ajou.jinwoo.median.ui.StudentNoticeWriteActivity;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
 import com.ajou.jinwoo.median.valueObject.User;
@@ -66,17 +67,15 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
                     public boolean onMenuItemClick(MenuItem item) {
                         if (item.getItemId() == R.id.popup_delete) {
                             if (Objects.equals(studentNotice.getAuthorUid(), User.getInstance().getUid())) {
-                                databaseReference.child("comments").child(dataRefKey).removeValue();
-                                databaseReference.child("student_notice").child(dataRefKey).removeValue();
+                                StudentNoticeModel studentNoticeModel = new StudentNoticeModel();
+                                studentNoticeModel.removeNotice(dataRefKey);
                             } else {
                                 Snackbar.make(dateTextView, "권한이 없습니다", Snackbar.LENGTH_SHORT).show();
                             }
                         } else if (item.getItemId() == R.id.popup_rewrite) {
                             Intent intent = new Intent(context, StudentNoticeWriteActivity.class);
-                            intent.putExtra("STUDENT_TITLE", studentNotice.getTitle());
-                            intent.putExtra("STUDENT_CONTENTS", studentNotice.getContents());
                             intent.putExtra("STUDENT_NOTICE_CORRECT_POST_KEY", dataRefKey);
-                            intent.putExtra("STUDENT_NOTICE_COMMENT_COUNT", studentNotice.getCommentCount());
+                            intent.putExtra("STUDENT_NOTICE", studentNotice);
                             context.startActivity(intent);
                         }
                         return true;
@@ -100,8 +99,8 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
         this.context = context;
         this.studentNotice = studentNotice;
 
-        int visibility =  Objects.equals(studentNotice.getAuthorUid(), User.getInstance().getUid()) ?
-                View.VISIBLE :  View.GONE;
+        int visibility = Objects.equals(studentNotice.getAuthorUid(), User.getInstance().getUid()) ?
+                View.VISIBLE : View.GONE;
 
         dropdownButton.setVisibility(visibility);
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.valueObject.Post;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
 import com.ajou.jinwoo.median.valueObject.User;
 import com.ajou.jinwoo.median.viewholder.StudentNoticeViewHolder;
@@ -30,13 +29,10 @@ public class StudentNoticeModel {
     private DatabaseReference databaseReference;
     private OnDataChangedListener onDataChangedListener;
     private List<String> urlList = new ArrayList<>();
-    private DatabaseReference ref;
-
 
     public void setOnDataChangedListener(OnDataChangedListener listener) {
         this.onDataChangedListener = listener;
     }
-
 
     public StudentNoticeModel() {
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -58,21 +54,36 @@ public class StudentNoticeModel {
 
     }
 
+    public void removeNotice(String dataRefKey) {
+        databaseReference.child("comments").child(dataRefKey).removeValue();
+        databaseReference.child("student_notice").child(dataRefKey).removeValue();
+    }
 
     public void writeNotice(String title, String contents) {
-        ref = databaseReference.child("student_notice").push();
-        ref.setValue(StudentNotice.newNotice(User.getInstance().getUserName(), title, contents, 0));
+        System.out.println("작성");
+        databaseReference.child("student_notice").push().setValue(StudentNotice.newNotice(User.getInstance().getUserName(), title, contents, 0));
+        new NotificationPostModel("학생회 공지가 등록됬습니다", title).execute();
+    }
+
+    public void writeNoticeWithImage(String title, String contents, List<String> urlList) {
+        System.out.println("이미지 작성");
+        databaseReference.child("student_notice").push().setValue(StudentNotice.newNoticeWithImages(User.getInstance().getUserName(), title, contents, 0, urlList));
         new NotificationPostModel("학생회 공지가 등록됬습니다", title).execute();
     }
 
     public void correctNotice(String title, String contents, String postKey, int commentCount) {
+        System.out.println("수정");
         databaseReference.child("student_notice").
-                child(postKey).setValue(Post.newPost(User.getInstance().getUserName(), title, contents, commentCount));
-
+                child(postKey).setValue(StudentNotice.newNotice(User.getInstance().getUserName(), title, contents, commentCount));
     }
 
-    public void writeNoticeWithImage(String title, String contents, final ArrayList<InputStream> selectedPhotos) {
+    public void correctNoticeWithImages(String title, String contents, String postKey, int commentCount, List<String> urlList) {
+        System.out.println("이미지 수정");
+        databaseReference.child("student_notice").
+                child(postKey).setValue(StudentNotice.newNoticeWithImages(User.getInstance().getUserName(), title, contents, commentCount, urlList));
+    }
 
+    public void uploadImages(final ArrayList<InputStream> selectedPhotos, final OnUploadImageListener listener) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReferenceFromUrl("gs://median-234c4.appspot.com").child("noticeImages");
 
@@ -84,7 +95,7 @@ public class StudentNoticeModel {
                     urlList.add(taskSnapshot.getDownloadUrl().toString());
 
                     if (urlList.size() == selectedPhotos.size())
-                        ref.child("urlList").setValue(urlList);
+                        listener.onSuccess(urlList);
 
 
                 }
@@ -96,8 +107,8 @@ public class StudentNoticeModel {
             });
 
         }
-        writeNotice(title, contents);
     }
+
 
     public FirebaseRecyclerAdapter setAdapter(Query query, final Context context) {
         FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder> adapter = new FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder>(StudentNotice.class, R.layout.list_item_student_notice,

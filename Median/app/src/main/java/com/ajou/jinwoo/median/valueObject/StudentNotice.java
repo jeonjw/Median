@@ -1,13 +1,16 @@
 package com.ajou.jinwoo.median.valueObject;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class StudentNotice {
+public class StudentNotice implements Parcelable{
 
     private String author;
     private String title;
@@ -16,6 +19,16 @@ public class StudentNotice {
     private String authorUid;
     private int commentCount;
     private List<String> urlList;
+
+    protected StudentNotice(Parcel in) {
+        author = in.readString();
+        title = in.readString();
+        contents = in.readString();
+        timeStamp = in.readString();
+        authorUid = in.readString();
+        commentCount = in.readInt();
+        urlList = in.createStringArrayList();
+    }
 
     public List<String> getUrlList() {
         return urlList;
@@ -75,5 +88,37 @@ public class StudentNotice {
         return new StudentNotice(userName, title, contents, commentCount);
     }
 
+    public static StudentNotice newNoticeWithImages(String userName, String title, String contents,int commentCount,List<String> urlList) {
+        return new StudentNotice(userName, title, contents, commentCount,urlList);
+    }
 
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(author);
+        dest.writeString(title);
+        dest.writeString(contents);
+        dest.writeString(timeStamp);
+        dest.writeString(authorUid);
+        dest.writeInt(commentCount);
+        dest.writeStringList(urlList);
+    }
+
+    public static final Creator<StudentNotice> CREATOR = new Creator<StudentNotice>() {
+        @Override
+        public StudentNotice createFromParcel(Parcel in) {
+            return new StudentNotice(in);
+        }
+
+        @Override
+        public StudentNotice[] newArray(int size) {
+            return new StudentNotice[size];
+        }
+    };
 }

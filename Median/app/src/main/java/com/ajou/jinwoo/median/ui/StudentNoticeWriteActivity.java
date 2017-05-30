@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +18,9 @@ import android.widget.ImageButton;
 
 import com.ajou.jinwoo.median.BoardWritePhotoAdapter;
 import com.ajou.jinwoo.median.R;
+import com.ajou.jinwoo.median.model.OnUploadImageListener;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;
+import com.ajou.jinwoo.median.valueObject.StudentNotice;
 
 import java.io.File;
 import java.io.InputStream;
@@ -34,9 +37,10 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
     private EditText contentsEditText;
     private StudentNoticeModel studentNoticeModel;
     private String postKey;
-    private boolean rewrite;
-    private ArrayList<String> selectedPhotos = new ArrayList<>();
+    private boolean correct;
+    private List<String> selectedPhotos = new ArrayList<>();
     private BoardWritePhotoAdapter photoAdapter;
+    private StudentNotice studentNotice;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,19 +54,15 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
         ImageButton writeButton = (ImageButton) findViewById(R.id.notice_write_finish);
         ImageButton photoButton = (ImageButton) findViewById(R.id.student_notice_photo_button);
 
-        photoAdapter = new BoardWritePhotoAdapter(this, selectedPhotos);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
-        recyclerView.setAdapter(photoAdapter);
 
         studentNoticeModel = new StudentNoticeModel();
 
-        String reWriteTitle = null;
-        String reWriteContents = null;
-
         if (getIntent().getExtras() != null) {
-            reWriteTitle = getIntent().getExtras().getString("STUDENT_TITLE");
-            reWriteContents = getIntent().getExtras().getString("STUDENT_CONTENTS");
+            studentNotice = getIntent().getParcelableExtra("STUDENT_NOTICE");
             postKey = getIntent().getExtras().getString("STUDENT_NOTICE_CORRECT_POST_KEY");
+            titleEditText.setText(studentNotice.getTitle());
+            contentsEditText.setText(studentNotice.getContents());
+            correct = true;
         }
 
         photoButton.setOnClickListener(new View.OnClickListener() {
@@ -77,12 +77,6 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
             }
         });
 
-        if (reWriteContents != null && reWriteTitle != null) {
-            titleEditText.setText(reWriteTitle);
-            contentsEditText.setText(reWriteContents);
-            rewrite = true;
-        }
-
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,12 +89,14 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isTextInputError())
                     return;
-
-                sendNotice();
-                finish();
+                writeNotice();
 
             }
         });
+
+        photoAdapter = new BoardWritePhotoAdapter(this, selectedPhotos);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
+        recyclerView.setAdapter(photoAdapter);
 
     }
 
@@ -118,18 +114,29 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
         return false;
     }
 
-    public void sendNotice() {
-        if (rewrite) {
-            int commentCount = getIntent().getExtras().getInt("COMMENT_COUNT");
-            studentNoticeModel.correctNotice(titleEditText.getText().toString(), contentsEditText.getText().toString(), postKey, commentCount);
+    private void writeNotice() {
+        if (selectedPhotos.size() != 0) {
+            Snackbar.make(contentsEditText, "이미지 업로드 중 . .", Snackbar.LENGTH_LONG).show();
+            studentNoticeModel.uploadImages(getInputStreamFromUri(selectedPhotos), new OnUploadImageListener() {
+                @Override
+                public void onSuccess(List<String> urlList) {
+                    if (!correct)
+                        studentNoticeModel.writeNoticeWithImage(titleEditText.getText().toString(), contentsEditText.getText().toString(), urlList);
+                    else
+                        studentNoticeModel.correctNoticeWithImages(titleEditText.getText().toString(), contentsEditText.getText().toString(), postKey, studentNotice.getCommentCount(), urlList);
+                    finish();
+                }
+            });
 
         } else {
-            if (selectedPhotos.size() == 0)
+            if (!correct)
                 studentNoticeModel.writeNotice(titleEditText.getText().toString(), contentsEditText.getText().toString());
             else
-                studentNoticeModel.writeNoticeWithImage(titleEditText.getText().toString(), contentsEditText.getText().toString(), getInputStreamFromUri(selectedPhotos));
+                studentNoticeModel.correctNotice(titleEditText.getText().toString(), contentsEditText.getText().toString(), postKey, studentNotice.getCommentCount());
+            finish();
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -148,11 +155,10 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
                 selectedPhotos.addAll(photos);
 
             photoAdapter.notifyDataSetChanged();
-
         }
     }
 
-    private ArrayList<InputStream> getInputStreamFromUri(ArrayList<String> photoInputStreamList) {
+    private ArrayList<InputStream> getInputStreamFromUri(List<String> photoInputStreamList) {
         ArrayList<InputStream> inputStreamList = new ArrayList<>();
         InputStream is;
         ContentResolver resolver;
