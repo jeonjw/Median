@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,8 @@ public class SettingAlarmButtonFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        Switch mediaNoticeSwitch = (Switch) view.findViewById(R.id.media_notice_switch);
-        Switch studentNoticeSwitch = (Switch) view.findViewById(R.id.student_notice_switch);
+        SwitchCompat mediaNoticeSwitch = (SwitchCompat) view.findViewById(R.id.media_notice_switch);
+        SwitchCompat studentNoticeSwitch = (SwitchCompat) view.findViewById(R.id.student_notice_switch);
 
         mediaNoticeSwitch.setChecked(User.getInstance().isSubscribeMediaNotice());
         studentNoticeSwitch.setChecked(User.getInstance().isSubscribeStudentNotice());

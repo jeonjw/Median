@@ -10,15 +10,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="학과 공지"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
-    <Switch
+    <android.support.v7.widget.SwitchCompat
         android:id="@+id/media_notice_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_margin="6dp"
-        android:layout_toRightOf="@+id/media_notice_switch_text_view"/>
+        android:theme="@style/customSwitch"
+        android:layout_toEndOf="@+id/media_notice_switch_text_view"/>
 
     <TextView
         android:id="@+id/student_notice_switch_text_view"
@@ -27,15 +28,16 @@
         android:text="학생회 공지"
         android:layout_margin="10dp"
         android:layout_below="@+id/media_notice_switch_text_view"
-        android:textSize="15dp" />
+        android:textSize="15sp" />
 
-    <Switch
+    <android.support.v7.widget.SwitchCompat
         android:id="@+id/student_notice_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_margin="6dp"
-        android:layout_toRightOf="@+id/student_notice_switch_text_view"
+        android:theme="@style/customSwitch"
+        android:layout_toEndOf="@+id/student_notice_switch_text_view"
         android:layout_below="@+id/media_notice_switch_text_view"/>
 
 </RelativeLayout>
