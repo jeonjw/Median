@@ -14,12 +14,12 @@ import java.util.List;
 
 import me.iwf.photopicker.utils.AndroidLifecycleUtils;
 
-public class BoardWritePhotoAdapter extends RecyclerView.Adapter<BoardWritePhotoViewHolder> {
+public class StudentNoticePhotoAdapter extends RecyclerView.Adapter<BoardWritePhotoViewHolder> {
     private List<String> photoPaths = new ArrayList<>();
     private Context mContext;
     private LayoutInflater inflater;
 
-    public BoardWritePhotoAdapter(Context mContext, List<String> photoPaths) {
+    public StudentNoticePhotoAdapter(Context mContext, List<String> photoPaths) {
         this.photoPaths = photoPaths;
         this.mContext = mContext;
         inflater = LayoutInflater.from(mContext);

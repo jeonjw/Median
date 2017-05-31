@@ -53,6 +53,8 @@ public class MediaNoticeFragment extends Fragment {
         setHasOptionsMenu(true);
 
         LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
+        mManager.setReverseLayout(true);
+//        mManager.setStackFromEnd(true);
         mManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(mManager);
 
@@ -62,7 +64,7 @@ public class MediaNoticeFragment extends Fragment {
     }
 
     private void readLimitFirstData() {
-        mDatabase.child("media_notice").limitToFirst(8).addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("media_notice").orderByChild("boardNum").limitToLast(8).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -73,6 +75,7 @@ public class MediaNoticeFragment extends Fragment {
 
                 noticeAdapter.setList(dataList);
                 progressDialog.dismiss();
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
                 readFullData();
             }
 
@@ -89,7 +92,7 @@ public class MediaNoticeFragment extends Fragment {
     }
 
     private void readFullData() {
-        mDatabase.child("media_notice").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("media_notice").orderByChild("boardNum").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -99,6 +102,7 @@ public class MediaNoticeFragment extends Fragment {
                     dataList.add(notice);
                 }
                 noticeAdapter.setList(dataList);
+                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
             }
 
             @Override

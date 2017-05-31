@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ajou.jinwoo.median.PhotoListActivity;
+import com.ajou.jinwoo.median.ui.PhotoListActivity;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.AlbumModel;
 import com.ajou.jinwoo.median.valueObject.PhotoAlbum;

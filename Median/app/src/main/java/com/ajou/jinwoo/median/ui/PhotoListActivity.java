@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -12,6 +12,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.PhotoListModel;
 
 import java.io.File;

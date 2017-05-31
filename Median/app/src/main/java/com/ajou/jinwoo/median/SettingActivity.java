@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.ajou.jinwoo.median.ui.DeveloperNameCardDialogFragment;
+import com.ajou.jinwoo.median.ui.LoginActivity;
 import com.ajou.jinwoo.median.ui.SettingAlarmButtonFragment;
 import com.ajou.jinwoo.median.ui.ToolbarFragment;
 import com.ajou.jinwoo.median.ui.VersionDialogFragment;

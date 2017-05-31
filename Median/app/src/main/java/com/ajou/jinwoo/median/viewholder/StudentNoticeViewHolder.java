@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -16,15 +15,13 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.ajou.jinwoo.median.BoardWritePhotoAdapter;
+import com.ajou.jinwoo.median.StudentNoticePhotoAdapter;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;
 import com.ajou.jinwoo.median.ui.CommentListActivity;
 import com.ajou.jinwoo.median.ui.StudentNoticeWriteActivity;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
 import com.ajou.jinwoo.median.valueObject.User;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
 
@@ -111,7 +108,7 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
             photoRecyclerView.setVisibility(View.GONE);
         else {
             photoRecyclerView.setVisibility(View.VISIBLE);
-            BoardWritePhotoAdapter photoAdapter = new BoardWritePhotoAdapter(context, studentNotice.getUrlList());
+            StudentNoticePhotoAdapter photoAdapter = new StudentNoticePhotoAdapter(context, studentNotice.getUrlList());
             photoRecyclerView.setAdapter(photoAdapter);
 
         }
