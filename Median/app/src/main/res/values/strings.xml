@@ -67,7 +67,15 @@
     <string name="e">E</string>
     <string name="f">F</string>
     <string name="g">G</string>
-    <string name="h">19:30</string>
+    <string name="h">H</string>
+    <string name="aTime">9:00~10:15</string>
+    <string name="bTime">10:30~11:45</string>
+    <string name="cTime">12:00~13:15</string>
+    <string name="dTime">13:30~14:45</string>
+    <string name="eTime">15:00~16:15</string>
+    <string name="fTime">16:30~17:45</string>
+    <string name="gTime">18:00~19:15</string>
+    <string name="hTime">19:30~</string>
     <string name="add_photo">사진추가</string>
     <string name="set_main_photo">대표 이미지로 설정</string>
     <string name="delete_photo">사진 삭제</string>

@@ -19,11 +19,11 @@ public class LectureFragment extends Fragment {
 
         final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.class_tab);
 
-        tabLayout.addTab(tabLayout.newTab().setText("월요일"));
-        tabLayout.addTab(tabLayout.newTab().setText("화요일"));
-        tabLayout.addTab(tabLayout.newTab().setText("수요일"));
-        tabLayout.addTab(tabLayout.newTab().setText("목요일"));
-        tabLayout.addTab(tabLayout.newTab().setText("금요일"));
+        tabLayout.addTab(tabLayout.newTab().setText("Mon"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tue"));
+        tabLayout.addTab(tabLayout.newTab().setText("Wed"));
+        tabLayout.addTab(tabLayout.newTab().setText("Thu"));
+        tabLayout.addTab(tabLayout.newTab().setText("Fri"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final LectureTabPageAdapter lectureTabPageAdapter = new LectureTabPageAdapter(getFragmentManager(), tabLayout.getTabCount());
