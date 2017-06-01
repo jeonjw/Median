@@ -17,15 +17,16 @@ import java.util.Calendar;
 
 public abstract class BaseLectureFragment extends Fragment {
 
-    TextView textViewB103;
-    TextView textView415;
-    TextView textView419;
-    TextView textView420;
-    TextView textView421;
-    TextView textView422;
-    TextView textView202;
-    TextView textView511;
-    TextView textViewA,textViewB,textViewC,textViewD,textViewE,textViewF,textViewG,textViewH;
+    private TextView textViewB103;
+    private TextView textView415;
+    private TextView textView419;
+    private TextView textView420;
+    private TextView textView421;
+    private TextView textView422;
+    private TextView textViewEx1;
+    private TextView textViewEx2;
+    private TextView textViewEx3;
+    private TextView textViewA,textViewB,textViewC,textViewD,textViewE,textViewF,textViewG,textViewH;
 
     @Nullable
     @Override
@@ -38,10 +39,9 @@ public abstract class BaseLectureFragment extends Fragment {
         textView420 = (TextView) view.findViewById(R.id.textView420);
         textView421 = (TextView) view.findViewById(R.id.textView421);
         textView422 = (TextView) view.findViewById(R.id.textView422);
-//        textViewEx1 = (TextView) view.findViewById(R.id.textView202);
-//        textViewEx2 = (TextView) view.findViewById(R.id.textView511);
-//        textViewEx3 = (TextView) view.findViewById(R.id.textView511);
-//        textViewEx4 = (TextView) view.findViewById(R.id.textView511);
+        textViewEx1 = (TextView) view.findViewById(R.id.textViewEx1);
+        textViewEx2 = (TextView) view.findViewById(R.id.textViewEx2);
+        textViewEx3 = (TextView) view.findViewById(R.id.textViewEx3);
 
         textViewA = (TextView) view.findViewById(R.id.timeA);
         textViewB = (TextView) view.findViewById(R.id.timeB);
