@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 
 public class LectureFragment extends Fragment {
@@ -30,7 +33,9 @@ public class LectureFragment extends Fragment {
 
 
         final FragmentManager fm = getFragmentManager();
+        Toast.makeText(getContext(),""+Calendar.getInstance().get(Calendar.DAY_OF_WEEK),Toast.LENGTH_SHORT).show();
         fm.beginTransaction().replace(R.id.lecture_container, lectureTabPageAdapter.getItem(tabLayout.getSelectedTabPosition())).commit();
+//        fm.beginTransaction().add(R.id.lecture_container, lectureTabPageAdapter.getItem(2)).commit();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -49,6 +54,8 @@ public class LectureFragment extends Fragment {
             }
         });
 
+        TabLayout.Tab tab = tabLayout.getTabAt(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-2);
+        tab.select();
 
         return view;
     }

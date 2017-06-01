@@ -9,11 +9,12 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
-        <TableRow>
+        <TableRow
+            android:layout_weight="0.5">
 
             <TextView
                 android:id="@+id/textViewBlank"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:background="@drawable/table_layout_border"
                 android:gravity="center" />
         </TableRow>
@@ -108,12 +109,12 @@
             android:layout_height="match_parent">
 
             <TableRow
-                android:layout_height="30dp">
+                android:layout_weight="0.5">
 
                 <TextView
                     android:id="@+id/textViewB103"
                     android:layout_width="110dp"
-                    android:layout_height="40dp"
+                    android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
                     android:gravity="center"
                     android:text="@string/산b103" />

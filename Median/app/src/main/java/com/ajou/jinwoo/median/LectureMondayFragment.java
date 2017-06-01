@@ -1,6 +1,7 @@
 package com.ajou.jinwoo.median;
 
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -123,6 +124,27 @@ public class LectureMondayFragment extends Fragment{
         setTextViewFont();
 
         return view;
+    }
+
+    private void checkCurrentTime(int time) {
+        if (time < 615) {//A
+            textViewA.setTextColor(Color.RED);
+        } else if (time < 705) {//B
+            textViewB.setTextColor(Color.RED);
+        } else if (time < 795) {//C
+            textViewC.setTextColor(Color.RED);
+        } else if (time < 885) {//D
+            textViewD.setTextColor(Color.RED);
+        } else if (time < 975) {//E
+            textViewE.setTextColor(Color.RED);
+        } else if (time < 1065) {//F
+            textViewF.setTextColor(Color.RED);
+        } else if (time < 1155) {//G
+            textViewG.setTextColor(Color.RED);
+        } else if (time < 1245) {//H
+            textViewH.setTextColor(Color.RED);
+        }
+
     }
 
     private void setTextViewFont() {
