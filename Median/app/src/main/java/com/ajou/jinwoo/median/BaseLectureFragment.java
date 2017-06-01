@@ -26,7 +26,7 @@ public abstract class BaseLectureFragment extends Fragment {
     private TextView textViewEx1;
     private TextView textViewEx2;
     private TextView textViewEx3;
-    private TextView textViewA,textViewB,textViewC,textViewD,textViewE,textViewF,textViewG,textViewH;
+    private TextView textViewA, textViewB, textViewC, textViewD, textViewE, textViewF, textViewG, textViewH;
 
     @Nullable
     @Override
@@ -105,14 +105,25 @@ public abstract class BaseLectureFragment extends Fragment {
         Typeface type = Typeface
                 .createFromAsset(getActivity().getAssets(), "Trebuchet MS.ttf");
 
-//        textViewB103.setTypeface(type);
-//        textView415.setTypeface(type);
-//        textView419.setTypeface(type);
-//        textView420.setTypeface(type);
-//        textView421.setTypeface(type);
-//        textView422.setTypeface(type);
-//        textView202.setTypeface(type);
-//        textView511.setTypeface(type);
+        textViewA.setTypeface(type);
+        textViewB.setTypeface(type);
+        textViewC.setTypeface(type);
+        textViewD.setTypeface(type);
+        textViewE.setTypeface(type);
+        textViewF.setTypeface(type);
+        textViewG.setTypeface(type);
+        textViewH.setTypeface(type);
+        textViewB103.setTypeface(type);
+        textView415.setTypeface(type);
+        textView419.setTypeface(type);
+        textView420.setTypeface(type);
+        textView421.setTypeface(type);
+        textView422.setTypeface(type);
+        textViewEx1.setTypeface(type);
+        if (textViewEx2 != null)
+            textViewEx2.setTypeface(type);
+        if (textViewEx3 != null)
+            textViewEx3.setTypeface(type);
     }
 
     private void checkCurrentTime(int time) {

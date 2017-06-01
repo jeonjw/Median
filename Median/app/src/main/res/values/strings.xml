@@ -81,4 +81,6 @@
     <string name="delete_photo">사진 삭제</string>
     <string name="student_notice">학생회 공지</string>
     <string name="media_notice">학과 공지</string>
+    <string name="title">제목</string>
+    <string name="contents">내용</string>
 </resources>
