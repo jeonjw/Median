@@ -32,14 +32,16 @@ public abstract class BaseLectureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getCurrentTabResourceId(), container, false);
 
-//        textViewB103 = (TextView) view.findViewById(R.id.textViewB103);
-//        textView415 = (TextView) view.findViewById(R.id.textView415);
-//        textView419 = (TextView) view.findViewById(R.id.textView419);
-//        textView420 = (TextView) view.findViewById(R.id.textView420);
-//        textView421 = (TextView) view.findViewById(R.id.textView421);
-//        textView422 = (TextView) view.findViewById(R.id.textView422);
-//        textView202 = (TextView) view.findViewById(R.id.textView202);
-//        textView511 = (TextView) view.findViewById(R.id.textView511);
+        textViewB103 = (TextView) view.findViewById(R.id.textViewB103);
+        textView415 = (TextView) view.findViewById(R.id.textView415);
+        textView419 = (TextView) view.findViewById(R.id.textView419);
+        textView420 = (TextView) view.findViewById(R.id.textView420);
+        textView421 = (TextView) view.findViewById(R.id.textView421);
+        textView422 = (TextView) view.findViewById(R.id.textView422);
+//        textViewEx1 = (TextView) view.findViewById(R.id.textView202);
+//        textViewEx2 = (TextView) view.findViewById(R.id.textView511);
+//        textViewEx3 = (TextView) view.findViewById(R.id.textView511);
+//        textViewEx4 = (TextView) view.findViewById(R.id.textView511);
 
         textViewA = (TextView) view.findViewById(R.id.timeA);
         textViewB = (TextView) view.findViewById(R.id.timeB);

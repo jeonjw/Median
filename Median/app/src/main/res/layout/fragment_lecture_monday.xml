@@ -174,11 +174,7 @@
                     android:gravity="center"
                     android:text="@string/전511" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_room"
-                    android:text="\n\n" />
+
             </TableRow>
 
 
