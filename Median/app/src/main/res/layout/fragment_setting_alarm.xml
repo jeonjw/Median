@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="학과 공지"
+        android:text="@string/media_notice"
         android:textSize="15sp" />
 
     <android.support.v7.widget.SwitchCompat
@@ -25,7 +25,7 @@
         android:id="@+id/student_notice_switch_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="학생회 공지"
+        android:text="@string/student_notice"
         android:layout_margin="10dp"
         android:layout_below="@+id/media_notice_switch_text_view"
         android:textSize="15sp" />

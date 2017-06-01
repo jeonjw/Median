@@ -43,7 +43,7 @@ public class SettingActivity extends AppCompatActivity {
                     click = true;
 
                 } else {
-                    fm.findFragmentByTag("Tag");
+                    //fm.findFragmentByTag("Tag");
                     fm.beginTransaction().remove(fm.findFragmentByTag("Tag")).commit();
                     click = false;
                 }
