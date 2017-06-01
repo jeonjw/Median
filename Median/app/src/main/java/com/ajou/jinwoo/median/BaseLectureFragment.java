@@ -149,4 +149,44 @@ public abstract class BaseLectureFragment extends Fragment {
 
     public abstract int getCurrentTabResourceId();
 
+    public static class LectureMondayFragment extends BaseLectureFragment {
+
+        @Override
+        public int getCurrentTabResourceId() {
+            return R.layout.fragment_lecture_monday;
+        }
+
+    }
+
+    public static class LectureFridayFragment extends BaseLectureFragment {
+
+        @Override
+        public int getCurrentTabResourceId() {
+            return R.layout.fragment_lecture_friday;
+        }
+    }
+
+    public static class LectureThursdayFragment extends BaseLectureFragment {
+
+        @Override
+        public int getCurrentTabResourceId() {
+            return R.layout.fragment_lecture_thursday;
+        }
+    }
+
+    public static class LectureTuesdayFragment extends BaseLectureFragment {
+
+        @Override
+        public int getCurrentTabResourceId() {
+            return R.layout.fragment_lecture_tuesday;
+        }
+    }
+
+    public static class LectureWednesdayFragment extends BaseLectureFragment {
+
+        @Override
+        public int getCurrentTabResourceId() {
+            return R.layout.fragment_lecture_wednesday;
+        }
+    }
 }

@@ -33,9 +33,7 @@ public class LectureFragment extends Fragment {
 
 
         final FragmentManager fm = getFragmentManager();
-        Toast.makeText(getContext(),""+Calendar.getInstance().get(Calendar.DAY_OF_WEEK),Toast.LENGTH_SHORT).show();
         fm.beginTransaction().replace(R.id.lecture_container, lectureTabPageAdapter.getItem(tabLayout.getSelectedTabPosition())).commit();
-//        fm.beginTransaction().add(R.id.lecture_container, lectureTabPageAdapter.getItem(2)).commit();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

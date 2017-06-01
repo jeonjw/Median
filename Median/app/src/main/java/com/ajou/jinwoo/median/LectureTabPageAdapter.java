@@ -19,19 +19,19 @@ public class LectureTabPageAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return new LectureMondayFragment();
+                return new BaseLectureFragment.LectureMondayFragment();
 
             case 1:
-                return new LectureTuesdayFragment();
+                return new BaseLectureFragment.LectureTuesdayFragment();
 
             case 2:
-                return new LectureWednesdayFragment();
+                return new BaseLectureFragment.LectureWednesdayFragment();
 
             case 3:
-                return new LectureThursdayFragment();
+                return new BaseLectureFragment.LectureThursdayFragment();
 
             case 4:
-                return new LectureFridayFragment();
+                return new BaseLectureFragment.LectureFridayFragment();
 
             default:
                 return null;

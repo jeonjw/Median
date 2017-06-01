@@ -53,6 +53,7 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
             }
         });
         itemView.setOnClickListener(this);
+        mTitleTextView.setFocusableInTouchMode(true);
 
     }
 
@@ -98,6 +99,8 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
             mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
             imageView.setImageDrawable(null);
         }
+
+
     }
 
     private boolean haveImage(String contents) {

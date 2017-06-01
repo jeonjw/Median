@@ -54,7 +54,7 @@ public class MediaNoticeFragment extends Fragment {
 
         LinearLayoutManager mManager = new LinearLayoutManager(getActivity());
         mManager.setReverseLayout(true);
-//        mManager.setStackFromEnd(true);
+        mManager.setStackFromEnd(true);
         mManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(mManager);
 
