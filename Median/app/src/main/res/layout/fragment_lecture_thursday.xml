@@ -21,7 +21,7 @@
         <TableRow android:layout_weight="1">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/timeA"
                 android:layout_height="match_parent"
                 android:background="@drawable/table_layout_time"
                 android:gravity="center"
@@ -31,6 +31,7 @@
         <TableRow android:layout_weight="1">
 
             <TextView
+                android:id="@+id/timeB"
                 android:layout_height="match_parent"
                 android:background="@drawable/table_layout_time"
                 android:gravity="center"
@@ -40,6 +41,7 @@
         <TableRow android:layout_weight="1">
 
             <TextView
+                android:id="@+id/timeC"
                 android:layout_height="match_parent"
                 android:background="@drawable/table_layout_time"
                 android:gravity="center"
@@ -49,6 +51,7 @@
         <TableRow android:layout_weight="1">
 
             <TextView
+                android:id="@+id/timeD"
                 android:layout_height="match_parent"
                 android:background="@drawable/table_layout_time"
                 android:gravity="center"
@@ -58,6 +61,7 @@
         <TableRow android:layout_weight="1">
 
             <TextView
+                android:id="@+id/timeE"
                 android:layout_height="match_parent"
                 android:background="@drawable/table_layout_time"
                 android:gravity="center"
@@ -67,6 +71,7 @@
         <TableRow android:layout_weight="1">
 
             <TextView
+                android:id="@+id/timeF"
                 android:layout_height="match_parent"
                 android:background="@drawable/table_layout_time"
                 android:gravity="center"
@@ -76,6 +81,7 @@
         <TableRow android:layout_weight="1">
 
             <TextView
+                android:id="@+id/timeG"
                 android:layout_height="match_parent"
                 android:background="@drawable/table_layout_time"
                 android:gravity="center"
@@ -85,6 +91,7 @@
         <TableRow android:layout_weight="1">
 
             <TextView
+                android:id="@+id/timeH"
                 android:layout_height="match_parent"
                 android:background="@drawable/table_layout_time"
                 android:gravity="center"
