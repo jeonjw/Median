@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median.Adapter;
+package com.ajou.jinwoo.median.adapter;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -14,10 +14,6 @@ import com.ajou.jinwoo.median.viewholder.MediaNoticeViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jinwoo on 2017. 6. 6..
- */
-
 public class MediaNoticeAdapter extends RecyclerView.Adapter<MediaNoticeViewHolder> {
     private List<MediaNotice> mediaNoticeList;
 
@@ -32,7 +28,6 @@ public class MediaNoticeAdapter extends RecyclerView.Adapter<MediaNoticeViewHold
 
     @Override
     public MediaNoticeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         final View view = layoutInflater.inflate(R.layout.list_item_media_notice, parent, false);
 

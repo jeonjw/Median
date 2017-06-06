@@ -1,13 +1,11 @@
-package com.ajou.jinwoo.median.Adapter;
+package com.ajou.jinwoo.median.adapter;
 
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.ajou.jinwoo.median.MediaNoticeFragment;
-import com.ajou.jinwoo.median.StudentNoticeFragment;
-import com.ajou.jinwoo.median.valueObject.StudentNotice;
+import com.ajou.jinwoo.median.ui.MediaNoticeFragment;
+import com.ajou.jinwoo.median.ui.StudentNoticeFragment;
 
 public class NoticeTabPageAdapter extends FragmentStatePagerAdapter {
     private int tabCount;

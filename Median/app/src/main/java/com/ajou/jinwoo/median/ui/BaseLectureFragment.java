@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 
 import android.graphics.Color;
@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.ajou.jinwoo.median.R;
 
 import java.util.Calendar;
 

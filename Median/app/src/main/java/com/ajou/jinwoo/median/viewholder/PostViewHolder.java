@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.ajou.jinwoo.median.BoardTabFragment;
+import com.ajou.jinwoo.median.ui.BoardTabFragment;
 import com.ajou.jinwoo.median.ui.BoardWriteActivity;
 import com.ajou.jinwoo.median.ui.CommentListActivity;
 import com.ajou.jinwoo.median.R;

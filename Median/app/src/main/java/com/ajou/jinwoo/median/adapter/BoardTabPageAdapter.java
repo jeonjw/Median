@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median.Adapter;
+package com.ajou.jinwoo.median.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

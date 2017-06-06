@@ -9,15 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.Toast;
 
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.valueObject.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Objects;
 
 public class SettingAlarmButtonFragment extends Fragment {
 
@@ -40,7 +36,7 @@ public class SettingAlarmButtonFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 User.getInstance().setSubscribeMediaNotice(isChecked);
-                saveSettings("subscribeMediaNotice",isChecked);
+                saveSettings("subscribeMediaNotice", isChecked);
             }
         });
 
@@ -48,15 +44,15 @@ public class SettingAlarmButtonFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 User.getInstance().setSubscribeStudentNotice(isChecked);
-                saveSettings("subscribeStudentNotice",isChecked);
+                saveSettings("subscribeStudentNotice", isChecked);
             }
         });
 
         return view;
     }
 
-    private void saveSettings(String type,boolean isChecked){
+    private void saveSettings(String type, boolean isChecked) {
         databaseReference.child("User").child(User.getInstance().getUid()).child(type).setValue(isChecked);
-        Snackbar.make(getView(),"앱을 다시 시작하시면 적용 됩니다.",Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(getView(), "앱을 다시 시작하시면 적용 됩니다.", Snackbar.LENGTH_SHORT).show();
     }
 }

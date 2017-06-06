@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.ajou.jinwoo.median.ui.ToolbarFragment;
+import com.ajou.jinwoo.median.R;
 
 public class BoardActivity extends AppCompatActivity {
     private Fragment toolbarFragment;

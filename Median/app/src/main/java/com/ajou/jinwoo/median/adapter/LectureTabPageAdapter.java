@@ -1,10 +1,10 @@
-package com.ajou.jinwoo.median.Adapter;
+package com.ajou.jinwoo.median.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.ajou.jinwoo.median.BaseLectureFragment;
+import com.ajou.jinwoo.median.ui.BaseLectureFragment;
 
 
 public class LectureTabPageAdapter extends FragmentStatePagerAdapter {

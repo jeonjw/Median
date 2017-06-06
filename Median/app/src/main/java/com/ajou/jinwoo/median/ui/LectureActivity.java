@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.ajou.jinwoo.median.LectureFragment;
 import com.ajou.jinwoo.median.R;
 
 public class LectureActivity extends AppCompatActivity {

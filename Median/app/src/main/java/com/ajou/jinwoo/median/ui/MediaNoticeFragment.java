@@ -1,9 +1,10 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajou.jinwoo.median.Adapter.MediaNoticeAdapter;
+import com.ajou.jinwoo.median.R;
+import com.ajou.jinwoo.median.adapter.MediaNoticeAdapter;
 import com.ajou.jinwoo.median.model.MediaNoticeModel;
 import com.ajou.jinwoo.median.model.OnDataLoadListener;
 import com.ajou.jinwoo.median.valueObject.MediaNotice;
@@ -43,7 +45,6 @@ public class MediaNoticeFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.media_notice_recycler_view);
         mediaNoticeModel = new MediaNoticeModel();
 
-
         setHasOptionsMenu(true);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), VERTICAL, true);
@@ -66,25 +67,27 @@ public class MediaNoticeFragment extends Fragment {
             }
         });
 
+
         return view;
     }
-    
+
+
 
     public void filter(String text) {
         searchedList.clear();
 
-        if (text.isEmpty()) {
-            searchedList.addAll(mediaNoticeModel.getDataList());
-        } else {
-            text = text.toLowerCase();
-            for (MediaNotice item : mediaNoticeModel.getDataList()) {
-                if (item.getContents().toLowerCase().contains(text) || item.getTitle().toLowerCase().contains(text)) {
-                    searchedList.add(item);
-                }
+        text = text.toLowerCase();
+        for (MediaNotice item : mediaNoticeModel.getDataList()) {
+            if (item.getContents().toLowerCase().contains(text) || item.getTitle().toLowerCase().contains(text)) {
+                searchedList.add(item);
             }
         }
 
-        mediaNoticeAdapter.setList(searchedList);
+        if (searchedList.size() == 0) {
+            Snackbar.make(getView(), "검색 결과가 없습니다.", Snackbar.LENGTH_SHORT).show();
+            mediaNoticeAdapter.setList(mediaNoticeModel.getDataList());
+        } else
+            mediaNoticeAdapter.setList(searchedList);
     }
 
 

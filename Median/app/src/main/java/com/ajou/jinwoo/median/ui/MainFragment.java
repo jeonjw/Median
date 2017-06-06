@@ -11,14 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.ajou.jinwoo.median.BoardActivity;
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.SettingActivity;
-import com.ajou.jinwoo.median.ui.AlbumActivity;
-import com.ajou.jinwoo.median.ui.InfoActivity;
-import com.ajou.jinwoo.median.ui.LectureActivity;
-import com.ajou.jinwoo.median.ui.MainActivity;
-import com.ajou.jinwoo.median.ui.NoticeActivity;
 
 public class MainFragment extends Fragment {
     private Button mNoticeButton;
@@ -85,7 +78,7 @@ public class MainFragment extends Fragment {
         mAlbumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),AlbumActivity.class);
+                Intent intent = new Intent(getActivity(), AlbumActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,7 +1,8 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,16 +14,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajou.jinwoo.median.model.OnDataChangedListener;
+import com.ajou.jinwoo.median.R;
+import com.ajou.jinwoo.median.adapter.StudentNoticeAdapter;
+import com.ajou.jinwoo.median.model.OnStudentNoticeChange;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;
+import com.ajou.jinwoo.median.valueObject.StudentNotice;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class StudentNoticeFragment extends Fragment {
     private DatabaseReference mDatabase;
     private RecyclerView recyclerView;
+    private StudentNoticeAdapter studentNoticeAdapter;
+    private List<StudentNotice> searchedList;
+    private StudentNoticeModel studentNoticeModel;
 
 
     @Override
@@ -40,7 +48,20 @@ public class StudentNoticeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_notice, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+//        mDatabase = FirebaseDatabase.getInstance().getReference();
+        studentNoticeModel = new StudentNoticeModel();
+
+        studentNoticeModel.setOnDataChangedListener(new OnStudentNoticeChange() {
+            @Override
+            public void onLoaded(List<StudentNotice> studentNoticeList, List<String> keyList) {
+                studentNoticeAdapter.setList(studentNoticeList);
+                studentNoticeAdapter.setKeyList(keyList);
+                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
+            }
+        });
+
+        studentNoticeAdapter = new StudentNoticeAdapter();
+        searchedList = new ArrayList<>();
 
         setHasOptionsMenu(true);
 
@@ -50,8 +71,9 @@ public class StudentNoticeFragment extends Fragment {
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
 
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(studentNoticeAdapter);
 
-        setAdapter(mDatabase.child("student_notice"));
+//        setAdapter(mDatabase.child("student_notice"));
 
 
         return view;
@@ -66,9 +88,8 @@ public class StudentNoticeFragment extends Fragment {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                Query query = mDatabase.child("student_notice").orderByChild("title").startAt(s).endAt(s + "\uf8ff");
-                setAdapter(query);
+            public boolean onQueryTextSubmit(String query) {
+                filter(query);
 
                 return true;
             }
@@ -84,7 +105,7 @@ public class StudentNoticeFragment extends Fragment {
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-                        setAdapter(mDatabase.child("student_notice"));
+                        studentNoticeAdapter.setList(studentNoticeModel.getDataList());
                         return true;
                     }
 
@@ -96,18 +117,34 @@ public class StudentNoticeFragment extends Fragment {
                 });
     }
 
+    public void filter(String text) {
+        searchedList.clear();
 
-
-    public void setAdapter(Query query) {
-        StudentNoticeModel studentNoticeModel = new StudentNoticeModel();
-        studentNoticeModel.setOnDataChangedListener(new OnDataChangedListener() {
-            @Override
-            public void onDataChanged() {
-                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
+        text = text.toLowerCase();
+        for (StudentNotice item : studentNoticeModel.getDataList()) {
+            if (item.getContents().toLowerCase().contains(text) || item.getTitle().toLowerCase().contains(text)) {
+                searchedList.add(item);
             }
-        });
-        recyclerView.setAdapter(studentNoticeModel.setAdapter(query));
+        }
 
+        if (searchedList.size() == 0) {
+            Snackbar.make(getView(), "검색 결과가 없습니다.", Snackbar.LENGTH_SHORT).show();
+            studentNoticeAdapter.setList(studentNoticeModel.getDataList());
+        } else
+            studentNoticeAdapter.setList(searchedList);
     }
+
+
+//    public void setAdapter(Query query) {
+//        StudentNoticeModel studentNoticeModel = new StudentNoticeModel();
+//        studentNoticeModel.setOnDataChangedListener(new OnDataChangedListener() {
+//            @Override
+//            public void onDataChanged() {
+//                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
+//            }
+//        });
+//        recyclerView.setAdapter(studentNoticeModel.setAdapter(query));
+//
+//    }
 
 }

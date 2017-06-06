@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.ajou.jinwoo.median.Adapter.StudentNoticePhotoAdapter;
+import com.ajou.jinwoo.median.adapter.StudentNoticePhotoAdapter;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;
 import com.ajou.jinwoo.median.ui.CommentListActivity;

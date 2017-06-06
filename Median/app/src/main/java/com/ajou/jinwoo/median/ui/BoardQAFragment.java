@@ -1,6 +1,5 @@
 package com.ajou.jinwoo.median.ui;
 
-import com.ajou.jinwoo.median.BaseBoardFragment;
 import com.google.firebase.database.DatabaseReference;
 
 

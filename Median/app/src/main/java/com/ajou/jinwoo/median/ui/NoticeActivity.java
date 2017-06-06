@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ajou.jinwoo.median.NoticeFragment;
 import com.ajou.jinwoo.median.R;
 
 public class NoticeActivity extends AppCompatActivity {
@@ -41,18 +40,17 @@ public class NoticeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.menu_write) {
-            Intent intent = new Intent(NoticeActivity.this,StudentNoticeWriteActivity.class);
+            Intent intent = new Intent(NoticeActivity.this, StudentNoticeWriteActivity.class);
             startActivity(intent);
-        } else if (item.getItemId() == R.id.menu_search) {
-
         }
         return true;
 
     }
 
 
-    public void setToolbarTitle(String title) {
-        ((ToolbarFragment) toolbarFragment).setToolbarTitle(title);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((ToolbarFragment) toolbarFragment).setToolbarTitle("Notice");
     }
-
 }

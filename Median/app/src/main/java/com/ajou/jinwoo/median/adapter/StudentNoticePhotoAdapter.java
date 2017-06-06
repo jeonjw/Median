@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median.Adapter;
+package com.ajou.jinwoo.median.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -3,6 +3,7 @@ package com.ajou.jinwoo.median.model;
 import android.support.annotation.NonNull;
 
 import com.ajou.jinwoo.median.R;
+import com.ajou.jinwoo.median.valueObject.MediaNotice;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
 import com.ajou.jinwoo.median.valueObject.User;
 import com.ajou.jinwoo.median.viewholder.StudentNoticeViewHolder;
@@ -26,25 +27,39 @@ import java.util.UUID;
 
 public class StudentNoticeModel {
     private DatabaseReference databaseReference;
-    private OnDataChangedListener onDataChangedListener;
+    private OnStudentNoticeChange onDataLoadListener;
     private List<String> urlList;
     private List<StudentNotice> dataList;
+    private List<String> keyList;
 
-    public void setOnDataChangedListener(OnDataChangedListener listener) {
-        this.onDataChangedListener = listener;
+
+    public List<StudentNotice> getDataList() {
+        return dataList;
+    }
+
+    public void setOnDataChangedListener(OnStudentNoticeChange listener) {
+        this.onDataLoadListener = listener;
     }
 
     public StudentNoticeModel() {
-        dataList = new ArrayList<>();
         urlList = new ArrayList<>();
+        dataList = new ArrayList<>();
+        keyList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
         databaseReference.child("student_notice").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (onDataChangedListener != null) {
-                    onDataChangedListener.onDataChanged();
+                dataList.clear();
+                keyList.clear();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    StudentNotice studentNotice = ds.getValue(StudentNotice.class);
+                    dataList.add(studentNotice);
+                    keyList.add(ds.getKey());
                 }
+                if (onDataLoadListener != null)
+                    onDataLoadListener.onLoaded(dataList, keyList);
+
             }
 
             @Override
@@ -113,22 +128,21 @@ public class StudentNoticeModel {
     }
 
 
-    public FirebaseRecyclerAdapter setAdapter(Query query) {
-        FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder> adapter = new FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder>(StudentNotice.class, R.layout.list_item_student_notice,
-                StudentNoticeViewHolder.class, query) {
-            @Override
-            protected void populateViewHolder(StudentNoticeViewHolder viewHolder, StudentNotice model, int position) {
-                DatabaseReference postRef = getRef(position);
-                String postKey = postRef.getKey();
-                dataList.add(model);
-                viewHolder.bindNotice(model, postKey);
-
-            }
-        };
-
-
-        return adapter;
-    }
+//    public FirebaseRecyclerAdapter setAdapter(Query query) {
+//        FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder> adapter = new FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder>(StudentNotice.class, R.layout.list_item_student_notice,
+//                StudentNoticeViewHolder.class, query) {
+//            @Override
+//            protected void populateViewHolder(StudentNoticeViewHolder viewHolder, StudentNotice model, int position) {
+//                DatabaseReference postRef = getRef(position);
+//                String postKey = postRef.getKey();
+//                viewHolder.bindNotice(model, postKey);
+//
+//            }
+//        };
+//
+//
+//        return adapter;
+//    }
 
     private String generateTempFilename() {
         return UUID.randomUUID().toString();

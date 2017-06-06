@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajou.jinwoo.median.Adapter.LectureTabPageAdapter;
+import com.ajou.jinwoo.median.adapter.LectureTabPageAdapter;
+import com.ajou.jinwoo.median.R;
 
 import java.util.Calendar;
 

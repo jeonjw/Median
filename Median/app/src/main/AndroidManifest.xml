@@ -33,7 +33,7 @@
 
 
         <activity android:name=".ui.MainActivity"/>
-        <activity android:name=".BoardActivity"/>
+        <activity android:name=".ui.BoardActivity"/>
         <activity android:name=".ui.NoticeActivity"/>
         <activity android:name=".ui.InfoActivity"/>
         <activity android:name=".ui.AlbumActivity"/>
@@ -47,7 +47,7 @@
         <activity android:name=".ui.StudentNoticeWriteActivity"/>
         <activity android:name=".ui.BoardWriteActivity"/>
         <activity android:name=".ui.CommentListActivity"/>
-        <activity android:name=".SettingActivity"/>
+        <activity android:name=".ui.SettingActivity"/>
         <activity android:name=".ui.LectureActivity"/>
         <activity android:name=".ui.PhotoListActivity"/>
 

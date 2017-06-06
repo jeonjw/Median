@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.ajou.jinwoo.median.Adapter.StudentNoticePhotoAdapter;
+import com.ajou.jinwoo.median.adapter.StudentNoticePhotoAdapter;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.OnUploadImageListener;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;
@@ -48,12 +48,13 @@ public class StudentNoticeWriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_notice_write);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.student_notice_image_recycler_view);
-        titleEditText = (EditText) findViewById(R.id.student_notice_title_edit_text);
-        contentsEditText = (EditText) findViewById(R.id.student_notice_contents_edit_text);
+
         ImageButton closeButton = (ImageButton) findViewById(R.id.notice_write_close_button);
         ImageButton writeButton = (ImageButton) findViewById(R.id.notice_write_finish);
         ImageButton photoButton = (ImageButton) findViewById(R.id.student_notice_photo_button);
 
+        titleEditText = (EditText) findViewById(R.id.student_notice_title_edit_text);
+        contentsEditText = (EditText) findViewById(R.id.student_notice_contents_edit_text);
 
         studentNoticeModel = new StudentNoticeModel();
 

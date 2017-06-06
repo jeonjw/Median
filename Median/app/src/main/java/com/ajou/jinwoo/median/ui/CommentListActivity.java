@@ -17,11 +17,6 @@ import android.widget.ImageButton;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.CommentModel;
 import com.ajou.jinwoo.median.model.OnDataChangedListener;
-import com.ajou.jinwoo.median.valueObject.Comment;
-import com.ajou.jinwoo.median.viewholder.CommentViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class CommentListActivity extends AppCompatActivity {
@@ -48,7 +43,7 @@ public class CommentListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (TextUtils.isEmpty(commentEdit.getText().toString())) {
-                    Snackbar snackbar = Snackbar.make(sendButton,"댓글을 입력하세요",Snackbar.LENGTH_SHORT);
+                    Snackbar snackbar = Snackbar.make(sendButton, "댓글을 입력하세요", Snackbar.LENGTH_SHORT);
                     View sbView = snackbar.getView();
                     sbView.setBackgroundColor(Color.parseColor("#6CABDD"));
                     snackbar.show();

@@ -12,22 +12,17 @@ import java.util.List;
 
 public class MediaNoticeModel {
     private DatabaseReference databaseReference;
-    private List<MediaNotice> searchedList;
+    private List<MediaNotice> dataList;
+
 
     public List<MediaNotice> getDataList() {
         return dataList;
     }
 
-    private List<MediaNotice> dataList;
-
     public MediaNoticeModel() {
         dataList = new ArrayList<>();
-        searchedList = new ArrayList<>();
-
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
-
-
 
     public void readLimitFirstData(final OnDataLoadListener listener) {
         databaseReference.child("media_notice").orderByChild("boardNum").limitToLast(8).addListenerForSingleValueEvent(new ValueEventListener() {

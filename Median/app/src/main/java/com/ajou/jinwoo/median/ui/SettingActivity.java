@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.ajou.jinwoo.median.ui.DeveloperNameCardDialogFragment;
-import com.ajou.jinwoo.median.ui.LoginActivity;
-import com.ajou.jinwoo.median.ui.SettingAlarmButtonFragment;
-import com.ajou.jinwoo.median.ui.ToolbarFragment;
-import com.ajou.jinwoo.median.ui.VersionDialogFragment;
+import com.ajou.jinwoo.median.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingActivity extends AppCompatActivity {
@@ -39,11 +35,10 @@ public class SettingActivity extends AppCompatActivity {
                 SettingAlarmButtonFragment settingAlarmOnButtonFragment = new SettingAlarmButtonFragment();
 
                 if (!click) {
-                    fm.beginTransaction().add(R.id.alarm_setting_container, settingAlarmOnButtonFragment,"Tag").commit();
+                    fm.beginTransaction().add(R.id.alarm_setting_container, settingAlarmOnButtonFragment, "Tag").commit();
                     click = true;
 
                 } else {
-                    //fm.findFragmentByTag("Tag");
                     fm.beginTransaction().remove(fm.findFragmentByTag("Tag")).commit();
                     click = false;
                 }
@@ -66,7 +61,6 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent it = new Intent(Intent.ACTION_SEND);
                 String[] mailAddress = {"gch01410@gmail.com", "jeonjw1933@gmail.com"};
-
                 it.setType("plain/text");
                 it.putExtra(Intent.EXTRA_EMAIL, mailAddress);
 

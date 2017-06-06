@@ -1,4 +1,4 @@
-package com.ajou.jinwoo.median;
+package com.ajou.jinwoo.median.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajou.jinwoo.median.Adapter.NoticeTabPageAdapter;
-import com.ajou.jinwoo.median.ui.NoticeActivity;
+import com.ajou.jinwoo.median.adapter.NoticeTabPageAdapter;
+import com.ajou.jinwoo.median.R;
 
 public class NoticeFragment extends Fragment {
 
@@ -21,8 +21,6 @@ public class NoticeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notice, container, false);
-
-        ((NoticeActivity) getActivity()).setToolbarTitle("MediaNotice");
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
