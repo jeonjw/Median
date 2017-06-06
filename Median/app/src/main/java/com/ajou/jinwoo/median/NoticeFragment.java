@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ajou.jinwoo.median.Adapter.NoticeTabPageAdapter;
 import com.ajou.jinwoo.median.ui.NoticeActivity;
 
 public class NoticeFragment extends Fragment {
@@ -21,7 +22,7 @@ public class NoticeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notice, container, false);
 
-        ((NoticeActivity) getActivity()).setToolbarTitle("Notice");
+        ((NoticeActivity) getActivity()).setToolbarTitle("MediaNotice");
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);

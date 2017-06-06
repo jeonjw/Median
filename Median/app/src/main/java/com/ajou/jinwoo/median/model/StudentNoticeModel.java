@@ -1,6 +1,5 @@
 package com.ajou.jinwoo.median.model;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.ajou.jinwoo.median.R;
@@ -28,13 +27,16 @@ import java.util.UUID;
 public class StudentNoticeModel {
     private DatabaseReference databaseReference;
     private OnDataChangedListener onDataChangedListener;
-    private List<String> urlList = new ArrayList<>();
+    private List<String> urlList;
+    private List<StudentNotice> dataList;
 
     public void setOnDataChangedListener(OnDataChangedListener listener) {
         this.onDataChangedListener = listener;
     }
 
     public StudentNoticeModel() {
+        dataList = new ArrayList<>();
+        urlList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("student_notice").addValueEventListener(new ValueEventListener() {
             @Override
@@ -107,19 +109,23 @@ public class StudentNoticeModel {
             });
 
         }
+
     }
 
 
-    public FirebaseRecyclerAdapter setAdapter(Query query, final Context context) {
+    public FirebaseRecyclerAdapter setAdapter(Query query) {
         FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder> adapter = new FirebaseRecyclerAdapter<StudentNotice, StudentNoticeViewHolder>(StudentNotice.class, R.layout.list_item_student_notice,
                 StudentNoticeViewHolder.class, query) {
             @Override
             protected void populateViewHolder(StudentNoticeViewHolder viewHolder, StudentNotice model, int position) {
                 DatabaseReference postRef = getRef(position);
                 String postKey = postRef.getKey();
-                viewHolder.bindNotice(model, context, postKey);
+                dataList.add(model);
+                viewHolder.bindNotice(model, postKey);
+
             }
         };
+
 
         return adapter;
     }
@@ -127,6 +133,5 @@ public class StudentNoticeModel {
     private String generateTempFilename() {
         return UUID.randomUUID().toString();
     }
-
 
 }

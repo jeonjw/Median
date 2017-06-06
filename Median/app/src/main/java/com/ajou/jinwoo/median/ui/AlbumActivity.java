@@ -29,7 +29,7 @@ public class AlbumActivity extends AppCompatActivity {
         setContentView(R.layout.activity_album);
 
 
-        albumModel = new AlbumModel(AlbumActivity.this);
+        albumModel = new AlbumModel();
         FragmentManager fm = getSupportFragmentManager();
         toolbarFragment = new ToolbarFragment();
         fm.beginTransaction().add(R.id.album_toolbar_container, toolbarFragment).commit();

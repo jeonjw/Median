@@ -1,6 +1,5 @@
 package com.ajou.jinwoo.median.model;
 
-import android.content.Context;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
@@ -15,7 +14,7 @@ public class InfoModel {
     private FirebaseRecyclerAdapter<Info, InfoViewHolder> adapter;
     private OnDataChangedListener onDataChangedListener;
 
-    public InfoModel(final Context context) {
+    public InfoModel() {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         adapter = new FirebaseRecyclerAdapter<Info, InfoViewHolder>(Info.class, R.layout.list_item_info,
@@ -23,7 +22,7 @@ public class InfoModel {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             protected void populateViewHolder(InfoViewHolder viewHolder, Info model, int position) {
-                viewHolder.bindNotice(model, context);
+                viewHolder.bindInfo(model);
 
                 if (onDataChangedListener != null) {
                     onDataChangedListener.onDataChanged();

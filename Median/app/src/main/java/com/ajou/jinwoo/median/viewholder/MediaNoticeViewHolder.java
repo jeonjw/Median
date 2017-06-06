@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.valueObject.Notice;
+import com.ajou.jinwoo.median.valueObject.MediaNotice;
 import com.bumptech.glide.Glide;
 
 import org.jsoup.Jsoup;
@@ -38,6 +38,7 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
     public MediaNoticeViewHolder(View itemView) {
         super(itemView);
 
+        this.context = itemView.getContext();
         mTitleTextView = (TextView) itemView.findViewById(R.id.media_notice_title_text_view);
         mContentsTextView = (TextView) itemView.findViewById(R.id.media_notice_contents_text_view);
         imageView = (ImageView) itemView.findViewById(R.id.media_notice_image_view);
@@ -59,15 +60,14 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void bindNotice(Notice notice, Context context) {
+    public void bindNotice(MediaNotice mediaNotice) {
 
         isClicked = false;
         haveImage = false;
-        this.context = context;
 
-        bindTitle(notice.getTitle());
+        bindTitle(mediaNotice.getTitle());
 
-        if (haveImage(notice.getContents())) {
+        if (haveImage(mediaNotice.getContents())) {
             haveImage = true;
             imageUrl = "http://media.ajou.ac.kr/" + elements.attr("src");
 
@@ -77,7 +77,7 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
         } else {
             haveImage = false;
             imageView.setVisibility(View.GONE);
-            bindContents(notice.getContents());
+            bindContents(mediaNotice.getContents());
         }
 
         mContentsTextView.setMaxLines(2);

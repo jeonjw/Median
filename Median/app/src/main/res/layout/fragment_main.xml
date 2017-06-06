@@ -22,7 +22,7 @@
             android:gravity="start|center"
             android:paddingStart="20dp"
             android:paddingEnd="10dp"
-            android:text="@string/notice"
+            android:text="@string/mediaNotice"
             android:textColor="#ffffff"
             android:textSize="28sp" />
 

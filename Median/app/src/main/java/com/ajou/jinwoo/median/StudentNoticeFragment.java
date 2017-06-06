@@ -23,8 +23,17 @@ import com.google.firebase.database.Query;
 public class StudentNoticeFragment extends Fragment {
     private DatabaseReference mDatabase;
     private RecyclerView recyclerView;
-    LinearLayoutManager linearLayoutManager;
 
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            System.out.println("TEST VISIBLE");
+        } else {
+            System.out.println("TEST INVISIBLE");
+        }
+    }
 
     @Nullable
     @Override
@@ -35,7 +44,7 @@ public class StudentNoticeFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
@@ -44,6 +53,7 @@ public class StudentNoticeFragment extends Fragment {
 
         setAdapter(mDatabase.child("student_notice"));
 
+
         return view;
     }
 
@@ -51,7 +61,7 @@ public class StudentNoticeFragment extends Fragment {
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         MenuItem searchItem = menu.findItem(R.id.menu_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setQueryHint("제목으로 검색");
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -65,8 +75,7 @@ public class StudentNoticeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                if (s.length() == 0)
-                    setAdapter(mDatabase.child("student_notice"));
+
                 return true;
             }
         });
@@ -87,14 +96,18 @@ public class StudentNoticeFragment extends Fragment {
                 });
     }
 
+
+
     public void setAdapter(Query query) {
         StudentNoticeModel studentNoticeModel = new StudentNoticeModel();
         studentNoticeModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
             public void onDataChanged() {
-                recyclerView.scrollToPosition(recyclerView.getAdapter().getItemCount()-1);
+                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
             }
         });
-        recyclerView.setAdapter(studentNoticeModel.setAdapter(query,getContext()));
+        recyclerView.setAdapter(studentNoticeModel.setAdapter(query));
+
     }
+
 }

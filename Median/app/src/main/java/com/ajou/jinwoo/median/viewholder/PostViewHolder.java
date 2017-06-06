@@ -41,6 +41,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public PostViewHolder(View itemView) {
         super(itemView);
 
+        context = itemView.getContext();
         titleTextView = (TextView) itemView.findViewById(R.id.post_title_text_view);
         contentsTextView = (TextView) itemView.findViewById(R.id.post_contents_text_view);
         authorTextView = (TextView) itemView.findViewById(R.id.post_author_text_view);
@@ -66,12 +67,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                             } else {
                                 Snackbar.make(dateTextView, "권한이 없습니다", Snackbar.LENGTH_SHORT).show();
                             }
-                        }
-                        else if(item.getItemId() == R.id.popup_rewrite){
+                        } else if (item.getItemId() == R.id.popup_rewrite) {
                             Intent intent = new Intent(context, BoardWriteActivity.class);
                             intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab());
-                            intent.putExtra("BOARD_TITLE",post.getTitle());
-                            intent.putExtra("BOARD_CONTENTS",post.getContents());
+                            intent.putExtra("BOARD_TITLE", post.getTitle());
+                            intent.putExtra("BOARD_CONTENTS", post.getContents());
                             intent.putExtra("CORRECT_POST_KEY", dataRefKey);
                             intent.putExtra("COMMENT_COUNT", post.getCommentCount());
                             context.startActivity(intent);
@@ -98,7 +98,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
     }
 
-    public void bindPost(final Post model, Context context, String postKey, String postType) {
+    public void bindPost(final Post model, String postKey, String postType) {
         post = model;
 
         titleTextView.setText(model.getTitle());
@@ -108,10 +108,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         commentCountTextView.setText(String.valueOf(model.getCommentCount()));
         this.dataRefKey = postKey;
         this.postType = postType;
-        this.context = context;
 
-        int visibility =  Objects.equals(model.getAuthorUid(), User.getInstance().getUid()) ?
-                View.VISIBLE :  View.GONE;
+        int visibility = Objects.equals(model.getAuthorUid(), User.getInstance().getUid()) ?
+                View.VISIBLE : View.GONE;
 
         dropdownButton.setVisibility(visibility);
 

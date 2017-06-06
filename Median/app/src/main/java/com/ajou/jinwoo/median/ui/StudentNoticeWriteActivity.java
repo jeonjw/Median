@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.ajou.jinwoo.median.StudentNoticePhotoAdapter;
+import com.ajou.jinwoo.median.Adapter.StudentNoticePhotoAdapter;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.OnUploadImageListener;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;

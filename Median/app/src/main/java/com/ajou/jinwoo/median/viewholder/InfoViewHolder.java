@@ -29,6 +29,7 @@ public class InfoViewHolder extends RecyclerView.ViewHolder {
     InfoViewHolder(View itemView) {
         super(itemView);
 
+        this.context = itemView.getContext();
         mImageView = (ImageView) itemView.findViewById(R.id.profile_image);
         mNameTextView = (TextView) itemView.findViewById(R.id.info_name_text_view);
         mEmailTextView = (TextView) itemView.findViewById(R.id.info_email_text_view);
@@ -49,8 +50,7 @@ public class InfoViewHolder extends RecyclerView.ViewHolder {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void bindNotice(Info info, Context context) {
-        this.context = context;
+    public void bindInfo(Info info) {
         mInfo = info;
         int res = context.getResources().getIdentifier(mInfo.getProfileImage(), "drawable",context.getPackageName());
         Glide.with(context).load(res).into(mImageView);

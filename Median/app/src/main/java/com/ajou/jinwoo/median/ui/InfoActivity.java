@@ -33,7 +33,7 @@ public class InfoActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.info_recycler_view);
 
-        InfoModel infoModel = new InfoModel(getApplicationContext());
+        InfoModel infoModel = new InfoModel();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setReverseLayout(true);

@@ -119,7 +119,7 @@ public abstract class BaseBoardFragment extends Fragment {
             }
         });
 
-        recyclerView.setAdapter(postModel.setAdapter(query, getContext(), getPostType()));
+        recyclerView.setAdapter(postModel.setAdapter(query, getPostType()));
     }
 
     private void showProgressDialog() {

@@ -38,7 +38,7 @@ public class PhotoListActivity extends AppCompatActivity {
         titleTextView.setText(getIntent().getExtras().getString("ALBUM_TITLE"));
         String dataRefKey = getIntent().getExtras().getString("POST_KEY");
 
-        photoListModel = new PhotoListModel(PhotoListActivity.this, dataRefKey);
+        photoListModel = new PhotoListModel(dataRefKey);
 
         FloatingActionButton addPhoto = (FloatingActionButton) findViewById(R.id.add_photo_button);
         addPhoto.setOnClickListener(new View.OnClickListener() {

@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.ajou.jinwoo.median.StudentNoticePhotoAdapter;
+import com.ajou.jinwoo.median.Adapter.StudentNoticePhotoAdapter;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;
 import com.ajou.jinwoo.median.ui.CommentListActivity;
@@ -41,6 +41,7 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
     public StudentNoticeViewHolder(View itemView) {
         super(itemView);
 
+        this.context = itemView.getContext();
         titleTextView = (TextView) itemView.findViewById(R.id.student_notice_title_text_view);
         contentsTextView = (TextView) itemView.findViewById(R.id.student_notice_contents_text_view);
         authorTextView = (TextView) itemView.findViewById(R.id.student_notice_author_text_view);
@@ -87,8 +88,7 @@ public class StudentNoticeViewHolder extends RecyclerView.ViewHolder implements 
         itemView.setOnClickListener(this);
     }
 
-    public void bindNotice(StudentNotice studentNotice, Context context, String postKey) {
-        this.context = context;
+    public void bindNotice(StudentNotice studentNotice, String postKey) {
         this.studentNotice = studentNotice;
 
         titleTextView.setText(studentNotice.getTitle());

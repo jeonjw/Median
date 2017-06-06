@@ -32,12 +32,13 @@ public class PhotoListViewHolder extends RecyclerView.ViewHolder implements View
         return imageView;
     }
 
-    public PhotoListViewHolder(View itemView, Context context, List<String> imageUrlList, String dataRefKey) {
+    public PhotoListViewHolder(View itemView, List<String> imageUrlList, String dataRefKey) {
         super(itemView);
+        this.context = itemView.getContext();
         imageView = (ImageView) itemView.findViewById(R.id.photo_list_image_view);
         imageView.getLayoutParams().height = getRandomIntInRange(500, 300);
-        photoListModel = new PhotoListModel(context, dataRefKey);
-        this.context = context;
+        photoListModel = new PhotoListModel(dataRefKey);
+
         this.imageUrlList = imageUrlList;
 
         itemView.setOnClickListener(this);

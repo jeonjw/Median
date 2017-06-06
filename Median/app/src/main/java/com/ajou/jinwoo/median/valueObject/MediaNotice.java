@@ -1,6 +1,6 @@
 package com.ajou.jinwoo.median.valueObject;
 
-public class Notice {
+public class MediaNotice {
 
     private String title;
     private String contents;
@@ -21,11 +21,11 @@ public class Notice {
         this.contents = contents;
     }
 
-    public Notice(String title, String contents) {
+    public MediaNotice(String title, String contents) {
         this.title = title;
         this.contents = contents;
     }
-    public Notice(){
+    public MediaNotice(){
 
     }
 }

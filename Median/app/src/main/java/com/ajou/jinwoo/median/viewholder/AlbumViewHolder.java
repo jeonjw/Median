@@ -32,13 +32,13 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
 
+        this.context = itemView.getContext();
         imageView = (ImageView) itemView.findViewById(R.id.album_main_image_view);
         detailTextView = (TextView) itemView.findViewById(R.id.album_title_text_view);
-
         imageView.getLayoutParams().height = getRandomIntInRange(550, 400);
     }
 
-    public void bindData(PhotoAlbum photoAlbum, String dataRefKey, Context context) {
+    public void bindData(PhotoAlbum photoAlbum, String dataRefKey) {
         Glide.with(context)
                 .load(photoAlbum.getMainImageUrl())
                 .centerCrop()
@@ -46,7 +46,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
         detailTextView.setText(photoAlbum.getDetail());
         this.dataRefKey = dataRefKey;
-        this.context = context;
+
     }
 
     protected int getRandomIntInRange(int max, int min) {
@@ -73,7 +73,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId()==R.id.popup_delete_album) {
-                    albumModel = new AlbumModel(context);
+                    albumModel = new AlbumModel();
                     if (User.getInstance().isAdmin()) {
                        albumModel.deleteAlbum(dataRefKey);
                     } else

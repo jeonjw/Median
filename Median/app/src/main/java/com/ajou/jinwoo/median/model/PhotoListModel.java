@@ -31,15 +31,15 @@ import me.iwf.photopicker.utils.AndroidLifecycleUtils;
 public class PhotoListModel {
     private DatabaseReference databaseReference;
     private String dataRefKey;
-    private Context context;
+
     private PhotoListAdapter photoListAdapter;
     private List<String> imageUrlList = new ArrayList<>();
     private List<String> urlList = new ArrayList<>();
     private List<String> keyList = new ArrayList<>();
 
 
-    public PhotoListModel(Context context, String dataRefKey) {
-        this.context = context;
+    public PhotoListModel(String dataRefKey) {
+
         this.dataRefKey = dataRefKey;
         databaseReference = FirebaseDatabase.getInstance().getReference();
         photoListAdapter = new PhotoListAdapter(imageUrlList);
@@ -128,10 +128,10 @@ public class PhotoListModel {
         @Override
         public PhotoListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-            LayoutInflater layoutInflater = LayoutInflater.from(context);
+            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
             final View view = layoutInflater.inflate(R.layout.list_item_photo_list, parent, false);
 
-            return new PhotoListViewHolder(view, context, imageUrlList, dataRefKey);
+            return new PhotoListViewHolder(view, imageUrlList, dataRefKey);
         }
 
         @Override
@@ -140,7 +140,7 @@ public class PhotoListModel {
             holder.setPosition(position);
             boolean canLoadImage = AndroidLifecycleUtils.canLoadImage(holder.getImageView().getContext());
             if (canLoadImage) {
-                Glide.with(context)
+                Glide.with(holder.getImageView().getContext())
                         .load(imageUrlList.get(position))
                         .centerCrop()
                         .thumbnail(0.1f)
