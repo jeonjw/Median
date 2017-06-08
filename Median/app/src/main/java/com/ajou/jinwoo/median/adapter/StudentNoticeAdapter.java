@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.valueObject.MediaNotice;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
 import com.ajou.jinwoo.median.viewholder.StudentNoticeViewHolder;
 
@@ -21,7 +20,7 @@ public class StudentNoticeAdapter extends RecyclerView.Adapter<StudentNoticeView
         studentNoticeList = new ArrayList<>();
     }
 
-    public void setList(List<StudentNotice> searchedList) {
+    public void setDataList(List<StudentNotice> searchedList) {
         studentNoticeList = searchedList;
         notifyDataSetChanged();
     }

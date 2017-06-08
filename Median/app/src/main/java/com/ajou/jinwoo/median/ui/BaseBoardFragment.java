@@ -20,14 +20,11 @@ import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.OnDataChangedListener;
 import com.ajou.jinwoo.median.model.PostModel;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 
 public abstract class BaseBoardFragment extends Fragment {
-    private DatabaseReference mDatabase;
     private RecyclerView recyclerView;
-    private ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -35,7 +32,6 @@ public abstract class BaseBoardFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_base_board, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.board_recycler_view);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         setHasOptionsMenu(true);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -44,12 +40,14 @@ public abstract class BaseBoardFragment extends Fragment {
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        setAdapter(getRef(mDatabase));
+        showProgressDialog();
+
+        setAdapter(getRef());
 
         return view;
     }
 
-    public abstract DatabaseReference getRef(DatabaseReference databaseReference);
+    public abstract DatabaseReference getRef();
 
     public abstract String getPostType();
 
@@ -63,12 +61,11 @@ public abstract class BaseBoardFragment extends Fragment {
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setQueryHint("제목으로 검색");
 
-//        showProgressDialog();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Query query = getRef(mDatabase).orderByChild("title").startAt(s).endAt(s + "\uf8ff");
+                Query query = getRef().orderByChild("title").startAt(s).endAt(s + "\uf8ff");
                 setAdapter(query);
                 return true;
             }
@@ -76,7 +73,7 @@ public abstract class BaseBoardFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 if (s.length() == 0)
-                    setAdapter(getRef(mDatabase));
+                    setAdapter(getRef());
                 return true;
             }
         });
@@ -85,7 +82,7 @@ public abstract class BaseBoardFragment extends Fragment {
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-                        setAdapter(getRef(mDatabase));
+                        setAdapter(getRef());
                         return true;
                     }
 
@@ -123,7 +120,7 @@ public abstract class BaseBoardFragment extends Fragment {
     }
 
     private void showProgressDialog() {
-        progressDialog = new ProgressDialog(getActivity());
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Loading..");
         progressDialog.show();

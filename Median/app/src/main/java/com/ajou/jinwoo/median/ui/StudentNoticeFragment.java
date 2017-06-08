@@ -19,42 +19,29 @@ import com.ajou.jinwoo.median.adapter.StudentNoticeAdapter;
 import com.ajou.jinwoo.median.model.OnStudentNoticeChange;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class StudentNoticeFragment extends Fragment {
-    private DatabaseReference mDatabase;
     private RecyclerView recyclerView;
     private StudentNoticeAdapter studentNoticeAdapter;
     private List<StudentNotice> searchedList;
     private StudentNoticeModel studentNoticeModel;
 
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            System.out.println("TEST VISIBLE");
-        } else {
-            System.out.println("TEST INVISIBLE");
-        }
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_notice, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
         studentNoticeModel = new StudentNoticeModel();
 
         studentNoticeModel.setOnDataChangedListener(new OnStudentNoticeChange() {
             @Override
             public void onLoaded(List<StudentNotice> studentNoticeList, List<String> keyList) {
-                studentNoticeAdapter.setList(studentNoticeList);
+                studentNoticeAdapter.setDataList(studentNoticeList);
                 studentNoticeAdapter.setKeyList(keyList);
                 recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
             }
@@ -69,12 +56,10 @@ public class StudentNoticeFragment extends Fragment {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
+        
 
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(studentNoticeAdapter);
-
-//        setAdapter(mDatabase.child("student_notice"));
-
 
         return view;
     }
@@ -105,7 +90,7 @@ public class StudentNoticeFragment extends Fragment {
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-                        studentNoticeAdapter.setList(studentNoticeModel.getDataList());
+                        studentNoticeAdapter.setDataList(studentNoticeModel.getDataList());
                         return true;
                     }
 
@@ -129,22 +114,10 @@ public class StudentNoticeFragment extends Fragment {
 
         if (searchedList.size() == 0) {
             Snackbar.make(getView(), "검색 결과가 없습니다.", Snackbar.LENGTH_SHORT).show();
-            studentNoticeAdapter.setList(studentNoticeModel.getDataList());
+            studentNoticeAdapter.setDataList(studentNoticeModel.getDataList());
         } else
-            studentNoticeAdapter.setList(searchedList);
+            studentNoticeAdapter.setDataList(searchedList);
     }
 
-
-//    public void setAdapter(Query query) {
-//        StudentNoticeModel studentNoticeModel = new StudentNoticeModel();
-//        studentNoticeModel.setOnDataChangedListener(new OnDataChangedListener() {
-//            @Override
-//            public void onDataChanged() {
-//                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
-//            }
-//        });
-//        recyclerView.setAdapter(studentNoticeModel.setAdapter(query));
-//
-//    }
 
 }

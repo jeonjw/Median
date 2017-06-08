@@ -25,8 +25,6 @@ import com.ajou.jinwoo.median.valueObject.MediaNotice;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.widget.LinearLayout.VERTICAL;
-
 public class MediaNoticeFragment extends Fragment {
 
     private ProgressDialog progressDialog;
@@ -47,7 +45,7 @@ public class MediaNoticeFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), VERTICAL, true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setStackFromEnd(true);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.scrollToPositionWithOffset(0, 0);

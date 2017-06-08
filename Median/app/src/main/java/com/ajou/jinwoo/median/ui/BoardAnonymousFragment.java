@@ -1,6 +1,7 @@
 package com.ajou.jinwoo.median.ui;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class BoardAnonymousFragment extends BaseBoardFragment {
 
@@ -8,7 +9,8 @@ public class BoardAnonymousFragment extends BaseBoardFragment {
     }
 
     @Override
-    public DatabaseReference getRef(DatabaseReference databaseReference) {
+    public DatabaseReference getRef() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         return databaseReference.child("익명자유");
     }
 
