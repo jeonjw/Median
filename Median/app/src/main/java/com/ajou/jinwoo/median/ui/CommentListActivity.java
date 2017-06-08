@@ -67,9 +67,7 @@ public class CommentListActivity extends AppCompatActivity {
     }
 
     private void setCommentList() {
-
         recyclerView.setAdapter(model.loadCommentList());
-
     }
 
     @Override

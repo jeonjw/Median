@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.PostModel;
@@ -110,7 +111,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     }
 
     private String getPostAuthorName() {
-        String authorName = currentPosition == 2 ? "익명" : User.getInstance().getUserName();
+        String authorName = board_spinner.getSelectedItemPosition() == 2 ? "익명" : User.getInstance().getUserName();
         return authorName;
     }
 }
