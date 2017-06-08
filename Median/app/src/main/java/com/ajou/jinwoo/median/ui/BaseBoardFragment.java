@@ -40,7 +40,7 @@ public abstract class BaseBoardFragment extends Fragment {
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        showProgressDialog();
+//        showProgressDialog();
 
         setAdapter(getRef());
 

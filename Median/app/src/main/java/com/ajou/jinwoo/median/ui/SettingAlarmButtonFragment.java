@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.valueObject.User;
@@ -53,6 +54,7 @@ public class SettingAlarmButtonFragment extends Fragment {
 
     private void saveSettings(String type, boolean isChecked) {
         databaseReference.child("User").child(User.getInstance().getUid()).child(type).setValue(isChecked);
-        Snackbar.make(getView(), "앱을 다시 시작하시면 적용 됩니다.", Snackbar.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),"앱을 다시 시작하시면 적용 됩니다.",Toast.LENGTH_SHORT).show();
+//        Snackbar.make(getView(), "앱을 다시 시작하시면 적용 됩니다.", Snackbar.LENGTH_SHORT).show();
     }
 }
