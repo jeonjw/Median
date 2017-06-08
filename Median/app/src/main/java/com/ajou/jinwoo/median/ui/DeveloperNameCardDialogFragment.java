@@ -12,7 +12,7 @@ import com.ajou.jinwoo.median.R;
 public class DeveloperNameCardDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.activity_developer_name_card,null);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_developer_name_card,null);
         return new AlertDialog.Builder(getActivity()).setView(view).create();
     }
 }

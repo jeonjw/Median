@@ -129,7 +129,7 @@ public abstract class BaseLectureFragment extends Fragment {
     }
 
     private void checkCurrentTime(int time) {
-        if (time < 615) {//A
+        if (time < 615 && time > 540) {//A
             textViewA.setTextColor(Color.RED);
         } else if (time < 705) {//B
             textViewB.setTextColor(Color.RED);

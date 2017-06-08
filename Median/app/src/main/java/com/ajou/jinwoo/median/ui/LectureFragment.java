@@ -55,7 +55,9 @@ public class LectureFragment extends Fragment {
         });
 
         TabLayout.Tab tab = tabLayout.getTabAt(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-2);
-        tab.select();
+        if (tab != null) {
+            tab.select();
+        }
 
         return view;
     }
