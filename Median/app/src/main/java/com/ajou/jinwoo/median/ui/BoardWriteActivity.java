@@ -103,11 +103,13 @@ public class BoardWriteActivity extends AppCompatActivity {
 
     public void sendPost(String userName) {
         if (rewrite) {
-            int commentCount = getIntent().getExtras().getInt("STUDENT_NOTICE_COMMENT_COUNT");
+            int commentCount = getIntent().getExtras().getInt("COMMENT_COUNT");
             postModel.correctPost((String) board_spinner.getSelectedItem(), userName, titleEditText.getText().toString(), contentsEditText.getText().toString(), postKey, commentCount);
 
         } else
             postModel.writePost((String) board_spinner.getSelectedItem(), userName, titleEditText.getText().toString(), contentsEditText.getText().toString());
+
+        Toast.makeText(getApplicationContext(), "작성이 완료되었습니다.", Toast.LENGTH_SHORT).show();
     }
 
     private String getPostAuthorName() {

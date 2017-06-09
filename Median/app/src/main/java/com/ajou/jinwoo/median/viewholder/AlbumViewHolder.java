@@ -17,6 +17,7 @@ import com.ajou.jinwoo.median.valueObject.PhotoAlbum;
 import com.ajou.jinwoo.median.valueObject.User;
 import com.bumptech.glide.Glide;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -66,18 +67,20 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public boolean onLongClick(View v) {
 
         final PopupMenu popup = new PopupMenu(context, imageView);
-        popup.getMenuInflater()
-                .inflate(R.menu.popup_album, popup.getMenu());
+        popup.getMenuInflater().inflate(R.menu.popup_album, popup.getMenu());
+
+        albumModel = new AlbumModel();
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId()==R.id.popup_delete_album) {
-                    albumModel = new AlbumModel();
+                if (item.getItemId() == R.id.popup_delete_album) {
                     if (User.getInstance().isAdmin()) {
-                       albumModel.deleteAlbum(dataRefKey);
+                        albumModel.deleteAlbum(dataRefKey);
                     } else
                         Snackbar.make(imageView, "삭제 권한이 없습니다", Snackbar.LENGTH_SHORT).show();
+                } else if (item.getItemId() == R.id.popup_delete_album) {
+                    albumModel.renameAlbum(dataRefKey);
                 }
 
 

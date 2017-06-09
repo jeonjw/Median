@@ -24,7 +24,7 @@ public class MediaNoticeModel {
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void readLimitFirstData(final OnDataLoadListener listener) {
+    public void readLimitFirstData(final OnNoticeChangeListener<MediaNotice> listener) {
         databaseReference.child("media_notice").orderByChild("boardNum").limitToLast(8).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -34,7 +34,7 @@ public class MediaNoticeModel {
                     dataList.add(mediaNotice);
                 }
 
-                listener.onLoaded(dataList);
+                listener.onChange(dataList,null);
                 readFullData(listener);
             }
 
@@ -47,7 +47,7 @@ public class MediaNoticeModel {
 
     }
 
-    public void readFullData(final OnDataLoadListener listener) {
+    public void readFullData(final OnNoticeChangeListener listener) {
         databaseReference.child("media_notice").orderByChild("boardNum").addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -57,7 +57,7 @@ public class MediaNoticeModel {
                     MediaNotice mediaNotice = ds.getValue(MediaNotice.class);
                     dataList.add(mediaNotice);
                 }
-                listener.onLoaded(dataList);
+                listener.onChange(dataList,null);
             }
 
             @Override

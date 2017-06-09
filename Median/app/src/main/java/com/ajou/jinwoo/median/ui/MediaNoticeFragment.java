@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.adapter.MediaNoticeAdapter;
 import com.ajou.jinwoo.median.model.MediaNoticeModel;
-import com.ajou.jinwoo.median.model.OnDataLoadListener;
+import com.ajou.jinwoo.median.model.OnNoticeChangeListener;
 import com.ajou.jinwoo.median.valueObject.MediaNotice;
 
 import java.util.ArrayList;
@@ -55,20 +55,21 @@ public class MediaNoticeFragment extends Fragment {
 
         showProgressDialog();
 
-        mediaNoticeModel.readLimitFirstData(new OnDataLoadListener() {
+        mediaNoticeModel.readLimitFirstData(new OnNoticeChangeListener<MediaNotice>() {
+
             @Override
-            public void onLoaded(List<MediaNotice> dataList) {
-                mediaNoticeAdapter.setList(dataList);
+            public void onChange(List noticeList, List keyList) {
+                mediaNoticeAdapter.setList(noticeList);
                 recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
                 if (progressDialog.isShowing())
                     progressDialog.dismiss();
             }
+
         });
 
 
         return view;
     }
-
 
 
     public void filter(String text) {

@@ -2,19 +2,14 @@ package com.ajou.jinwoo.median.model;
 
 import android.support.annotation.NonNull;
 
-import com.ajou.jinwoo.median.R;
-import com.ajou.jinwoo.median.valueObject.MediaNotice;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
 import com.ajou.jinwoo.median.valueObject.User;
-import com.ajou.jinwoo.median.viewholder.StudentNoticeViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -27,7 +22,7 @@ import java.util.UUID;
 
 public class StudentNoticeModel {
     private DatabaseReference databaseReference;
-    private OnStudentNoticeChange onDataLoadListener;
+    private OnNoticeChangeListener<StudentNotice> onNoticeChangeListener;
     private List<String> urlList;
     private List<StudentNotice> dataList;
     private List<String> keyList;
@@ -37,8 +32,8 @@ public class StudentNoticeModel {
         return dataList;
     }
 
-    public void setOnDataChangedListener(OnStudentNoticeChange listener) {
-        this.onDataLoadListener = listener;
+    public void setOnDataChangedListener(OnNoticeChangeListener<StudentNotice> listener) {
+        this.onNoticeChangeListener = listener;
     }
 
     public StudentNoticeModel() {
@@ -57,8 +52,8 @@ public class StudentNoticeModel {
                     dataList.add(studentNotice);
                     keyList.add(ds.getKey());
                 }
-                if (onDataLoadListener != null)
-                    onDataLoadListener.onLoaded(dataList, keyList);
+                if (onNoticeChangeListener != null)
+                    onNoticeChangeListener.onChange(dataList, keyList);
 
             }
 

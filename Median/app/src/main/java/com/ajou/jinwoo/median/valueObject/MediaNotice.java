@@ -13,18 +13,6 @@ public class MediaNotice {
         return contents;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setContents(String contents) {
-        this.contents = contents;
-    }
-
-    public MediaNotice(String title, String contents) {
-        this.title = title;
-        this.contents = contents;
-    }
     public MediaNotice(){
 
     }

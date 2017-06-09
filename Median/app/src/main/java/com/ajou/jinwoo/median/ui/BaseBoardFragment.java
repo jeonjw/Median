@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.model.OnDataChangedListener;
@@ -25,6 +26,7 @@ import com.google.firebase.database.Query;
 
 public abstract class BaseBoardFragment extends Fragment {
     private RecyclerView recyclerView;
+    private ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -104,15 +106,14 @@ public abstract class BaseBoardFragment extends Fragment {
     }
 
     public void setAdapter(Query query) {
-
+        showProgressDialog();
         PostModel postModel = new PostModel(getPostType());
         postModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
             public void onDataChanged() {
-                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);//새글 작성시 스크롤 최상단으로 이동
+//                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);//새글 작성시 스크롤 최상단으로 이동
 
-//                if (progressDialog != null && progressDialog.isShowing())
-//                    progressDialog.dismiss();
+                progressDialog.dismiss();
             }
         });
 
@@ -120,7 +121,7 @@ public abstract class BaseBoardFragment extends Fragment {
     }
 
     private void showProgressDialog() {
-        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Loading..");
         progressDialog.show();

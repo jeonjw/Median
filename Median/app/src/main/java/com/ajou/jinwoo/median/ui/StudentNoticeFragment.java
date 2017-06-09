@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import com.ajou.jinwoo.median.R;
 import com.ajou.jinwoo.median.adapter.StudentNoticeAdapter;
-import com.ajou.jinwoo.median.model.OnStudentNoticeChange;
+import com.ajou.jinwoo.median.model.OnNoticeChangeListener;
 import com.ajou.jinwoo.median.model.StudentNoticeModel;
 import com.ajou.jinwoo.median.valueObject.StudentNotice;
 
@@ -38,13 +38,17 @@ public class StudentNoticeFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.student_notice_recycler_view);
         studentNoticeModel = new StudentNoticeModel();
 
-        studentNoticeModel.setOnDataChangedListener(new OnStudentNoticeChange() {
+        studentNoticeModel.setOnDataChangedListener(new OnNoticeChangeListener<StudentNotice>() {
             @Override
-            public void onLoaded(List<StudentNotice> studentNoticeList, List<String> keyList) {
-                studentNoticeAdapter.setDataList(studentNoticeList);
+            public void onChange(List noticeList, List keyList) {
+                studentNoticeAdapter.setDataList(noticeList);
                 studentNoticeAdapter.setKeyList(keyList);
                 recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
             }
+
+
+//
+
         });
 
         studentNoticeAdapter = new StudentNoticeAdapter();

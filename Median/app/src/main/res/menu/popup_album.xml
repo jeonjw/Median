@@ -4,5 +4,9 @@
         android:id="@+id/popup_delete_album"
         android:title="앨범 삭제"
         />
+    <item
+        android:id="@+id/popup_rename_album"
+        android:title="앨범 수정"
+        />
 
 </menu>
