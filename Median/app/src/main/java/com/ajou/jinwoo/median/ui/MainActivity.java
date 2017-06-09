@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ajou.jinwoo.median.R;
+import com.ajou.jinwoo.median.model.UserModel;
 import com.ajou.jinwoo.median.valueObject.User;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -24,39 +25,15 @@ public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
 
     private Fragment toolbarFragment;
-    private DatabaseReference databaseReference;
-    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
+        UserModel userModel = new UserModel();
+        userModel.readUserData();
 
-
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("User").child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.getValue() == null) {
-                    setUserInfoToDatabase();
-                } else {
-                    User.getInstance().setUserName(firebaseUser.getDisplayName());
-                    User.getInstance().setUid(firebaseUser.getUid());
-                    User.getInstance().setAdmin(dataSnapshot.getValue(User.class).isAdmin());
-                    User.getInstance().setSubscribeMediaNotice(dataSnapshot.getValue(User.class).isSubscribeMediaNotice());
-                    User.getInstance().setSubscribeStudentNotice(dataSnapshot.getValue(User.class).isSubscribeStudentNotice());
-                    setSubscribeToTopic();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
         System.out.println("Token: " + FirebaseInstanceId.getInstance().getToken());
 
         FragmentManager fm = getSupportFragmentManager();
@@ -69,18 +46,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void setSubscribeToTopic() {
-        if (User.getInstance().isSubscribeMediaNotice())
-            FirebaseMessaging.getInstance().subscribeToTopic("mediaNotice");
-        else
-            FirebaseMessaging.getInstance().unsubscribeFromTopic("mediaNotice");
-
-        if (User.getInstance().isSubscribeStudentNotice())
-            FirebaseMessaging.getInstance().subscribeToTopic("studentNotice");
-        else
-            FirebaseMessaging.getInstance().unsubscribeFromTopic("studentNotice");
-    }
-
     public void setToolbarTitle(String title) {
         ((ToolbarFragment) toolbarFragment).setToolbarTitle(title);
     }
@@ -88,14 +53,5 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
-
-    private void setUserInfoToDatabase() {
-        databaseReference.child("User").child(firebaseUser.getUid()).child("name").setValue(firebaseUser.getDisplayName());
-        databaseReference.child("User").child(firebaseUser.getUid()).child("uid").setValue(firebaseUser.getUid());
-        databaseReference.child("User").child(firebaseUser.getUid()).child("admin").setValue(false);
-        databaseReference.child("User").child(firebaseUser.getUid()).child("subscribeMediaNotice").setValue(true);
-        databaseReference.child("User").child(firebaseUser.getUid()).child("subscribeStudentNotice").setValue(true);
-        setSubscribeToTopic();
     }
 }
