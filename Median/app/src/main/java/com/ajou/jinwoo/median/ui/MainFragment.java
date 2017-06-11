@@ -99,4 +99,5 @@ public class MainFragment extends Fragment {
         mLectureButton.setTypeface(type);
         mSettingButton.setTypeface(type);
     }
+
 }

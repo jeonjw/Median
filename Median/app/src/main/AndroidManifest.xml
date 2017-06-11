@@ -4,9 +4,9 @@
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.DIAL_PHONE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,10 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service
-            android:name=".FirebaseMessagingService">
+        <service android:name=".FirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
@@ -27,36 +26,64 @@
             android:name=".FirebaseInstanceIDService"
             android:permission="enable">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
 
-        <activity android:name=".ui.MainActivity"/>
-        <activity android:name=".ui.BoardActivity"/>
-        <activity android:name=".ui.NoticeActivity"/>
-        <activity android:name=".ui.InfoActivity"/>
-        <activity android:name=".ui.AlbumActivity"/>
-        <activity android:name=".ui.LoginActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+        <activity
+            android:name=".ui.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.BoardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.NoticeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.InfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.AlbumActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
-        <activity android:name=".ui.StudentNoticeWriteActivity"/>
-        <activity android:name=".ui.BoardWriteActivity"/>
-        <activity android:name=".ui.CommentListActivity"/>
-        <activity android:name=".ui.SettingActivity"/>
-        <activity android:name=".ui.LectureActivity"/>
-        <activity android:name=".ui.PhotoListActivity"/>
+        <activity
+            android:name=".ui.StudentNoticeWriteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.BoardWriteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.CommentListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.LectureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.PhotoListActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name="me.iwf.photopicker.PhotoPickerActivity"
-            android:theme="@style/customTheme"
-            />
+        <activity
+            android:name="me.iwf.photopicker.PhotoPickerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/customTheme" />
 
-        <activity android:name="me.iwf.photopicker.PhotoPagerActivity"
-            android:theme="@style/customTheme"/>
+        <activity
+            android:name="me.iwf.photopicker.PhotoPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/customTheme" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

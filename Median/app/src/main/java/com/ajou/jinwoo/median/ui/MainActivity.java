@@ -54,4 +54,10 @@ public class MainActivity extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((ToolbarFragment) toolbarFragment).setToolbarTitle("Median");
+    }
 }
