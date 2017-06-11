@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ajou.jinwoo.median">
+    package="com.ajou.jinwoojeon.median">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.DIAL_PHONE" />
@@ -16,14 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service android:name=".FirebaseMessagingService">
+        <service android:name="com.ajou.jinwoojeon.median.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
         <service
-            android:name=".FirebaseInstanceIDService"
+            android:name="com.ajou.jinwoojeon.median.FirebaseInstanceIDService"
             android:permission="enable">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -32,22 +32,22 @@
 
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.BoardActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.BoardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.NoticeActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.NoticeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.InfoActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.InfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.AlbumActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.AlbumActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.LoginActivity"
             android:screenOrientation="portrait">
 
             <intent-filter>
@@ -57,22 +57,22 @@
         </activity>
 
         <activity
-            android:name=".ui.StudentNoticeWriteActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.StudentNoticeWriteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.BoardWriteActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.BoardWriteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.CommentListActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.CommentListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.SettingActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.LectureActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.LectureActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.PhotoListActivity"
+            android:name="com.ajou.jinwoojeon.median.ui.PhotoListActivity"
             android:screenOrientation="portrait" />
 
         <activity

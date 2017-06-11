@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1099494166042-me64o23tvo9cocupha3oelgaqebo9m5n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ajou.jinwoo.median",
+            "certificate_hash": "b5deaea6dac60e089e999472891ed6284e0157eb"
+          }
+        },
+        {
           "client_id": "1099494166042-pmf844vufk5ejdkm47997rt53qs9lc2f.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -35,6 +43,50 @@
           "client_type": 1,
           "android_info": {
             "package_name": "com.ajou.jinwoo.median",
+            "certificate_hash": "b4d892bd2074d8ded85606fca6baa42dfa21c69e"
+          }
+        },
+        {
+          "client_id": "1099494166042-i5i7tq4d2u1trrl47lgk5afrbqbojmkr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc848l-V-2u0-PXSQZxF7N06rNYfz082o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1099494166042-i5i7tq4d2u1trrl47lgk5afrbqbojmkr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1099494166042:android:85b8976eb60c1397",
+        "android_client_info": {
+          "package_name": "com.ajou.jinwoojeon.median"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1099494166042-n2bgosqahakak5tu11j0mm14vlof2rla.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ajou.jinwoojeon.median",
             "certificate_hash": "b4d892bd2074d8ded85606fca6baa42dfa21c69e"
           }
         },
