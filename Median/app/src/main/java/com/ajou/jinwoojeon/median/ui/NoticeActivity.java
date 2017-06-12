@@ -8,8 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.ajou.jinwoojeon.median.R;
+import com.ajou.jinwoojeon.median.valueObject.User;
 
 public class NoticeActivity extends AppCompatActivity {
     private Fragment toolbarFragment;
@@ -39,9 +41,12 @@ public class NoticeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.menu_write) {
+        if (item.getItemId() == R.id.menu_write && User.getInstance().isAdmin()) {
             Intent intent = new Intent(NoticeActivity.this, StudentNoticeWriteActivity.class);
             startActivity(intent);
+        }
+        else if(item.getItemId() == R.id.menu_write && !User.getInstance().isAdmin()){
+            Toast.makeText(NoticeActivity.this,"작성 권한이 없습니다.\n",Toast.LENGTH_SHORT).show();
         }
         return true;
 
