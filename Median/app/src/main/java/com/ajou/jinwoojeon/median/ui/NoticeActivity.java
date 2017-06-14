@@ -44,9 +44,8 @@ public class NoticeActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.menu_write && User.getInstance().isAdmin()) {
             Intent intent = new Intent(NoticeActivity.this, StudentNoticeWriteActivity.class);
             startActivity(intent);
-        }
-        else if(item.getItemId() == R.id.menu_write && !User.getInstance().isAdmin()){
-            Toast.makeText(NoticeActivity.this,"작성 권한이 없습니다.\n",Toast.LENGTH_SHORT).show();
+        } else if (item.getItemId() == R.id.menu_write && !User.getInstance().isAdmin()) {
+            Toast.makeText(NoticeActivity.this, "작성 권한이 없습니다.\n", Toast.LENGTH_SHORT).show();
         }
         return true;
 
@@ -57,5 +56,24 @@ public class NoticeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         ((ToolbarFragment) toolbarFragment).setToolbarTitle("Notice");
+    }
+
+    @Override
+    public void onBackPressed() {
+        Bundle extras = getIntent().getExtras();
+
+        boolean launchedFromNotif = false;
+
+        if (extras != null && extras.containsKey("ACTIVITY_FROM_NOTIFICATION"))
+            launchedFromNotif = extras.getBoolean("ACTIVITY_FROM_NOTIFICATION");
+
+        if (launchedFromNotif) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+            finish();
+        } else
+            super.onBackPressed();
+
     }
 }

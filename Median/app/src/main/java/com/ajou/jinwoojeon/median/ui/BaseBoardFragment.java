@@ -1,6 +1,5 @@
 package com.ajou.jinwoojeon.median.ui;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,7 +24,7 @@ import com.google.firebase.database.Query;
 
 public abstract class BaseBoardFragment extends Fragment {
     private RecyclerView recyclerView;
-    private ProgressDialog progressDialog;
+//    private ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -105,25 +104,23 @@ public abstract class BaseBoardFragment extends Fragment {
     }
 
     public void setAdapter(Query query) {
-        showProgressDialog();
+//        showProgressDialog();
         PostModel postModel = new PostModel(getPostType());
         postModel.setOnDataChangedListener(new OnDataChangedListener() {
             @Override
             public void onDataChanged() {
 //                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);//새글 작성시 스크롤 최상단으로 이동
-
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
             }
         });
-
         recyclerView.setAdapter(postModel.setAdapter(query, getPostType()));
     }
 
-    private void showProgressDialog() {
-        progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Loading..");
-        progressDialog.show();
-    }
+//    private void showProgressDialog() {
+//        progressDialog = new ProgressDialog(getActivity());
+//        progressDialog.setCancelable(false);
+//        progressDialog.setMessage("Loading..");
+//        progressDialog.show();
+//    }
 
 }
