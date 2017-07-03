@@ -1,5 +1,6 @@
 package com.ajou.jinwoojeon.median.model;
 
+import com.ajou.jinwoojeon.median.adapter.MediaNoticeAdapter;
 import com.ajou.jinwoojeon.median.valueObject.MediaNotice;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,7 +14,12 @@ import java.util.List;
 public class MediaNoticeModel {
     private DatabaseReference databaseReference;
     private List<MediaNotice> dataList;
+    private OnDataChangedListener onDataChangedListener;
+    private MediaNoticeAdapter mediaNoticeAdapter;
 
+    public void setOnDataChangedListener(OnDataChangedListener listener) {
+        this.onDataChangedListener = listener;
+    }
 
     public List<MediaNotice> getDataList() {
         return dataList;
@@ -22,20 +28,36 @@ public class MediaNoticeModel {
     public MediaNoticeModel() {
         dataList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        mediaNoticeAdapter = new MediaNoticeAdapter();
+        readNotice(0);
     }
 
-    public void readLimitFirstData(final OnNoticeChangeListener<MediaNotice> listener) {
-        databaseReference.child("media_notice").orderByChild("boardNum").limitToLast(8).addListenerForSingleValueEvent(new ValueEventListener() {
+    public void loadFullData(){
+        mediaNoticeAdapter.setList(dataList);
+    }
+
+    public void setSearchList(List<MediaNotice> searchList){
+        mediaNoticeAdapter.setList(searchList);
+    }
+
+    public MediaNoticeAdapter getMediaNoticeAdapter() {
+        return mediaNoticeAdapter;
+    }
+
+
+    public void readNotice(int count){
+        dataList.clear();
+        databaseReference.child("media_notice").orderByChild("boardNum").startAt(670-count).endAt(674-count).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     MediaNotice mediaNotice = ds.getValue(MediaNotice.class);
-                    dataList.add(mediaNotice);
+                    dataList.add(0,mediaNotice);
                 }
 
-                listener.onChange(dataList,null);
-                readFullData(listener);
+                mediaNoticeAdapter.setList(dataList);
+                onDataChangedListener.onDataChanged();
             }
 
             @Override
@@ -44,28 +66,28 @@ public class MediaNoticeModel {
             }
 
         });
-
     }
 
-    public void readFullData(final OnNoticeChangeListener listener) {
-        databaseReference.child("media_notice").orderByChild("boardNum").addValueEventListener(new ValueEventListener() {
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                dataList.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    MediaNotice mediaNotice = ds.getValue(MediaNotice.class);
-                    dataList.add(mediaNotice);
-                }
-                listener.onChange(dataList,null);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-        });
-
-    }
+//    public void readFullData(final OnNoticeChangeListener listener) {
+//        databaseReference.child("media_notice").orderByChild("boardNum").addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                dataList.clear();
+//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    MediaNotice mediaNotice = ds.getValue(MediaNotice.class);
+//                    dataList.add(mediaNotice);
+//                }
+//                listener.onChange(dataList,null);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//
+//        });
+//
+//    }
 }

@@ -15,12 +15,19 @@
         android:layout_marginBottom="5dp"
         android:background="#00000000"/>
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/send_button"
+        android:id="@+id/comment_anonymous_check_box" />
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/comment_edit_layout"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@id/send_button"
+        android:layout_toStartOf="@id/comment_anonymous_check_box"
         >
     <EditText
         android:id="@+id/comment_edit"
@@ -29,10 +36,11 @@
         android:minHeight="40dp"
         android:layout_alignParentBottom="true"
         android:hint="@string/write_comment"
-
         android:paddingEnd="10dp"
         android:paddingStart="10dp" />
     </android.support.design.widget.TextInputLayout>
+
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/comment_recycler_view"

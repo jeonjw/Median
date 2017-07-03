@@ -1,15 +1,11 @@
 package com.ajou.jinwoojeon.median.valueObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 public class Comment {
 
-    private String author;
-    private String text;
-    private String timeStamp;
-    private String uid;
+    private final String author;
+    private final String text;
+    private final long timeStamp;
+    private final String uid;
 
     public String getAuthor() {
         return author;
@@ -19,7 +15,7 @@ public class Comment {
         return text;
     }
 
-    public String getTimeStamp() {
+    public long getTimeStamp() {
         return timeStamp;
     }
 
@@ -28,20 +24,21 @@ public class Comment {
     }
 
     public Comment() {
+        this.author="";
+        this.text="";
+        this.timeStamp=0;
+        this.uid="";
     }
 
-    public Comment(String author, String text) {
+    private Comment(String author, String text) {
         this.author = author;
         this.text = text;
         this.timeStamp = timeStamp();
         this.uid = User.getInstance().getUid();
     }
 
-    private static String timeStamp() {
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy. MM. dd.", Locale.KOREA);
-
-        return dateFormat.format(date);
+    private long timeStamp() { //static 바꾸기
+        return System.currentTimeMillis();
     }
 
     public static Comment newComment(String userName, String message) {

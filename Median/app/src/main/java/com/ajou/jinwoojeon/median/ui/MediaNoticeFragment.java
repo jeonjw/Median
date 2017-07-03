@@ -17,9 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ajou.jinwoojeon.median.R;
-import com.ajou.jinwoojeon.median.adapter.MediaNoticeAdapter;
 import com.ajou.jinwoojeon.median.model.MediaNoticeModel;
-import com.ajou.jinwoojeon.median.model.OnNoticeChangeListener;
+import com.ajou.jinwoojeon.median.model.OnDataChangedListener;
 import com.ajou.jinwoojeon.median.valueObject.MediaNotice;
 
 import java.util.ArrayList;
@@ -28,44 +27,50 @@ import java.util.List;
 public class MediaNoticeFragment extends Fragment {
 
     private ProgressDialog progressDialog;
-    private MediaNoticeAdapter mediaNoticeAdapter;
     private List<MediaNotice> searchedList;
-    private RecyclerView recyclerView;
     private MediaNoticeModel mediaNoticeModel;
+    private int count;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_media_notice, container, false);
-        searchedList = new ArrayList<>();
-        mediaNoticeAdapter = new MediaNoticeAdapter();
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.media_notice_recycler_view);
-        mediaNoticeModel = new MediaNoticeModel();
-
         setHasOptionsMenu(true);
 
+        progressDialog = new ProgressDialog(getActivity());
+        searchedList = new ArrayList<>();
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.media_notice_recycler_view);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setStackFromEnd(true);
-        linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
 
-        recyclerView.setAdapter(mediaNoticeAdapter);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
 
-        showProgressDialog();
-
-        mediaNoticeModel.readLimitFirstData(new OnNoticeChangeListener<MediaNotice>() {
 
             @Override
-            public void onChange(List noticeList, List keyList) {
-                mediaNoticeAdapter.setList(noticeList);
-                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (!recyclerView.canScrollVertically(1))
+                    readMoreNotice();
+            }
+        });
+
+        mediaNoticeModel = new MediaNoticeModel();
+        recyclerView.setAdapter(mediaNoticeModel.getMediaNoticeAdapter());
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        mediaNoticeModel.setOnDataChangedListener(new OnDataChangedListener() {
+            @Override
+            public void onDataChanged() {
                 if (progressDialog.isShowing())
                     progressDialog.dismiss();
             }
-
         });
+
 
 
         return view;
@@ -84,9 +89,9 @@ public class MediaNoticeFragment extends Fragment {
 
         if (searchedList.size() == 0) {
             Snackbar.make(getView(), "검색 결과가 없습니다.", Snackbar.LENGTH_SHORT).show();
-            mediaNoticeAdapter.setList(mediaNoticeModel.getDataList());
+            mediaNoticeModel.loadFullData();
         } else
-            mediaNoticeAdapter.setList(searchedList);
+            mediaNoticeModel.setSearchList(searchedList);
     }
 
 
@@ -113,7 +118,7 @@ public class MediaNoticeFragment extends Fragment {
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-                        mediaNoticeAdapter.setList(mediaNoticeModel.getDataList());
+                        mediaNoticeModel.loadFullData();
                         return true;
                     }
 
@@ -125,10 +130,15 @@ public class MediaNoticeFragment extends Fragment {
     }
 
     private void showProgressDialog() {
-        progressDialog = new ProgressDialog(getActivity());
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Loading..");
         progressDialog.show();
+    }
+
+    private void readMoreNotice() {
+        showProgressDialog();
+        count += 5;
+        mediaNoticeModel.readNotice(count);
     }
 
 }

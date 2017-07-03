@@ -15,8 +15,8 @@ android {
         applicationId "com.ajou.jinwoojeon.median"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 8
-        versionName "1.3.4"
+        versionCode 9 //수정했음
+        versionName "1.3.5" //수정했음
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

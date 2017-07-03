@@ -54,7 +54,7 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
             }
         });
         itemView.setOnClickListener(this);
-        mTitleTextView.setFocusableInTouchMode(true);
+//        mTitleTextView.setFocusableInTouchMode(true);
 
     }
 

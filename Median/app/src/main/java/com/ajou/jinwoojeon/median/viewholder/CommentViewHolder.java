@@ -13,6 +13,8 @@ import com.ajou.jinwoojeon.median.valueObject.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 
@@ -38,7 +40,8 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
         this.comment = model;
         authorView.setText(model.getAuthor());
         bodyView.setText(model.getText());
-        dateView.setText(model.getTimeStamp());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy. MM. dd.", Locale.KOREA);
+        dateView.setText(dateFormat.format(model.getTimeStamp()));
         this.commentKey = commentKey;
         this.postKey = postKey;
     }

@@ -65,21 +65,10 @@ public class CommentModel {
         return mAdapter;
     }
 
-    public void writeComment(String message) {
-        databaseReference.child("comments").child(dataRefKey).push().setValue(Comment.newComment(getUserName(), message));
+    public void writeComment(String author,String message) {
+        databaseReference.child("comments").child(dataRefKey).push().setValue(Comment.newComment(author, message));
     }
 
-    private String getUserName() {
-        String userName;
-
-        if (Objects.equals(postType, "익명자유"))
-            userName = "익명";
-        else
-            userName = User.getInstance().getUserName();
-
-        return userName;
-
-    }
 
     public void removeListener() {
         databaseReference.child("comments").child(dataRefKey).removeEventListener(valueEventListener);

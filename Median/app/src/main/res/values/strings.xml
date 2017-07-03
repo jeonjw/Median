@@ -12,9 +12,9 @@
     <string name="sign_in_with_google">Sign In With Google</string>
     <string name="write_comment">댓글 입력</string>
     <string-array name="board_spinner">
+        <item>학과공지</item>
         <item>수업후기</item>
         <item>교재장터</item>
-        <item>익명자유</item>
         <item>질문답변</item>
     </string-array>
     <string name="자구">자료구조</string>

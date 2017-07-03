@@ -6,13 +6,16 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ajou.jinwoojeon.median.adapter.PhotoAdapter;
 import com.ajou.jinwoojeon.median.ui.BoardTabFragment;
 import com.ajou.jinwoojeon.median.ui.BoardWriteActivity;
 import com.ajou.jinwoojeon.median.ui.CommentListActivity;
@@ -22,6 +25,8 @@ import com.ajou.jinwoojeon.median.valueObject.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -37,6 +42,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private Context context;
     private DatabaseReference mDatabase;
     private Post post;
+    private RecyclerView photoRecyclerView;
 
     public PostViewHolder(View itemView) {
         super(itemView);
@@ -48,7 +54,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         dateTextView = (TextView) itemView.findViewById(R.id.post_date_text_view);
         commentCountTextView = (TextView) itemView.findViewById(R.id.post_comment_number);
         dropdownButton = (ImageButton) itemView.findViewById(R.id.dropdown_button);
+        photoRecyclerView = (RecyclerView) itemView.findViewById(R.id.post_image_recycler_view);
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        titleTextView.setFocusableInTouchMode(true);
+        photoRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
 
 
         dropdownButton.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +114,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         titleTextView.setText(model.getTitle());
         contentsTextView.setText(model.getContents());
         authorTextView.setText(model.getAuthor());
-        dateTextView.setText(model.getTimeStamp());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy. MM. dd.", Locale.KOREA);
+        dateTextView.setText(dateFormat.format(model.getTimeStamp()));
         commentCountTextView.setText(String.valueOf(model.getCommentCount()));
         this.dataRefKey = postKey;
         this.postType = postType;
@@ -113,6 +124,16 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
                 View.VISIBLE : View.GONE;
 
         dropdownButton.setVisibility(visibility);
+
+        if (post.getUrlList() == null || post.getUrlList().size() == 0)
+            photoRecyclerView.setVisibility(View.GONE);
+        else {
+            photoRecyclerView.setVisibility(View.VISIBLE);
+            PhotoAdapter photoAdapter = new PhotoAdapter(context, post.getUrlList());
+            photoRecyclerView.setAdapter(photoAdapter);
+        }
+
+        titleTextView.requestFocus();
 
     }
 

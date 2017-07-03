@@ -32,9 +32,9 @@ public class BoardTabFragment extends Fragment {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.board_tab);
         tabLayout.setupWithViewPager(mViewPager);
 
+        tabLayout.addTab(tabLayout.newTab().setText("학과공지"));
         tabLayout.addTab(tabLayout.newTab().setText("수업후기"));
         tabLayout.addTab(tabLayout.newTab().setText("교재장터"));
-        tabLayout.addTab(tabLayout.newTab().setText("익명자유"));
         tabLayout.addTab(tabLayout.newTab().setText("질문답변"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 

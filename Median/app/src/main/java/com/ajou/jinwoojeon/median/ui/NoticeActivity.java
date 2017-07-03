@@ -24,9 +24,9 @@ public class NoticeActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
 
         toolbarFragment = new ToolbarFragment();
-        Fragment noticeFragment = new NoticeFragment();
+        Fragment mediaNoticeFragment = new MediaNoticeFragment();
         fm.beginTransaction().add(R.id.fragment_notice_toolbar_container, toolbarFragment).commit();
-        fm.beginTransaction().add(R.id.fragment_notice_container, noticeFragment).commit();
+        fm.beginTransaction().add(R.id.fragment_notice_container, mediaNoticeFragment).commit();
 
     }
 
@@ -41,12 +41,13 @@ public class NoticeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.menu_write && User.getInstance().isAdmin()) {
-            Intent intent = new Intent(NoticeActivity.this, StudentNoticeWriteActivity.class);
-            startActivity(intent);
-        } else if (item.getItemId() == R.id.menu_write && !User.getInstance().isAdmin()) {
-            Toast.makeText(NoticeActivity.this, "작성 권한이 없습니다.\n", Toast.LENGTH_SHORT).show();
-        }
+//        if (item.getItemId() == R.id.menu_write && User.getInstance().isAdmin()) {
+//            Intent intent = new Intent(NoticeActivity.this, StudentNoticeWriteActivity.class);
+//            startActivity(intent);
+//        } else
+//        if (item.getItemId() == R.id.menu_write && !User.getInstance().isAdmin()) {
+//            Toast.makeText(NoticeActivity.this, "작성 권한이 없습니다.\n", Toast.LENGTH_SHORT).show();
+//        }
         return true;
 
     }

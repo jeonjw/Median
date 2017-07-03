@@ -6,17 +6,18 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class BoardClassReviewFragment extends BaseBoardFragment {
 
-    public BoardClassReviewFragment() {}
+    public BoardClassReviewFragment() {
+
+    }
 
     @Override
     public DatabaseReference getRef() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        return databaseReference.child("수업후기");
+        return databaseReference.child("reviews");
     }
 
     @Override
     public String getPostType() {
-        return "수업후기";
+        return "reviews";
     }
-
 }

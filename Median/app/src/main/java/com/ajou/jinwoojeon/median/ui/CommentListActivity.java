@@ -11,17 +11,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.model.CommentModel;
 import com.ajou.jinwoojeon.median.model.OnDataChangedListener;
+import com.ajou.jinwoojeon.median.valueObject.User;
 
 
 public class CommentListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CommentModel model;
+    private CheckBox anonymousCheckBox;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -33,6 +36,7 @@ public class CommentListActivity extends AppCompatActivity {
         String postType = getIntent().getExtras().getString("POST_TYPE");
         model = new CommentModel(dataRefKey, postType);
         recyclerView = (RecyclerView) findViewById(R.id.comment_recycler_view);
+        anonymousCheckBox = (CheckBox) findViewById(R.id.comment_anonymous_check_box);
 
         LinearLayoutManager mManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mManager);
@@ -50,7 +54,7 @@ public class CommentListActivity extends AppCompatActivity {
                     return;
                 }
 
-                model.writeComment(commentEdit.getText().toString());
+                model.writeComment(getCommentAuthorName(),commentEdit.getText().toString());
                 commentEdit.setText("");
             }
         });
@@ -75,6 +79,11 @@ public class CommentListActivity extends AppCompatActivity {
         super.onBackPressed();
         overridePendingTransition(R.anim.no_change, R.anim.slide_down_anim);
         model.removeListener();
+    }
+
+    private String getCommentAuthorName() {
+        String authorName = anonymousCheckBox.isChecked()  ? "익명" : User.getInstance().getUserName();
+        return authorName;
     }
 
 

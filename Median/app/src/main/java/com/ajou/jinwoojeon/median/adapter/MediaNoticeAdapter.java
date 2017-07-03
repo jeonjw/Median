@@ -22,7 +22,7 @@ public class MediaNoticeAdapter extends RecyclerView.Adapter<MediaNoticeViewHold
     }
 
     public void setList(List<MediaNotice> searchedList) {
-        mediaNoticeList = searchedList;
+        mediaNoticeList.addAll(searchedList);
         notifyDataSetChanged();
     }
 

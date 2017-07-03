@@ -4,10 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.ajou.jinwoojeon.median.ui.BoardAnonymousFragment;
+//import com.ajou.jinwoojeon.median.ui.BoardAnonymousFragment;
 import com.ajou.jinwoojeon.median.ui.BoardClassReviewFragment;
 import com.ajou.jinwoojeon.median.ui.BoardQAFragment;
 import com.ajou.jinwoojeon.median.ui.BoardTextbookFragment;
+import com.ajou.jinwoojeon.median.ui.StudentNoticeFragment;
 
 
 public class BoardTabPageAdapter extends FragmentStatePagerAdapter{
@@ -24,13 +25,13 @@ public class BoardTabPageAdapter extends FragmentStatePagerAdapter{
 
         switch (position) {
             case 0:
-                return new BoardClassReviewFragment();
+                return new StudentNoticeFragment();
 
             case 1:
-                return new BoardTextbookFragment();
+                return new BoardClassReviewFragment();
 
             case 2:
-                return new BoardAnonymousFragment();
+                return new BoardTextbookFragment();
 
             case 3:
                 return new BoardQAFragment();

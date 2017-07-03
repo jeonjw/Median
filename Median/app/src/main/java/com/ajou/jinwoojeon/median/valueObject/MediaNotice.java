@@ -4,6 +4,11 @@ public class MediaNotice {
 
     private String title;
     private String contents;
+    private int boardNum;
+
+    public int getBoardNum() {
+        return boardNum;
+    }
 
     public String getTitle() {
         return title;

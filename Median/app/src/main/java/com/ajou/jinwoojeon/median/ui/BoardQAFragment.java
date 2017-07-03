@@ -9,12 +9,12 @@ public class BoardQAFragment extends BaseBoardFragment {
     @Override
     public DatabaseReference getRef() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        return databaseReference.child("질문답변");
+        return databaseReference.child("questions");
     }
 
     @Override
     public String getPostType() {
-        return "질문답변";
+        return "questions";
     }
 
     public BoardQAFragment() {
