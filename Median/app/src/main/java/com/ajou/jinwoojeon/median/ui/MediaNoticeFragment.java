@@ -30,14 +30,16 @@ public class MediaNoticeFragment extends Fragment {
     private List<MediaNotice> searchedList;
     private MediaNoticeModel mediaNoticeModel;
     private int count;
+    private boolean searching = false;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_media_notice, container, false);
         setHasOptionsMenu(true);
-
         progressDialog = new ProgressDialog(getActivity());
+        showProgressDialog();
+
         searchedList = new ArrayList<>();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.media_notice_recycler_view);
 
@@ -53,9 +55,11 @@ public class MediaNoticeFragment extends Fragment {
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if (!recyclerView.canScrollVertically(1))
+                System.out.println("TEST"+searching);
+                if (!recyclerView.canScrollVertically(1) && !searching) {
+                    System.out.println("TEST 스크롤");
                     readMoreNotice();
+                }
             }
         });
 
@@ -70,7 +74,6 @@ public class MediaNoticeFragment extends Fragment {
                     progressDialog.dismiss();
             }
         });
-
 
 
         return view;
@@ -90,8 +93,10 @@ public class MediaNoticeFragment extends Fragment {
         if (searchedList.size() == 0) {
             Snackbar.make(getView(), "검색 결과가 없습니다.", Snackbar.LENGTH_SHORT).show();
             mediaNoticeModel.loadFullData();
-        } else
+        } else {
+            searching = true;
             mediaNoticeModel.setSearchList(searchedList);
+        }
     }
 
 
@@ -104,7 +109,8 @@ public class MediaNoticeFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                filter(query);
+//                filter(query);
+//                검색 기능 추후 구현
                 return true;
             }
 
@@ -118,7 +124,10 @@ public class MediaNoticeFragment extends Fragment {
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-                        mediaNoticeModel.loadFullData();
+//                        System.out.println("TESTT 닫힘");
+//                        mediaNoticeModel.loadFullData();
+//                        searching = false;
+//                        검색 기능 추후 구현
                         return true;
                     }
 
@@ -136,8 +145,9 @@ public class MediaNoticeFragment extends Fragment {
     }
 
     private void readMoreNotice() {
+        System.out.println("TESTT readMore");
         showProgressDialog();
-        count += 5;
+        count += 7;
         mediaNoticeModel.readNotice(count);
     }
 

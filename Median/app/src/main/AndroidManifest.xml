@@ -56,9 +56,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.ajou.jinwoojeon.median.ui.StudentNoticeWriteActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.ajou.jinwoojeon.median.ui.BoardWriteActivity"
             android:screenOrientation="portrait" />

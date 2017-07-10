@@ -13,6 +13,7 @@ import java.util.List;
 
 public class MediaNoticeModel {
     private DatabaseReference databaseReference;
+    private List<MediaNotice> tempList;
     private List<MediaNotice> dataList;
     private OnDataChangedListener onDataChangedListener;
     private MediaNoticeAdapter mediaNoticeAdapter;
@@ -27,17 +28,19 @@ public class MediaNoticeModel {
 
     public MediaNoticeModel() {
         dataList = new ArrayList<>();
+        tempList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mediaNoticeAdapter = new MediaNoticeAdapter();
         readNotice(0);
     }
 
     public void loadFullData(){
-        mediaNoticeAdapter.setList(dataList);
+        mediaNoticeAdapter.setDataList(dataList);
     }
 
     public void setSearchList(List<MediaNotice> searchList){
-        mediaNoticeAdapter.setList(searchList);
+        System.out.println("TESTTT"+searchList.size());
+        mediaNoticeAdapter.setSearchList(searchList);
     }
 
     public MediaNoticeAdapter getMediaNoticeAdapter() {
@@ -46,17 +49,18 @@ public class MediaNoticeModel {
 
 
     public void readNotice(int count){
-        dataList.clear();
-        databaseReference.child("media_notice").orderByChild("boardNum").startAt(670-count).endAt(674-count).addListenerForSingleValueEvent(new ValueEventListener() {
+        tempList.clear();
+        databaseReference.child("media_notice").orderByChild("boardNum").startAt(668-count).endAt(674-count).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     MediaNotice mediaNotice = ds.getValue(MediaNotice.class);
-                    dataList.add(0,mediaNotice);
+                    tempList.add(0,mediaNotice);
                 }
 
-                mediaNoticeAdapter.setList(dataList);
+                dataList.addAll(tempList);
+                mediaNoticeAdapter.addMoreData(tempList);
                 onDataChangedListener.onDataChanged();
             }
 

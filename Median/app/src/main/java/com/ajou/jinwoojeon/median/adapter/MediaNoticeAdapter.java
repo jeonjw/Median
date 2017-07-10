@@ -21,8 +21,20 @@ public class MediaNoticeAdapter extends RecyclerView.Adapter<MediaNoticeViewHold
         mediaNoticeList = new ArrayList<>();
     }
 
-    public void setList(List<MediaNotice> searchedList) {
-        mediaNoticeList.addAll(searchedList);
+    public void addMoreData(List<MediaNotice> noticeList) {
+        mediaNoticeList.addAll(noticeList);
+        notifyDataSetChanged();
+    }
+
+    public void setDataList(List<MediaNotice> noticeList){
+        mediaNoticeList = noticeList;
+        notifyDataSetChanged();
+    }
+
+    public void setSearchList(List<MediaNotice> noticeList){
+        mediaNoticeList.clear();
+        mediaNoticeList=noticeList;
+        System.out.println("TEST adapter"+mediaNoticeList.size());
         notifyDataSetChanged();
     }
 
