@@ -1,11 +1,11 @@
 package com.ajou.jinwoojeon.median.valueObject;
 
 public class Info {
-    private String name;
-    private String email;
-    private int telNumber;
-    private String location;
-    private String profileImage;
+    private final String name;
+    private final String email;
+    private final int telNumber;
+    private final String location;
+    private final String profileImage;
 
     public String getName() {
         return name;
@@ -28,6 +28,10 @@ public class Info {
     }
 
     public Info(){
-
+        name = "";
+        email = "";
+        telNumber = 0;
+        location = "";
+        profileImage = "";
     }
 }

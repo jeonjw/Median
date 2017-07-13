@@ -16,12 +16,8 @@ public class UserModel {
 
     public UserModel() {
         databaseReference = FirebaseDatabase.getInstance().getReference();
-
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-
-
-
     }
     public void readUserData(){
         databaseReference.child("User").child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {

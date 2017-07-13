@@ -2,9 +2,9 @@ package com.ajou.jinwoojeon.median.valueObject;
 
 public class MediaNotice {
 
-    private String title;
-    private String contents;
-    private int boardNum;
+    private final String title;
+    private final String contents;
+    private final int boardNum;
 
     public int getBoardNum() {
         return boardNum;
@@ -19,6 +19,8 @@ public class MediaNotice {
     }
 
     public MediaNotice(){
-
+        title = "";
+        contents = "";
+        boardNum = 0;
     }
 }

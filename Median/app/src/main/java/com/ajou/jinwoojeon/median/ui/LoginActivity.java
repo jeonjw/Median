@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this, NavActivity.class));
                             finish();
                         }
                     }
@@ -139,6 +139,8 @@ public class LoginActivity extends AppCompatActivity
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+
             return null;
         }
 
@@ -153,7 +155,7 @@ public class LoginActivity extends AppCompatActivity
         @Override
         protected void onPostExecute(Void ignore) {
             if (mFirebaseAuth.getCurrentUser() != null) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, NavActivity.class);
                 startActivity(intent);
                 finish();
             } else {

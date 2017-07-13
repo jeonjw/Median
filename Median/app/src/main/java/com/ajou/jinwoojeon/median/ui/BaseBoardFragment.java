@@ -51,29 +51,64 @@ public abstract class BaseBoardFragment extends Fragment {
 
     public abstract String getPostType();
 
+//    @Override
+//    public void onCreateOptionsMenu(final Menu menu, MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//        inflater.inflate(R.menu.main_menu, menu);
+//
+//
+//        MenuItem searchItem = menu.findItem(R.id.menu_search);
+//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+//        searchView.setQueryHint("제목으로 검색");
+//
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                Query query = getRef().orderByChild("title").startAt(s).endAt(s + "\uf8ff");
+//                setAdapter(query);
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                if (s.length() == 0)
+//                    setAdapter(getRef());
+//                return true;
+//            }
+//        });
+//
+//        MenuItemCompat.setOnActionExpandListener(searchItem,
+//                new MenuItemCompat.OnActionExpandListener() {
+//                    @Override
+//                    public boolean onMenuItemActionCollapse(MenuItem item) {
+//                        setAdapter(getRef());
+//                        return true;
+//                    }
+//
+//                    @Override
+//                    public boolean onMenuItemActionExpand(MenuItem item) {
+//                        return true;
+//                    }
+//                });
+//    }
+//
+
     @Override
-    public void onCreateOptionsMenu(final Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_board, menu);
-
-
+    public void onPrepareOptionsMenu(final Menu menu) {
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setQueryHint("제목으로 검색");
-
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                Query query = getRef().orderByChild("title").startAt(s).endAt(s + "\uf8ff");
-                setAdapter(query);
+            public boolean onQueryTextSubmit(String query) {
+//                filter(query);
+//                검색 기능 추후 구현
                 return true;
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                if (s.length() == 0)
-                    setAdapter(getRef());
+            public boolean onQueryTextChange(String query) {
                 return true;
             }
         });
@@ -82,7 +117,10 @@ public abstract class BaseBoardFragment extends Fragment {
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-                        setAdapter(getRef());
+//                        System.out.println("TESTT 닫힘");
+//                        mediaNoticeModel.loadFullData();
+//                        searching = false;
+//                        검색 기능 추후 구현
                         return true;
                     }
 

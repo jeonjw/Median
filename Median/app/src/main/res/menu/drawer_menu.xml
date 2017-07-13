@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_notice"
+            android:icon="@drawable/send"
+            android:title="@string/notice" />
+
+        <item
+            android:id="@+id/nav_board"
+            android:icon="@drawable/send"
+            android:title="@string/board_ko" />
+        <item
+            android:id="@+id/nav_timetable"
+            android:icon="@drawable/send"
+            android:title="@string/timetable" />
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/send"
+            android:title="@string/info_ko" />
+    </group>
+
+    <item android:title="Communicate"
+        >
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/send"
+                android:title="@string/setting_ko" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

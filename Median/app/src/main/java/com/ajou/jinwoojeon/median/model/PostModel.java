@@ -79,12 +79,13 @@ public class PostModel {
         FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.list_item_post,
                 PostViewHolder.class, query) {
             @Override
-            protected void populateViewHolder(PostViewHolder viewHolder, Post model, int position) {
+            protected void populateViewHolder(PostViewHolder viewHolder, Post post, int position) {
                 DatabaseReference postRef = getRef(position);
                 String postKey = postRef.getKey();
-                viewHolder.bindPost(model, postKey, postType);
+                viewHolder.bindPost(post, postKey, postType);
             }
         };
+
 
         return adapter;
     }

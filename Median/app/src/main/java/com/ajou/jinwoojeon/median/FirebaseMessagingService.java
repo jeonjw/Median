@@ -9,8 +9,8 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.ajou.jinwoojeon.median.ui.MainActivity;
-import com.ajou.jinwoojeon.median.ui.NoticeActivity;
+
+import com.ajou.jinwoojeon.median.ui.NavActivity;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Map;
@@ -53,7 +53,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     }
 
     private void sendNotificationData(String messageTitle, String messageBody) {
-        Intent intent = new Intent(this, NoticeActivity.class);
+        Intent intent = new Intent(this, NavActivity.class);
         intent.putExtra("ACTIVITY_FROM_NOTIFICATION",true);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* request code */, intent, PendingIntent.FLAG_UPDATE_CURRENT);

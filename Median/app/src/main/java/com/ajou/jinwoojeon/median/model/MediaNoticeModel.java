@@ -22,25 +22,17 @@ public class MediaNoticeModel {
         this.onDataChangedListener = listener;
     }
 
-    public List<MediaNotice> getDataList() {
-        return dataList;
-    }
-
     public MediaNoticeModel() {
         dataList = new ArrayList<>();
         tempList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mediaNoticeAdapter = new MediaNoticeAdapter();
-        readNotice(0);
+        readNotice();
     }
 
-    public void loadFullData(){
+    public void loadFullData() {
+        System.out.println("TEST loadFullData"+dataList.size());
         mediaNoticeAdapter.setDataList(dataList);
-    }
-
-    public void setSearchList(List<MediaNotice> searchList){
-        System.out.println("TESTTT"+searchList.size());
-        mediaNoticeAdapter.setSearchList(searchList);
     }
 
     public MediaNoticeAdapter getMediaNoticeAdapter() {
@@ -48,19 +40,42 @@ public class MediaNoticeModel {
     }
 
 
-    public void readNotice(int count){
-        tempList.clear();
-        databaseReference.child("media_notice").orderByChild("boardNum").startAt(668-count).endAt(674-count).addListenerForSingleValueEvent(new ValueEventListener() {
+//    public void readNotice(int count) {
+//        tempList.clear();
+//        databaseReference.child("media_notice").orderByChild("boardNum").startAt(676 - count).endAt(682 - count).addListenerForSingleValueEvent(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    MediaNotice mediaNotice = ds.getValue(MediaNotice.class);
+//                    tempList.add(0, mediaNotice);
+//                }
+//
+//                dataList.addAll(tempList);
+//                mediaNoticeAdapter.addMoreData(tempList);
+//                onDataChangedListener.onDataChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//
+//        });
+//    }
+
+    public void readNotice() {
+
+        databaseReference.child("media_notice").orderByChild("boardNum").addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     MediaNotice mediaNotice = ds.getValue(MediaNotice.class);
-                    tempList.add(0,mediaNotice);
+                    dataList.add(mediaNotice);
                 }
 
-                dataList.addAll(tempList);
-                mediaNoticeAdapter.addMoreData(tempList);
+                mediaNoticeAdapter.setDataList(dataList);
                 onDataChangedListener.onDataChanged();
             }
 
@@ -73,25 +88,24 @@ public class MediaNoticeModel {
     }
 
 
-//    public void readFullData(final OnNoticeChangeListener listener) {
-//        databaseReference.child("media_notice").orderByChild("boardNum").addValueEventListener(new ValueEventListener() {
-//
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                dataList.clear();
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    MediaNotice mediaNotice = ds.getValue(MediaNotice.class);
-//                    dataList.add(mediaNotice);
-//                }
-//                listener.onChange(dataList,null);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//
-//        });
-//
-//    }
+    public boolean search(String text) {
+        System.out.println("TEST SEARCH");
+        tempList.clear();
+
+        for(MediaNotice mediaNotice : dataList) {
+            if (mediaNotice.getContents().toLowerCase().contains(text)
+                    || mediaNotice.getTitle().toLowerCase().contains(text)) {
+                tempList.add(mediaNotice);
+            }
+        }
+
+        if (tempList.size() == 0)
+            return false;
+        else {
+            mediaNoticeAdapter.setDataList(tempList);
+            return true;
+        }
+    }
+
+
 }

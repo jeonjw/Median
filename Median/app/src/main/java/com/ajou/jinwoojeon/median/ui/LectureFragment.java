@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,9 +22,9 @@ public class LectureFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lecture, container, false);
+        setHasOptionsMenu(true);
 
         final TabLayout tabLayout = (TabLayout) view.findViewById(R.id.class_tab);
-
         tabLayout.addTab(tabLayout.newTab().setText("Mon"));
         tabLayout.addTab(tabLayout.newTab().setText("Tue"));
         tabLayout.addTab(tabLayout.newTab().setText("Wed"));
@@ -54,11 +55,17 @@ public class LectureFragment extends Fragment {
             }
         });
 
-        TabLayout.Tab tab = tabLayout.getTabAt(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)-2);
+        TabLayout.Tab tab = tabLayout.getTabAt(Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2);
         if (tab != null) {
             tab.select();
         }
 
         return view;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.menu_write).setVisible(false);
+        menu.findItem(R.id.menu_search).setVisible(false);
     }
 }

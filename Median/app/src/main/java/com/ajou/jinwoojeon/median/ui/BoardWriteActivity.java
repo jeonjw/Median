@@ -100,7 +100,10 @@ public class BoardWriteActivity extends AppCompatActivity {
                 if (isTextInputError())
                     return;
 
-                writePost(); // 수정이면 수정하기
+                if(!rewrite)
+                    writePost();
+                else
+                    correctPost();
             }
         });
 
@@ -156,7 +159,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     private void writePost() {
         final String title = titleEditText.getText().toString();
         final String contents = contentsEditText.getText().toString();
-        final String postType = getDatabaseKey((String) board_spinner.getSelectedItem());
+        final String postType = getDatabaseKey(board_spinner.getSelectedItemPosition());
 
         if (selectedPhotos.size() != 0) {
             Snackbar.make(contentsEditText, "이미지 업로드 중 . .", Snackbar.LENGTH_LONG).show();
@@ -177,11 +180,12 @@ public class BoardWriteActivity extends AppCompatActivity {
     private void correctPost() {
         final String title = titleEditText.getText().toString();
         final String contents = contentsEditText.getText().toString();
-        final String postType = getDatabaseKey((String) board_spinner.getSelectedItem());
+        final String postType = getDatabaseKey(board_spinner.getSelectedItemPosition());
         final String postKey = getIntent().getExtras().getString("CORRECT_POST_KEY");
         final int commentCount = getIntent().getExtras().getInt("COMMENT_COUNT");
 
         postModel.correctPost(postType, getPostAuthorName(), title, contents, postKey, commentCount);
+        finish();
 
     }
 
@@ -190,21 +194,26 @@ public class BoardWriteActivity extends AppCompatActivity {
         return authorName;
     }
 
-    private String getDatabaseKey(String boardItemName) {
-        //아이템 포지션으로 스위치문으로 해서 수정하기
-        if (Objects.equals(boardItemName, "학과공지"))
-            return "student_notice";
-        else if (Objects.equals(boardItemName, "수업후기"))
-            return "reviews";
-        else if (Objects.equals(boardItemName, "교재장터"))
-            return "markets";
-        else if (Objects.equals(boardItemName, "질문답변"))
-            return "questions";
+    private String getDatabaseKey(int currentPosition) {
+        String databaseKey = null;
 
-        else return boardItemName;
+        switch (currentPosition){
+            case 0:
+                databaseKey = "student_notice";
+            break;
+            case 1:
+                databaseKey = "reviews";
+            break;
+            case 2:
+                databaseKey = "markets";
+            break;
+            case 3:
+                databaseKey = "questions";
+            break;
+        }
 
+       return databaseKey;
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -85,4 +85,9 @@
     <string name="contents">내용</string>
     <string name="developer">Developer</string>
     <string name="version_info">현재 버전 : 1.3.4</string>
+    <string name="notice">공지사항</string>
+    <string name="timetable">시간표</string>
+    <string name="board_ko">게시판</string>
+    <string name="info_ko">학과정보</string>
+    <string name="setting_ko">설정</string>
 </resources>
