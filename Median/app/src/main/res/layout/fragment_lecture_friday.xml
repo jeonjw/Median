@@ -157,22 +157,6 @@
                     android:gravity="center"
                     android:text="@string/san_422" />
 
-                <TextView
-                    android:id="@+id/textViewEx1"
-                    android:layout_width="110dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_room"
-                    android:gravity="center"
-                    android:text="@string/many_b105" />
-
-                <TextView
-                    android:id="@+id/textViewEx2"
-                    android:layout_width="110dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_room"
-                    android:gravity="center"
-                    android:text="@string/sex_305" />
-
             </TableRow>
 
             <TableRow android:layout_weight="1">
@@ -182,18 +166,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/digital_media" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/computer_practice" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
                     android:text="@string/blank" />
 
                 <TextView
@@ -235,25 +207,13 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/media_analysis" />
+                    android:text="@string/game_programming1" />
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/computer_practice" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/computer_animation" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
                     android:text="@string/blank" />
 
                 <TextView
@@ -266,7 +226,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/algorithm" />
+                    android:text="@string/blank" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -290,7 +250,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/design_basic" />
+                    android:text="@string/operating_system" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -320,19 +280,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/game_programming1" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/IOT" />
 
             </TableRow>
 
@@ -344,12 +292,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/design_basic" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
                     android:text="@string/blank" />
 
                 <TextView
@@ -374,19 +316,13 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/web_programming" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
                     android:text="@string/blank" />
 
                 <TextView
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/computer_programming" />
+                    android:text="@string/blank" />
 
             </TableRow>
 
@@ -415,7 +351,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/computer_practice" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -427,19 +363,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/data_science" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/social_media_programming" />
 
             </TableRow>
 
@@ -470,18 +394,6 @@
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
                     android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/data_science" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -537,33 +449,9 @@
                     android:gravity="center"
                     android:text="@string/blank" />
 
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
             </TableRow>
 
             <TableRow android:layout_weight="1">
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
 
                 <TextView
                     android:layout_height="match_parent"

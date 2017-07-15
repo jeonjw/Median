@@ -121,7 +121,8 @@ public abstract class BaseLectureFragment extends Fragment {
         textView420.setTypeface(type);
         textView421.setTypeface(type);
         textView422.setTypeface(type);
-        textViewEx1.setTypeface(type);
+        if (textViewEx1 != null)
+            textViewEx1.setTypeface(type);
         if (textViewEx2 != null)
             textViewEx2.setTypeface(type);
         if (textViewEx3 != null)

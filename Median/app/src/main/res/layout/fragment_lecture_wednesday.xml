@@ -163,256 +163,8 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
                     android:gravity="center"
-                    android:text="@string/gym_202" />
+                    android:text="@string/san_623" />
 
-                <TextView
-                    android:id="@+id/textViewEx2"
-                    android:layout_width="110dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_room"
-                    android:gravity="center"
-                    android:text="@string/elec_511" />
-
-                <TextView
-                    android:id="@+id/textViewEx3"
-                    android:layout_width="110dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_room"
-                    android:gravity="center"
-                    android:text="@string/sex_305" />
-
-            </TableRow>
-
-
-            <TableRow android:layout_weight="1">
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-            </TableRow>
-
-
-            <TableRow android:layout_weight="1">
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/media_analysis" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/computer_practice" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/computer_animation" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-            </TableRow>
-
-
-            <TableRow android:layout_weight="1">
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/new_media_plan" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/graphic_design" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/animation_beauty" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/animation_beauty" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-            </TableRow>
-
-
-            <TableRow android:layout_weight="1">
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/design_basic" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/compter_graphics" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/croky" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/computer_programming" />
             </TableRow>
 
 
@@ -452,7 +204,24 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/media_fusion_project" />
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+            </TableRow>
+
+
+            <TableRow android:layout_weight="1">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/game_programming1" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -464,13 +233,79 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/interaction_design" />
+                    android:text="@string/blank" />
 
                 <TextView
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
                     android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+            </TableRow>
+
+
+            <TableRow android:layout_weight="1">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/computer_programming" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/social_app_project" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/design_basic" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/game_animation" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/media_search" />
+
             </TableRow>
 
 
@@ -492,12 +327,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/three_dimential_creation" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
                     android:text="@string/blank" />
 
                 <TextView
@@ -505,12 +334,6 @@
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
                     android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/media_project" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -529,6 +352,54 @@
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
                     android:text="@string/blank" />
+
+            </TableRow>
+
+
+            <TableRow android:layout_weight="1">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/computer_programming" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/digital_typography" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/social_media_human" />
+
             </TableRow>
 
 
@@ -550,30 +421,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/three_dimential_creation" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/web_programming" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/media_project" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
                     android:text="@string/blank" />
 
                 <TextView
@@ -587,6 +434,19 @@
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
                     android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/media_project2" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
             </TableRow>
 
 
@@ -603,6 +463,41 @@
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
                     android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/game_programming1" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/media_project2" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/blank" />
+
+            </TableRow>
+
+
+            <TableRow android:layout_weight="1">
 
                 <TextView
                     android:layout_height="match_parent"
