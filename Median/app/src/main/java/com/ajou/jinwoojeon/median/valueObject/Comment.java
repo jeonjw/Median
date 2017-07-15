@@ -1,6 +1,6 @@
 package com.ajou.jinwoojeon.median.valueObject;
 
-public class Comment {
+public final class Comment {
 
     private final String author;
     private final String text;

@@ -30,15 +30,9 @@ public class MediaNoticeModel {
         readNotice();
     }
 
-    public void loadFullData() {
-        System.out.println("TEST loadFullData"+dataList.size());
-        mediaNoticeAdapter.setDataList(dataList);
-    }
-
     public MediaNoticeAdapter getMediaNoticeAdapter() {
         return mediaNoticeAdapter;
     }
-
 
 //    public void readNotice(int count) {
 //        tempList.clear();
@@ -89,10 +83,9 @@ public class MediaNoticeModel {
 
 
     public boolean search(String text) {
-        System.out.println("TEST SEARCH");
         tempList.clear();
 
-        for(MediaNotice mediaNotice : dataList) {
+        for (MediaNotice mediaNotice : dataList) {
             if (mediaNotice.getContents().toLowerCase().contains(text)
                     || mediaNotice.getTitle().toLowerCase().contains(text)) {
                 tempList.add(mediaNotice);

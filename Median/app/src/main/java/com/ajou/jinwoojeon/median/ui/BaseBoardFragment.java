@@ -10,13 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ajou.jinwoojeon.median.R;
-import com.ajou.jinwoojeon.median.model.OnDataChangedListener;
 import com.ajou.jinwoojeon.median.model.PostModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
@@ -24,7 +22,6 @@ import com.google.firebase.database.Query;
 
 public abstract class BaseBoardFragment extends Fragment {
     private RecyclerView recyclerView;
-//    private ProgressDialog progressDialog;
 
     @Nullable
     @Override
@@ -40,8 +37,6 @@ public abstract class BaseBoardFragment extends Fragment {
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-//        showProgressDialog();
-
         setAdapter(getRef());
 
         return view;
@@ -51,49 +46,6 @@ public abstract class BaseBoardFragment extends Fragment {
 
     public abstract String getPostType();
 
-//    @Override
-//    public void onCreateOptionsMenu(final Menu menu, MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-//        inflater.inflate(R.menu.main_menu, menu);
-//
-//
-//        MenuItem searchItem = menu.findItem(R.id.menu_search);
-//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-//        searchView.setQueryHint("제목으로 검색");
-//
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-//                Query query = getRef().orderByChild("title").startAt(s).endAt(s + "\uf8ff");
-//                setAdapter(query);
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                if (s.length() == 0)
-//                    setAdapter(getRef());
-//                return true;
-//            }
-//        });
-//
-//        MenuItemCompat.setOnActionExpandListener(searchItem,
-//                new MenuItemCompat.OnActionExpandListener() {
-//                    @Override
-//                    public boolean onMenuItemActionCollapse(MenuItem item) {
-//                        setAdapter(getRef());
-//                        return true;
-//                    }
-//
-//                    @Override
-//                    public boolean onMenuItemActionExpand(MenuItem item) {
-//                        return true;
-//                    }
-//                });
-//    }
-//
-
     @Override
     public void onPrepareOptionsMenu(final Menu menu) {
         MenuItem searchItem = menu.findItem(R.id.menu_search);
@@ -101,14 +53,14 @@ public abstract class BaseBoardFragment extends Fragment {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-//                filter(query);
-//                검색 기능 추후 구현
+            public boolean onQueryTextSubmit(String text) {
+                Query query = getRef().orderByChild("title").startAt(text).endAt(text + "\uf8ff");
+                setAdapter(query);
                 return true;
             }
 
             @Override
-            public boolean onQueryTextChange(String query) {
+            public boolean onQueryTextChange(String text) {
                 return true;
             }
         });
@@ -117,10 +69,7 @@ public abstract class BaseBoardFragment extends Fragment {
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-//                        System.out.println("TESTT 닫힘");
-//                        mediaNoticeModel.loadFullData();
-//                        searching = false;
-//                        검색 기능 추후 구현
+                        setAdapter(getRef());
                         return true;
                     }
 
@@ -142,23 +91,9 @@ public abstract class BaseBoardFragment extends Fragment {
     }
 
     public void setAdapter(Query query) {
-//        showProgressDialog();
         PostModel postModel = new PostModel(getPostType());
-        postModel.setOnDataChangedListener(new OnDataChangedListener() {
-            @Override
-            public void onDataChanged() {
-//                recyclerView.getLayoutManager().scrollToPosition(recyclerView.getAdapter().getItemCount() - 1);//새글 작성시 스크롤 최상단으로 이동
-//                progressDialog.dismiss();
-            }
-        });
         recyclerView.setAdapter(postModel.setAdapter(query, getPostType()));
     }
 
-//    private void showProgressDialog() {
-//        progressDialog = new ProgressDialog(getActivity());
-//        progressDialog.setCancelable(false);
-//        progressDialog.setMessage("Loading..");
-//        progressDialog.show();
-//    }
 
 }

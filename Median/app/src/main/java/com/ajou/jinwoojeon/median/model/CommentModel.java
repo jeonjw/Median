@@ -2,7 +2,6 @@ package com.ajou.jinwoojeon.median.model;
 
 import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.valueObject.Comment;
-import com.ajou.jinwoojeon.median.valueObject.User;
 import com.ajou.jinwoojeon.median.viewholder.CommentViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -11,13 +10,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Objects;
-
 public class CommentModel {
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener;
     private String dataRefKey;
-    private String postType;
     private int commentCount;
     private OnDataChangedListener onDataChangedListener;
 
@@ -25,11 +21,9 @@ public class CommentModel {
         this.onDataChangedListener = listener;
     }
 
-
-    public CommentModel(String dataRef, String post) {
+    public CommentModel(final String dataRef, final String postType) {
 
         this.dataRefKey = dataRef;
-        this.postType = post;
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         valueEventListener = databaseReference.child("comments").child(dataRefKey).addValueEventListener(new ValueEventListener() {
@@ -51,21 +45,25 @@ public class CommentModel {
         });
     }
 
-    public FirebaseRecyclerAdapter<Comment, CommentViewHolder> loadCommentList(){
-        FirebaseRecyclerAdapter<Comment, CommentViewHolder> mAdapter = new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(Comment.class, R.layout.list_item_comment,
-                CommentViewHolder.class, databaseReference.child("comments").child(dataRefKey)) {
-            @Override
-            protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {
-                String commentKey = getRef(position).getKey();
-                viewHolder.bindComment(model, dataRefKey, commentKey);
-            }
+    public FirebaseRecyclerAdapter<Comment, CommentViewHolder> loadCommentList() {
+        FirebaseRecyclerAdapter<Comment, CommentViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(
+                        Comment.class,
+                        R.layout.list_item_comment,
+                        CommentViewHolder.class,
+                        databaseReference.child("comments").child(dataRefKey)) {
+                    @Override
+                    protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {
+                        String commentKey = getRef(position).getKey();
+                        viewHolder.bindComment(model, dataRefKey, commentKey);
+                    }
 
-        };
+                };
 
-        return mAdapter;
+        return adapter;
     }
 
-    public void writeComment(String author,String message) {
+    public void writeComment(String author, String message) {
         databaseReference.child("comments").child(dataRefKey).push().setValue(Comment.newComment(author, message));
     }
 

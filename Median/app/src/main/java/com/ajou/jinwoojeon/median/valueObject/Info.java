@@ -1,6 +1,6 @@
 package com.ajou.jinwoojeon.median.valueObject;
 
-public class Info {
+public final class Info {
     private final String name;
     private final String email;
     private final int telNumber;

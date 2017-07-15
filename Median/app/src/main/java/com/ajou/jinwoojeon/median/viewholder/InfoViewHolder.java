@@ -22,7 +22,7 @@ public class InfoViewHolder extends RecyclerView.ViewHolder {
     private TextView mLocationTextView;
     private ImageView mImageView;
     private ImageButton mPhoneCallButton;
-    private Info mInfo;
+    private Info info;
     private Context context;
 
 
@@ -40,7 +40,7 @@ public class InfoViewHolder extends RecyclerView.ViewHolder {
         mPhoneCallButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tel = "tel:" + "031219" + mInfo.getTelNumber();
+                String tel = "tel:" + "031219" + info.getTelNumber();
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse(tel));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
@@ -51,20 +51,16 @@ public class InfoViewHolder extends RecyclerView.ViewHolder {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void bindInfo(Info info) {
-        mInfo = info;
-        int res = context.getResources().getIdentifier(mInfo.getProfileImage(), "drawable",context.getPackageName());
+        this.info = info;
+        int res = context.getResources().getIdentifier(this.info.getProfileImage(), "drawable", context.getPackageName());
         Glide.with(context).load(res).into(mImageView);
-        mNameTextView.setText(mInfo.getName());
-        mEmailTextView.setText(mInfo.getEmail());
-        mLocationTextView.setText(mInfo.getLocation());
-        mTelNumberTextView.setText(String.valueOf(mInfo.getTelNumber()));
+        mNameTextView.setText(this.info.getName());
+        mEmailTextView.setText(this.info.getEmail());
+        mLocationTextView.setText(this.info.getLocation());
+        mTelNumberTextView.setText(String.valueOf(this.info.getTelNumber()));
 
-        if (mInfo.getName().contains("학과사무실"))
-            mPhoneCallButton.setVisibility(View.VISIBLE);
-        else {
-            mPhoneCallButton.setVisibility(View.INVISIBLE);
-        }
-
+        int visible = info.getName().contains("학과사무실") ? View.VISIBLE : View.INVISIBLE;
+        mPhoneCallButton.setVisibility(visible);
 
     }
 }

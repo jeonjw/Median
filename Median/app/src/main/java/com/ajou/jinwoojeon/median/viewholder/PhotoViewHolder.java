@@ -13,17 +13,17 @@ import java.util.List;
 
 import me.iwf.photopicker.PhotoPreview;
 
-public class BoardWritePhotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class PhotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private final Context context;
-    private ImageView ivPhoto;
+    private ImageView photoImageView;
     private List<String> photoPaths;
     private int position;
 
 
-    public BoardWritePhotoViewHolder(View itemView, List<String> photoPaths, Context context) {
+    public PhotoViewHolder(View itemView, List<String> photoPaths, Context context) {
         super(itemView);
-        ivPhoto = (ImageView) itemView.findViewById(R.id.iv_photo);
+        photoImageView = (ImageView) itemView.findViewById(R.id.iv_photo);
         View vSelected = itemView.findViewById(R.id.v_selected);
         if (vSelected != null) vSelected.setVisibility(View.GONE);
         this.photoPaths = photoPaths;
@@ -35,7 +35,6 @@ public class BoardWritePhotoViewHolder extends RecyclerView.ViewHolder implement
 
     @Override
     public void onClick(View v) {
-
         PhotoPreview.builder()
                 .setPhotos((ArrayList<String>) photoPaths)
                 .setCurrentItem(position)
@@ -43,8 +42,8 @@ public class BoardWritePhotoViewHolder extends RecyclerView.ViewHolder implement
     }
 
 
-    public ImageView getIvPhoto() {
-        return ivPhoto;
+    public ImageView getPhotoImageView() {
+        return photoImageView;
     }
 
     public void setPosition(int position) {

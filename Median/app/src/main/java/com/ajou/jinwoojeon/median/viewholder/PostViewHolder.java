@@ -15,11 +15,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.adapter.PhotoAdapter;
 import com.ajou.jinwoojeon.median.ui.BoardTabFragment;
 import com.ajou.jinwoojeon.median.ui.BoardWriteActivity;
 import com.ajou.jinwoojeon.median.ui.CommentListActivity;
-import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.valueObject.Post;
 import com.ajou.jinwoojeon.median.valueObject.User;
 import com.google.firebase.database.DatabaseReference;
@@ -125,11 +125,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         dropdownButton.setVisibility(visibility);
 
-        if (post.getUrlList() == null || post.getUrlList().size() == 0)
+        if (model.getUrlList() == null || model.getUrlList().size() == 0)
             photoRecyclerView.setVisibility(View.GONE);
         else {
             photoRecyclerView.setVisibility(View.VISIBLE);
-            PhotoAdapter photoAdapter = new PhotoAdapter(context, post.getUrlList());
+            PhotoAdapter photoAdapter = new PhotoAdapter(model.getUrlList());
             photoRecyclerView.setAdapter(photoAdapter);
         }
 

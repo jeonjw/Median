@@ -1,6 +1,6 @@
 package com.ajou.jinwoojeon.median.valueObject;
 
-public class MediaNotice {
+public final class MediaNotice {
 
     private final String title;
     private final String contents;

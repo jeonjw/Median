@@ -54,7 +54,7 @@ public class CommentListActivity extends AppCompatActivity {
                     return;
                 }
 
-                model.writeComment(getCommentAuthorName(),commentEdit.getText().toString());
+                model.writeComment(getCommentAuthorName(), commentEdit.getText().toString());
                 commentEdit.setText("");
             }
         });
@@ -82,7 +82,7 @@ public class CommentListActivity extends AppCompatActivity {
     }
 
     private String getCommentAuthorName() {
-        String authorName = anonymousCheckBox.isChecked()  ? "익명" : User.getInstance().getUserName();
+        String authorName = anonymousCheckBox.isChecked() ? "익명" : User.getInstance().getUserName();
         return authorName;
     }
 

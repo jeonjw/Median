@@ -59,7 +59,7 @@ public class PostModel {
     }
 
     public void writePostWithImage(String postType, String userName, String title, String contents, List<String> urlList) {
-        databaseReference.child(postType).push().setValue(Post.newPostWithImages(userName, title, contents, 0,urlList));
+        databaseReference.child(postType).push().setValue(Post.newPostWithImages(userName, title, contents, 0, urlList));
 //        new NotificationPostModel("학생회 공지가 등록됬습니다", title).execute();
     }
 
@@ -69,31 +69,32 @@ public class PostModel {
 
     }
 
-    public void correctPostWithImages(String postType, String userName, String title, String contents, String postKey, int commentCount,  List<String> urlList) {
+    public void correctPostWithImages(String postType, String userName, String title, String contents, String postKey, int commentCount, List<String> urlList) {
         databaseReference.child(postType).
                 child(postKey).setValue(Post.newPostWithImages(userName, title, contents, commentCount, urlList));
     }
 
-    public FirebaseRecyclerAdapter setAdapter(Query query, final String postType) {
+    public FirebaseRecyclerAdapter setAdapter(final Query query, final String postType) {
 
-        FirebaseRecyclerAdapter<Post, PostViewHolder> adapter = new FirebaseRecyclerAdapter<Post, PostViewHolder>(Post.class, R.layout.list_item_post,
-                PostViewHolder.class, query) {
-            @Override
-            protected void populateViewHolder(PostViewHolder viewHolder, Post post, int position) {
-                DatabaseReference postRef = getRef(position);
-                String postKey = postRef.getKey();
-                viewHolder.bindPost(post, postKey, postType);
-            }
-        };
-
-
+        FirebaseRecyclerAdapter<Post, PostViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Post, PostViewHolder>(
+                        Post.class,
+                        R.layout.list_item_post,
+                        PostViewHolder.class, query) {
+                    @Override
+                    protected void populateViewHolder(PostViewHolder viewHolder, Post post, int position) {
+                        DatabaseReference postRef = getRef(position);
+                        String postKey = postRef.getKey();
+                        viewHolder.bindPost(post, postKey, postType);
+                    }
+                };
         return adapter;
     }
 
 
     public void uploadImages(final List<InputStream> selectedPhotos, final OnUploadImageListener listener) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageReference = storage.getReferenceFromUrl("gs://median-234c4.appspot.com").child("noticeImages");
+        StorageReference storageReference = storage.getReferenceFromUrl("gs://median-234c4.appspot.com").child("postImages");
 
         for (InputStream inputStream : selectedPhotos) {
             UploadTask uploadTask = storageReference.child(generateTempFilename()).putStream(inputStream);
@@ -117,6 +118,7 @@ public class PostModel {
         }
 
     }
+
     private String generateTempFilename() {
         return UUID.randomUUID().toString();
     }

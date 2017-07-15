@@ -29,7 +29,6 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import me.iwf.photopicker.PhotoPicker;
 import me.iwf.photopicker.PhotoPreview;
@@ -52,7 +51,7 @@ public class BoardWriteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_board_write);
 
         selectedPhotos = new ArrayList<>();
-        photoAdapter = new PhotoAdapter(this, selectedPhotos);
+        photoAdapter = new PhotoAdapter(selectedPhotos);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.board_image_recycler_view);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
         recyclerView.setAdapter(photoAdapter);
@@ -100,7 +99,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                 if (isTextInputError())
                     return;
 
-                if(!rewrite)
+                if (!rewrite)
                     writePost();
                 else
                     correctPost();
@@ -144,18 +143,6 @@ public class BoardWriteActivity extends AppCompatActivity {
         return false;
     }
 
-//    public void sendPost() {
-//
-//        if (rewrite) {
-//            int commentCount = getIntent().getExtras().getInt("COMMENT_COUNT");
-//            postModel.correctPost(getDatabaseKey((String) board_spinner.getSelectedItem()), getPostAuthorName(), titleEditText.getText().toString(), contentsEditText.getText().toString(), postKey, commentCount);
-//
-//        } else
-//            postModel.writePost(getDatabaseKey((String) board_spinner.getSelectedItem()), getPostAuthorName(), titleEditText.getText().toString(), contentsEditText.getText().toString());
-//
-//        Toast.makeText(getApplicationContext(), "작성이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-//    }
-
     private void writePost() {
         final String title = titleEditText.getText().toString();
         final String contents = contentsEditText.getText().toString();
@@ -197,22 +184,22 @@ public class BoardWriteActivity extends AppCompatActivity {
     private String getDatabaseKey(int currentPosition) {
         String databaseKey = null;
 
-        switch (currentPosition){
+        switch (currentPosition) {
             case 0:
                 databaseKey = "student_notice";
-            break;
+                break;
             case 1:
                 databaseKey = "reviews";
-            break;
+                break;
             case 2:
                 databaseKey = "markets";
-            break;
+                break;
             case 3:
                 databaseKey = "questions";
-            break;
+                break;
         }
 
-       return databaseKey;
+        return databaseKey;
     }
 
     @Override

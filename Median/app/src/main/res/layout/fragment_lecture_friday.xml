@@ -115,7 +115,7 @@
                     android:layout_height="40dp"
                     android:background="@drawable/table_layout_room"
                     android:gravity="center"
-                    android:text="@string/산b103" />
+                    android:text="@string/san_b103" />
 
                 <TextView
                     android:id="@+id/textView415"
@@ -123,7 +123,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
                     android:gravity="center"
-                    android:text="@string/산415" />
+                    android:text="@string/san_415" />
 
                 <TextView
                     android:id="@+id/textView419"
@@ -131,7 +131,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
                     android:gravity="center"
-                    android:text="@string/산419" />
+                    android:text="@string/san_419" />
 
                 <TextView
                     android:id="@+id/textView420"
@@ -139,7 +139,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
                     android:gravity="center"
-                    android:text="@string/산420" />
+                    android:text="@string/san_420" />
 
                 <TextView
                     android:id="@+id/textView421"
@@ -147,7 +147,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
                     android:gravity="center"
-                    android:text="@string/산421" />
+                    android:text="@string/san_421" />
 
                 <TextView
                     android:id="@+id/textView422"
@@ -155,7 +155,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
                     android:gravity="center"
-                    android:text="@string/산422" />
+                    android:text="@string/san_422" />
 
                 <TextView
                     android:id="@+id/textViewEx1"
@@ -163,7 +163,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
                     android:gravity="center"
-                    android:text="@string/다B105" />
+                    android:text="@string/many_b105" />
 
                 <TextView
                     android:id="@+id/textViewEx2"
@@ -171,7 +171,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_room"
                     android:gravity="center"
-                    android:text="@string/성305" />
+                    android:text="@string/sex_305" />
 
             </TableRow>
 
@@ -182,13 +182,13 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/디미" />
+                    android:text="@string/digital_media" />
 
                 <TextView
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/컴설" />
+                    android:text="@string/computer_practice" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -235,26 +235,20 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/미통" />
+                    android:text="@string/media_analysis" />
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/컴설" />
+                    android:text="@string/computer_practice" />
 
                 <TextView
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/컴애니" />
-
-                <TextView
-                    android:layout_height="match_parent"
-                    android:background="@drawable/table_layout_border"
-                    android:gravity="center"
-                    android:text="@string/blank" />
+                    android:text="@string/computer_animation" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -266,7 +260,13 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/알고" />
+                    android:text="@string/blank" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_layout_border"
+                    android:gravity="center"
+                    android:text="@string/algorithm" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -290,7 +290,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/디기" />
+                    android:text="@string/design_basic" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -326,7 +326,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/겜프1" />
+                    android:text="@string/game_programming1" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -344,7 +344,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/디기" />
+                    android:text="@string/design_basic" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -374,7 +374,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/웹앱" />
+                    android:text="@string/web_programming" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -386,7 +386,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/컴프" />
+                    android:text="@string/computer_programming" />
 
             </TableRow>
 
@@ -427,7 +427,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/데사" />
+                    android:text="@string/data_science" />
 
                 <TextView
                     android:layout_height="match_parent"
@@ -481,7 +481,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/table_layout_border"
                     android:gravity="center"
-                    android:text="@string/데사" />
+                    android:text="@string/data_science" />
 
                 <TextView
                     android:layout_height="match_parent"

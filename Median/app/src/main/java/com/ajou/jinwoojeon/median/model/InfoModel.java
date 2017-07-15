@@ -24,10 +24,8 @@ public class InfoModel {
             protected void populateViewHolder(InfoViewHolder viewHolder, Info model, int position) {
                 viewHolder.bindInfo(model);
 
-                if (onDataChangedListener != null) {
+                if (onDataChangedListener != null)
                     onDataChangedListener.onDataChanged();
-                }
-
             }
 
         };
