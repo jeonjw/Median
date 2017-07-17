@@ -27,7 +27,6 @@ public class BoardTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         currentTab=0;
         View view = inflater.inflate(R.layout.fragment_board, container, false);
-//        ((BoardActivity) getActivity()).setToolbarTitle("Board");
 
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.board_tab);
         tabLayout.setupWithViewPager(mViewPager);
