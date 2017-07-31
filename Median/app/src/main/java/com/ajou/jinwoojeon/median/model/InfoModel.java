@@ -22,8 +22,8 @@ public class InfoModel {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             protected void populateViewHolder(InfoViewHolder viewHolder, Info model, int position) {
-                viewHolder.bindInfo(model);
 
+                viewHolder.bindInfo(model);
                 if (onDataChangedListener != null)
                     onDataChangedListener.onDataChanged();
             }

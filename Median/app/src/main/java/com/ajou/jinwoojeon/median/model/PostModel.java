@@ -106,7 +106,6 @@ public class PostModel {
                     if (urlList.size() == selectedPhotos.size())
                         listener.onSuccess(urlList);
 
-
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

@@ -34,7 +34,7 @@ public class ToolbarFragment extends Fragment {
 
     private void setTypeface() {
         Typeface type = Typeface
-                .createFromAsset(getActivity().getAssets(), "Trebuchet MS.ttf");
+                .createFromAsset(getActivity().getAssets(), "Womby.ttf");
         toolbarTitleTextView.setTypeface(type);
 
     }

@@ -32,7 +32,7 @@ public class NavActivity extends AppCompatActivity
         userModel.readUserData();
         backPressHandler = new BackPressHandler(this);
 
-        setContentView(R.layout.activty_navigation);
+        setContentView(R.layout.activity_navigation);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
