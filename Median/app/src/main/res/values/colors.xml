@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#2EA8C9</color>
-    <color name="colorPrimaryDark">#2462B5</color>
+    <color name="colorPrimaryDark">#2EA8C9</color>
     <color name="colorAccent">#709BF8</color>
+    <color name="colorMedianBlack">#262626</color>
+    <color name="colorNavText">#6F6F6F</color>
+    <color name="colorNavLine">#6F6F6F6F</color>
+    <color name="colorMedianGlay">#F1F1F1</color>
+
     <color name="tabSelectedTextColor">#FFF176</color>
     <color name="timeTableRoomColor">#8EC0E4</color>
     <color name="timeTableTimeColor">#D4DFE6</color>

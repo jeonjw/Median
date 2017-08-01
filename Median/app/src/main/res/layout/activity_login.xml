@@ -27,7 +27,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/radius_corner_button"
+            android:background="@drawable/radius_corner_button_white_color"
             android:text="@string/sign_in_with_google"
             android:textColor="@color/colorPrimary" />
 

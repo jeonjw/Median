@@ -90,7 +90,7 @@ public class MediaNoticeFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(final Menu menu) {
-        menu.findItem(R.id.menu_write).setVisible(false);
+//        menu.findItem(R.id.menu_write).setVisible(false);
         MenuItem searchItem = menu.findItem(R.id.menu_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 

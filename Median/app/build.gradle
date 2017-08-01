@@ -9,12 +9,12 @@ android {
             storePassword 'cjw1933'
         }
     }
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.ajou.jinwoojeon.median"
-        minSdkVersion 19
-        targetSdkVersion 25
+        minSdkVersion 21
+        targetSdkVersion 26
         versionCode 9 //수정했음
         versionName "1.3.5" //수정했음
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -33,17 +33,28 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://maven.google.com'
+        }
+    }
+
     compile 'org.jsoup:jsoup:1.10.2'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:palette-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:cardview-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:26.0.0'
+    compile 'com.android.support:palette-v7:26.0.0'
+    compile 'com.android.support:design:26.0.0'
+    compile 'com.android.support:recyclerview-v7:26.0.0'
+    compile 'com.android.support:cardview-v7:26.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.commit451:PhotoView:1.2.4'
     compile 'me.iwf.photopicker:PhotoPicker:0.9.5@aar'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.nineoldandroids:library:2.4.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+
+
     compile 'com.google.firebase:firebase-core:11.0.2'
     compile 'com.google.firebase:firebase-database:11.0.2'
     compile 'com.google.firebase:firebase-storage:11.0.2'
@@ -51,6 +62,7 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:11.0.2'
     compile 'com.google.firebase:firebase-messaging:11.0.2'
     compile 'com.firebaseui:firebase-ui-database:1.0.0'
+
 
     compile 'com.google.android.gms:play-services-auth:11.0.2'
     testCompile 'junit:junit:4.12'

@@ -1,70 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#D0E4F0"
-    android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp"
-    android:layout_marginTop="10dp"
-   >
+    android:layout_height="140dp"
+    android:background="@color/colorMedianGlay"
+    android:elevation="5dp"
+    android:paddingStart="5dp"
+    android:paddingEnd="5dp"
+    android:paddingTop="7dp">
 
-    <ImageView
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/rel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
+        android:background="#ffffff"/>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginStart="15dp"
         android:id="@+id/profile_image"
-        android:layout_width="90dp"
-        android:layout_height="110dp"
-        android:layout_margin="10dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:elevation="5dp"
+        android:contentDescription="@string/profileimage"
         android:src="@drawable/media_logo"
-        android:contentDescription="@string/profileimage" />
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="3dp" />
+
+    <View
+        android:layout_width="1dp"
+        android:elevation="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@id/profile_image"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/rel"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#95989A" />
 
     <TextView
+        android:elevation="5dp"
+        android:gravity="center"
         android:id="@+id/info_name_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:textColor="#000000"
+        android:layout_below="@id/profile_image"
+        android:layout_marginTop="10dp"
+        android:layout_alignEnd="@id/profile_image"
+        android:layout_alignStart="@id/profile_image"
+        android:textColor="#95989A"
         android:textSize="14sp"
-        android:layout_toEndOf="@+id/profile_image" />
+        android:textStyle="bold"
+        tools:text="학과사무실" />
 
     <TextView
-        android:layout_marginTop="5dp"
+        android:elevation="5dp"
         android:id="@+id/info_location_text_view"
+        android:layout_alignTop="@id/rel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/info_name_text_view"
-        android:textColor="#000000"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="27dp"
+        android:layout_toEndOf="@id/profile_image"
+        android:textColor="#95989A"
         android:textSize="14sp"
-        android:layout_toEndOf="@+id/profile_image" />
+        tools:text="산 B102"
+        tools:ignore="RelativeOverlap" />
 
     <TextView
-        android:layout_marginTop="5dp"
+        android:elevation="5dp"
         android:id="@+id/info_telnumber_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/info_location_text_view"
-        android:textColor="#000000"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="3dp"
+        android:layout_toEndOf="@+id/profile_image"
+        android:textColor="#95989A"
         android:textSize="14sp"
-        android:layout_toEndOf="@+id/profile_image" />
+        tools:text="2630" />
+
 
     <TextView
-        android:layout_marginTop="5dp"
+        android:elevation="5dp"
         android:id="@+id/info_email_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/profile_image"
         android:layout_below="@id/info_telnumber_text_view"
-        android:textColor="#000000"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="3dp"
+        android:textColor="#95989A"
         android:textSize="14sp"
-        android:layout_toEndOf="@+id/profile_image" />
+        tools:text="jeonjw@gmail.com" />
+
     <ImageButton
+        android:elevation="5dp"
+        android:id="@+id/info_phone_call_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/telephone"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:color/transparent"
         android:scaleX="0.4"
         android:scaleY="0.4"
-        android:layout_marginEnd="10dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:id="@+id/info_phone_call_button"
-        android:background="@android:color/transparent"/>
-
+        android:src="@drawable/phone_call" />
 
 </RelativeLayout>

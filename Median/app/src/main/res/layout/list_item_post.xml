@@ -1,94 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:background="#ffffff">
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:background="#ffffff"
+    card_view:cardCornerRadius="4dp"
+    card_view:cardElevation="5dp"
+    card_view:cardUseCompatPadding="true">
 
-
-    <TextView
-        android:id="@+id/post_title_text_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
-        android:ellipsize="end"
-        android:paddingEnd="10dp"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        tools:text="This is post title..." />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/post_author_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/post_title_text_view"
-        android:layout_marginBottom="3dp"
-        android:paddingEnd="10dp"
-        android:paddingStart="10dp"
-        android:textSize="12sp"
-        tools:text="Jeon jinwoo" />
+        <TextView
+            android:id="@+id/post_title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:ellipsize="end"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            tools:text="This is post title..." />
 
-    <TextView
-        android:id="@+id/post_date_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/post_author_text_view"
-        android:layout_marginBottom="15dp"
-        android:paddingEnd="10dp"
-        android:paddingStart="10dp"
-        android:textSize="12sp"
-        tools:text="2017. 04. 20." />
+        <TextView
+            android:id="@+id/post_author_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_title_text_view"
+            android:layout_marginBottom="3dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:textSize="12sp"
+            tools:text="Jeon jinwoo" />
 
-    <TextView
-        android:id="@+id/post_contents_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/post_date_text_view"
-        android:layout_marginBottom="20dp"
-        android:padding="10dp"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        tools:text="This is post body..." />
+        <TextView
+            android:id="@+id/post_date_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_author_text_view"
+            android:layout_marginBottom="15dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:textSize="12sp"
+            tools:text="2017. 04. 20." />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/post_image_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/post_contents_text_view" />
+        <TextView
+            android:id="@+id/post_contents_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_date_text_view"
+            android:layout_marginBottom="20dp"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            tools:text="This is post body..." />
 
-    <ImageView
-        android:id="@+id/post_comment_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@id/post_image_recycler_view"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="50dp"
-        android:contentDescription="commentImage"
-        android:src="@drawable/chat" />
-
-    <TextView
-        android:id="@+id/post_comment_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/post_comment_image"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@id/post_image_recycler_view"
-        android:layout_marginEnd="22dp"
-        tools:text="50" />
-
-    <ImageButton
-        android:id="@+id/dropdown_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="5dp"
-        android:background="#00ffffff"
-        android:src="@drawable/arrow_down" />
+        <android.support.v7.widget.RecyclerView
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:id="@+id/post_image_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_contents_text_view" />
 
 
-</RelativeLayout>
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius_background"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/post_image_recycler_view">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/post_comment_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:scaleY="0.5"
+                    android:scaleX="0.5"
+                    android:contentDescription="commentImage"
+                    android:src="@drawable/post_comment" />
+
+                <TextView
+                    android:id="@+id/post_comment_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/post_comment_image"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="7dp"
+                    android:textColor="#ffffff"
+                    android:layout_marginEnd="10dp"
+                    tools:text="50" />
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/dropdown_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="15dp"
+            android:background="#00ffffff"
+            android:src="@drawable/more" />
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -28,6 +28,18 @@
         <item name="colorPrimaryDark">#2462B5</item>
     </style>
 
+    <style name="ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorSecondary">#FFFFFF</item>
+    </style>
+
+    <style name="NavigationDrawerStyle">
+        <item name="android:textSize">24sp</item><!-- text size in menu-->
+        <item name="android:listPreferredItemHeightSmall">60dp</item><!-- item size in menu-->
+        <item name="android:textStyle">bold</item>
+        <item name="android:listDivider">@color/colorNavLine</item>
+    </style>
+
+
     <style name="customSwitch" parent="Theme.AppCompat.Light">
         <!-- active thumb & track color (30% transparency) -->
         <item name="colorControlActivated">#6CABDD</item>

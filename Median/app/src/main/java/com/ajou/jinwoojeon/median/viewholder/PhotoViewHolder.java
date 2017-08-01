@@ -23,7 +23,7 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     public PhotoViewHolder(View itemView, List<String> photoPaths, Context context) {
         super(itemView);
-        photoImageView = (ImageView) itemView.findViewById(R.id.iv_photo);
+        photoImageView = itemView.findViewById(R.id.iv_photo);
         View vSelected = itemView.findViewById(R.id.v_selected);
         if (vSelected != null) vSelected.setVisibility(View.GONE);
         this.photoPaths = photoPaths;

@@ -28,7 +28,7 @@ public class InfoFragment extends Fragment {
         showProgressDialog();
         setHasOptionsMenu(true);
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.info_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.info_recycler_view);
 
         InfoModel infoModel = new InfoModel();
 
@@ -59,7 +59,6 @@ public class InfoFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_write).setVisible(false);
         menu.findItem(R.id.menu_search).setVisible(false);
     }
 

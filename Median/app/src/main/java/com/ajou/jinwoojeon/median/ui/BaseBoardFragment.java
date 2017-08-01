@@ -1,6 +1,5 @@
 package com.ajou.jinwoojeon.median.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,7 +27,7 @@ public abstract class BaseBoardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_base_board, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.board_recycler_view);
+        recyclerView = view.findViewById(R.id.board_recycler_view);
         setHasOptionsMenu(true);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -82,11 +81,11 @@ public abstract class BaseBoardFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.menu_write) {
-            Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
-            intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab());
-            startActivity(intent);
-        }
+//        if (item.getItemId() == R.id.menu_write) {
+//            Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
+//            intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab());
+//            startActivity(intent);
+//        }
         return true;
     }
 

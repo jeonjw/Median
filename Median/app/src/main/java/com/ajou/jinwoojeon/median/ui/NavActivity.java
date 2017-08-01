@@ -1,6 +1,7 @@
 package com.ajou.jinwoojeon.median.ui;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,8 +12,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.style.AlignmentSpan;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.ajou.jinwoojeon.median.BackPressHandler;
 import com.ajou.jinwoojeon.median.R;
@@ -23,6 +29,8 @@ public class NavActivity extends AppCompatActivity
 
     private Toolbar toolbar;
     private BackPressHandler backPressHandler;
+    private NavigationView navigationView;
+    private TextView toolbarTitleTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +41,8 @@ public class NavActivity extends AppCompatActivity
         backPressHandler = new BackPressHandler(this);
 
         setContentView(R.layout.activity_navigation);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
+        setToolbarStyle();
+
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment mediaNoticeFragment = new MediaNoticeFragment();
@@ -47,8 +54,39 @@ public class NavActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        setNavItemTextAlignMent();
+
+
+    }
+
+    private void setToolbarStyle() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbarTitleTextView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+
+        toolbarTitleTextView.setText("NOTICE");
+
+        Typeface type = Typeface.createFromAsset(getAssets(), "Womby.ttf");
+        toolbarTitleTextView.setTypeface(type);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+
+    private void setNavItemTextAlignMent() {
+        Menu menu = navigationView.getMenu();
+        String[] menuTitle = getResources().getStringArray(R.array.nav_item);
+
+        for (int i = 0; i < menu.size(); i++) {
+            MenuItem item = menu.getItem(i);
+            SpannableString s = new SpannableString(menuTitle[i]);
+            s.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, s.length(), 0);
+            item.setTitle(s);
+        }
+
+
     }
 
     @Override
@@ -67,6 +105,7 @@ public class NavActivity extends AppCompatActivity
         return true;
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -74,21 +113,19 @@ public class NavActivity extends AppCompatActivity
 
         if (id == R.id.nav_notice) {
             fragment = new MediaNoticeFragment();
-            toolbar.setTitle("Notice");
+            toolbarTitleTextView.setText("NOTICE");
         } else if (id == R.id.nav_board) {
             fragment = new BoardTabFragment();
-            toolbar.setTitle("Board");
+            toolbarTitleTextView.setText("BOARD");
         } else if (id == R.id.nav_timetable) {
             fragment = new LectureFragment();
-            toolbar.setTitle("Lecture");
-        }
-        else if (id == R.id.nav_info) {
+            toolbarTitleTextView.setText("LECTURE");
+        } else if (id == R.id.nav_info) {
             fragment = new InfoFragment();
-            toolbar.setTitle("Info");
-        }
-        else if (id == R.id.nav_setting) {
+            toolbarTitleTextView.setText("INFO");
+        } else if (id == R.id.nav_setting) {
             fragment = new SettingFragment();
-            toolbar.setTitle("Setting");
+            toolbarTitleTextView.setText("SETTING");
         }
 
 

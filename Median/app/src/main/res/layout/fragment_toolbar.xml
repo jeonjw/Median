@@ -1,26 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<android.support.v7.widget.Toolbar
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:titleTextColor="#FFFFFF"
+    app:theme="@style/ToolbarTheme"
+    android:background="#2EA8C9"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/toolbar"
-        app:titleTextColor="#FFFFFF"
-        android:background="#6CABDD">
+        android:layout_gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:id="@+id/toolbar_title" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:textSize="26sp"
-            android:id="@+id/toolbar_title" />
-
-        </android.support.v7.widget.Toolbar>
-
-
-
-</LinearLayout>
+</android.support.v7.widget.Toolbar>

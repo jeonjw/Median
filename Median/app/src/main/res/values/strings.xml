@@ -17,6 +17,26 @@
         <item>교재장터</item>
         <item>질문답변</item>
     </string-array>
+
+    <string-array name="nav_item">
+        <item>NOTICE</item>
+        <item>BOARD</item>
+        <item>LECTURE</item>
+        <item>INFO</item>
+        <item>SETTINGS</item>
+    </string-array>
+
+    <string-array name="day_list">
+        <item>월요일</item>
+        <item>화요일</item>
+        <item>수요일</item>
+        <item>목요일</item>
+        <item>금요일</item>
+    </string-array>
+
+
+
+
     <string name="UX_design">UX디자인</string>
     <string name="VR_studio">VR스튜디오</string>
     <string name="three_dimential_creation">3D어셋\n크리에이션</string>

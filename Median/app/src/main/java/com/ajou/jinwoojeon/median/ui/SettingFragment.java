@@ -96,7 +96,7 @@ public class SettingFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.menu_write).setVisible(false);
+//        menu.findItem(R.id.menu_write).setVisible(false);
         menu.findItem(R.id.menu_search).setVisible(false);
     }
 }

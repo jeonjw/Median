@@ -14,10 +14,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.adapter.PhotoAdapter;
@@ -37,11 +38,11 @@ public class BoardWriteActivity extends AppCompatActivity {
 
     private EditText titleEditText;
     private EditText contentsEditText;
-    private Spinner board_spinner;
+    private Spinner boardSpinner;
     private int currentPosition;
     private boolean rewrite;
     private PostModel postModel;
-    private CheckBox anonymousCheckBox;
+    private ToggleButton anonymousToggleButton;
     private List<String> selectedPhotos;
     private PhotoAdapter photoAdapter;
 
@@ -52,7 +53,7 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         selectedPhotos = new ArrayList<>();
         photoAdapter = new PhotoAdapter(selectedPhotos);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.board_image_recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.board_image_recycler_view);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
         recyclerView.setAdapter(photoAdapter);
 
@@ -61,34 +62,34 @@ public class BoardWriteActivity extends AppCompatActivity {
         String reWriteContents = getIntent().getExtras().getString("BOARD_CONTENTS");
 
 
-        titleEditText = (EditText) findViewById(R.id.board_write_title_edit_text);
-        contentsEditText = (EditText) findViewById(R.id.board_write_content_edit_text);
+        titleEditText = findViewById(R.id.board_write_title_edit_text);
+        contentsEditText = findViewById(R.id.board_write_content_edit_text);
 
-        ImageButton writeButton = (ImageButton) findViewById(R.id.board_write_finish);
-        ImageButton closeButton = (ImageButton) findViewById(R.id.board_write_close_button);
-        ImageButton photoButton = (ImageButton) findViewById(R.id.board_photo_button);
+        Button writeButton = findViewById(R.id.board_write_finish);
+        Button closeButton = findViewById(R.id.board_write_close_button);
+        ImageButton photoButton = findViewById(R.id.board_photo_button);
 
-        board_spinner = (Spinner) findViewById(R.id.board_spinner);
-        anonymousCheckBox = (CheckBox) findViewById(R.id.board_write_anonymous_check_box);
+        boardSpinner = findViewById(R.id.board_spinner);
+        anonymousToggleButton = findViewById(R.id.board_write_anonymous_toggle_button);
 
-        board_spinner.post(new Runnable() {
+        boardSpinner.post(new Runnable() {
             @Override
             public void run() {
-                board_spinner.setSelection(currentPosition);
+                boardSpinner.setSelection(currentPosition);
             }
         });
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(BoardWriteActivity.this, R.array.board_spinner, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        board_spinner.setAdapter(adapter);
+        boardSpinner.setAdapter(adapter);
 
-        postModel = new PostModel((String) board_spinner.getSelectedItem());
+        postModel = new PostModel((String) boardSpinner.getSelectedItem());
 
 
         if (reWriteContents != null && reWriteTitle != null) {
             titleEditText.setText(reWriteTitle);
             contentsEditText.setText(reWriteContents);
-            board_spinner.setVisibility(View.GONE);
+            boardSpinner.setVisibility(View.GONE);
             rewrite = true;
         }
 
@@ -146,7 +147,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     private void writePost() {
         final String title = titleEditText.getText().toString();
         final String contents = contentsEditText.getText().toString();
-        final String postType = getDatabaseKey(board_spinner.getSelectedItemPosition());
+        final String postType = getDatabaseKey(boardSpinner.getSelectedItemPosition());
 
         if (selectedPhotos.size() != 0) {
             Snackbar.make(contentsEditText, "이미지 업로드 중 . .", Snackbar.LENGTH_LONG).show();
@@ -167,7 +168,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     private void correctPost() {
         final String title = titleEditText.getText().toString();
         final String contents = contentsEditText.getText().toString();
-        final String postType = getDatabaseKey(board_spinner.getSelectedItemPosition());
+        final String postType = getDatabaseKey(boardSpinner.getSelectedItemPosition());
         final String postKey = getIntent().getExtras().getString("CORRECT_POST_KEY");
         final int commentCount = getIntent().getExtras().getInt("COMMENT_COUNT");
 
@@ -177,7 +178,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     }
 
     private String getPostAuthorName() {
-        String authorName = anonymousCheckBox.isChecked() ? "익명" : User.getInstance().getUserName();
+        String authorName = anonymousToggleButton.isChecked() ? "익명" : User.getInstance().getUserName();
         return authorName;
     }
 

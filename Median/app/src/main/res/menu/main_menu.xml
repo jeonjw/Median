@@ -1,17 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/menu_write"
-        android:orderInCategory="100"
-        android:icon="@drawable/pencil"
-        app:showAsAction="ifRoom"
-        android:title="@string/write"
-        />
+    <!--<item-->
+        <!--android:id="@+id/menu_write"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:icon="@drawable/pencil"-->
+        <!--app:showAsAction="ifRoom"-->
+        <!--android:title="@string/write" />-->
     <item
         app:actionViewClass="android.support.v7.widget.SearchView"
         android:id="@+id/menu_search"
-        android:icon="@drawable/magnifier"
+        android:icon="@drawable/magni"
         android:iconifiedByDefault="false"
         android:orderInCategory="50"
         app:showAsAction="ifRoom|collapseActionView"

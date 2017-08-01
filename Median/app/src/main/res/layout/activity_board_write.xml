@@ -1,95 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/colorMedianGlay">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/board_write_close_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:scaleX="0.3"
-            android:scaleY="0.3"
-            android:src="@drawable/close" />
-
-        <ImageButton
-            android:id="@+id/board_write_finish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:background="@android:color/transparent"
-            android:scaleX="0.4"
-            android:scaleY="0.4"
-            android:src="@drawable/write" />
-
-        <ImageButton
-            android:id="@+id/board_photo_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/board_write_finish"
-            android:background="@android:color/transparent"
-            android:scaleX="0.5"
-            android:scaleY="0.6"
-            android:src="@drawable/gallery" />
-
-        <CheckBox
-            android:id="@+id/board_write_anonymous_check_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/board_photo_button" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="익명유뮤"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/board_write_anonymous_check_box"/>
-
-    </RelativeLayout>
 
     <Spinner
         android:id="@+id/board_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp" />
 
-    <android.support.design.widget.TextInputLayout
+
+    <RelativeLayout
+        android:id="@+id/post_input_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_above="@id/board_write_finish"
+        android:layout_below="@id/board_spinner"
+        android:layout_margin="20dp"
+        android:background="#FFFFFF"
+        android:elevation="5dp">
+
 
         <EditText
             android:id="@+id/board_write_title_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="@string/title" />
+            android:hint="@string/title"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
 
-    </android.support.design.widget.TextInputLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/board_image_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/board_image_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/board_write_title_edit_text" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <EditText
             android:id="@+id/board_write_content_edit_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/board_image_recycler_view"
             android:layout_marginTop="10dp"
             android:background="@null"
             android:gravity="fill_horizontal"
             android:hint="@string/contents"
-            android:paddingEnd="10dp"
-            android:paddingStart="10dp" />
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
 
-    </android.support.design.widget.TextInputLayout>
+        <ImageButton
+            android:id="@+id/board_photo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="5dp"
+            android:background="#00FFFFFF"
+            android:src="@drawable/floating_add_button" />
 
-</LinearLayout>
+        <ToggleButton
+            android:id="@+id/board_write_anonymous_toggle_button"
+            android:layout_width="62dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/anonymous_toggle_selector"
+            android:textOff=" "
+            android:textOn=" "
+            tools:ignore="RelativeOverlap" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/board_write_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/board_write_close_button"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/radius_corner_button_primary_color"
+        android:stateListAnimator="@null"
+        android:text="글쓰기"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/board_write_close_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/radius_corner_button_white_color"
+        android:stateListAnimator="@null"
+        android:text="취소" />
+
+
+</RelativeLayout>

@@ -11,14 +11,20 @@ import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ajou.jinwoojeon.median.R;
+import com.ajou.jinwoojeon.median.model.OnSpinnerClickListener;
 
 import java.util.Calendar;
 
 public abstract class BaseLectureFragment extends Fragment {
 
+
+    private OnSpinnerClickListener onSpinnerClickListener;
     private TextView textViewB103;
     private TextView textView415;
     private TextView textView419;
@@ -35,25 +41,123 @@ public abstract class BaseLectureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getCurrentTabResourceId(), container, false);
 
-        textViewB103 = (TextView) view.findViewById(R.id.textViewB103);
-        textView415 = (TextView) view.findViewById(R.id.textView415);
-        textView419 = (TextView) view.findViewById(R.id.textView419);
-        textView420 = (TextView) view.findViewById(R.id.textView420);
-        textView421 = (TextView) view.findViewById(R.id.textView421);
-        textView422 = (TextView) view.findViewById(R.id.textView422);
-        textViewEx1 = (TextView) view.findViewById(R.id.textViewEx1);
-        textViewEx2 = (TextView) view.findViewById(R.id.textViewEx2);
-        textViewEx3 = (TextView) view.findViewById(R.id.textViewEx3);
+        textViewB103 = view.findViewById(R.id.textViewB103);
+        textView415 = view.findViewById(R.id.textView415);
+        textView419 = view.findViewById(R.id.textView419);
+        textView420 = view.findViewById(R.id.textView420);
+        textView421 = view.findViewById(R.id.textView421);
+        textView422 = view.findViewById(R.id.textView422);
+        textViewEx1 = view.findViewById(R.id.textViewEx1);
+        textViewEx2 = view.findViewById(R.id.textViewEx2);
+        textViewEx3 = view.findViewById(R.id.textViewEx3);
 
-        textViewA = (TextView) view.findViewById(R.id.timeA);
-        textViewB = (TextView) view.findViewById(R.id.timeB);
-        textViewC = (TextView) view.findViewById(R.id.timeC);
-        textViewD = (TextView) view.findViewById(R.id.timeD);
-        textViewE = (TextView) view.findViewById(R.id.timeE);
-        textViewF = (TextView) view.findViewById(R.id.timeF);
-        textViewG = (TextView) view.findViewById(R.id.timeG);
-        textViewH = (TextView) view.findViewById(R.id.timeH);
+        textViewA = view.findViewById(R.id.timeA);
+        textViewB = view.findViewById(R.id.timeB);
+        textViewC = view.findViewById(R.id.timeC);
+        textViewD = view.findViewById(R.id.timeD);
+        textViewE = view.findViewById(R.id.timeE);
+        textViewF = view.findViewById(R.id.timeF);
+        textViewG = view.findViewById(R.id.timeG);
+        textViewH = view.findViewById(R.id.timeH);
+        final Spinner spinner = view.findViewById(R.id.day_spinner);
 
+        int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
+        checkCurrentTime((currentHour * 60) + currentMinute);
+        setTextSpan();
+        setTextViewFont();
+
+        final int selectDay = getArguments().getInt("SELECT_DAY");
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.day_list, R.layout.spinner_item);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            int count = 0;
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (count >= 1) {
+                    if (onSpinnerClickListener != null)
+                        onSpinnerClickListener.onCLick(position);
+                }
+                count++;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        spinner.post(new Runnable() {
+            @Override
+            public void run() {
+                spinner.setSelection(selectDay, true);
+
+            }
+        });
+
+
+        return view;
+    }
+
+
+    public void setOnSpinnerClickListener(OnSpinnerClickListener onSpinnerClickListener) {
+        this.onSpinnerClickListener = onSpinnerClickListener;
+    }
+
+    private void setTextViewFont() {
+        Typeface type = Typeface
+                .createFromAsset(getActivity().getAssets(), "Trebuchet MS.ttf");
+
+        textViewA.setTypeface(type);
+        textViewB.setTypeface(type);
+        textViewC.setTypeface(type);
+        textViewD.setTypeface(type);
+        textViewE.setTypeface(type);
+        textViewF.setTypeface(type);
+        textViewG.setTypeface(type);
+        textViewH.setTypeface(type);
+        textViewB103.setTypeface(type);
+        textView415.setTypeface(type);
+        textView419.setTypeface(type);
+        textView420.setTypeface(type);
+        textView421.setTypeface(type);
+        textView422.setTypeface(type);
+        if (textViewEx1 != null)
+            textViewEx1.setTypeface(type);
+        if (textViewEx2 != null)
+            textViewEx2.setTypeface(type);
+        if (textViewEx3 != null)
+            textViewEx3.setTypeface(type);
+    }
+
+    private void checkCurrentTime(int time) {
+        if (time < 615 && time > 540) {//A
+            textViewA.setBackgroundColor(Color.parseColor("#2EA8C9"));
+        } else if (time < 705) {//B
+            textViewB.setBackgroundColor(Color.parseColor("#2EA8C9"));
+        } else if (time < 795) {//C
+            textViewC.setBackgroundColor(Color.parseColor("#2EA8C9"));
+        } else if (time < 885) {//D
+            textViewD.setBackgroundColor(Color.parseColor("#2EA8C9"));
+        } else if (time < 975) {//E
+            textViewE.setBackgroundColor(Color.parseColor("#2EA8C9"));
+        } else if (time < 1065) {//F
+            textViewF.setBackgroundColor(Color.parseColor("#2EA8C9"));
+        } else if (time < 1155) {//G
+            textViewG.setBackgroundColor(Color.parseColor("#2EA8C9"));
+        } else if (time < 1245) {//H
+            textViewH.setBackgroundColor(Color.parseColor("#2EA8C9"));
+        }
+
+    }
+
+    public abstract int getCurrentTabResourceId();
+
+    private void setTextSpan() {
         String strA = getString(R.string.a) + "\n \n" + getString(R.string.aTime);
         SpannableString spnA = new SpannableString(strA);
         spnA.setSpan(new RelativeSizeSpan(0.7f), 1, spnA.length(), 0);
@@ -94,63 +198,7 @@ public abstract class BaseLectureFragment extends Fragment {
         spnH.setSpan(new RelativeSizeSpan(0.7f), 1, spnH.length(), 0);
         textViewH.setText(spnH);
 
-        int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
-
-        checkCurrentTime((currentHour * 60) + currentMinute);
-        setTextViewFont();
-
-        return view;
     }
-
-    private void setTextViewFont() {
-        Typeface type = Typeface
-                .createFromAsset(getActivity().getAssets(), "Trebuchet MS.ttf");
-
-        textViewA.setTypeface(type);
-        textViewB.setTypeface(type);
-        textViewC.setTypeface(type);
-        textViewD.setTypeface(type);
-        textViewE.setTypeface(type);
-        textViewF.setTypeface(type);
-        textViewG.setTypeface(type);
-        textViewH.setTypeface(type);
-        textViewB103.setTypeface(type);
-        textView415.setTypeface(type);
-        textView419.setTypeface(type);
-        textView420.setTypeface(type);
-        textView421.setTypeface(type);
-        textView422.setTypeface(type);
-        if (textViewEx1 != null)
-            textViewEx1.setTypeface(type);
-        if (textViewEx2 != null)
-            textViewEx2.setTypeface(type);
-        if (textViewEx3 != null)
-            textViewEx3.setTypeface(type);
-    }
-
-    private void checkCurrentTime(int time) {
-        if (time < 615 && time > 540) {//A
-            textViewA.setTextColor(Color.RED);
-        } else if (time < 705) {//B
-            textViewB.setTextColor(Color.RED);
-        } else if (time < 795) {//C
-            textViewC.setTextColor(Color.RED);
-        } else if (time < 885) {//D
-            textViewD.setTextColor(Color.RED);
-        } else if (time < 975) {//E
-            textViewE.setTextColor(Color.RED);
-        } else if (time < 1065) {//F
-            textViewF.setTextColor(Color.RED);
-        } else if (time < 1155) {//G
-            textViewG.setTextColor(Color.RED);
-        } else if (time < 1245) {//H
-            textViewH.setTextColor(Color.RED);
-        }
-
-    }
-
-    public abstract int getCurrentTabResourceId();
 
     public static class LectureMondayFragment extends BaseLectureFragment {
 
