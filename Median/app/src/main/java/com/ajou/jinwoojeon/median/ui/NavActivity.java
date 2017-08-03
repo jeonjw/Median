@@ -13,14 +13,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AlignmentSpan;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.ajou.jinwoojeon.median.BackPressHandler;
+import com.ajou.jinwoojeon.median.CustomTypefaceSpan;
 import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.model.UserModel;
 
@@ -48,13 +49,13 @@ public class NavActivity extends AppCompatActivity
         Fragment mediaNoticeFragment = new MediaNoticeFragment();
         fm.beginTransaction().add(R.id.content_fragment, mediaNoticeFragment).commit();
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.student_notice, R.string.media_notice);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setNavItemTextAlignMent();
 
@@ -62,9 +63,9 @@ public class NavActivity extends AppCompatActivity
     }
 
     private void setToolbarStyle() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbarTitleTextView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbarTitleTextView = toolbar.findViewById(R.id.toolbar_title);
 
         toolbarTitleTextView.setText("NOTICE");
 
@@ -78,11 +79,13 @@ public class NavActivity extends AppCompatActivity
     private void setNavItemTextAlignMent() {
         Menu menu = navigationView.getMenu();
         String[] menuTitle = getResources().getStringArray(R.array.nav_item);
+        Typeface type = Typeface.createFromAsset(getAssets(), "Womby.ttf");
 
         for (int i = 0; i < menu.size(); i++) {
             MenuItem item = menu.getItem(i);
             SpannableString s = new SpannableString(menuTitle[i]);
-            s.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, s.length(), 0);
+            s.setSpan(new CustomTypefaceSpan("" , type), 0 , s.length(),  Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//            s.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, s.length(), 0);
             item.setTitle(s);
         }
 
@@ -91,7 +94,7 @@ public class NavActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -129,7 +132,7 @@ public class NavActivity extends AppCompatActivity
         }
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
         getSupportFragmentManager()

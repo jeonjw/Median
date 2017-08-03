@@ -18,8 +18,8 @@ public class ToolbarFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_toolbar, container, false);
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbarTitleTextView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        toolbarTitleTextView = toolbar.findViewById(R.id.toolbar_title);
         toolbar.setTitle("Media");
 
         toolbarTitleTextView.setText(R.string.app_title);

@@ -74,13 +74,13 @@ public class SettingFragment extends Fragment {
             }
         });
 
-        versionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VersionDialogFragment dialog = new VersionDialogFragment();
-                dialog.show(getFragmentManager(), "version");
-            }
-        });
+//        versionButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                VersionDialogFragment dialog = new VersionDialogFragment();
+//                dialog.show(getFragmentManager(), "version");
+//            }
+//        });
 
         developerButton.setOnClickListener(new View.OnClickListener() {
             @Override

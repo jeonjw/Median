@@ -1,17 +1,17 @@
 package com.ajou.jinwoojeon.median.viewholder;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -19,7 +19,7 @@ import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.adapter.PhotoAdapter;
 import com.ajou.jinwoojeon.median.ui.BoardTabFragment;
 import com.ajou.jinwoojeon.median.ui.BoardWriteActivity;
-import com.ajou.jinwoojeon.median.ui.CommentListActivity;
+import com.ajou.jinwoojeon.median.ui.CommentDialogFragment;
 import com.ajou.jinwoojeon.median.valueObject.Post;
 import com.ajou.jinwoojeon.median.valueObject.User;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Objects;
 
-public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class PostViewHolder extends RecyclerView.ViewHolder {
     private TextView titleTextView;
     private TextView contentsTextView;
     private TextView authorTextView;
@@ -44,17 +44,18 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     private Post post;
     private RecyclerView photoRecyclerView;
 
-    public PostViewHolder(View itemView) {
+    public PostViewHolder(final View itemView) {
         super(itemView);
 
         context = itemView.getContext();
-        titleTextView = (TextView) itemView.findViewById(R.id.post_title_text_view);
-        contentsTextView = (TextView) itemView.findViewById(R.id.post_contents_text_view);
-        authorTextView = (TextView) itemView.findViewById(R.id.post_author_text_view);
-        dateTextView = (TextView) itemView.findViewById(R.id.post_date_text_view);
-        commentCountTextView = (TextView) itemView.findViewById(R.id.post_comment_number);
-        dropdownButton = (ImageButton) itemView.findViewById(R.id.dropdown_button);
-        photoRecyclerView = (RecyclerView) itemView.findViewById(R.id.post_image_recycler_view);
+        titleTextView = itemView.findViewById(R.id.post_title_text_view);
+        contentsTextView = itemView.findViewById(R.id.post_contents_text_view);
+        authorTextView = itemView.findViewById(R.id.post_author_text_view);
+        dateTextView = itemView.findViewById(R.id.post_date_text_view);
+        commentCountTextView = itemView.findViewById(R.id.post_comment_number);
+        dropdownButton = itemView.findViewById(R.id.dropdown_button);
+        photoRecyclerView = itemView.findViewById(R.id.post_image_recycler_view);
+        FrameLayout commentImageLayout = itemView.findViewById(R.id.comment_image_layout);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         titleTextView.setFocusableInTouchMode(true);
@@ -94,22 +95,28 @@ public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnCl
             }
         });
 
-        itemView.setOnClickListener(this);
-    }
+        commentImageLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(context, CommentListActivity.class);
+//                intent.putExtra("POST_KEY", dataRefKey);
+//                intent.putExtra("POST_TYPE", postType);
+//                context.startActivity(intent);
+//
+//                ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
+                FragmentManager fragmentManager =
+                        ((AppCompatActivity) itemView.getContext()).getSupportFragmentManager();
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(context, CommentListActivity.class);
-        intent.putExtra("POST_KEY", dataRefKey);
-        intent.putExtra("POST_TYPE", postType);
-        context.startActivity(intent);
+                CommentDialogFragment dialog = CommentDialogFragment.newInstance(dataRefKey,postType,post.getTitle());
+                dialog.show(fragmentManager, "nameCard");
+            }
+        });
 
-        ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
     }
 
     public void bindPost(final Post model, String postKey, String postType) {
         post = model;
+
 
         titleTextView.setText(model.getTitle());
         contentsTextView.setText(model.getContents());

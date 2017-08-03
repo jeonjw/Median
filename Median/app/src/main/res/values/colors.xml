@@ -7,6 +7,8 @@
     <color name="colorNavText">#6F6F6F</color>
     <color name="colorNavLine">#6F6F6F6F</color>
     <color name="colorMedianGlay">#F1F1F1</color>
+    <color name="colorWhite">#FFFFFF</color>
+
 
     <color name="tabSelectedTextColor">#FFF176</color>
     <color name="timeTableRoomColor">#8EC0E4</color>

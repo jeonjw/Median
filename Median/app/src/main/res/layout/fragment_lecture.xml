@@ -1,28 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!--<android.support.design.widget.TabLayout-->
-        <!--android:id="@+id/class_tab"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--app:tabBackground="@drawable/tab_color_selector"-->
-        <!--app:tabIndicatorHeight="0dp"-->
-        <!--app:tabSelectedTextColor="#6C6C6C"-->
-        <!--app:tabTextColor="#ffffff"-->
-        <!--/>-->
-
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <LinearLayout
+        android:id="@+id/lecture_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:id="@+id/lecture_container">
-    </LinearLayout>
-
+        android:orientation="horizontal" />
 </LinearLayout>

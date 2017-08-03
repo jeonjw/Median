@@ -14,12 +14,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/post_title_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="3dp"
             android:ellipsize="end"
             android:paddingEnd="10dp"
@@ -33,7 +36,8 @@
             android:id="@+id/post_author_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/post_title_text_view"
+            android:layout_below="@id/post_image_recycler_view"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="3dp"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"
@@ -45,20 +49,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/post_author_text_view"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="12dp"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"
             android:textSize="12sp"
             tools:text="2017. 04. 20." />
 
         <TextView
+            android:layout_marginTop="2dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
             android:id="@+id/post_contents_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/post_date_text_view"
+            android:layout_below="@id/post_title_text_view"
             android:layout_marginBottom="20dp"
-            android:padding="10dp"
-            android:textColor="#000000"
+            android:textColor="#797979"
             android:textSize="14sp"
             tools:text="This is post body..." />
 
@@ -72,13 +78,16 @@
 
 
         <FrameLayout
-            android:layout_width="60dp"
-            android:layout_marginBottom="10dp"
+            android:id="@+id/comment_image_layout"
+            android:layout_width="50dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginEnd="10dp"
-            android:layout_height="wrap_content"
+            android:layout_height="26dp"
             android:background="@drawable/radius_background"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
             android:layout_below="@id/post_image_recycler_view">
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -87,10 +96,10 @@
                     android:id="@+id/post_comment_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="18dp"
                     android:layout_alignParentEnd="true"
-                    android:scaleY="0.5"
-                    android:scaleX="0.5"
+                    android:scaleY="0.4"
+                    android:scaleX="0.4"
                     android:contentDescription="commentImage"
                     android:src="@drawable/post_comment" />
 
@@ -100,9 +109,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@id/post_comment_image"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="#ffffff"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="12dp"
+                    android:textSize="12sp"
                     tools:text="50" />
             </RelativeLayout>
 

@@ -23,26 +23,26 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="20dp"
         android:id="@+id/profile_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:elevation="5dp"
         android:contentDescription="@string/profileimage"
-        android:src="@drawable/media_logo"
-        app:civ_border_color="@color/colorPrimary"
+        android:src="@drawable/media_logo_back_white"
+        app:civ_border_color="#95989A"
         app:civ_border_width="3dp" />
 
     <View
-        android:layout_width="1dp"
+        android:layout_width="2dp"
         android:elevation="5dp"
         android:layout_marginStart="15dp"
         android:layout_toEndOf="@id/profile_image"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/rel"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#95989A" />
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="23dp"
+        android:background="#B2B2B2" />
 
     <TextView
         android:elevation="5dp"
@@ -66,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="32dp"
         android:layout_toEndOf="@id/profile_image"
         android:textColor="#95989A"
         android:textSize="14sp"
@@ -106,8 +106,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="15dp"
         android:background="@android:color/transparent"
         android:scaleX="0.4"
         android:scaleY="0.4"

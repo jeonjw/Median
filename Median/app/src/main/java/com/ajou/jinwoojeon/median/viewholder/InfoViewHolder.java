@@ -30,12 +30,12 @@ public class InfoViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         this.context = itemView.getContext();
-        mImageView = (ImageView) itemView.findViewById(R.id.profile_image);
-        mNameTextView = (TextView) itemView.findViewById(R.id.info_name_text_view);
-        mEmailTextView = (TextView) itemView.findViewById(R.id.info_email_text_view);
-        mTelNumberTextView = (TextView) itemView.findViewById(R.id.info_telnumber_text_view);
-        mLocationTextView = (TextView) itemView.findViewById(R.id.info_location_text_view);
-        mPhoneCallButton = (ImageButton) itemView.findViewById(R.id.info_phone_call_button);
+        mImageView = itemView.findViewById(R.id.profile_image);
+        mNameTextView = itemView.findViewById(R.id.info_name_text_view);
+        mEmailTextView = itemView.findViewById(R.id.info_email_text_view);
+        mTelNumberTextView = itemView.findViewById(R.id.info_telnumber_text_view);
+        mLocationTextView = itemView.findViewById(R.id.info_location_text_view);
+        mPhoneCallButton = itemView.findViewById(R.id.info_phone_call_button);
 
         mPhoneCallButton.setOnClickListener(new View.OnClickListener() {
             @Override

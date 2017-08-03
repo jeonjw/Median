@@ -57,6 +57,12 @@ public class BoardWriteActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
         recyclerView.setAdapter(photoAdapter);
 
+//        if(photoAdapter.getItemCount() == 0)
+//            recyclerView.setVisibility(View.GONE);
+//        else
+//            recyclerView.setVisibility(View.VISIBLE);
+        //리사이클러뷰 사이즈에 따라 리사이클러뷰 비지블 처리하기
+
         currentPosition = getIntent().getExtras().getInt("CURRENT_BOARD_TAB");
         String reWriteTitle = getIntent().getExtras().getString("BOARD_TITLE");
         String reWriteContents = getIntent().getExtras().getString("BOARD_CONTENTS");
@@ -79,7 +85,7 @@ public class BoardWriteActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(BoardWriteActivity.this, R.array.board_spinner, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(BoardWriteActivity.this, R.array.board_spinner, R.layout.spinner_post_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         boardSpinner.setAdapter(adapter);
 

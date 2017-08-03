@@ -2,40 +2,67 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/media_notice_switch_text_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="40dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:textColor="#000000"
         android:text="@string/media_notice"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_below="@id/media_notice_switch_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="#C7C7C7"/>
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/media_notice_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_margin="6dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="25dp"
         android:theme="@style/customSwitch"
         android:layout_toEndOf="@+id/media_notice_switch_text_view"/>
 
     <TextView
         android:id="@+id/student_notice_switch_text_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
+        android:textColor="#000000"
         android:text="@string/student_notice"
-        android:layout_margin="10dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
         android:layout_below="@+id/media_notice_switch_text_view"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:gravity="center_vertical"/>
+
+    <View
+        android:layout_below="@id/student_notice_switch_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="#C7C7C7"/>
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/student_notice_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_margin="6dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="25dp"
         android:theme="@style/customSwitch"
         android:layout_toEndOf="@+id/student_notice_switch_text_view"
         android:layout_below="@+id/media_notice_switch_text_view"/>
