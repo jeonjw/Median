@@ -21,6 +21,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class PostModel {
@@ -56,11 +57,16 @@ public class PostModel {
     public void writePost(String postType, String userName, String title, String contents) {
         databaseReference.child(postType).
                 push().setValue(Post.newPost(userName, title, contents, 0));
+
+        if (Objects.equals(postType, "student_notice"))
+            new NotificationPostModel("학생회 공지가 등록됬습니다", title).execute();
     }
 
     public void writePostWithImage(String postType, String userName, String title, String contents, List<String> urlList) {
         databaseReference.child(postType).push().setValue(Post.newPostWithImages(userName, title, contents, 0, urlList));
-//        new NotificationPostModel("학생회 공지가 등록됬습니다", title).execute();
+
+        if (Objects.equals(postType, "student_notice"))
+            new NotificationPostModel("학생회 공지가 등록됬습니다", title).execute();
     }
 
     public void correctPost(String postType, String userName, String title, String contents, String postKey, int commentCount) {

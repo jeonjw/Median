@@ -8,6 +8,6 @@
         android:id="@+id/media_notice_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#696969"/>
+        android:background="#F1F1F1"/>
 
 </LinearLayout>
