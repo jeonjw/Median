@@ -71,9 +71,10 @@
 
     <ToggleButton
         android:id="@+id/comment_anonymous_toggle_button"
+        android:layout_marginBottom="-15dp"
         android:layout_width="62dp"
         android:layout_height="30dp"
-        android:layout_alignBaseline="@id/comment_edit_layout"
+        android:layout_above="@id/comment_edit_layout"
         android:layout_centerHorizontal="true"
         android:background="@drawable/anonymous_toggle_selector"
         android:textOff=" "

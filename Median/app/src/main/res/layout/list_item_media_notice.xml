@@ -41,6 +41,7 @@
             android:layout_marginBottom="20dp"
             android:textColor="#797979"
             android:textSize="14sp"
+            android:autoLink="web"
             tools:text="This is notice body..."
             />
 
