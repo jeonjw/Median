@@ -1,6 +1,7 @@
 package com.ajou.jinwoojeon.median.ui;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,8 +31,11 @@ public class CommentDialogFragment extends DialogFragment {
     private RecyclerView recyclerView;
     private CommentModel model;
     private ToggleButton anonymousToggleButton;
-    private ImageButton closeButton;
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        model.removeListener();
+    }
 
     @NonNull
     @Override
@@ -42,7 +46,7 @@ public class CommentDialogFragment extends DialogFragment {
         String postType = getArguments().getString("POST_TYPE");
         model = new CommentModel(dataRefKey, postType);
         recyclerView = view.findViewById(R.id.comment_recycler_view);
-        closeButton = view.findViewById(R.id.comment_close_button);
+        ImageButton closeButton = view.findViewById(R.id.comment_close_button);
         anonymousToggleButton = view.findViewById(R.id.comment_anonymous_toggle_button);
         TextView titleTextView = view.findViewById(R.id.comment_title_text_view);
 
@@ -118,7 +122,6 @@ public class CommentDialogFragment extends DialogFragment {
 //    }
 
     private String getCommentAuthorName() {
-        String authorName = anonymousToggleButton.isChecked() ? "익명" : User.getInstance().getUserName();
-        return authorName;
+        return anonymousToggleButton.isChecked() ? "익명" : User.getInstance().getUserName();
     }
 }
