@@ -24,7 +24,7 @@
 
         <EditText
             android:theme="@style/CommentEditTextTheme"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorWhite"
             android:id="@+id/comment_edit"
             android:layout_toStartOf="@id/send_button"
             android:layout_width="match_parent"
@@ -77,8 +77,8 @@
         android:layout_above="@id/comment_edit_layout"
         android:layout_centerHorizontal="true"
         android:background="@drawable/anonymous_toggle_selector"
-        android:textOff=" "
-        android:textOn=" " />
+        android:textOff="@string/space"
+        android:textOn="@string/space" />
 
 
 

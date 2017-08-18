@@ -12,7 +12,7 @@
         android:background="@drawable/radius_background"
         android:layout_gravity="center"
         android:gravity="center_vertical|center_horizontal"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorWhite"
         tools:text="월요일"/>
 
 </RelativeLayout>

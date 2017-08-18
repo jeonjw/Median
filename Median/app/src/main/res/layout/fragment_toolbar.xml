@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
-    android:titleTextColor="#FFFFFF"
+    android:titleTextColor="@color/colorWhite"
     app:theme="@style/ToolbarTheme"
     android:background="#2EA8C9"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorWhite"
         android:textSize="20sp"
         android:id="@+id/toolbar_title" />
 
