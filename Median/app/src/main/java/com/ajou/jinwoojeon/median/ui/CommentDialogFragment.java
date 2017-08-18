@@ -30,6 +30,7 @@ public class CommentDialogFragment extends DialogFragment {
     private RecyclerView recyclerView;
     private CommentModel model;
     private ToggleButton anonymousToggleButton;
+    private ImageButton closeButton;
 
 
     @NonNull
@@ -41,6 +42,7 @@ public class CommentDialogFragment extends DialogFragment {
         String postType = getArguments().getString("POST_TYPE");
         model = new CommentModel(dataRefKey, postType);
         recyclerView = view.findViewById(R.id.comment_recycler_view);
+        closeButton = view.findViewById(R.id.comment_close_button);
         anonymousToggleButton = view.findViewById(R.id.comment_anonymous_toggle_button);
         TextView titleTextView = view.findViewById(R.id.comment_title_text_view);
 
@@ -48,6 +50,13 @@ public class CommentDialogFragment extends DialogFragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
 
 
         final EditText commentEdit = view.findViewById(R.id.comment_edit);

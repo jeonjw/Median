@@ -51,6 +51,7 @@
         tools:text="타이틀 제목"/>
 
     <ImageButton
+        android:id="@+id/comment_close_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:scaleX="0.7"

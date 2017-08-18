@@ -44,39 +44,57 @@ public class BoardWriteActivity extends AppCompatActivity {
     private PostModel postModel;
     private ToggleButton anonymousToggleButton;
     private List<String> selectedPhotos;
+    private List<String> deletePhotos = new ArrayList<>();
     private PhotoAdapter photoAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_write);
-
-        selectedPhotos = new ArrayList<>();
-        photoAdapter = new PhotoAdapter(selectedPhotos);
         RecyclerView recyclerView = findViewById(R.id.board_image_recycler_view);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
-        recyclerView.setAdapter(photoAdapter);
-
-//        if(photoAdapter.getItemCount() == 0)
-//            recyclerView.setVisibility(View.GONE);
-//        else
-//            recyclerView.setVisibility(View.VISIBLE);
-        //리사이클러뷰 사이즈에 따라 리사이클러뷰 비지블 처리하기
-
-        currentPosition = getIntent().getExtras().getInt("CURRENT_BOARD_TAB");
-        String reWriteTitle = getIntent().getExtras().getString("BOARD_TITLE");
-        String reWriteContents = getIntent().getExtras().getString("BOARD_CONTENTS");
-
-
-        titleEditText = findViewById(R.id.board_write_title_edit_text);
-        contentsEditText = findViewById(R.id.board_write_content_edit_text);
 
         Button writeButton = findViewById(R.id.board_write_finish);
         Button closeButton = findViewById(R.id.board_write_close_button);
         ImageButton photoButton = findViewById(R.id.board_photo_button);
-
+        titleEditText = findViewById(R.id.board_write_title_edit_text);
+        contentsEditText = findViewById(R.id.board_write_content_edit_text);
         boardSpinner = findViewById(R.id.board_spinner);
         anonymousToggleButton = findViewById(R.id.board_write_anonymous_toggle_button);
+
+        String postKey = null;
+        int commentCount = 0;
+
+        if (getIntent() != null) {
+            System.out.println("TEST 진입");
+            selectedPhotos = getIntent().getExtras().getStringArrayList("PHOTO_URL_LIST");
+
+            if (selectedPhotos == null)
+                selectedPhotos = new ArrayList<>();
+            else
+                deletePhotos.addAll(selectedPhotos);
+
+
+            currentPosition = getIntent().getExtras().getInt("CURRENT_BOARD_TAB");
+            String reWriteTitle = getIntent().getExtras().getString("BOARD_TITLE");
+            String reWriteContents = getIntent().getExtras().getString("BOARD_CONTENTS");
+            postKey = getIntent().getExtras().getString("CORRECT_POST_KEY");
+            commentCount = getIntent().getExtras().getInt("COMMENT_COUNT");
+
+            if (reWriteTitle != null && reWriteContents != null) {
+                titleEditText.setText(reWriteTitle);
+                contentsEditText.setText(reWriteContents);
+                boardSpinner.setVisibility(View.GONE);
+                rewrite = true;
+            }
+        }
+
+        photoAdapter = new PhotoAdapter(selectedPhotos);
+        recyclerView.setAdapter(photoAdapter);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(BoardWriteActivity.this, R.array.board_spinner, R.layout.spinner_post_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        boardSpinner.setAdapter(adapter);
 
         boardSpinner.post(new Runnable() {
             @Override
@@ -85,20 +103,10 @@ public class BoardWriteActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(BoardWriteActivity.this, R.array.board_spinner, R.layout.spinner_post_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        boardSpinner.setAdapter(adapter);
-
         postModel = new PostModel((String) boardSpinner.getSelectedItem());
 
-
-        if (reWriteContents != null && reWriteTitle != null) {
-            titleEditText.setText(reWriteTitle);
-            contentsEditText.setText(reWriteContents);
-            boardSpinner.setVisibility(View.GONE);
-            rewrite = true;
-        }
-
+        final String finalPostKey = postKey;
+        final int finalCommentCount = commentCount;
 
         writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +117,7 @@ public class BoardWriteActivity extends AppCompatActivity {
                 if (!rewrite)
                     writePost();
                 else
-                    correctPost();
+                    correctPost(finalPostKey, finalCommentCount);
             }
         });
 
@@ -151,6 +159,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     }
 
     private void writePost() {
+        System.out.println("TEST 글쓰기");
         final String title = titleEditText.getText().toString();
         final String contents = contentsEditText.getText().toString();
         final String postType = getDatabaseKey(boardSpinner.getSelectedItemPosition());
@@ -171,21 +180,36 @@ public class BoardWriteActivity extends AppCompatActivity {
         }
     }
 
-    private void correctPost() {
+    private void correctPost(final String postKey, final int commentCount) {
+        System.out.println("TEST 글수정");
         final String title = titleEditText.getText().toString();
         final String contents = contentsEditText.getText().toString();
         final String postType = getDatabaseKey(boardSpinner.getSelectedItemPosition());
-        final String postKey = getIntent().getExtras().getString("CORRECT_POST_KEY");
-        final int commentCount = getIntent().getExtras().getInt("COMMENT_COUNT");
 
-        postModel.correctPost(postType, getPostAuthorName(), title, contents, postKey, commentCount);
-        finish();
+        if (selectedPhotos.size() != 0) {
+            Snackbar.make(contentsEditText, "이미지 업로드 중 . .", Snackbar.LENGTH_LONG).show();
+            postModel.removePhotoFromStorage(deletePhotos);
+            postModel.uploadImages(getInputStreamFromUri(selectedPhotos), new OnUploadImageListener() {
+                @Override
+                public void onSuccess(List<String> urlList) {
+                    postModel.correctPostWithImages(postType, getPostAuthorName(), title, contents, postKey, commentCount, urlList);
+                    finish();
+                }
+            });
+
+        } else {
+
+            if(deletePhotos.size() != 0)
+                postModel.removePhotoFromStorage(deletePhotos);
+
+            postModel.correctPost(postType, getPostAuthorName(), title, contents, postKey, commentCount);
+            finish();
+        }
 
     }
 
     private String getPostAuthorName() {
-        String authorName = anonymousToggleButton.isChecked() ? "익명" : User.getInstance().getUserName();
-        return authorName;
+        return anonymousToggleButton.isChecked() ? "익명" : User.getInstance().getUserName();
     }
 
     private String getDatabaseKey(int currentPosition) {
@@ -219,6 +243,7 @@ public class BoardWriteActivity extends AppCompatActivity {
             if (data != null) {
                 photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
             }
+
 
             selectedPhotos.clear();
 

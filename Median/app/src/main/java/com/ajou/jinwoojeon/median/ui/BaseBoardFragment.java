@@ -79,16 +79,6 @@ public abstract class BaseBoardFragment extends Fragment {
                 });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (item.getItemId() == R.id.menu_write) {
-//            Intent intent = new Intent(getActivity(), BoardWriteActivity.class);
-//            intent.putExtra("CURRENT_BOARD_TAB", BoardTabFragment.getCurrentTab());
-//            startActivity(intent);
-//        }
-        return true;
-    }
-
     public void setAdapter(Query query) {
         PostModel postModel = new PostModel(getPostType());
         recyclerView.setAdapter(postModel.setAdapter(query, getPostType()));

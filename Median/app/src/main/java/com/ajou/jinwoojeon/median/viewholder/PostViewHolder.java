@@ -2,6 +2,7 @@ package com.ajou.jinwoojeon.median.viewholder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import com.ajou.jinwoojeon.median.valueObject.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Objects;
@@ -85,6 +87,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
                             intent.putExtra("BOARD_CONTENTS", post.getContents());
                             intent.putExtra("CORRECT_POST_KEY", dataRefKey);
                             intent.putExtra("COMMENT_COUNT", post.getCommentCount());
+                            intent.putExtra("PHOTO_URL_LIST", (Serializable) post.getUrlList());
                             context.startActivity(intent);
                         }
                         return true;
@@ -98,17 +101,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         commentImageLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(context, CommentListActivity.class);
-//                intent.putExtra("POST_KEY", dataRefKey);
-//                intent.putExtra("POST_TYPE", postType);
-//                context.startActivity(intent);
-//
-//                ((Activity) context).overridePendingTransition(R.anim.slide_up_anim, R.anim.no_change);
                 FragmentManager fragmentManager =
                         ((AppCompatActivity) itemView.getContext()).getSupportFragmentManager();
 
-                CommentDialogFragment dialog = CommentDialogFragment.newInstance(dataRefKey,postType,post.getTitle());
-                dialog.show(fragmentManager, "nameCard");
+                CommentDialogFragment dialog = CommentDialogFragment.newInstance(dataRefKey, postType, post.getTitle());
+                dialog.show(fragmentManager, "commentDialog");
             }
         });
 

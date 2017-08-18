@@ -82,19 +82,17 @@ public class PostModel {
 
     public FirebaseRecyclerAdapter setAdapter(final Query query, final String postType) {
 
-        FirebaseRecyclerAdapter<Post, PostViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Post, PostViewHolder>(
-                        Post.class,
-                        R.layout.list_item_post,
-                        PostViewHolder.class, query) {
-                    @Override
-                    protected void populateViewHolder(PostViewHolder viewHolder, Post post, int position) {
-                        DatabaseReference postRef = getRef(position);
-                        String postKey = postRef.getKey();
-                        viewHolder.bindPost(post, postKey, postType);
-                    }
-                };
-        return adapter;
+        return new FirebaseRecyclerAdapter<Post, PostViewHolder>(
+                Post.class,
+                R.layout.list_item_post,
+                PostViewHolder.class, query) {
+            @Override
+            protected void populateViewHolder(PostViewHolder viewHolder, Post post, int position) {
+                DatabaseReference postRef = getRef(position);
+                String postKey = postRef.getKey();
+                viewHolder.bindPost(post, postKey, postType);
+            }
+        };
     }
 
 
@@ -126,5 +124,21 @@ public class PostModel {
 
     private String generateTempFilename() {
         return UUID.randomUUID().toString();
+    }
+
+    public void removePhotoFromStorage(List<String> urlList) {
+        for(String imageUrl : urlList){
+            FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    System.out.println("삭제 실패  "+e.getMessage());
+                }
+            });
+        }
+
     }
 }
