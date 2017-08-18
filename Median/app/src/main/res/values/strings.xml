@@ -91,8 +91,11 @@
     <string name="computer_programming">컴퓨터\n프로그래밍</string>
     <string name="computer_practice">컴퓨터\n프로그래밍 설계</string>
     <string name="croky">크로키</string>
+    <string name="probability_statistics1">확률과통계1</string>
     <string name="blank">\n\n</string>
+
     <string name="profileimage">profileImage</string>
+
     <string name="san_422">산422</string>
     <string name="san_b103">산B103</string>
     <string name="san_415">산415</string>
@@ -102,9 +105,11 @@
     <string name="san_623">산623</string>
     <string name="gym_202">체202</string>
     <string name="elec_511">전511</string>
-    <string name="sex_303">성303</string>
-    <string name="sex_305">성305</string>
-    <string name="many_b105">다B105</string>
+    <string name="sung_133">성133</string>
+    <string name="sung_303">성303</string>
+    <string name="sung_305">성305</string>
+    <string name="dasan_b105">다B105</string>
+
     <string name="a">A</string>
     <string name="b">B</string>
     <string name="c">C</string>
@@ -113,6 +118,7 @@
     <string name="f">F</string>
     <string name="g">G</string>
     <string name="h">H</string>
+
     <string name="aTime">9:00~10:15</string>
     <string name="bTime">10:30~11:45</string>
     <string name="cTime">12:00~13:15</string>
@@ -121,6 +127,7 @@
     <string name="fTime">16:30~17:45</string>
     <string name="gTime">18:00~19:15</string>
     <string name="hTime">19:30 ~</string>
+
     <string name="add_photo">사진추가</string>
     <string name="set_main_photo">대표 이미지로 설정</string>
     <string name="delete_photo">사진 삭제</string>
@@ -135,4 +142,12 @@
     <string name="board_ko">게시판</string>
     <string name="info_ko">학과정보</string>
     <string name="setting_ko">설정</string>
+    <string name="setting_normal">일반</string>
+    <string name="setting_alarmSetting">알림 설정</string>
+    <string name="setting_logout">로그아웃</string>
+    <string name="setting_support">지원</string>
+    <string name="setting_version">버전 정보</string>
+    <string name="version">v 1.3.5</string>
+    <string name="setting_help_developer">개발자에게 도움 요청하기</string>
+    <string name="setting_developer_information">개발자 정보</string>
 </resources>
