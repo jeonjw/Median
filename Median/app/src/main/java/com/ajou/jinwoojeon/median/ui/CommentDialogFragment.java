@@ -34,6 +34,7 @@ public class CommentDialogFragment extends DialogFragment {
 
     @Override
     public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         model.removeListener();
     }
 

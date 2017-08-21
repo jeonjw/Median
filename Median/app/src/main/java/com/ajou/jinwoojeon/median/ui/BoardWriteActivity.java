@@ -44,7 +44,7 @@ public class BoardWriteActivity extends AppCompatActivity {
     private PostModel postModel;
     private ToggleButton anonymousToggleButton;
     private List<String> selectedPhotos;
-    private List<String> deletePhotos = new ArrayList<>();
+    private List<String> deletePhotos;
     private PhotoAdapter photoAdapter;
 
     @Override
@@ -67,13 +67,13 @@ public class BoardWriteActivity extends AppCompatActivity {
 
         if (getIntent() != null) {
             System.out.println("TEST 진입");
+            deletePhotos = new ArrayList<>();
             selectedPhotos = getIntent().getExtras().getStringArrayList("PHOTO_URL_LIST");
 
             if (selectedPhotos == null)
                 selectedPhotos = new ArrayList<>();
             else
                 deletePhotos.addAll(selectedPhotos);
-
 
             currentPosition = getIntent().getExtras().getInt("CURRENT_BOARD_TAB");
             String reWriteTitle = getIntent().getExtras().getString("BOARD_TITLE");
@@ -187,19 +187,33 @@ public class BoardWriteActivity extends AppCompatActivity {
         final String postType = getDatabaseKey(boardSpinner.getSelectedItemPosition());
 
         if (selectedPhotos.size() != 0) {
-            Snackbar.make(contentsEditText, "이미지 업로드 중 . .", Snackbar.LENGTH_LONG).show();
-            postModel.removePhotoFromStorage(deletePhotos);
-            postModel.uploadImages(getInputStreamFromUri(selectedPhotos), new OnUploadImageListener() {
-                @Override
-                public void onSuccess(List<String> urlList) {
-                    postModel.correctPostWithImages(postType, getPostAuthorName(), title, contents, postKey, commentCount, urlList);
-                    finish();
-                }
-            });
+
+            System.out.println(selectedPhotos);
+            System.out.println(deletePhotos);
+            System.out.println(selectedPhotos.equals(deletePhotos));
+
+            if (!selectedPhotos.equals(deletePhotos)) {
+
+                postModel.removePhotoFromStorage(deletePhotos);
+
+                Snackbar.make(contentsEditText, "이미지 업로드 중 . .", Snackbar.LENGTH_LONG).show();
+                postModel.uploadImages(getInputStreamFromUri(selectedPhotos), new OnUploadImageListener() {
+
+                    @Override
+                    public void onSuccess(List<String> urlList) {
+                        postModel.correctPostWithImages(postType, getPostAuthorName(), title, contents, postKey, commentCount, urlList);
+                        finish();
+                    }
+                });
+            } else {
+                postModel.correctPostWithImages(postType, getPostAuthorName(), title, contents, postKey, commentCount, selectedPhotos);
+                finish();
+            }
+
 
         } else {
 
-            if(deletePhotos.size() != 0)
+            if (deletePhotos.size() != 0)
                 postModel.removePhotoFromStorage(deletePhotos);
 
             postModel.correctPost(postType, getPostAuthorName(), title, contents, postKey, commentCount);
@@ -240,9 +254,8 @@ public class BoardWriteActivity extends AppCompatActivity {
                 (requestCode == PhotoPicker.REQUEST_CODE || requestCode == PhotoPreview.REQUEST_CODE)) {
 
             List<String> photos = null;
-            if (data != null) {
+            if (data != null)
                 photos = data.getStringArrayListExtra(PhotoPicker.KEY_SELECTED_PHOTOS);
-            }
 
 
             selectedPhotos.clear();
