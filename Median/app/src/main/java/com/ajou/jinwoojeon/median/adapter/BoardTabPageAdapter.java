@@ -9,9 +9,6 @@ import com.ajou.jinwoojeon.median.ui.BoardQAFragment;
 import com.ajou.jinwoojeon.median.ui.BoardTextbookFragment;
 import com.ajou.jinwoojeon.median.ui.StudentNoticeFragment;
 
-//import com.ajou.jinwoojeon.median.ui.BoardAnonymousFragment;
-
-
 public class BoardTabPageAdapter extends FragmentStatePagerAdapter {
 
     private int tabCount;

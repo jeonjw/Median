@@ -38,7 +38,7 @@ public class MediaNoticeFragment extends Fragment {
         progressDialog = new ProgressDialog(getActivity());
         showProgressDialog();
 
-        final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.media_notice_recycler_view);
+        final RecyclerView recyclerView = view.findViewById(R.id.media_notice_recycler_view);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.scrollToPositionWithOffset(0, 0);
@@ -90,9 +90,8 @@ public class MediaNoticeFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(final Menu menu) {
-//        menu.findItem(R.id.menu_write).setVisible(false);
         MenuItem searchItem = menu.findItem(R.id.menu_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        SearchView searchView = (SearchView) searchItem.getActionView();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -107,8 +106,7 @@ public class MediaNoticeFragment extends Fragment {
             }
         });
 
-        MenuItemCompat.setOnActionExpandListener(searchItem,
-                new MenuItemCompat.OnActionExpandListener() {
+       searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
                         showProgressDialog();

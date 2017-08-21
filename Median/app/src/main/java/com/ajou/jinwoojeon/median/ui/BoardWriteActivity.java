@@ -66,7 +66,6 @@ public class BoardWriteActivity extends AppCompatActivity {
         int commentCount = 0;
 
         if (getIntent() != null) {
-            System.out.println("TEST 진입");
             deletePhotos = new ArrayList<>();
             selectedPhotos = getIntent().getExtras().getStringArrayList("PHOTO_URL_LIST");
 
@@ -159,7 +158,6 @@ public class BoardWriteActivity extends AppCompatActivity {
     }
 
     private void writePost() {
-        System.out.println("TEST 글쓰기");
         final String title = titleEditText.getText().toString();
         final String contents = contentsEditText.getText().toString();
         final String postType = getDatabaseKey(boardSpinner.getSelectedItemPosition());
@@ -181,7 +179,6 @@ public class BoardWriteActivity extends AppCompatActivity {
     }
 
     private void correctPost(final String postKey, final int commentCount) {
-        System.out.println("TEST 글수정");
         final String title = titleEditText.getText().toString();
         final String contents = contentsEditText.getText().toString();
         final String postType = getDatabaseKey(boardSpinner.getSelectedItemPosition());

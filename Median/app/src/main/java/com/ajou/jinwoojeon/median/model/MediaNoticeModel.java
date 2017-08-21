@@ -34,32 +34,8 @@ public class MediaNoticeModel {
         return mediaNoticeAdapter;
     }
 
-//    public void readNotice(int count) {
-//        tempList.clear();
-//        databaseReference.child("media_notice").orderByChild("boardNum").startAt(676 - count).endAt(682 - count).addListenerForSingleValueEvent(new ValueEventListener() {
-//
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    MediaNotice mediaNotice = ds.getValue(MediaNotice.class);
-//                    tempList.add(0, mediaNotice);
-//                }
-//
-//                dataList.addAll(tempList);
-//                mediaNoticeAdapter.addMoreData(tempList);
-//                onDataChangedListener.onDataChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//
-//        });
-//    }
-
     public void readNotice() {
-
+        dataList.clear();
         databaseReference.child("media_notice").orderByChild("boardNum").addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override

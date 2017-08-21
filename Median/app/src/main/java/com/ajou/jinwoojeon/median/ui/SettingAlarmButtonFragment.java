@@ -26,8 +26,8 @@ public class SettingAlarmButtonFragment extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        SwitchCompat mediaNoticeSwitch = (SwitchCompat) view.findViewById(R.id.media_notice_switch);
-        SwitchCompat studentNoticeSwitch = (SwitchCompat) view.findViewById(R.id.student_notice_switch);
+        SwitchCompat mediaNoticeSwitch = view.findViewById(R.id.media_notice_switch);
+        SwitchCompat studentNoticeSwitch = view.findViewById(R.id.student_notice_switch);
 
         mediaNoticeSwitch.setChecked(User.getInstance().isSubscribeMediaNotice());
         studentNoticeSwitch.setChecked(User.getInstance().isSubscribeStudentNotice());
@@ -53,7 +53,6 @@ public class SettingAlarmButtonFragment extends Fragment {
 
     private void saveSettings(String type, boolean isChecked) {
         databaseReference.child("User").child(User.getInstance().getUid()).child(type).setValue(isChecked);
-        Toast.makeText(getContext(),"앱을 다시 시작하시면 적용 됩니다.",Toast.LENGTH_SHORT).show();
-//        Snackbar.make(getView(), "앱을 다시 시작하시면 적용 됩니다.", Snackbar.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "앱을 다시 시작하시면 적용 됩니다.", Toast.LENGTH_SHORT).show();
     }
 }

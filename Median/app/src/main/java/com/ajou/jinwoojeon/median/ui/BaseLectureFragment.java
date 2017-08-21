@@ -17,7 +17,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.ajou.jinwoojeon.median.R;
-import com.ajou.jinwoojeon.median.adapter.MyAdapter;
 import com.ajou.jinwoojeon.median.model.OnSpinnerClickListener;
 
 import java.util.Calendar;
@@ -72,7 +71,6 @@ public abstract class BaseLectureFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.day_list, R.layout.spinner_item);
 
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-//        MyAdapter adapter1 = new MyAdapter(getActivity(),R.layout.spinner_item,getResources().getStringArray(R.array.day_list));
         spinner.setAdapter(adapter);
 
 

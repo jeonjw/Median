@@ -48,7 +48,7 @@ public abstract class BaseBoardFragment extends Fragment {
     @Override
     public void onPrepareOptionsMenu(final Menu menu) {
         MenuItem searchItem = menu.findItem(R.id.menu_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        SearchView searchView = (SearchView) searchItem.getActionView();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -64,19 +64,32 @@ public abstract class BaseBoardFragment extends Fragment {
             }
         });
 
-        MenuItemCompat.setOnActionExpandListener(searchItem,
-                new MenuItemCompat.OnActionExpandListener() {
-                    @Override
-                    public boolean onMenuItemActionCollapse(MenuItem item) {
-                        setAdapter(getRef());
-                        return true;
-                    }
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem menuItem) {
+                return true;
+            }
 
-                    @Override
-                    public boolean onMenuItemActionExpand(MenuItem item) {
-                        return true;
-                    }
-                });
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+                setAdapter(getRef());
+                return true;
+            }
+        });
+
+//        MenuItemCompat.setOnActionExpandListener(searchItem,
+//                new MenuItemCompat.OnActionExpandListener() {
+//                    @Override
+//                    public boolean onMenuItemActionCollapse(MenuItem item) {
+//                        setAdapter(getRef());
+//                        return true;
+//                    }
+//
+//                    @Override
+//                    public boolean onMenuItemActionExpand(MenuItem item) {
+//                        return true;
+//                    }
+//                });
     }
 
     public void setAdapter(Query query) {

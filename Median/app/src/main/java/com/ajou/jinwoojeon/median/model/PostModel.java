@@ -127,7 +127,7 @@ public class PostModel {
     }
 
     public void removePhotoFromStorage(List<String> urlList) {
-        for(String imageUrl : urlList){
+        for (String imageUrl : urlList) {
             FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -135,7 +135,7 @@ public class PostModel {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    System.out.println("삭제 실패  "+e.getMessage());
+                    System.out.println("삭제 실패  " + e.getMessage());
                 }
             });
         }

@@ -46,21 +46,19 @@ public class CommentModel {
     }
 
     public FirebaseRecyclerAdapter<Comment, CommentViewHolder> loadCommentList() {
-        FirebaseRecyclerAdapter<Comment, CommentViewHolder> adapter =
-                new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(
-                        Comment.class,
-                        R.layout.list_item_comment,
-                        CommentViewHolder.class,
-                        databaseReference.child("comments").child(dataRefKey)) {
-                    @Override
-                    protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {
-                        String commentKey = getRef(position).getKey();
-                        viewHolder.bindComment(model, dataRefKey, commentKey);
-                    }
 
-                };
+        return new FirebaseRecyclerAdapter<Comment, CommentViewHolder>(
+                Comment.class,
+                R.layout.list_item_comment,
+                CommentViewHolder.class,
+                databaseReference.child("comments").child(dataRefKey)) {
+            @Override
+            protected void populateViewHolder(CommentViewHolder viewHolder, Comment model, int position) {
+                String commentKey = getRef(position).getKey();
+                viewHolder.bindComment(model, dataRefKey, commentKey);
+            }
 
-        return adapter;
+        };
     }
 
     public void writeComment(String author, String message) {
