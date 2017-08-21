@@ -155,4 +155,9 @@
     <string name="space"> </string>
     <string name="register">글쓰기</string>
     <string name="cancle">취소</string>
+    <string name="nav_item_title_notice">NOTICE</string>
+    <string name="nav_item_title_board">BOARD</string>
+    <string name="nav_item_title_lecture">LECTURE</string>
+    <string name="nav_item_title_info">INFO</string>
+    <string name="nav_item_title_setting">SETTING</string>
 </resources>

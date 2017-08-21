@@ -7,10 +7,6 @@ import android.text.TextPaint;
 import android.text.style.AlignmentSpan;
 import android.text.style.TypefaceSpan;
 
-/**
- * Created by jinwoo on 2017. 8. 3..
- */
-
 public class CustomTypefaceSpan extends TypefaceSpan implements AlignmentSpan {
 
     private final Typeface newType;

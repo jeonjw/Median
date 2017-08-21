@@ -25,6 +25,10 @@ import com.ajou.jinwoojeon.median.CustomTypefaceSpan;
 import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.model.UserModel;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 public class NavActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -67,7 +71,7 @@ public class NavActivity extends AppCompatActivity
         toolbar.setTitleTextColor(Color.WHITE);
         toolbarTitleTextView = toolbar.findViewById(R.id.toolbar_title);
 
-        toolbarTitleTextView.setText("NOTICE");
+        toolbarTitleTextView.setText(R.string.nav_item_title_notice);
 
         Typeface type = Typeface.createFromAsset(getAssets(), "Womby.ttf");
         toolbarTitleTextView.setTypeface(type);
@@ -116,22 +120,21 @@ public class NavActivity extends AppCompatActivity
 
         if (id == R.id.nav_notice) {
             fragment = new MediaNoticeFragment();
-            toolbarTitleTextView.setText("NOTICE");
+            toolbarTitleTextView.setText(R.string.nav_item_title_notice);
         } else if (id == R.id.nav_board) {
             fragment = new BoardTabFragment();
-            toolbarTitleTextView.setText("BOARD");
+            toolbarTitleTextView.setText(R.string.nav_item_title_board);
         } else if (id == R.id.nav_timetable) {
             fragment = new LectureFragment();
-            toolbarTitleTextView.setText("LECTURE");
+            toolbarTitleTextView.setText(R.string.nav_item_title_lecture);
         } else if (id == R.id.nav_info) {
             fragment = new InfoFragment();
-            toolbarTitleTextView.setText("INFO");
+            toolbarTitleTextView.setText(R.string.nav_item_title_info);
         } else if (id == R.id.nav_setting) {
             fragment = new SettingFragment();
-            toolbarTitleTextView.setText("SETTING");
+            toolbarTitleTextView.setText(R.string.nav_item_title_setting);
         }
-
-
+        
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 

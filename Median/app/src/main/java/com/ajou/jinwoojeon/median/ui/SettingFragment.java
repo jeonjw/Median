@@ -24,11 +24,10 @@ public class SettingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         setHasOptionsMenu(true);
 
-        Button alarmSettingButton = (Button) view.findViewById(R.id.alarm_setting_button);
-        Button logoutButton = (Button) view.findViewById(R.id.logout_button);
-        Button versionButton = (Button) view.findViewById(R.id.version_button);
-        Button helpDeveloperButton = (Button) view.findViewById(R.id.help_developer_button);
-        Button developerButton = (Button) view.findViewById(R.id.developer_button);
+        Button alarmSettingButton = view.findViewById(R.id.alarm_setting_button);
+        Button logoutButton = view.findViewById(R.id.logout_button);
+        Button helpDeveloperButton = view.findViewById(R.id.help_developer_button);
+        Button developerButton = view.findViewById(R.id.developer_button);
 
         alarmSettingButton.setOnClickListener(new View.OnClickListener() {
             @Override
