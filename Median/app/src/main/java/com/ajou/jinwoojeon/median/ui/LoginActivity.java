@@ -49,12 +49,12 @@ public class LoginActivity extends AppCompatActivity
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        titleTextView = (TextView) findViewById(R.id.login_title_text_view);
+        titleTextView = findViewById(R.id.login_title_text_view);
         Typeface type = Typeface.createFromAsset(LoginActivity.this.getAssets(), "Impact.ttf");
         titleTextView.setTypeface(type);
-        logoImageView = (ImageView) findViewById(R.id.logo_image_view);
+        logoImageView = findViewById(R.id.logo_image_view);
 
-        loginButton = (Button) findViewById(R.id.login_button);
+        loginButton = findViewById(R.id.login_button);
         loginButton.setVisibility(View.INVISIBLE);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

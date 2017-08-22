@@ -12,10 +12,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.AlignmentSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -24,10 +22,6 @@ import com.ajou.jinwoojeon.median.BackPressHandler;
 import com.ajou.jinwoojeon.median.CustomTypefaceSpan;
 import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.model.UserModel;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
 public class NavActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -61,7 +55,7 @@ public class NavActivity extends AppCompatActivity
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        setNavItemTextAlignMent();
+        setNavItemTextAlignment();
 
 
     }
@@ -80,7 +74,7 @@ public class NavActivity extends AppCompatActivity
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
-    private void setNavItemTextAlignMent() {
+    private void setNavItemTextAlignment() {
         Menu menu = navigationView.getMenu();
         String[] menuTitle = getResources().getStringArray(R.array.nav_item);
         Typeface type = Typeface.createFromAsset(getAssets(), "Womby.ttf");
@@ -134,7 +128,7 @@ public class NavActivity extends AppCompatActivity
             fragment = new SettingFragment();
             toolbarTitleTextView.setText(R.string.nav_item_title_setting);
         }
-        
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 

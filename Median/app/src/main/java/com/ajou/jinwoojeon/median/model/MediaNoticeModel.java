@@ -64,6 +64,7 @@ public class MediaNoticeModel {
         for (MediaNotice mediaNotice : dataList) {
             if (mediaNotice.getContents().toLowerCase().contains(text)
                     || mediaNotice.getTitle().toLowerCase().contains(text)) {
+                
                 tempList.add(mediaNotice);
             }
         }

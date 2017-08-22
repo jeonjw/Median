@@ -61,6 +61,7 @@
             android:name="me.iwf.photopicker.PhotoPagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/customTheme" />
+        <activity android:name=".ui.MediaNoticeDetailView" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

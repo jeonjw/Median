@@ -96,9 +96,6 @@ public class CommentDialogFragment extends DialogFragment {
         return dialog;
     }
 
-
-
-
     private void setCommentList() {
         recyclerView.setAdapter(model.loadCommentList());
     }
@@ -114,13 +111,6 @@ public class CommentDialogFragment extends DialogFragment {
 
         return commentDialogFragment;
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        overridePendingTransition(R.anim.no_change, R.anim.slide_down_anim);
-//        model.removeListener();
-//    }
 
     private String getCommentAuthorName() {
         return anonymousToggleButton.isChecked() ? "익명" : User.getInstance().getUserName();

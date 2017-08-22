@@ -73,17 +73,15 @@ public abstract class BaseLectureFragment extends Fragment {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+        spinner.setSelection(selectDay, true);
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            int count = 0;
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (count >= 1) {
+
                     if (onSpinnerClickListener != null)
                         onSpinnerClickListener.onCLick(position);
-                }
-                count++;
             }
 
             @Override
@@ -91,13 +89,14 @@ public abstract class BaseLectureFragment extends Fragment {
             }
         });
 
-        spinner.post(new Runnable() {
-            @Override
-            public void run() {
-                spinner.setSelection(selectDay, true);
 
-            }
-        });
+
+//        spinner.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                spinner.setSelection(selectDay, true);
+//            }
+//        });
 
 
         return view;

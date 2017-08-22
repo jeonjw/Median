@@ -13,7 +13,6 @@
         android:paddingEnd="25dp"
         android:textColor="#000000"
         android:text="@string/media_notice"
-        android:textSize="15sp"
         android:gravity="center_vertical"/>
 
     <View
@@ -44,7 +43,6 @@
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
         android:layout_below="@+id/media_notice_switch_text_view"
-        android:textSize="15sp"
         android:gravity="center_vertical"/>
 
     <View
