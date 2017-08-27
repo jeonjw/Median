@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
-    android:titleTextColor="@color/colorWhite"
+    android:elevation="6dp"
     app:theme="@style/ToolbarTheme"
     android:background="#2EA8C9"
     xmlns:android="http://schemas.android.com/apk/res/android">

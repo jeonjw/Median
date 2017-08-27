@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
     xmlns:tools="http://schemas.android.com/tools">
 
 
@@ -38,36 +39,59 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/comment_title_text_view"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:background="@color/colorWhite"
+        android:id="@+id/comment_title_layout"
         android:layout_alignParentTop="true"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:padding="5dp"
-        android:textColor="#000000"
-        android:elevation="10dp"
-        android:textSize="16sp"
-        tools:text="타이틀 제목"/>
+        android:elevation="5dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageButton
-        android:id="@+id/comment_close_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/close"
-        android:layout_alignParentEnd="true" />
+        <TextView
+            android:id="@+id/comment_title_text_view"
+            android:layout_width="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            tools:text="타이틀 제목"/>
+
+        <ImageButton
+            android:id="@+id/comment_close_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/close"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <!--<View-->
+        <!--android:layout_below="@id/comment_title_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="4dp"-->
+        <!--android:background="@drawable/upper_shadow">-->
+    <!--</View>-->
+
+
 
     <android.support.v7.widget.RecyclerView
+        android:background="@color/colorWhite"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
         android:id="@+id/comment_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:layout_below="@id/comment_title_text_view"
+        android:layout_below="@id/comment_title_layout"
         android:layout_above="@id/comment_edit_layout"/>
 
     <ToggleButton

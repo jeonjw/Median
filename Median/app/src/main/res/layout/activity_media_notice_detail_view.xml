@@ -3,40 +3,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp">
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
 
-    <TextView
-        android:padding="15dp"
-        android:background="#D1D1D1"
-        android:id="@+id/media_notice_detail_title_text_view"
+    <include
+        layout="@layout/fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:ellipsize="end"
-        android:paddingEnd="10dp"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        tools:text="This is notice title..." />
+        android:paddingTop="15dp"
+        android:paddingBottom="13dp"
+        android:background="@color/colorWhite"
+        android:elevation="2dp"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@color/colorWhite"
+            android:id="@+id/media_notice_detail_title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="This is notice title..." />
+
+        <TextView
+            android:layout_marginTop="7dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:background="@color/colorWhite"
+            android:id="@+id/media_notice_detail_date_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#717171"
+            android:textSize="11sp"
+            tools:text="2017-08-24" />
+
+    </LinearLayout>
 
     <TextView
-
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:id="@+id/media_notice_detail_contents_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        android:layout_marginTop="20dp"
-        android:paddingEnd="10dp"
+        android:layout_marginTop="10dp"
         android:autoLink="web"
-        android:paddingStart="10dp"
-        android:textColor="#717171"
+        android:textColor="#000000"
         android:textSize="14sp"
         tools:text="This is notice body..." />
 
     <ImageView
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
         android:id="@+id/media_notice_detail_image_view"

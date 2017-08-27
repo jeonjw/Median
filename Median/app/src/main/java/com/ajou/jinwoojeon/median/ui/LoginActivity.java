@@ -146,10 +146,10 @@ public class LoginActivity extends AppCompatActivity
 
         @Override
         protected void onPreExecute() {
-            Animation fade = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.fade_title);
-            Animation tilt = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.tilt_logo);
-            titleTextView.startAnimation(fade);
-            logoImageView.startAnimation(tilt);
+//            Animation fade = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.fade_title);
+//            Animation tilt = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.tilt_logo);
+//            titleTextView.startAnimation(fade);
+//            logoImageView.startAnimation(tilt);
         }
 
         @Override

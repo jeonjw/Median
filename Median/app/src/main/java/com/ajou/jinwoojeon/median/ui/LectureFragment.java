@@ -28,6 +28,8 @@ public class LectureFragment extends Fragment {
         fragmentManager = getFragmentManager();
         selectDay = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2;
 
+        System.out.println("select day" + selectDay);
+
         BaseLectureFragment baseLectureFragment = createLectureFragment(selectDay);
         fragmentManager.beginTransaction().replace(R.id.lecture_container, baseLectureFragment).commit();
 
@@ -60,7 +62,7 @@ public class LectureFragment extends Fragment {
                 break;
 
             default:
-                return null;
+                baseLectureFragment = new BaseLectureFragment.LectureMondayFragment();
         }
 
         baseLectureFragment.setOnSpinnerClickListener(new OnSpinnerClickListener() {

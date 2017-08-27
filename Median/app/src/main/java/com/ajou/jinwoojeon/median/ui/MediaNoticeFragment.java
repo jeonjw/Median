@@ -45,22 +45,6 @@ public class MediaNoticeFragment extends Fragment {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
 
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//            }
-//
-//
-//            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                System.out.println("TEST"+searching);
-//                if (!recyclerView.canScrollVertically(1) && !searching) {
-//                    System.out.println("TEST 스크롤");
-//                    readMoreNotice();
-//                }
-//            }
-//        });
 
         mediaNoticeModel = new MediaNoticeModel();
         recyclerView.setAdapter(mediaNoticeModel.getMediaNoticeAdapter());

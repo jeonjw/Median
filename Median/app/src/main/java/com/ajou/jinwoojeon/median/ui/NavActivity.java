@@ -8,28 +8,34 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.ajou.jinwoojeon.median.BackPressHandler;
-import com.ajou.jinwoojeon.median.CustomTypefaceSpan;
 import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.model.UserModel;
+import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NavActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private BackPressHandler backPressHandler;
-    private NavigationView navigationView;
     private TextView toolbarTitleTextView;
+    private TextView profileNameTextView;
+    private TextView profileEmailTextView;
+    private CircleImageView profileImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +59,17 @@ public class NavActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView =  navigationView.getHeaderView(0);
+        profileImageView = headerView.findViewById(R.id.nav_header_profile_image_view);
+        profileEmailTextView = headerView.findViewById(R.id.nav_header_profile_email_text_view);
+        profileNameTextView = headerView.findViewById(R.id.nav_header_profile_name_text_view);
+
+        setNavigationHeader();
+
+
         navigationView.setNavigationItemSelectedListener(this);
-        setNavItemTextAlignment();
+//        setNavItemTextAlignment();
 
 
     }
@@ -74,19 +88,29 @@ public class NavActivity extends AppCompatActivity
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
-    private void setNavItemTextAlignment() {
-        Menu menu = navigationView.getMenu();
-        String[] menuTitle = getResources().getStringArray(R.array.nav_item);
-        Typeface type = Typeface.createFromAsset(getAssets(), "Womby.ttf");
+//    private void setNavItemTextAlignment() {
+//        Menu menu = navigationView.getMenu();
+//        String[] menuTitle = getResources().getStringArray(R.array.nav_item);
+//        Typeface type = Typeface.createFromAsset(getAssets(), "Womby.ttf");
+//
+//        for (int i = 0; i < menu.size(); i++) {
+//            MenuItem item = menu.getItem(i);
+//            SpannableString s = new SpannableString(menuTitle[i]);
+//            s.setSpan(new CustomTypefaceSpan("", type), 0, s.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+////            s.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, s.length(), 0);
+//            item.setTitle(s);
+//        }
+//    }
 
-        for (int i = 0; i < menu.size(); i++) {
-            MenuItem item = menu.getItem(i);
-            SpannableString s = new SpannableString(menuTitle[i]);
-            s.setSpan(new CustomTypefaceSpan("" , type), 0 , s.length(),  Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-//            s.setSpan(new AlignmentSpan.Standard(Layout.Alignment.ALIGN_CENTER), 0, s.length(), 0);
-            item.setTitle(s);
-        }
+    private void setNavigationHeader() {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+        Glide.with(this)
+                .load(firebaseUser.getPhotoUrl()).centerCrop()
+                .into(profileImageView);
+
+        profileNameTextView.setText(firebaseUser.getDisplayName());
+        profileEmailTextView.setText(firebaseUser.getEmail());
 
     }
 
@@ -115,18 +139,23 @@ public class NavActivity extends AppCompatActivity
         if (id == R.id.nav_notice) {
             fragment = new MediaNoticeFragment();
             toolbarTitleTextView.setText(R.string.nav_item_title_notice);
+            getSupportActionBar().setElevation(30.0f);
         } else if (id == R.id.nav_board) {
             fragment = new BoardTabFragment();
             toolbarTitleTextView.setText(R.string.nav_item_title_board);
-        } else if (id == R.id.nav_timetable) {
+            getSupportActionBar().setElevation(0.0f);
+        } else if (id == R.id.nav_lecture) {
             fragment = new LectureFragment();
             toolbarTitleTextView.setText(R.string.nav_item_title_lecture);
+            getSupportActionBar().setElevation(0.0f);
         } else if (id == R.id.nav_info) {
             fragment = new InfoFragment();
             toolbarTitleTextView.setText(R.string.nav_item_title_info);
+            getSupportActionBar().setElevation(30.0f);
         } else if (id == R.id.nav_setting) {
             fragment = new SettingFragment();
             toolbarTitleTextView.setText(R.string.nav_item_title_setting);
+            getSupportActionBar().setElevation(30.0f);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6CABDD"
+    android:background="#F1F1F1"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -16,8 +16,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
+            android:scaleX="0.4"
+            android:scaleY="0.4"
             android:src="@drawable/media_logo" />
 
         <Button
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/app_title"
+            android:text=" "
             android:textColor="@color/colorWhite"
             android:textSize="40sp" />
     </RelativeLayout>

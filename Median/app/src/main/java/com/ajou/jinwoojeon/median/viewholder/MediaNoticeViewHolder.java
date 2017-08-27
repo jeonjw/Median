@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,8 +25,9 @@ import java.util.ArrayList;
 import me.iwf.photopicker.PhotoPreview;
 
 public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    private TextView mTitleTextView;
-    private TextView mContentsTextView;
+    private TextView titleTextView;
+    private TextView contentsTextView;
+    private TextView dateTextView;
     private ImageView imageView;
     private String imageUrl;
     private Context context;
@@ -40,8 +40,9 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
         super(itemView);
 
         this.context = itemView.getContext();
-        mTitleTextView = itemView.findViewById(R.id.media_notice_title_text_view);
-        mContentsTextView = itemView.findViewById(R.id.media_notice_contents_text_view);
+        titleTextView = itemView.findViewById(R.id.media_notice_title_text_view);
+        contentsTextView = itemView.findViewById(R.id.media_notice_contents_text_view);
+        dateTextView = itemView.findViewById(R.id.media_notice_date_text_view);
         imageView = itemView.findViewById(R.id.media_notice_image_view);
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +80,9 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
             bindContents(mediaNotice.getContents());
         }
 
-        mContentsTextView.setMaxLines(2);
-        mContentsTextView.setEllipsize(TextUtils.TruncateAt.END);
+        contentsTextView.setMaxLines(2);
+        contentsTextView.setEllipsize(TextUtils.TruncateAt.END);
+        dateTextView.setText(mediaNotice.getDate());
     }
 
     @Override
@@ -89,6 +91,7 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
         Intent intent = new Intent(context, MediaNoticeDetailView.class);
         intent.putExtra("TITLE", mediaNotice.getTitle());
         intent.putExtra("CONTENTS", mediaNotice.getContents());
+        intent.putExtra("DATE", mediaNotice.getDate());
         if (imageUrl != null)
             intent.putExtra("IMAGE_URL", imageUrl);
         context.startActivity(intent);
@@ -102,10 +105,10 @@ public class MediaNoticeViewHolder extends RecyclerView.ViewHolder implements Vi
     }
 
     private void bindTitle(String title) {
-        mTitleTextView.setText(title);
+        titleTextView.setText(title);
     }
 
     private void bindContents(String contents) {
-        mContentsTextView.setText(Jsoup.parse(contents).text());
+        contentsTextView.setText(Jsoup.parse(contents).text());
     }
 }
