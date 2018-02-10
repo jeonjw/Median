@@ -66,7 +66,10 @@ public abstract class BaseLectureFragment extends Fragment {
         setTextSpan();
         setTextViewFont();
 
-        final int selectDay = getArguments().getInt("SELECT_DAY");
+        int selectDay = getArguments().getInt("SELECT_DAY");
+        if(selectDay >= 5){
+            selectDay = 0;
+        }
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.day_list, R.layout.spinner_item);
 

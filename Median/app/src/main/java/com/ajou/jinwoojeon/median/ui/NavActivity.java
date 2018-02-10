@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ajou.jinwoojeon.median.APIExample;
 import com.ajou.jinwoojeon.median.BackPressHandler;
 import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.model.UserModel;

@@ -34,6 +34,7 @@ public class NotificationPostModel extends AsyncTask<Void,Void,Void> {
         try {
             URL object = new URL(url);
 
+
             HttpURLConnection con = (HttpURLConnection) object.openConnection();
             con.setDoOutput(true);
             con.setDoInput(true);
