@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ajou.jinwoojeon.median.R;
 import com.ajou.jinwoojeon.median.model.OnSpinnerClickListener;
@@ -76,8 +77,11 @@ public abstract class BaseLectureFragment extends Fragment {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        spinner.setSelection(selectDay, true);
-
+        if(selectDay > 4){
+            spinner.setSelection(0,true);
+        }else {
+            spinner.setSelection(selectDay, true);
+        }
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
